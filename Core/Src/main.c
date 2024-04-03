@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ili9341.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -110,6 +110,11 @@ int main(void)
   MX_TIM4_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
+
+  ILI9341_Init();
+
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
+  TIM2->CCR4 = 500;
 
   /* USER CODE END 2 */
 
@@ -418,7 +423,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+extern void touchgfxSignalVSync(void);
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM4)
+	{
+		touchgfxSignalVSync();
+	}
+}
 /* USER CODE END 4 */
 
 /**
