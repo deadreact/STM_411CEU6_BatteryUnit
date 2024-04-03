@@ -56,7 +56,7 @@ void TouchGFXHAL::initialize()
 void TouchGFXHAL::taskEntry()
 {
 	ILI9341_Init();
-	HAL::taskEntry();
+	TouchGFXGeneratedHAL::taskEntry();
 }
 
 /**
