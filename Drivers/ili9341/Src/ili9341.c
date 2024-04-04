@@ -266,9 +266,7 @@ void ILI9341_EndOfDrawBitmap(void)
 void ILI9341_Reset(void)
 {
 	RESET_L();
-	HAL_Delay(1);
 	RESET_H();
-	HAL_Delay(1);
 	CS_L();
 //	LED_H();
 }
@@ -313,12 +311,7 @@ void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size)
 	//HAL_SPI_Transmit_DMA(&hspi1, (uint8_t*)pData, Size );
 	while(spiDmaTransferComplete == 0);
 }
-/*
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
-{
-	spiDmaTransferComplete = 1;
-}
-*/
+
 
 static void LCD_direction(LCD_Horizontal_t direction)
 {
