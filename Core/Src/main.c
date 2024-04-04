@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "ili9341.h"
+#include <ili9341.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -409,10 +409,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DC_Pin|RESET_Pin|CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : DC_Pin RESET_Pin CS_Pin */
-  GPIO_InitStruct.Pin = DC_Pin|RESET_Pin|CS_Pin;
+  /*Configure GPIO pins : SCRN_DC_Pin SCRN_RESET_Pin SCRN_CS_Pin */
+  GPIO_InitStruct.Pin = SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;

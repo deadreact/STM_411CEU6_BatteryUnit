@@ -36,7 +36,7 @@ SOFTWARE.
  extern "C" {
 #endif
 
-#include "main.h" // For STM32F4
+#include <stdint.h>
 
 #define GUI_WIDTH 320
 #define GUI_HEIGHT 240

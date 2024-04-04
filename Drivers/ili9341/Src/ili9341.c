@@ -344,27 +344,27 @@ static void LCD_direction(LCD_Horizontal_t direction)
 
 static void RESET_L(void)
 {
-	HAL_GPIO_WritePin(GPIOB, RESET_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, SCRN_RESET_Pin, GPIO_PIN_RESET);
 }
 
 static void RESET_H(void)
 {
-	HAL_GPIO_WritePin(GPIOB, RESET_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, SCRN_RESET_Pin, GPIO_PIN_SET);
 }
 
 static void CS_L(void)
 {
-	HAL_GPIO_WritePin(GPIOB, CS_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, SCRN_CS_Pin, GPIO_PIN_RESET);
 }
 
 static void DC_L(void)
 {
-	HAL_GPIO_WritePin(GPIOB, DC_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin, GPIO_PIN_RESET);
 }
 
 static void DC_H(void)
 {
-	HAL_GPIO_WritePin(GPIOB, DC_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin, GPIO_PIN_SET);
 }
 
 //static void LED_H(void)
@@ -372,3 +372,53 @@ static void DC_H(void)
 //	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 //}
 
+extern void DisplayDriver_TransferCompleteCallback();
+
+static uint8_t isTransmittingData = 0;
+
+uint32_t touchgfxDisplayDriverTransmitActive(void)
+{
+	return isTransmittingData;
+}
+
+void touchgfxDisplayDriverTransmitBlock(uint8_t* pixels, uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+{
+	isTransmittingData = 1;
+	ILI9341_SetWindow(x, y, x+w-1, y+h-1);
+	ILI9341_DrawBitmap(w, h, pixels);
+}
+
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	if (hspi->Instance == SPI1)
+	{
+//		uint32_t err = HAL_SPI_GetError(hspi);
+//		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
+
+		ILI9341_EndOfDrawBitmap();
+		isTransmittingData = 0;
+		DisplayDriver_TransferCompleteCallback();
+	}
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+	if (hspi->Instance == SPI1)
+	{
+		HAL_SPI_Abort(hspi);
+
+//		uint32_t err = HAL_SPI_GetError(hspi);
+//		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
+
+	}
+}
+
+void HAL_SPI_AbortCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	if (hspi->Instance == SPI1)
+	{
+//		uint32_t err = HAL_SPI_GetError(hspi);
+//		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
+
+	}
+}

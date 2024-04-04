@@ -23,7 +23,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "ili9341.h"
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
@@ -49,56 +48,6 @@ void touchgfx_components_init(void);
 void touchgfx_taskEntry(void);
 
 /* USER CODE BEGIN PFP */
-extern void DisplayDriver_TransferCompleteCallback();
-
-static uint8_t isTransmittingData = 0;
-
-uint32_t touchgfxDisplayDriverTransmitActive(void)
-{
-	return isTransmittingData;
-}
-
-void touchgfxDisplayDriverTransmitBlock(uint8_t* pixels, uint16_t x, uint16_t y, uint16_t w, uint16_t h)
-{
-	isTransmittingData = 1;
-	ILI9341_SetWindow(x, y, x+w-1, y+h-1);
-	ILI9341_DrawBitmap(w, h, pixels);
-}
-
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
-{
-	if (hspi->Instance == SPI1)
-	{
-		uint32_t err = HAL_SPI_GetError(hspi);
-		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
-
-		ILI9341_EndOfDrawBitmap();
-		isTransmittingData = 0;
-		DisplayDriver_TransferCompleteCallback();
-	}
-}
-
-void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
-{
-	if (hspi->Instance == SPI1)
-	{
-		HAL_SPI_Abort(hspi);
-
-		uint32_t err = HAL_SPI_GetError(hspi);
-		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
-
-	}
-}
-
-void HAL_SPI_AbortCpltCallback(SPI_HandleTypeDef *hspi)
-{
-	if (hspi->Instance == SPI1)
-	{
-		uint32_t err = HAL_SPI_GetError(hspi);
-		HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
-
-	}
-}
 /* USER CODE END PFP */
 
 /**
