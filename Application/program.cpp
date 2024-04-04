@@ -25,7 +25,7 @@ public:
     ButtonEventProvider btnHandler;
 
     uint32_t brightness{500};
-    bool screenOn {true};
+    bool screenOn {false};
     ButtonEvent lastEvent {ButtonEvent::NoEvent};
 };
 
@@ -41,7 +41,7 @@ void Program_Init(const void* desc)
 	p.init();
 }
 
-void Program_Process()
+void Program_Process(void)
 {
     auto& p = getProgram();
     p.onTick();

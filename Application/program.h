@@ -21,7 +21,7 @@ struct ProgramDescriptor
 extern "C" {
 #endif
     void Program_Init(const void* desc);
-    void Program_Process();
+    void Program_Process(void);
 #ifdef __cplusplus
 }
 #endif
