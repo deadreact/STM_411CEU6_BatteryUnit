@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <ili9341.h>
+#include "../../Application/program.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,8 +115,13 @@ int main(void)
   ILI9341_Init();
 
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-  TIM2->CCR4 = 500;
+//  TIM2->CCR4 = 500;
 
+  struct ProgramDescriptor desc;
+  desc.brightnessHandle = &TIM2->CCR4;
+  desc.btnGPIOx = KEY_GPIO_Port;
+  desc.btnPin = KEY_Pin;
+  Program_Init(&desc);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,7 +129,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  Program_Process();
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
@@ -410,6 +416,12 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : KEY_Pin */
+  GPIO_InitStruct.Pin = KEY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(KEY_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SCRN_DC_Pin SCRN_RESET_Pin SCRN_CS_Pin */
   GPIO_InitStruct.Pin = SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin;
