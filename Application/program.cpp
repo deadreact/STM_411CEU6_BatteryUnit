@@ -9,25 +9,82 @@
 #include "button.h"
 
 
+class ScreenBrightnessController
+{
+public:
+	ScreenBrightnessController()
+	{
+		ApplyBrightness();
+	}
+
+	void toggleScreen() {
+		screenOn = !screenOn;
+		ApplyBrightness();
+	}
+
+	void incBrightness() {
+		brightness = (brightness + 40) % 1000;
+		ApplyBrightness();
+	}
+private:
+	void ApplyBrightness() {
+		brightnessHandle = screenOn ? brightness : 0;
+	}
+private:
+	volatile uint32_t& brightnessHandle {TIM2->CCR4};
+	uint32_t brightness{500};
+	bool screenOn {true};
+	ButtonEvent lastEvent {ButtonEvent::NoEvent};
+};
+
+class KeyButtonToScreenHandler
+{
+public:
+	void handleEvent(ButtonEvent event)
+	{
+		switch (event)
+		{
+			case ButtonEvent::Release:
+			{
+				if (lastEvent == ButtonEvent::Press) {
+					controller.toggleScreen();
+				}
+				lastEvent = event;
+
+			} break;
+			case ButtonEvent::Press:
+				lastEvent = event;
+				break;
+			case ButtonEvent::Hold:
+			{
+				controller.incBrightness();
+				lastEvent = event;
+			} break;
+			default:
+				break;
+		}
+	}
+private:
+	ScreenBrightnessController controller;
+	ButtonEvent lastEvent{ButtonEvent::NoEvent};
+};
+
 
 class Program
 {
 public:
 	Program(const ProgramDescriptor& desc)
-		: brightnessHandle(*desc.brightnessHandle)
-		, btnHandler(Button(desc.btnGPIOx, desc.btnPin))
+		: btnEvProvider(desc.btnGPIOx, desc.btnPin)
+		, btnEventHandler()
 	{}
     void init();
     void onTick();
     void handleEvents();
 
-    volatile uint32_t& brightnessHandle;
-    ButtonEventProvider btnHandler;
-
-    uint32_t brightness{500};
-    bool screenOn {true};
-    ButtonEvent lastEvent {ButtonEvent::NoEvent};
+    ButtonEventProvider btnEvProvider;
+    KeyButtonToScreenHandler btnEventHandler;
 };
+
 
 static Program& getProgram(const ProgramDescriptor* desc = nullptr)
 {
@@ -51,37 +108,15 @@ void Program_Process()
 
 void Program::init()
 {
-	brightnessHandle = screenOn ? brightness : 0;
+
 }
 
 void Program::onTick()
 {
-	btnHandler.onTick();
+	btnEvProvider.onTick();
 }
 
 void Program::handleEvents()
 {
-	switch (btnHandler.getLastEvent())
-	{
-		case ButtonEvent::Release:
-		{
-			if (lastEvent == ButtonEvent::Press) {
-				screenOn = !screenOn;
-			}
-			lastEvent = btnHandler.getLastEvent();
-
-		} break;
-		case ButtonEvent::Press:
-			lastEvent = btnHandler.getLastEvent();
-			break;
-		case ButtonEvent::Hold:
-		{
-			brightness = (brightness + 100) % 1000;
-			lastEvent = btnHandler.getLastEvent();
-		} break;
-		default:
-			break;
-	}
-
-	brightnessHandle = screenOn ? brightness : 0;
+	btnEventHandler.handleEvent(btnEvProvider.getLastEvent());
 }

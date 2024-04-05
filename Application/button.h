@@ -31,22 +31,22 @@ enum class ButtonEvent : uint8_t
 	NoEvent,
 	Press,
 	Release,
-	Hold,
-	Unexpected
+	Hold
 };
 
-class ButtonEventProvider : public ITickHandler
+class ButtonEventProvider : protected Button
 {
 public:
-	ButtonEventProvider(Button&& btn);
+	ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
 	virtual void onTick() override;
-	virtual void onEvent(ButtonEvent e) { m_lastEvent = e; }
 	ButtonEvent getLastEvent() const { return m_lastEvent; }
 private:
-	Button m_btn;
 	uint32_t m_pressedDuration;
-	ButtonEvent m_lastEvent;
+	ButtonEvent m_lastEvent {ButtonEvent::NoEvent};
+	bool m_firstHoldTriggered{false};
 };
+
 
 
 

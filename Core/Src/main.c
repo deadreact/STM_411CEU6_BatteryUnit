@@ -71,7 +71,16 @@ static void MX_TIM4_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void EnterSleepMode(void) {
+    __disable_irq();
+    HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+    __enable_irq();
+}
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    if (GPIO_Pin == GPIO_PIN_0) {
 
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -118,7 +127,7 @@ int main(void)
 //  TIM2->CCR4 = 500;
 
   struct ProgramDescriptor desc;
-  desc.brightnessHandle = &TIM2->CCR4;
+//  desc.brightnessHandle = &TIM2->CCR4;
   desc.btnGPIOx = KEY_GPIO_Port;
   desc.btnPin = KEY_Pin;
   Program_Init(&desc);
@@ -128,8 +137,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
 	  Program_Process();
+    /* USER CODE END WHILE */
+
   MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
