@@ -6,133 +6,27 @@
  */
 
 #include "program.h"
-#include "button.h"
+#include "stm32f4xx_hal.h"
 #include "Startup/startup_process.h"
+#include "Idle/idle_process.h"
 
-
-class ScreenBrightnessController
-{
-public:
-	ScreenBrightnessController()
-	{
-		ApplyBrightness();
-	}
-
-	void toggleScreen() {
-		screenOn = !screenOn;
-		ApplyBrightness();
-
-		if (!screenOn)
-		{
-			__disable_irq();
-			HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-			__enable_irq();
-		}
-	}
-
-	void incBrightness() {
-		brightness = (brightness + 40) % 1000;
-		ApplyBrightness();
-	}
-private:
-	void ApplyBrightness() {
-		brightnessHandle = screenOn ? brightness : 0;
-	}
-private:
-	volatile uint32_t& brightnessHandle {TIM2->CCR4};
-	uint32_t brightness{500};
-	bool screenOn {true};
-	ButtonEvent lastEvent {ButtonEvent::NoEvent};
-};
-
-class KeyButtonToScreenHandler
-{
-public:
-	void handleEvent(ButtonEvent event)
-	{
-		switch (event)
-		{
-			case ButtonEvent::Release:
-			{
-				if (lastEvent == ButtonEvent::Press) {
-					controller.toggleScreen();
-				}
-				lastEvent = event;
-
-			} break;
-			case ButtonEvent::Press:
-				lastEvent = event;
-				break;
-			case ButtonEvent::Hold:
-			{
-				controller.incBrightness();
-				lastEvent = event;
-			} break;
-			default:
-				break;
-		}
-	}
-private:
-	ScreenBrightnessController controller;
-	ButtonEvent lastEvent{ButtonEvent::NoEvent};
-};
-
-
-class Program
-{
-public:
-	Program(const ProgramDescriptor& desc)
-		: btnEvProvider(desc.btnGPIOx, desc.btnPin)
-		, btnEventHandler()
-	{}
-    void init();
-    void onTick();
-    void handleEvents();
-
-    ButtonEventProvider btnEvProvider;
-    KeyButtonToScreenHandler btnEventHandler;
-};
-
-
-static Program& getProgram(const ProgramDescriptor* desc = nullptr)
-{
-	static Program p(*desc);
-	return p;
-}
-
-void Program_Init(const void* desc)
-{
-	auto& p = getProgram((ProgramDescriptor*)desc);
-	p.init();
-}
 
 void Program_Process()
 {
-    auto& p = getProgram();
-    p.onTick();
-    p.handleEvents();
+    /* Check and handle if the system wasn't resumed from Standby mode */
+    if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
+    {
+        StartupProcess p;
+        p.Init();
+        p.Run();
+    }
+//    HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1);
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+//    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+
+    IdleProcess p;
+    p.Init();
+    p.Run();
 }
 
 
-void Startup_Process()
-{
-	StartupProcess p;
-	p.Init();
-	p.Run();
-}
-
-
-void Program::init()
-{
-
-}
-
-void Program::onTick()
-{
-	btnEvProvider.onTick();
-}
-
-void Program::handleEvents()
-{
-	btnEventHandler.handleEvent(btnEvProvider.getLastEvent());
-}

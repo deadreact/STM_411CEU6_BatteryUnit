@@ -1,6 +1,6 @@
 #include <gui/screen1_screen/Screen1View.hpp>
+#include <shared_data.h>
 
-extern int gTimeLeftToSleep;
 
 Screen1View::Screen1View()
 {
@@ -19,6 +19,9 @@ void Screen1View::tearDownScreen()
 
 void Screen1View::handleTickEvent()
 {
-    auto value = gTimeLeftToSleep/120;
-    circleProgress1.setValue(value);
+	if (SharedData::getProcessId() == ProcessId::Startup)
+	{
+		auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/120;
+		circleProgress1.setValue(value);
+	}
 }

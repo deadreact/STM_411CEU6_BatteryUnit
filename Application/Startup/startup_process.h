@@ -8,16 +8,17 @@
 #ifndef STARTUP_STARTUP_PROCESS_H_
 #define STARTUP_STARTUP_PROCESS_H_
 
+#include <shared_data.h>
 #include <stdint.h>
 
 class StartupProcess {
 public:
-	StartupProcess();
-	virtual ~StartupProcess();
+	virtual ~StartupProcess() {}
 
 	void Init();
 	void Run();
 private:
+	ProcessData<ProcessId::Startup> data;
 	bool m_isRunning {false};
 	uint32_t m_startTick;
 };

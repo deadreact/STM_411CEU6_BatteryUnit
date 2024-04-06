@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <ili9341.h>
-#include "../../Application/program.h"
+#include <program.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,8 +53,6 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-int gCurrentProcess = -1;
-int gTimeLeftToSleep = -1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,19 +62,15 @@ static void MX_DMA_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_CRC_Init(void);
-static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void EnterSleepMode(void) {
-	HAL_SuspendTick();
-	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-	HAL_ResumeTick();
-}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == GPIO_PIN_0) {
 
@@ -117,42 +111,24 @@ int main(void)
   MX_SPI1_Init();
   MX_USART1_UART_Init();
   MX_CRC_Init();
-  MX_TIM2_Init();
   MX_TIM4_Init();
+  MX_TIM2_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-
-//  HAL_GPIO_Init(GPIOA, GPIO_PIN_0);
-//  HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
-//  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
   ILI9341_Init();
 
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-//  EnterSleepMode();
   TIM2->CCR4 = 500;
 
-  __HAL_RCC_PWR_CLK_ENABLE();
+  Program_Process();
 
-    /* Check and handle if the system wasn't resumed from Standby mode */
-    if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
-    {
-    	Startup_Process();
-    }
-    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
-
-    struct ProgramDescriptor desc;
-  //  desc.brightnessHandle = &TIM2->CCR4;
-    desc.btnGPIOx = GPIOA;
-    desc.btnPin = GPIO_PIN_0;
-  Program_Init(&desc);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Program_Process();
     /* USER CODE END WHILE */
 
   MX_TouchGFX_Process();
