@@ -53,7 +53,8 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-
+int gCurrentProcess = -1;
+int gTimeLeftToSleep = -1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,9 +73,9 @@ static void MX_TIM4_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void EnterSleepMode(void) {
-    __disable_irq();
-    HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-    __enable_irq();
+	HAL_SuspendTick();
+	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+	HAL_ResumeTick();
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     if (GPIO_Pin == GPIO_PIN_0) {
@@ -121,15 +122,29 @@ int main(void)
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
+//  HAL_GPIO_Init(GPIOA, GPIO_PIN_0);
+//  HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
+//  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
   ILI9341_Init();
 
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-//  TIM2->CCR4 = 500;
+//  EnterSleepMode();
+  TIM2->CCR4 = 500;
 
-  struct ProgramDescriptor desc;
-//  desc.brightnessHandle = &TIM2->CCR4;
-  desc.btnGPIOx = KEY_GPIO_Port;
-  desc.btnPin = KEY_Pin;
+  __HAL_RCC_PWR_CLK_ENABLE();
+
+    /* Check and handle if the system wasn't resumed from Standby mode */
+    if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
+    {
+    	Startup_Process();
+    }
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+
+    struct ProgramDescriptor desc;
+  //  desc.brightnessHandle = &TIM2->CCR4;
+    desc.btnGPIOx = GPIOA;
+    desc.btnPin = GPIO_PIN_0;
   Program_Init(&desc);
   /* USER CODE END 2 */
 
@@ -426,12 +441,6 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : KEY_Pin */
-  GPIO_InitStruct.Pin = KEY_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(KEY_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SCRN_DC_Pin SCRN_RESET_Pin SCRN_CS_Pin */
   GPIO_InitStruct.Pin = SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin;

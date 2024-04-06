@@ -12,6 +12,7 @@ enum LANGUAGES
 
 enum TEXTS
 {
+    T_TEXTID1,
     NUMBER_OF_TEXT_KEYS
 };
 

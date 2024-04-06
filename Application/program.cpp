@@ -7,6 +7,7 @@
 
 #include "program.h"
 #include "button.h"
+#include "Startup/startup_process.h"
 
 
 class ScreenBrightnessController
@@ -20,6 +21,13 @@ public:
 	void toggleScreen() {
 		screenOn = !screenOn;
 		ApplyBrightness();
+
+		if (!screenOn)
+		{
+			__disable_irq();
+			HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+			__enable_irq();
+		}
 	}
 
 	void incBrightness() {
@@ -103,6 +111,14 @@ void Program_Process()
     auto& p = getProgram();
     p.onTick();
     p.handleEvents();
+}
+
+
+void Startup_Process()
+{
+	StartupProcess p;
+	p.Init();
+	p.Run();
 }
 
 

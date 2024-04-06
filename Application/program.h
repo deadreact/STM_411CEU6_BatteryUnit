@@ -20,8 +20,12 @@ struct ProgramDescriptor
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
     void Program_Init(const void* desc);
     void Program_Process();
+    void Startup_Process();
+
 #ifdef __cplusplus
 }
 #endif

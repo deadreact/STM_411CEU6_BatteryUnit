@@ -4,7 +4,12 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
+    <TextGroup Id="Group1">
+      <Text Id="TextId1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Sleep after</Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="Unsorted" />
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />

@@ -3,18 +3,42 @@
     "Screens": [
       {
         "Name": "Screen1",
+        "CanvasBufferSize": 4800,
         "Components": [
           {
-            "Type": "Image",
-            "Name": "image1",
-            "X": 56,
-            "Y": 20,
-            "Width": 208,
-            "Height": 201,
-            "RelativeFilename": "grid.png"
+            "Type": "CircleProgress",
+            "Name": "circleProgress1",
+            "X": 79,
+            "Y": 45,
+            "Width": 150,
+            "Height": 150,
+            "Color": {
+              "Red": 255,
+              "Green": 38
+            },
+            "CenterX": 75.0,
+            "CenterY": 75.0,
+            "Radius": 65.0,
+            "LineWidth": 20.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_circleprogress_backgrounds_medium.png",
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 100
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1
+            },
+            "Action": {
+              "Type": "ActionExecuteCode"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],
