@@ -21,7 +21,7 @@ void Screen1View::handleTickEvent()
 {
 	if (SharedData::getProcessId() == ProcessId::Startup)
 	{
-		auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/120;
+		auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
 		circleProgress1.setValue(value);
 	}
 }

@@ -10,16 +10,17 @@
 
 #include <shared_data.h>
 #include <stdint.h>
+#include "../process.h"
 
-class StartupProcess {
+class StartupProcess : public Process
+{
 public:
-	virtual ~StartupProcess() {}
-
-	void Init();
-	void Run();
+	virtual void Init() override;
+	virtual void Deinit() override;
+protected:
+	virtual void Update() override;
 private:
 	ProcessData<ProcessId::Startup> data;
-	bool m_isRunning {false};
 	uint32_t m_startTick;
 };
 

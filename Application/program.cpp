@@ -10,7 +10,6 @@
 #include "Startup/startup_process.h"
 #include "Idle/idle_process.h"
 
-
 void Program_Process()
 {
     /* Check and handle if the system wasn't resumed from Standby mode */
@@ -29,4 +28,7 @@ void Program_Process()
     p.Run();
 }
 
+void AfterStopMode()
+{
 
+}

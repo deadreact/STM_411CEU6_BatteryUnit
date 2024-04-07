@@ -31,7 +31,13 @@ template <>
 struct ProcessData<ProcessId::Sleep> {};
 
 template <>
-struct ProcessData<ProcessId::Idle> {};
+struct ProcessData<ProcessId::Idle>
+{
+	int screenBrightness {500};
+	mutable int sleepingMode{0};
+	int analog1{0};
+	int analog2{0};
+};
 
 
 // --------------------------------------------------------------

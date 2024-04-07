@@ -9,10 +9,23 @@
         <Translation Language="GB">Sleep after</Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="Unsorted" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_LX7P" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Sleeping...</Translation>
+      </Text>
+      <Text Id="__SingleUse_WOQL" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;&gt; %</Translation>
+      </Text>
+      <Text Id="__SingleUse_WPN4" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Brightness:</Translation>
+      </Text>
+      <Text Id="__SingleUse_XXXU" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Idle mode</Translation>
+      </Text>
+    </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>

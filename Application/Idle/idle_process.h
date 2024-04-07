@@ -8,17 +8,19 @@
 #ifndef IDLE_IDLE_PROCESS_H_
 #define IDLE_IDLE_PROCESS_H_
 
-class IdleProcess
+#include "../process.h"
+
+class IdleProcess : public Process
 {
 public:
 	virtual ~IdleProcess();
 
-	void Init();
-	void Run();
+	virtual void Init() override;
+protected:
+	virtual void Update() override;
 private:
 	struct Impl;
 	Impl* m_pimpl{nullptr};
-	bool m_isRunning{false};
 };
 
 #endif /* IDLE_IDLE_PROCESS_H_ */
