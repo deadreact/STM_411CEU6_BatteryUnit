@@ -2,6 +2,7 @@
 #define FRONTENDAPPLICATION_HPP
 
 #include <gui_generated/common/FrontendApplicationBase.hpp>
+#include <shared_data.h>
 
 class FrontendHeap;
 
@@ -13,12 +14,9 @@ public:
     FrontendApplication(Model& m, FrontendHeap& heap);
     virtual ~FrontendApplication() { }
 
-    virtual void handleTickEvent()
-    {
-        model.tick();
-        FrontendApplicationBase::handleTickEvent();
-    }
+    virtual void handleTickEvent() override;
 private:
+    ProcessId m_processId;
 };
 
 #endif // FRONTENDAPPLICATION_HPP

@@ -38,42 +38,42 @@ void Button::onTick()
 bool Button::isPressed() const { return m_state == 0; }
 uint32_t Button::getPressedDuration() const { return isPressed() ? HAL_GetTick() - m_lastStateChangeTick : 0; }
 
-
-
-ButtonEventProvider::ButtonEventProvider(Button&& btn)
-	: m_btn(static_cast<Button&&>(btn))
-	, m_pressedDuration(btn.getPressedDuration())
+ButtonEventProvider::ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+	: Button(GPIOx, GPIO_Pin)
+	, m_pressedDuration(getPressedDuration())
 {}
 
 void ButtonEventProvider::onTick()
 {
-	static const uint32_t holdTreshold = 300;
-	m_lastEvent = ButtonEvent::NoEvent;
-	m_btn.onTick();
+	static const uint32_t firstHoldTreshold = 400;
+	static const uint32_t nextHoldTreshold = 80;
 
-	auto currPressedDuration = m_btn.getPressedDuration();
+	const uint32_t holdTreshold = m_firstHoldTriggered ? nextHoldTreshold : firstHoldTreshold;
+
+	m_lastEvent = ButtonEvent::NoEvent;
+	Button::onTick();
+
+	auto currPressedDuration = getPressedDuration();
 	if (m_pressedDuration != currPressedDuration)
 	{
 		if (currPressedDuration == 0)
 		{
-			onEvent(ButtonEvent::Release);
+			m_lastEvent = ButtonEvent::Release;
 			m_pressedDuration = currPressedDuration;
+			m_firstHoldTriggered = false;
 		}
 		else if (m_pressedDuration == 0)
 		{
-			onEvent(ButtonEvent::Press);
+			m_lastEvent = ButtonEvent::Press;
 			m_pressedDuration = currPressedDuration;
+			m_firstHoldTriggered = false;
 		}
 		else if (currPressedDuration - m_pressedDuration > holdTreshold)
 		{
-			onEvent(ButtonEvent::Hold);
+			m_lastEvent = ButtonEvent::Hold;
 			m_pressedDuration = currPressedDuration;
+			m_firstHoldTriggered = true;
 		}
-		else
-		{
-//			onEvent(ButtonEvent::Unexpected);
-		}
-//		m_pressedDuration = currPressedDuration;
 	}
 }
 

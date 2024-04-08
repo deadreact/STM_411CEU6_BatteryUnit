@@ -49,8 +49,6 @@ extern "C" {
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -59,17 +57,27 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define KEY_Pin GPIO_PIN_0
-#define KEY_GPIO_Port GPIOA
+#define ADC_charge_dcOk_Pin GPIO_PIN_1
+#define ADC_charge_dcOk_GPIO_Port GPIOA
+#define ADC_thermal_Pin GPIO_PIN_4
+#define ADC_thermal_GPIO_Port GPIOA
 #define SCRN_DC_Pin GPIO_PIN_0
 #define SCRN_DC_GPIO_Port GPIOB
 #define SCRN_RESET_Pin GPIO_PIN_1
 #define SCRN_RESET_GPIO_Port GPIOB
 #define SCRN_CS_Pin GPIO_PIN_2
 #define SCRN_CS_GPIO_Port GPIOB
+#define LED_Pin GPIO_PIN_10
+#define LED_GPIO_Port GPIOB
+#define bttn_screen_on_Pin GPIO_PIN_12
+#define bttn_screen_on_GPIO_Port GPIOA
+#define bttn_usb_on_Pin GPIO_PIN_3
+#define bttn_usb_on_GPIO_Port GPIOB
+#define bttn_usb_on_EXTI_IRQn EXTI3_IRQn
+#define bttn_inv_on_Pin GPIO_PIN_6
+#define bttn_inv_on_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

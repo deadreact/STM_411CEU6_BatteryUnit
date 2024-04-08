@@ -3,15 +3,170 @@
     "Screens": [
       {
         "Name": "Screen1",
+        "CanvasBufferSize": 4800,
         "Components": [
           {
-            "Type": "Image",
-            "Name": "image1",
-            "X": 56,
-            "Y": 20,
-            "Width": 208,
-            "Height": 201,
-            "RelativeFilename": "grid.png"
+            "Type": "CircleProgress",
+            "Name": "circleProgress1",
+            "X": 79,
+            "Y": 45,
+            "Width": 150,
+            "Height": 150,
+            "Color": {
+              "Red": 255,
+              "Green": 38
+            },
+            "CenterX": 75.0,
+            "CenterY": 75.0,
+            "Radius": 65.0,
+            "LineWidth": 20.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_circleprogress_backgrounds_medium.png",
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 100
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1
+            },
+            "Action": {
+              "Type": "ActionExecuteCode"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Screen2",
+        "CanvasBufferSize": 4800,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "sleepingLabel",
+            "X": 107,
+            "Y": 132,
+            "Width": 106,
+            "Height": 24,
+            "Visible": false,
+            "TextId": "__SingleUse_LX7P",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 187,
+              "Green": 187,
+              "Blue": 187
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "Container",
+            "Name": "container1",
+            "Width": 320,
+            "Height": 120,
+            "Components": [
+              {
+                "Type": "TextProgress",
+                "Name": "brightnessValue",
+                "X": 145,
+                "Y": 28,
+                "Width": 175,
+                "Height": 50,
+                "TextId": "__SingleUse_WOQL",
+                "Color": {
+                  "Red": 187,
+                  "Green": 187,
+                  "Blue": 187
+                },
+                "Preset": "clay_theme\\presets\\textprogress\\rounded_dark.json",
+                "FileNameBackground": "__generated\\clay_theme_images_widgets_textprogress_backgrounds_rounded_dark.png",
+                "IndicatorPositionX": 12,
+                "IndicatorPositionY": 10,
+                "IndicatorPositionWidth": 150,
+                "IndicatorPositionHeight": 30,
+                "ProgressRangeMax": 100
+              },
+              {
+                "Type": "TextArea",
+                "Name": "brightnessTitle",
+                "X": 12,
+                "Y": 41,
+                "Width": 115,
+                "Height": 24,
+                "TextId": "__SingleUse_WPN4",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 187,
+                  "Green": 187,
+                  "Blue": 187
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "title",
+                "X": 12,
+                "Y": 10,
+                "Width": 99,
+                "Height": 24,
+                "TextId": "__SingleUse_XXXU",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 187,
+                  "Green": 187,
+                  "Blue": 187
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "LineProgress",
+                "Name": "lineProgress1",
+                "X": 12,
+                "Y": 92,
+                "Width": 300,
+                "Height": 5,
+                "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_thin_medium_action_0.png",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "StartY": 2.0,
+                "EndY": 2.0,
+                "EndX": 300.0,
+                "LineWidth": 5.0,
+                "LineEndingStyle": "Butt",
+                "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\thin\\medium_action_0.json",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
+                "ProgressRangeMax": 4000,
+                "ProgressInitialValue": 2000
+              },
+              {
+                "Type": "LineProgress",
+                "Name": "lineProgress2",
+                "X": 12,
+                "Y": 115,
+                "Width": 300,
+                "Height": 5,
+                "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_thin_medium_action_0.png",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "StartY": 2.0,
+                "EndY": 2.0,
+                "EndX": 300.0,
+                "LineWidth": 5.0,
+                "LineEndingStyle": "Butt",
+                "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\thin\\medium_action_0.json",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
+                "ProgressRangeMax": 4000,
+                "ProgressInitialValue": 2000
+              }
+            ]
           }
         ],
         "Interactions": []
