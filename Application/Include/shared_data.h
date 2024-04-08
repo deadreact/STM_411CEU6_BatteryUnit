@@ -37,6 +37,11 @@ struct ProcessData<ProcessId::Idle>
     mutable int sleepingMode{0};
     int analog1{0};
     int analog2{0};
+
+    bool bmsActive{false};
+    int batCapacity{0};
+    float batCurrent{0.f};
+    bool bmsError{false};
 };
 
 

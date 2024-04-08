@@ -12,6 +12,7 @@
 #include "stm32f4xx_hal.h"
 #include "../button.h"
 #include "main.h"
+#include "../BMS/bms_handler.h"
 
 // ----------------- tmp here --------------------------
 class ScreenBrightnessController
@@ -121,45 +122,86 @@ struct IdleProcess::Impl
     void OnTick();
     void HandleEvents();
 
+    void UpdateAnalog();
+
     ProcessData<ProcessId::Idle> sharedData;
 
-    ButtonEventProvider btnScreenOn{GPIOA, GPIO_PIN_12};
+    BMSUpdater m_bmsUpdater;
+
+//    ButtonEventProvider btnScreenOn{GPIOA, GPIO_PIN_12};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
+    ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12};
     KeyButtonToScreenHandler btnScreenOnHandler{sharedData.screenBrightness};
     BtnSleepHandler btnSleepHandler{sharedData.sleepingMode};
 };
 
 extern ADC_HandleTypeDef hadc1;
 
+void IdleProcess::Impl::UpdateAnalog()
+{
+	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+	sConfig.Channel = ADC_CHANNEL_1;
+	HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, 500);
+	sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+	sConfig.Channel = ADC_CHANNEL_4;
+	HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, 500);
+	sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+}
+
+
+
 void IdleProcess::Impl::OnTick()
 {
     if (sharedData.sleepingMode) {
         return;
     }
-    btnScreenOn.onTick();
+//    btnScreenOn.onTick();
     btnEnterSleep.onTick();
+    btnBmsToggle.onTick();
 
-    ADC_ChannelConfTypeDef sConfig = {0};
-    sConfig.Rank = 1;
-    sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-    sConfig.Channel = ADC_CHANNEL_1;
-    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 500);
-    sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
-    HAL_ADC_Stop(&hadc1);
-    sConfig.Channel = ADC_CHANNEL_4;
-    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 500);
-    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
-    HAL_ADC_Stop(&hadc1);
+    if (sharedData.bmsActive) {
+    	m_bmsUpdater.Update();
+    } else {
+    	UpdateAnalog();
+    }
 }
 
 void IdleProcess::Impl::HandleEvents()
 {
-    btnScreenOnHandler.handleEvent(btnScreenOn.getLastEvent());
+//    btnScreenOnHandler.handleEvent(btnScreenOn.getLastEvent());
     btnSleepHandler.handleEvent(btnEnterSleep.getLastEvent());
+
+    if (btnBmsToggle.getLastEvent() == ButtonEvent::Release) {
+    	sharedData.bmsActive = !sharedData.bmsActive;
+    	if (sharedData.bmsActive)
+    	{
+    		m_bmsUpdater.Request();
+    	}
+    }
+
+    BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
+    if (bmsEvent != BMSUpdaterEvent::NoEvent)
+    {
+    	if (m_bmsUpdater.GetStatus() == BMSStatus::Error || m_bmsUpdater.GetStatus() == BMSStatus::RequestTimedOut)
+    	{
+    		sharedData.bmsError = true;
+    	}
+    	else
+    	{
+    		const auto& data = m_bmsUpdater.GetData();
+    		sharedData.batCurrent = data.current * 0.01f;
+    		sharedData.batCapacity = data.capacity;
+    		sharedData.bmsError = false;
+    	}
+    }
 }
 
 

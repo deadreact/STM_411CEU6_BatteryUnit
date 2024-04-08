@@ -196,6 +196,18 @@
     <Filter Include="Header Files\generated\gui_generated\screen2_screen">
       <UniqueIdentifier>5C703361-BADD-83D1-1921-DAB6793BBD9A</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\idlescreen_screen">
+      <UniqueIdentifier>DE112BC5-6719-888C-82A7-6355E7CD003D</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\idlescreen_screen">
+      <UniqueIdentifier>BC8C2761-70F6-D940-9B1E-445DED5E5AB0</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\idlescreen_screen">
+      <UniqueIdentifier>02B88A23-09AC-225C-1309-3B9F52EF4E39</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\idlescreen_screen">
+      <UniqueIdentifier>3BE004C4-2EC4-18BA-06BB-35A0DD273121</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -245,6 +257,15 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\screen2_screen\Screen2ViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screen2_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\idlescreen_screen\IdleScreenPresenter.cpp">
+      <Filter>Source Files\gui\idlescreen_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\idlescreen_screen\IdleScreenView.cpp">
+      <Filter>Source Files\gui\idlescreen_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\idlescreen_screen\IdleScreenViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\idlescreen_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -705,6 +726,15 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen2_screen\Screen2ViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screen2_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\idlescreen_screen\IdleScreenPresenter.hpp">
+      <Filter>Header Files\gui\idlescreen_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\idlescreen_screen\IdleScreenView.hpp">
+      <Filter>Header Files\gui\idlescreen_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\idlescreen_screen\IdleScreenViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\idlescreen_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

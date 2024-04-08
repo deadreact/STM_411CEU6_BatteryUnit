@@ -170,6 +170,146 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "IdleScreen",
+        "Components": [
+          {
+            "Type": "Container",
+            "Name": "containerCapacity",
+            "Width": 260,
+            "Height": 52,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "capacityTitle",
+                "X": 18,
+                "Y": 14,
+                "Width": 85,
+                "Height": 24,
+                "TextId": "__SingleUse_6J8M",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 188,
+                  "Green": 188,
+                  "Blue": 188
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "BoxProgress",
+                "Name": "capacityValue",
+                "X": 130,
+                "Y": 20,
+                "Width": 100,
+                "Height": 18,
+                "Color": {
+                  "Red": 254,
+                  "Green": 189,
+                  "Blue": 23
+                },
+                "Direction": "Right",
+                "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
+                "IndicatorPositionWidth": 100,
+                "IndicatorPositionHeight": 18,
+                "ProgressRangeMax": 100,
+                "ProgressInitialValue": 60
+              },
+              {
+                "Type": "TextArea",
+                "Name": "capacityTextValue",
+                "X": 130,
+                "Y": 20,
+                "Width": 100,
+                "Height": 18,
+                "TextId": "batCurrent",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_XY9P",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                }
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "containerCurrent",
+            "Y": 52,
+            "Width": 260,
+            "Height": 52,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "currentTitle",
+                "X": 18,
+                "Y": 14,
+                "Width": 78,
+                "Height": 24,
+                "TextId": "__SingleUse_SFML",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 188,
+                  "Green": 188,
+                  "Blue": 188
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "BoxProgress",
+                "Name": "currentValue",
+                "X": 130,
+                "Y": 20,
+                "Width": 100,
+                "Height": 18,
+                "Color": {
+                  "Red": 254,
+                  "Green": 189,
+                  "Blue": 23
+                },
+                "Direction": "Right",
+                "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
+                "IndicatorPositionWidth": 100,
+                "IndicatorPositionHeight": 18,
+                "ProgressRangeMax": 100,
+                "ProgressInitialValue": 60
+              },
+              {
+                "Type": "TextArea",
+                "Name": "currentTextValue",
+                "X": 130,
+                "Y": 20,
+                "Width": 100,
+                "Height": 18,
+                "TextId": "batCurrent",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_52AL",
+                  "UseBuffer": true,
+                  "BufferSize": 5
+                }
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "errorLabel",
+            "X": 18,
+            "Y": 157,
+            "Width": 52,
+            "Height": 24,
+            "Visible": false,
+            "TextId": "__SingleUse_268O",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 221
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],

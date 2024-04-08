@@ -8,40 +8,8 @@
 #ifndef BMS_BMS_HANDLER_H_
 #define BMS_BMS_HANDLER_H_
 
-#include <stdint.h>
-
-enum class BMSStatus
-{
-    NoStatus,
-    Requested,
-    RequestTimedOut,
-    Ok,
-    InfoTimedOut,
-    Error
-};
-
-struct BatteryData
-{
-    uint16_t* cellVoltage{nullptr};
-    uint16_t cellCount{0};
-
-    uint16_t voltage{0};
-    uint16_t current{0};
-    uint16_t capacity{0};
-    float energyAh{0};
-
-    BatteryData() = default;
-    BatteryData(const BatteryData&);
-    BatteryData& operator=(const BatteryData&);
-    BatteryData(BatteryData&&);
-    BatteryData& operator=(BatteryData&&);
-    ~BatteryData();
-
-    void setCellCount(uint16_t count);
-
-    bool operator==(const BatteryData& other) const;
-    inline bool operator!=(const BatteryData& other) const { return !operator==(other); }
-};
+#include "bms_data.h"
+#include "stm32f4xx_hal.h"
 
 class BMSHandler
 {
@@ -50,12 +18,40 @@ public:
     ~BMSHandler();
 
     void Request();
-//private:
-    void ParseData(uint8_t *rawData);
+    void Response(HAL_StatusTypeDef status);
+
+    BMSStatus GetStatus() const { return m_status; }
+    const BatteryData& GetData() const { return m_data; }
+
+
+protected:
     void UpdateData(BatteryData&& newData);
-private:
+protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
+    uint32_t m_dataReceivedTick{0};
+
+    constexpr static const int rxDataLen = 256;
+    uint8_t rxData[rxDataLen];
 };
+
+enum class BMSUpdaterEvent : uint8_t
+{
+	NoEvent,
+	Updated
+};
+
+class BMSUpdater : public BMSHandler
+{
+public:
+	void Update();
+	BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
+private:
+	BMSStatus m_prevStatus { BMSStatus::NoStatus };
+	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
+	const uint32_t m_requestTimeout{2000};
+	const uint32_t m_invalidatePeriodMsec{1000 * 30}; //30 sec
+};
+
 
 #endif /* BMS_BMS_HANDLER_H_ */

@@ -17,6 +17,7 @@ public:
     virtual void handleTickEvent() override;
 private:
     ProcessId m_processId;
+    bool bmsActive{false};
 };
 
 #endif // FRONTENDAPPLICATION_HPP

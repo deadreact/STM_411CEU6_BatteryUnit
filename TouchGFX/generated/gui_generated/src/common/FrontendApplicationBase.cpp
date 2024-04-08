@@ -13,6 +13,8 @@
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <gui/screen2_screen/Screen2View.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
+#include <gui/idlescreen_screen/IdleScreenView.hpp>
+#include <gui/idlescreen_screen/IdleScreenPresenter.hpp>
 
 using namespace touchgfx;
 
