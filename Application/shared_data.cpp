@@ -9,7 +9,7 @@
 
 SharedData& SharedData::get()
 {
-	static SharedData data;
-	return data;
+    static SharedData data;
+    return data;
 }
 

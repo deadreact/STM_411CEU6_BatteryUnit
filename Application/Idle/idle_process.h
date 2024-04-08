@@ -13,14 +13,14 @@
 class IdleProcess : public Process
 {
 public:
-	virtual ~IdleProcess();
+    virtual ~IdleProcess();
 
-	virtual void Init() override;
+    virtual void Init() override;
 protected:
-	virtual void Update() override;
+    virtual void Update() override;
 private:
-	struct Impl;
-	Impl* m_pimpl{nullptr};
+    struct Impl;
+    Impl* m_pimpl{nullptr};
 };
 
 #endif /* IDLE_IDLE_PROCESS_H_ */

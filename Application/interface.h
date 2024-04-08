@@ -26,8 +26,8 @@ protected:
 class ITickHandler
 {
 public:
-	virtual ~ITickHandler() {}
-	virtual void onTick() = 0;
+    virtual ~ITickHandler() {}
+    virtual void onTick() = 0;
 };
 
 

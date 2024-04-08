@@ -463,10 +463,10 @@ extern void touchgfxSignalVSync(void);
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if (htim->Instance == TIM4)
-	{
-		touchgfxSignalVSync();
-	}
+    if (htim->Instance == TIM4)
+    {
+        touchgfxSignalVSync();
+    }
 }
 /* USER CODE END 4 */
 

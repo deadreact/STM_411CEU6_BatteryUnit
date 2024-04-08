@@ -176,11 +176,11 @@ void TouchGFXHAL::endFrame()
 
     if (SharedData::getProcessId() == ProcessId::Idle)
     {
-    	const auto& data = SharedData::getData<ProcessId::Idle>();
-    	if (data.sleepingMode == 1)
-    	{
-    		data.sleepingMode = 2;
-    	}
+        const auto& data = SharedData::getData<ProcessId::Idle>();
+        if (data.sleepingMode == 1)
+        {
+            data.sleepingMode = 2;
+        }
     }
 }
 

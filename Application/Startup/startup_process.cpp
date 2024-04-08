@@ -16,19 +16,19 @@ static const int kDuration = 7000;
 
 void StartupProcess::Init()
 {
-	SharedData::get().setProcessId<ProcessId::Startup>(&data);
-	m_startTick = HAL_GetTick();
-	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+    SharedData::get().setProcessId<ProcessId::Startup>(&data);
+    m_startTick = HAL_GetTick();
+    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 }
 
 void StartupProcess::Deinit()
 {
-	EnterStandbyMode();
+    EnterStandbyMode();
 }
 
 void StartupProcess::Update()
 {
-	data.timeLeftToStandby = kDuration - (HAL_GetTick() - m_startTick);
-	MX_TouchGFX_Process();
-	m_isRunning = data.timeLeftToStandby > 0;
+    data.timeLeftToStandby = kDuration - (HAL_GetTick() - m_startTick);
+    MX_TouchGFX_Process();
+    m_isRunning = data.timeLeftToStandby > 0;
 }

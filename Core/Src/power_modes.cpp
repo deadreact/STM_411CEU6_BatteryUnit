@@ -31,17 +31,17 @@ static void SYSCLKConfig_FromSTOP(void)
 }
 
 void EnterSleepMode(void) {
-	HAL_SuspendTick();
-	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-	HAL_ResumeTick();
+    HAL_SuspendTick();
+    HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+    HAL_ResumeTick();
 }
 
 void EnterStopMode(void)
 {
-	HAL_SuspendTick();
-	HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
-	SYSCLKConfig_FromSTOP();
-	HAL_ResumeTick();
+    HAL_SuspendTick();
+    HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
+    SYSCLKConfig_FromSTOP();
+    HAL_ResumeTick();
 }
 
 /**

@@ -19,9 +19,9 @@ void Screen1View::tearDownScreen()
 
 void Screen1View::handleTickEvent()
 {
-	if (SharedData::getProcessId() == ProcessId::Startup)
-	{
-		auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
-		circleProgress1.setValue(value);
-	}
+    if (SharedData::getProcessId() == ProcessId::Startup)
+    {
+        auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
+        circleProgress1.setValue(value);
+    }
 }

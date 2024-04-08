@@ -12,9 +12,9 @@
 
 class Button : public SinglePinElement, public ITickHandler
 {
-	constexpr static const uint32_t kTresholdMs = 50;
+    constexpr static const uint32_t kTresholdMs = 50;
 public:
-	Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+    Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
     virtual void onTick() override;
     bool isPressed() const;
@@ -28,23 +28,23 @@ private:
 
 enum class ButtonEvent : uint8_t
 {
-	NoEvent,
-	Press,
-	Release,
-	Hold
+    NoEvent,
+    Press,
+    Release,
+    Hold
 };
 
 class ButtonEventProvider : protected Button
 {
 public:
-	ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+    ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
-	virtual void onTick() override;
-	ButtonEvent getLastEvent() const { return m_lastEvent; }
+    virtual void onTick() override;
+    ButtonEvent getLastEvent() const { return m_lastEvent; }
 private:
-	uint32_t m_pressedDuration;
-	ButtonEvent m_lastEvent {ButtonEvent::NoEvent};
-	bool m_firstHoldTriggered{false};
+    uint32_t m_pressedDuration;
+    ButtonEvent m_lastEvent {ButtonEvent::NoEvent};
+    bool m_firstHoldTriggered{false};
 };
 
 

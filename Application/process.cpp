@@ -12,24 +12,24 @@ Process* Process::sm_current = nullptr;
 
 void Process::Run()
 {
-	if (sm_current) {
-		sm_current->m_isRunning = false;
-	}
+    if (sm_current) {
+        sm_current->m_isRunning = false;
+    }
 
-	m_isRunning = true;
-	sm_current = this;
+    m_isRunning = true;
+    sm_current = this;
 
-	auto updateTick = HAL_GetTick();
+    auto updateTick = HAL_GetTick();
 
-	while (m_isRunning)
-	{
-		if (updateTick <= HAL_GetTick())
-		{
-			updateTick = HAL_GetTick() + m_tickRate;
-			Update();
-		}
-	}
+    while (m_isRunning)
+    {
+        if (updateTick <= HAL_GetTick())
+        {
+            updateTick = HAL_GetTick() + m_tickRate;
+            Update();
+        }
+    }
 
-	sm_current = nullptr;
-	Deinit();
+    sm_current = nullptr;
+    Deinit();
 }

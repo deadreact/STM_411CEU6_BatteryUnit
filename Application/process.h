@@ -11,18 +11,18 @@
 class Process
 {
 public:
-	virtual ~Process() {}
-	virtual void Init() = 0;
-	virtual void Deinit() {}
+    virtual ~Process() {}
+    virtual void Init() = 0;
+    virtual void Deinit() {}
 
-	void Run();
+    void Run();
 protected:
-	virtual void Update() = 0;
+    virtual void Update() = 0;
 
-	bool m_isRunning{false};
-	unsigned int m_tickRate{1};
+    bool m_isRunning{false};
+    unsigned int m_tickRate{1};
 private:
-	static Process* sm_current;
+    static Process* sm_current;
 };
 
 
