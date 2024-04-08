@@ -6,82 +6,29 @@
  */
 
 #include "program.h"
-#include "button.h"
+#include "stm32f4xx_hal.h"
+#include "Startup/startup_process.h"
+#include "Idle/idle_process.h"
 
-
-
-class Program
+void Program_Process()
 {
-public:
-	Program(const ProgramDescriptor& desc)
-		: brightnessHandle(*desc.brightnessHandle)
-		, btnHandler(Button(desc.btnGPIOx, desc.btnPin))
-	{}
-    void init();
-    void onTick();
-    void handleEvents();
+    /* Check and handle if the system wasn't resumed from Standby mode */
+    if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
+    {
+        StartupProcess p;
+        p.Init();
+        p.Run();
+    }
+//    HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1);
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
+//    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 
-    volatile uint32_t& brightnessHandle;
-    ButtonEventProvider btnHandler;
-
-    uint32_t brightness{500};
-    bool screenOn {false};
-    ButtonEvent lastEvent {ButtonEvent::NoEvent};
-};
-
-static Program& getProgram(const ProgramDescriptor* desc = nullptr)
-{
-	static Program p(*desc);
-	return p;
+    IdleProcess p;
+    p.Init();
+    p.Run();
 }
 
-void Program_Init(const void* desc)
+void AfterStopMode()
 {
-	auto& p = getProgram((ProgramDescriptor*)desc);
-	p.init();
-}
 
-void Program_Process(void)
-{
-    auto& p = getProgram();
-    p.onTick();
-    p.handleEvents();
-}
-
-
-void Program::init()
-{
-	brightnessHandle = screenOn ? brightness : 0;
-}
-
-void Program::onTick()
-{
-	btnHandler.onTick();
-}
-
-void Program::handleEvents()
-{
-	switch (btnHandler.getLastEvent())
-	{
-		case ButtonEvent::Release:
-		{
-			if (lastEvent == ButtonEvent::Press) {
-				screenOn = !screenOn;
-			}
-			lastEvent = btnHandler.getLastEvent();
-
-		} break;
-		case ButtonEvent::Press:
-			lastEvent = btnHandler.getLastEvent();
-			break;
-		case ButtonEvent::Hold:
-		{
-			brightness = (brightness + 100) % 1000;
-			lastEvent = btnHandler.getLastEvent();
-		} break;
-		default:
-			break;
-	}
-
-	brightnessHandle = screenOn ? brightness : 0;
 }
