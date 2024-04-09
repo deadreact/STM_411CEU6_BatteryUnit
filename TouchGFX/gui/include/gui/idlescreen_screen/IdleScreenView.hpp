@@ -14,8 +14,9 @@ public:
     virtual void handleTickEvent() override;
 protected:
     int capacity {0};
+    int voltage {0};
     float current {0.f};
-    bool error{false};
+    const char* errMsg{nullptr};
 };
 
 #endif // IDLESCREENVIEW_HPP

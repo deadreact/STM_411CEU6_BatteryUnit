@@ -23,13 +23,14 @@ public:
     BMSStatus GetStatus() const { return m_status; }
     const BatteryData& GetData() const { return m_data; }
 
-
+    const char* debugMsg{nullptr};
 protected:
     void UpdateData(BatteryData&& newData);
 protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
-    uint32_t m_dataReceivedTick{0};
+    uint32_t m_lastRequestTick{0};
+    uint32_t m_lastResponseTick{0};
 
     constexpr static const int rxDataLen = 256;
     uint8_t rxData[rxDataLen];
@@ -46,11 +47,13 @@ class BMSUpdater : public BMSHandler
 public:
 	void Update();
 	BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
+
+
 private:
 	BMSStatus m_prevStatus { BMSStatus::NoStatus };
 	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
 	const uint32_t m_requestTimeout{2000};
-	const uint32_t m_invalidatePeriodMsec{1000 * 30}; //30 sec
+	const uint32_t m_invalidatePeriodMsec{1000 * 5}; //5 sec
 };
 
 

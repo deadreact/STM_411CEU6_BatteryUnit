@@ -175,138 +175,204 @@
         "Name": "IdleScreen",
         "Components": [
           {
-            "Type": "Container",
-            "Name": "containerCapacity",
-            "Width": 260,
-            "Height": 52,
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "capacityTitle",
-                "X": 18,
-                "Y": 14,
-                "Width": 85,
-                "Height": 24,
-                "TextId": "__SingleUse_6J8M",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 188,
-                  "Green": 188,
-                  "Blue": 188
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "BoxProgress",
-                "Name": "capacityValue",
-                "X": 130,
-                "Y": 20,
-                "Width": 100,
-                "Height": 18,
-                "Color": {
-                  "Red": 254,
-                  "Green": 189,
-                  "Blue": 23
-                },
-                "Direction": "Right",
-                "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
-                "IndicatorPositionWidth": 100,
-                "IndicatorPositionHeight": 18,
-                "ProgressRangeMax": 100,
-                "ProgressInitialValue": 60
-              },
-              {
-                "Type": "TextArea",
-                "Name": "capacityTextValue",
-                "X": 130,
-                "Y": 20,
-                "Width": 100,
-                "Height": 18,
-                "TextId": "batCurrent",
-                "TextRotation": "0",
-                "Wildcard1": {
-                  "TextId": "__SingleUse_XY9P",
-                  "UseBuffer": true,
-                  "BufferSize": 3
-                }
-              }
-            ]
-          },
-          {
-            "Type": "Container",
-            "Name": "containerCurrent",
-            "Y": 52,
-            "Width": 260,
-            "Height": 52,
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "currentTitle",
-                "X": 18,
-                "Y": 14,
-                "Width": 78,
-                "Height": 24,
-                "TextId": "__SingleUse_SFML",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 188,
-                  "Green": 188,
-                  "Blue": 188
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "BoxProgress",
-                "Name": "currentValue",
-                "X": 130,
-                "Y": 20,
-                "Width": 100,
-                "Height": 18,
-                "Color": {
-                  "Red": 254,
-                  "Green": 189,
-                  "Blue": 23
-                },
-                "Direction": "Right",
-                "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
-                "IndicatorPositionWidth": 100,
-                "IndicatorPositionHeight": 18,
-                "ProgressRangeMax": 100,
-                "ProgressInitialValue": 60
-              },
-              {
-                "Type": "TextArea",
-                "Name": "currentTextValue",
-                "X": 130,
-                "Y": 20,
-                "Width": 100,
-                "Height": 18,
-                "TextId": "batCurrent",
-                "TextRotation": "0",
-                "Wildcard1": {
-                  "TextId": "__SingleUse_52AL",
-                  "UseBuffer": true,
-                  "BufferSize": 5
-                }
-              }
-            ]
-          },
-          {
-            "Type": "TextArea",
-            "Name": "errorLabel",
-            "X": 18,
-            "Y": 157,
-            "Width": 52,
-            "Height": 24,
-            "Visible": false,
-            "TextId": "__SingleUse_268O",
-            "TextRotation": "0",
+            "Type": "Box",
+            "Name": "box1",
+            "X": 74,
+            "Y": 2,
+            "Width": 100,
+            "Height": 58,
             "Color": {
-              "Red": 221
-            },
-            "AutoSize": true
+              "Red": 195,
+              "Green": 210,
+              "Blue": 224
+            }
+          },
+          {
+            "Type": "ListLayout",
+            "Name": "listLayout1",
+            "Width": 185,
+            "Height": 146,
+            "Direction": "South",
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "containerCurrent",
+                "Width": 185,
+                "Height": 19,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "currentTitle",
+                    "Y": 1,
+                    "Width": 61,
+                    "Height": 19,
+                    "TextId": "__SingleUse_SFML",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 188,
+                      "Green": 188,
+                      "Blue": 188
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "currentTextValue",
+                    "X": 120,
+                    "Y": 2,
+                    "Width": 9,
+                    "Height": 14,
+                    "TextId": "batCapacity",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "wildcardId1",
+                      "UseBuffer": true,
+                      "BufferSize": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "containerCapacity",
+                "Y": 19,
+                "Width": 185,
+                "Height": 20,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "capacityTitle",
+                    "Width": 68,
+                    "Height": 19,
+                    "TextId": "__SingleUse_6J8M",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 188,
+                      "Green": 188,
+                      "Blue": 188
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "BoxProgress",
+                    "Name": "capacityValue",
+                    "X": 74,
+                    "Y": 3,
+                    "Width": 100,
+                    "Height": 18,
+                    "Color": {
+                      "Red": 254,
+                      "Green": 189,
+                      "Blue": 23
+                    },
+                    "Direction": "Right",
+                    "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
+                    "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
+                    "IndicatorPositionWidth": 100,
+                    "IndicatorPositionHeight": 18,
+                    "ProgressRangeMax": 100,
+                    "ProgressInitialValue": 60
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "capacityTextValue",
+                    "X": 112,
+                    "Y": 3,
+                    "Width": 24,
+                    "Height": 14,
+                    "TextId": "__SingleUse_X3W7",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "__SingleUse_572H",
+                      "UseBuffer": true,
+                      "BufferSize": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "containerVoltage",
+                "Y": 39,
+                "Width": 185,
+                "Height": 23,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "voltageTitle",
+                    "Width": 61,
+                    "Height": 19,
+                    "TextId": "__SingleUse_EFRY",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 188,
+                      "Green": 188,
+                      "Blue": 188
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "voltageTextValue",
+                    "X": 120,
+                    "Y": 3,
+                    "Width": 9,
+                    "Height": 14,
+                    "TextId": "__SingleUse_BZBL",
+                    "TextRotation": "0",
+                    "AutoSize": true,
+                    "Wildcard1": {
+                      "TextId": "wildcardId3",
+                      "UseBuffer": true,
+                      "BufferSize": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "additionalText",
+                "Y": 62,
+                "Width": 143,
+                "Height": 22,
+                "TextId": "__SingleUse_ZMAF",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 85,
+                  "Green": 85,
+                  "Blue": 85
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_Y6DB",
+                  "UseBuffer": true,
+                  "BufferSize": 100
+                },
+                "WideTextAction": 1
+              },
+              {
+                "Type": "TextArea",
+                "Name": "errorLabel",
+                "Y": 84,
+                "Width": 185,
+                "Height": 62,
+                "TextId": "__SingleUse_268O",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 172,
+                  "Green": 172,
+                  "Blue": 172
+                },
+                "Wildcard1": {
+                  "TextId": "__SingleUse_RJG5",
+                  "UseBuffer": true,
+                  "BufferSize": 40
+                },
+                "WideTextAction": 1
+              }
+            ]
           }
         ],
         "Interactions": []

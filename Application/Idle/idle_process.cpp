@@ -190,17 +190,11 @@ void IdleProcess::Impl::HandleEvents()
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-    	if (m_bmsUpdater.GetStatus() == BMSStatus::Error || m_bmsUpdater.GetStatus() == BMSStatus::RequestTimedOut)
-    	{
-    		sharedData.bmsError = true;
-    	}
-    	else
-    	{
-    		const auto& data = m_bmsUpdater.GetData();
-    		sharedData.batCurrent = data.current * 0.01f;
-    		sharedData.batCapacity = data.capacity;
-    		sharedData.bmsError = false;
-    	}
+    	const auto& data = m_bmsUpdater.GetData();
+		sharedData.batCurrent = data.current * 0.01f;
+		sharedData.batCapacity = data.capacity;
+		sharedData.batVoltage = data.voltage;
+		sharedData.errMsg =  m_bmsUpdater.debugMsg;
     }
 }
 

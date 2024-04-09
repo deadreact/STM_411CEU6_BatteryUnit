@@ -1,4 +1,5 @@
 #include <gui/idlescreen_screen/IdleScreenView.hpp>
+#include <cstring>
 
 IdleScreenView::IdleScreenView()
 {
@@ -21,21 +22,6 @@ void IdleScreenView::handleTickEvent()
     {
         const auto& data = SharedData::getData<ProcessId::Idle>();
 
-        if (data.bmsError != error)
-        {
-        	error = data.bmsError;
-        	errorLabel.setVisible(error);
-        	errorLabel.invalidate();
-        	containerCurrent.setVisible(!error);
-        	containerCurrent.invalidate();
-        	containerCapacity.setVisible(!error);
-        	containerCapacity.invalidate();
-        }
-
-        if (error) {
-        	return;
-        }
-
         if (data.batCapacity != capacity)
         {
         	capacity = data.batCapacity;
@@ -43,17 +29,48 @@ void IdleScreenView::handleTickEvent()
 
             capacityTextValue.setWildcard1(capacityTextValueBuffer);
             Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", capacity);
+            capacityTextValue.resizeToCurrentText();
             capacityTextValue.invalidate();
         }
 
         if (data.batCurrent != current)
         {
             current = data.batCurrent;
-            currentValue.setValue(current * 100 + 50);
+//            currentValue.setValue(current * 100 + 50);
 
 			currentTextValue.setWildcard1(currentTextValueBuffer);
-			Unicode::snprintf(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%f", current);
+			Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", current);
+			currentTextValue.resizeToCurrentText();
 			currentTextValue.invalidate();
+        }
+
+        if (data.batVoltage != voltage)
+		{
+        	voltage = data.batVoltage;
+//			voltageValue.setValue(voltage);
+
+			voltageTextValue.setWildcard1(voltageTextValueBuffer);
+			Unicode::snprintfFloat(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%.2f", (float)voltage * 0.01f);
+			voltageTextValue.resizeToCurrentText();
+			voltageTextValue.invalidate();
+		}
+
+        if (data.errMsg != errMsg)
+        {
+        	errMsg = data.errMsg ? data.errMsg : "no errors";
+        	errorLabel.setWildcard1(errorLabelBuffer);
+
+        	memset(errorLabelBuffer, ' ', ERRORLABEL_SIZE * 2);
+
+        	if (errMsg)
+        	{
+        		for (int i = 0; errMsg[i] != '\0'; i++) {
+					errorLabelBuffer[i] = errMsg[i];
+				}
+        	}
+
+        	errorLabel.resizeToCurrentTextWithAlignment();
+        	errorLabel.invalidate();
         }
     }
 }

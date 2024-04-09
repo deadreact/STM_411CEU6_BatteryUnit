@@ -33,24 +33,16 @@ enum class BMSErrorType
 
 struct BatteryData
 {
+	constexpr static uint8_t kMaxCellCount = 12;
 	using voltage_t = uint16_t;
 
-	voltage_t* cellVoltage{nullptr};
+	voltage_t cellVoltage[kMaxCellCount];
     voltage_t voltage{0};
     int16_t current{0};
     uint8_t capacity{0}; // 0 - 100%
     uint8_t cellCount{0};
 
     // float energyAh{0};
-
-    BatteryData() = default;
-    BatteryData(const BatteryData&);
-    BatteryData& operator=(const BatteryData&);
-    BatteryData(BatteryData&&);
-    BatteryData& operator=(BatteryData&&);
-    ~BatteryData();
-
-    void setCellCount(uint8_t count);
 
     bool operator==(const BatteryData& other) const;
     inline bool operator!=(const BatteryData& other) const { return !operator==(other); }

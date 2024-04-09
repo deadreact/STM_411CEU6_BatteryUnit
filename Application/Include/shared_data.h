@@ -39,9 +39,12 @@ struct ProcessData<ProcessId::Idle>
     int analog2{0};
 
     bool bmsActive{false};
+//    bool bmsError{false};
+
     int batCapacity{0};
+    int batVoltage{0};
+    const char* errMsg{nullptr};
     float batCurrent{0.f};
-    bool bmsError{false};
 };
 
 

@@ -8,10 +8,11 @@
 #include <mvp/View.hpp>
 #include <gui/idlescreen_screen/IdleScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/containers/ListLayout.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <touchgfx/containers/progress_indicators/BoxProgress.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/progress_indicators/BoxProgress.hpp>
 
 class IdleScreenViewBase : public touchgfx::View<IdleScreenPresenter>
 {
@@ -29,23 +30,34 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Box box1;
+    touchgfx::ListLayout listLayout1;
+    touchgfx::Container containerCurrent;
+    touchgfx::TextArea currentTitle;
+    touchgfx::TextAreaWithOneWildcard currentTextValue;
     touchgfx::Container containerCapacity;
     touchgfx::TextArea capacityTitle;
     touchgfx::BoxProgress capacityValue;
     touchgfx::TextAreaWithOneWildcard capacityTextValue;
-    touchgfx::Container containerCurrent;
-    touchgfx::TextArea currentTitle;
-    touchgfx::BoxProgress currentValue;
-    touchgfx::TextAreaWithOneWildcard currentTextValue;
-    touchgfx::TextArea errorLabel;
+    touchgfx::Container containerVoltage;
+    touchgfx::TextArea voltageTitle;
+    touchgfx::TextAreaWithOneWildcard voltageTextValue;
+    touchgfx::TextAreaWithOneWildcard additionalText;
+    touchgfx::TextAreaWithOneWildcard errorLabel;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t CAPACITYTEXTVALUE_SIZE = 3;
-    touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
     static const uint16_t CURRENTTEXTVALUE_SIZE = 5;
     touchgfx::Unicode::UnicodeChar currentTextValueBuffer[CURRENTTEXTVALUE_SIZE];
+    static const uint16_t CAPACITYTEXTVALUE_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
+    static const uint16_t VOLTAGETEXTVALUE_SIZE = 6;
+    touchgfx::Unicode::UnicodeChar voltageTextValueBuffer[VOLTAGETEXTVALUE_SIZE];
+    static const uint16_t ADDITIONALTEXT_SIZE = 100;
+    touchgfx::Unicode::UnicodeChar additionalTextBuffer[ADDITIONALTEXT_SIZE];
+    static const uint16_t ERRORLABEL_SIZE = 40;
+    touchgfx::Unicode::UnicodeChar errorLabelBuffer[ERRORLABEL_SIZE];
 
 private:
 
