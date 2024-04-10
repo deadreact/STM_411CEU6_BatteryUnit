@@ -6,22 +6,34 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_Y6DB" Alignment="Left" TypographyId="Errors">
-        <Translation Language="GB">[additional info]</Translation>
+      <Text Id="__SingleUse_L7RN" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_ZMAF" Alignment="Left" TypographyId="Errors">
+      <Text Id="__SingleUse_MDS6" Alignment="Center" TypographyId="Default">
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="__SingleUse_82HO" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">0.0</Translation>
+      </Text>
+      <Text Id="__SingleUse_7FIN" Alignment="Center" TypographyId="Values">
+        <Translation Language="GB">&lt;value&gt;v</Translation>
+      </Text>
+      <Text Id="__SingleUse_IKNA" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">1</Translation>
+      </Text>
+      <Text Id="__SingleUse_GCQW" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_RJG5" Alignment="Left" TypographyId="Errors">
-        <Translation Language="GB">err info</Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="__SingleUse_BZBL" Alignment="Center" TypographyId="Values">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;v</Translation>
       </Text>
       <Text Id="__SingleUse_572H" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0</Translation>
       </Text>
-      <Text Id="__SingleUse_X3W7" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_X3W7" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;%</Translation>
       </Text>
       <Text Id="wildcardId3" Alignment="Left" TypographyId="Small">
@@ -30,7 +42,7 @@
       <Text Id="__SingleUse_EFRY" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
       </Text>
-      <Text Id="__SingleUse_268O" Alignment="Left" TypographyId="Errors">
+      <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="wildcardId1" Alignment="Left" TypographyId="Values">
@@ -63,10 +75,10 @@
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
+    <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Values" Font="verdana.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="Errors" Font="verdana.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
+    <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
   </Typographies>
 </TextDatabase>

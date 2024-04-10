@@ -30,82 +30,48 @@ namespace
         return (value & 0x7FFF) * ((value & 0x8000) == 0x8000 ? 1 : -1);
     }
 
+    template <typename T>
+    T sum(const T* begin, const T* end)
+    {
+    	T value{};
+    	while (begin != end) {
+    		value += *begin++;
+    	}
+    	return value;
+    }
+
     uint16_t read2bytes(uint8_t* ptr) { return (uint16_t)ptr[0] << 8 | ptr[1]; }
     uint32_t read4bytes(uint8_t* ptr) { return (uint32_t)ptr[0] << 24 | (uint32_t) ptr[1] << 16 | (uint32_t) ptr[2] << 8 | ptr[3]; }
 
-    bool parseData(uint8_t rawData[], BatteryData& data)
+    uint32_t parseData(uint8_t rxData[], BatteryData& data)
     {
     	//    TODO validate by first 2 bits and crc!!!!!!!!!
-    	if (memcmp(rawData, TxData, 2) != 0) {
-    		return false;
+    	if (memcmp(rxData, TxData, 2) != 0) {
+    		return BMSErrorFlags::ParseStartBits;
     	}
-    	uint8_t* it = rawData + 12;
+    	uint8_t* it = rxData + 12;
 
         data.cellCount = *it / 3;
 
         it += 2;
         for (uint8_t i = 0; i < data.cellCount; i++)
         {
-//            uint8_t cell_number = it[3*i + 1];
             data.cellVoltage[i] = read2bytes(it); // 0.001
             it += 3;
         }
+        it += 9;
+        data.voltage = read2bytes(it);
 
-        int8_t power_tube_temperature = getTemperature(read2bytes(it));
-        it += 3; // 53
-        //54 55
-        int8_t sensor_temperature_1 = getTemperature(read2bytes(it));
-        it += 3; // 56
-        //57 58
-        int8_t sensor_temperature_2 = getTemperature(read2bytes(it));
+        if (sum(data.cellVoltage, data.cellVoltage + data.cellCount)/10 != data.voltage) {
+        	return BMSErrorFlags::ParseValidation;
+        }
 
-        it += 3; // 59
-
-        // 0x83 0x14 0xEF: Total battery voltage                       5359 * 0.01 = 53.59V      0.01 V
-        // 60 61
-        data.voltage = read2bytes(it); // 0.01f
-        it += 3; // 62
-
-        // 0x84 0x80 0xD0: Current data                                32976                     0.01 A
-        //63 64
-        data.current = getCurrent(read2bytes(it));
-
-        it += 3; // 65
-        // 0x85 0x0F: Battery remaining capacity
-        // 66
-        data.capacity = *it;
-        it += 2; // 67
-        // 0x86 0x02: Number of battery temperature sensors             2                        1.0  count
-        // 68
-        uint8_t temperature_sensor_count = *it;
-        it += 2; // 69
-        // 0x87 0x00 0x04: Number of battery cycles                     4                        1.0  count
-        // 70 71
-        uint16_t battery_cycles = read2bytes(it);
-        it += 3; // 72
-        // 0x89 0x00 0x00 0x00 0x00: Total battery cycle capacity
-        // 73 74 75 76
-        uint32_t battery_cycle_capacity = read4bytes(it);
-        it += 5; // 77
-        // ignore strings number
         it += 3;
+        data.current = getCurrent(read2bytes(it));
+        it += 3;
+        data.capacity = *it;
 
-    //    battery_current = (uint16_t) current_low_byte | current_hi_byte;
-    //    batCurrent = (float)(10000-battery_current) * 0.01f - 100.0f;
-
-        //test energy
-    //    if(energyAh == -1000000.0f) // initial setup
-    //    {
-    //        if(battery_cycle_capacity > 0)
-    //        {
-    //            energyAh = battery_cycle_capacity;
-    //        }
-    //        energyAh = 0;
-    //    }
-        // WHY += ???
-//        data.energyAh += (data.voltage * 0.01f) * (data.current * 0.01f) * 0.00002777777 * 2.0; // 0.1/60/60
-
-        return true;
+        return 0;
     }
 
     BMSStatus getRequestStatus(HAL_StatusTypeDef status)
@@ -156,6 +122,7 @@ void BMSHandler::Request()
 	HAL_StatusTypeDef status{HAL_OK};
 
 	if (m_status == BMSStatus::RequestTimedOut) {
+		errFlags |= BMSErrorFlags::RequestTimeout;
 		status = HAL_UART_Abort(&huart2);
 	}
 
@@ -194,23 +161,26 @@ void BMSHandler::Response(HAL_StatusTypeDef status)
 	{
 		BatteryData data;
 
-		if (parseData(rxData, data)) {
-			UpdateData(static_cast<BatteryData&&>(data));
-		} else {
-			debugMsg = "parse error";
+		if (uint32_t errCode = parseData(rxData, data)) {
+			debugMsg = errCode == BMSErrorFlags::ParseStartBits ? "parse error start bits" : "parse error validation";
+			errFlags |= errCode;
 			m_status = BMSStatus::Error;
+		} else {
+			UpdateData(data);
 		}
 	}
 
 	memset(rxData, 0, sizeof(rxData));
 }
 
-void BMSHandler::UpdateData(BatteryData&& newData)
+void BMSHandler::UpdateData(const BatteryData& newData)
 {
+	m_lastDataUpdateTick = HAL_GetTick();
+	errFlags &= ~BMSErrorFlags::maskMajorErrors;
     if (m_data != newData)
     {
         // check internal conditions
-        m_data = static_cast<BatteryData&&>(newData); // std::move
+        m_data = newData; // std::move
         // notify others
     }
 }
@@ -219,8 +189,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
 {
 	if (s_bmsHandler)
 	{
-		static const char* msg = "data received";
-		s_bmsHandler->debugMsg = msg;
+		s_bmsHandler->debugMsg = "data received";
+		s_bmsHandler->errFlags &= ~BMSErrorFlags::maskMinorErrors;
 		s_bmsHandler->Response(HAL_OK);
 	}
 }
@@ -236,7 +206,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 	    if (huart->ErrorCode & HAL_UART_ERROR_ORE) { s_bmsHandler->debugMsg += " overrun"; }
 	    if (huart->ErrorCode & HAL_UART_ERROR_DMA) { s_bmsHandler->debugMsg += " dma"; }
 	    s_bmsHandler->debugMsg += " err";
-
+	    s_bmsHandler->errFlags |= huart->ErrorCode;
 		s_bmsHandler->Response(HAL_ERROR);
 	}
 }
@@ -252,17 +222,23 @@ void BMSUpdater::Update()
 		if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
 		{
 			m_status = BMSStatus::RequestTimedOut;
-			static const char* msg = "request timed out";
-			debugMsg = msg;
+			debugMsg = "request timed out";
 			Request();
 		}
 	}
-	else if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+	else
 	{
-		m_status = BMSStatus::InfoTimedOut;
-		static const char* msg = "info timed out";
-		debugMsg = msg;
-		Request();
+		if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
+		{
+			errFlags |= BMSErrorFlags::ValidResponseTimeout;
+			debugMsg = "valid response timed out";
+		}
+		if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+		{
+			m_status = BMSStatus::InfoTimedOut;
+			debugMsg = "info timed out";
+			Request();
+		}
 	}
 
 	m_lastEvent = BMSUpdaterEvent::NoEvent;

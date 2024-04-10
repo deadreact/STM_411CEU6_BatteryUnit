@@ -12,35 +12,58 @@ IdleScreenViewBase::IdleScreenViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    box1.setPosition(74, 2, 100, 58);
-    box1.setColor(touchgfx::Color::getColorFromRGB(195, 210, 224));
-    add(box1);
+    box3.setPosition(0, 20, 319, 220);
+    box3.setColor(touchgfx::Color::getColorFromRGB(39, 68, 87));
+    add(box3);
 
-    listLayout1.setXY(0, 0);
-    listLayout1.setDirection(touchgfx::SOUTH);
+    box2.setPosition(0, 0, 320, 20);
+    box2.setColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
+    add(box2);
+
+    debugInfoContainer.setPosition(0, 127, 195, 113);
+    boxWithBorder1.setWidth(195);
+    boxWithBorder1.setHeight(113);
+    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(12, 27, 55));
+    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
+    boxWithBorder1.setBorderSize(5);
+    debugInfoContainer.add(boxWithBorder1);
+
+    errorLabel.setWidth(174);
+    errorLabel.setHeight(74);
+    errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
+    errorLabel.setLinespacing(0);
+    errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
+    Unicode::snprintf(errorLabelBuffer, ERRORLABEL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJG5).getText());
+    errorLabel.setWildcard(errorLabelBuffer);
+    errorLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_268O));
+    debugInfoContainer.add(errorLabel);
+
+    add(debugInfoContainer);
+
+    batteryInfo.setPosition(10, 26, 300, 146);
+    batteryMainInfo.setDirection(touchgfx::SOUTH);
     containerCurrent.setWidth(185);
-    containerCurrent.setHeight(19);
+    containerCurrent.setHeight(23);
     currentTitle.setXY(0, 1);
-    currentTitle.setColor(touchgfx::Color::getColorFromRGB(188, 188, 188));
+    currentTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTitle.setLinespacing(0);
     currentTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SFML));
     containerCurrent.add(currentTitle);
 
-    currentTextValue.setXY(120, 2);
-    currentTextValue.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    currentTextValue.setPosition(74, 2, 100, 18);
+    currentTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTextValue.setLinespacing(0);
     Unicode::snprintf(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID1).getText());
     currentTextValue.setWildcard(currentTextValueBuffer);
-    currentTextValue.resizeToCurrentText();
     currentTextValue.setTypedText(touchgfx::TypedText(T_BATCAPACITY));
     containerCurrent.add(currentTextValue);
 
-    listLayout1.add(containerCurrent);
+    batteryMainInfo.add(containerCurrent);
 
     containerCapacity.setWidth(185);
-    containerCapacity.setHeight(20);
+    containerCapacity.setHeight(23);
     capacityTitle.setXY(0, 0);
-    capacityTitle.setColor(touchgfx::Color::getColorFromRGB(188, 188, 188));
+    capacityTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTitle.setLinespacing(0);
     capacityTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6J8M));
     containerCapacity.add(capacityTitle);
@@ -54,57 +77,41 @@ IdleScreenViewBase::IdleScreenViewBase()
     capacityValue.setValue(60);
     containerCapacity.add(capacityValue);
 
-    capacityTextValue.setXY(112, 3);
-    capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    capacityTextValue.setPosition(74, 2, 100, 18);
+    capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTextValue.setLinespacing(0);
     Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_572H).getText());
     capacityTextValue.setWildcard(capacityTextValueBuffer);
-    capacityTextValue.resizeToCurrentText();
     capacityTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_X3W7));
     containerCapacity.add(capacityTextValue);
 
-    listLayout1.add(containerCapacity);
+    batteryMainInfo.add(containerCapacity);
 
-    containerVoltage.setPosition(0, 39, 185, 23);
+    containerVoltage.setWidth(185);
+    containerVoltage.setHeight(23);
     voltageTitle.setXY(0, 0);
-    voltageTitle.setColor(touchgfx::Color::getColorFromRGB(188, 188, 188));
+    voltageTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTitle.setLinespacing(0);
     voltageTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EFRY));
     containerVoltage.add(voltageTitle);
 
-    voltageTextValue.setXY(120, 3);
-    voltageTextValue.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    voltageTextValue.setPosition(74, 2, 100, 18);
+    voltageTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTextValue.setLinespacing(0);
     Unicode::snprintf(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID3).getText());
     voltageTextValue.setWildcard(voltageTextValueBuffer);
-    voltageTextValue.resizeToCurrentText();
     voltageTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BZBL));
     containerVoltage.add(voltageTextValue);
 
-    listLayout1.add(containerVoltage);
+    batteryMainInfo.add(containerVoltage);
 
-    additionalText.setWidth(143);
-    additionalText.setHeight(22);
-    additionalText.setColor(touchgfx::Color::getColorFromRGB(85, 85, 85));
-    additionalText.setLinespacing(0);
-    additionalText.setWideTextAction(WIDE_TEXT_WORDWRAP);
-    Unicode::snprintf(additionalTextBuffer, ADDITIONALTEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y6DB).getText());
-    additionalText.setWildcard(additionalTextBuffer);
-    additionalText.resizeToCurrentText();
-    additionalText.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZMAF));
-    listLayout1.add(additionalText);
+    batteryInfo.add(batteryMainInfo);
 
-    errorLabel.setWidth(185);
-    errorLabel.setHeight(62);
-    errorLabel.setColor(touchgfx::Color::getColorFromRGB(172, 172, 172));
-    errorLabel.setLinespacing(0);
-    errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
-    Unicode::snprintf(errorLabelBuffer, ERRORLABEL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJG5).getText());
-    errorLabel.setWildcard(errorLabelBuffer);
-    errorLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_268O));
-    listLayout1.add(errorLabel);
+    batteryCellInfo.setPosition(192, 3, 117, 25);
+    batteryCellInfo.setDirection(touchgfx::SOUTH);
+    batteryInfo.add(batteryCellInfo);
 
-    add(listLayout1);
+    add(batteryInfo);
 }
 
 IdleScreenViewBase::~IdleScreenViewBase()

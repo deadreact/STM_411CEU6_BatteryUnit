@@ -13,7 +13,7 @@
 #include "../button.h"
 #include "main.h"
 #include "../BMS/bms_handler.h"
-#include <stdio.h>
+#include <cstring>
 
 // ----------------- tmp here --------------------------
 class ScreenBrightnessController
@@ -191,11 +191,9 @@ void IdleProcess::Impl::HandleEvents()
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-    	const auto& data = m_bmsUpdater.GetData();
-		sharedData.batCurrent = data.current * 0.01f;
-		sharedData.batCapacity = data.capacity;
-		sharedData.batVoltage = data.voltage;
-		sharedData.errMsg =  m_bmsUpdater.debugMsg;
+    	sharedData.bms = m_bmsUpdater.GetData();
+		sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
+		sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
     }
 }
 

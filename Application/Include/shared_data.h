@@ -10,6 +10,7 @@
 
 #include <stdint.h>
 #include <string>
+#include <bms_data.h>
 
 enum class ProcessId: uint8_t
 {
@@ -42,10 +43,16 @@ struct ProcessData<ProcessId::Idle>
     bool bmsActive{false};
 //    bool bmsError{false};
 
-    int batCapacity{0};
-    int batVoltage{0};
-    std::string errMsg;
-    float batCurrent{0.f};
+    BatteryData bms;
+    std::string bmsErrMsg;
+    uint32_t bmsErrFlags{0};
+
+//    int batCapacity{0};
+//    int batVoltage{0};
+//    uint8_t cellCount{0};
+//    uint16_t cellVoltage[12];
+//
+//    float batCurrent{0.f};
 };
 
 

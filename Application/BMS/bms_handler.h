@@ -25,13 +25,15 @@ public:
     const BatteryData& GetData() const { return m_data; }
 
     std::string debugMsg;
+    uint32_t errFlags{0};
 protected:
-    void UpdateData(BatteryData&& newData);
+    void UpdateData(const BatteryData& newData);
 protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
     uint32_t m_lastRequestTick{0};
     uint32_t m_lastResponseTick{0};
+    uint32_t m_lastDataUpdateTick{0};
 
     constexpr static const int rxDataLen = 256;
     uint8_t rxData[rxDataLen];
@@ -49,12 +51,12 @@ public:
 	void Update();
 	BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
 
-
 private:
 	BMSStatus m_prevStatus { BMSStatus::NoStatus };
 	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
 	const uint32_t m_requestTimeout{1000};
 	const uint32_t m_invalidatePeriodMsec{500}; //
+	const uint32_t m_validResponseTimeout{10000}; //
 };
 
 
