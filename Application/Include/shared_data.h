@@ -9,6 +9,8 @@
 #define SHARED_DATA_H_
 
 #include <stdint.h>
+#include <string>
+#include <bms_data.h>
 
 enum class ProcessId: uint8_t
 {
@@ -39,9 +41,18 @@ struct ProcessData<ProcessId::Idle>
     int analog2{0};
 
     bool bmsActive{false};
-    int batCapacity{0};
-    float batCurrent{0.f};
-    bool bmsError{false};
+//    bool bmsError{false};
+
+    BatteryData bms;
+    std::string bmsErrMsg;
+    uint32_t bmsErrFlags{0};
+
+//    int batCapacity{0};
+//    int batVoltage{0};
+//    uint8_t cellCount{0};
+//    uint16_t cellVoltage[12];
+//
+//    float batCurrent{0.f};
 };
 
 

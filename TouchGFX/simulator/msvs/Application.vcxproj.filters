@@ -208,6 +208,18 @@
     <Filter Include="Source Files\generated\gui_generated\idlescreen_screen">
       <UniqueIdentifier>3BE004C4-2EC4-18BA-06BB-35A0DD273121</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\containers">
+      <UniqueIdentifier>49BC7E55-3B38-EE31-6242-4CC66E643506</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\containers">
+      <UniqueIdentifier>3D6CBCBF-49CB-E458-7751-41649887A23D</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\containers">
+      <UniqueIdentifier>25DC342C-172D-8A99-4DEE-47EA04300F34</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\containers">
+      <UniqueIdentifier>AB3E9350-C394-4D44-4C16-85D3626408F2</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -266,6 +278,18 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\idlescreen_screen\IdleScreenViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\idlescreen_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\BatteryCellElement.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellElementBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\BatteryMainElement.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryMainElementBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -735,6 +759,18 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\idlescreen_screen\IdleScreenViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\idlescreen_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryCellElement.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellElementBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryMainElement.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryMainElementBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

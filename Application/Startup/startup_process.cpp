@@ -12,7 +12,7 @@
 #include <shared_data.h>
 #include "main.h"
 
-static const int kDuration = 7000;
+static const int kDuration = 1000;
 
 void StartupProcess::Init()
 {

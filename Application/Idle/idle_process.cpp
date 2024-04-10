@@ -13,6 +13,7 @@
 #include "../button.h"
 #include "main.h"
 #include "../BMS/bms_handler.h"
+#include <cstring>
 
 // ----------------- tmp here --------------------------
 class ScreenBrightnessController
@@ -190,17 +191,9 @@ void IdleProcess::Impl::HandleEvents()
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-    	if (m_bmsUpdater.GetStatus() == BMSStatus::Error || m_bmsUpdater.GetStatus() == BMSStatus::RequestTimedOut)
-    	{
-    		sharedData.bmsError = true;
-    	}
-    	else
-    	{
-    		const auto& data = m_bmsUpdater.GetData();
-    		sharedData.batCurrent = data.current * 0.01f;
-    		sharedData.batCapacity = data.capacity;
-    		sharedData.bmsError = false;
-    	}
+    	sharedData.bms = m_bmsUpdater.GetData();
+		sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
+		sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
     }
 }
 
@@ -222,6 +215,8 @@ void IdleProcess::Init()
 
 void IdleProcess::Update()
 {
+	printf("!!!!!!!!!!!\n");
+
     bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 
     m_pimpl->OnTick();
