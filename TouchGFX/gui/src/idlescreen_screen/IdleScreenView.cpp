@@ -3,7 +3,7 @@
 
 IdleScreenView::IdleScreenView()
 {
-
+	memset(errMsg, 0, sizeof(errMsg));
 }
 
 void IdleScreenView::setupScreen()
@@ -55,21 +55,29 @@ void IdleScreenView::handleTickEvent()
 			voltageTextValue.invalidate();
 		}
 
-        if (data.errMsg != errMsg)
+        if (data.errMsg != (const char*)errMsg)
         {
-        	errMsg = data.errMsg ? data.errMsg : "no errors";
         	errorLabel.setWildcard1(errorLabelBuffer);
 
-        	memset(errorLabelBuffer, ' ', ERRORLABEL_SIZE * 2);
+        	memset(errorLabelBuffer,0, ERRORLABEL_SIZE * 2);
 
-        	if (errMsg)
-        	{
-        		for (int i = 0; errMsg[i] != '\0'; i++) {
-					errorLabelBuffer[i] = errMsg[i];
-				}
-        	}
+        	const char* msgIt = errMsg;
+        	int i = 0;
+        	for (; *msgIt != '\0'; i++) {
+				errorLabelBuffer[i] = *(msgIt++);
+			}
 
-        	errorLabel.resizeToCurrentTextWithAlignment();
+        	int bytesCpy = std::min(data.errMsg.size(), sizeof(errMsg) - 1);
+        	memcpy(errMsg, data.errMsg.c_str(), bytesCpy);
+        	errMsg[bytesCpy] = '\0';
+
+        	errorLabelBuffer[i] = '\n';
+        	++i;
+        	msgIt = errMsg;
+        	for (; *msgIt != '\0'; i++) {
+				errorLabelBuffer[i] = *(msgIt++);
+			}
+
         	errorLabel.invalidate();
         }
     }

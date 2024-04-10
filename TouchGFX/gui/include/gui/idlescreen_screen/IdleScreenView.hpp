@@ -16,7 +16,7 @@ protected:
     int capacity {0};
     int voltage {0};
     float current {0.f};
-    const char* errMsg{nullptr};
+    char errMsg[40];
 };
 
 #endif // IDLESCREENVIEW_HPP

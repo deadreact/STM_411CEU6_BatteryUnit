@@ -8,6 +8,12 @@
 #include "bms_handler.h"
 #include <cstring>
 
+constexpr static const int txDataLen = 21;
+constexpr static const int txTransmitTimeout = 1000;
+
+static const uint8_t TxData[txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x06, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
+
+extern UART_HandleTypeDef huart2;
 //---------------------------------------------------------------------------
 namespace
 {
@@ -24,11 +30,15 @@ namespace
         return (value & 0x7FFF) * ((value & 0x8000) == 0x8000 ? 1 : -1);
     }
 
-    uint16_t read2bytes(uint8_t* ptr) { return (uint16_t)(*ptr << 8) | *(ptr+1); }
+    uint16_t read2bytes(uint8_t* ptr) { return (uint16_t)ptr[0] << 8 | ptr[1]; }
+    uint32_t read4bytes(uint8_t* ptr) { return (uint32_t)ptr[0] << 24 | (uint32_t) ptr[1] << 16 | (uint32_t) ptr[2] << 8 | ptr[3]; }
 
     bool parseData(uint8_t rawData[], BatteryData& data)
     {
     	//    TODO validate by first 2 bits and crc!!!!!!!!!
+    	if (memcmp(rawData, TxData, 2) != 0) {
+    		return false;
+    	}
     	uint8_t* it = rawData + 12;
 
         data.cellCount = *it / 3;
@@ -58,17 +68,12 @@ namespace
 
         // 0x84 0x80 0xD0: Current data                                32976                     0.01 A
         //63 64
-        uint16_t battery_current = getCurrent(read2bytes(it));
-        uint8_t current_low_byte = it[0];
-        uint8_t current_hi_byte = it[1];
-        // test current
-        uint16_t pckd_bat_curr = read2bytes(it);
-        data.current = (pckd_bat_curr & 0x7FFF) * ((pckd_bat_curr & 0x8000) == 0x8000 ? 1 : -1); // 0.01f
+        data.current = getCurrent(read2bytes(it));
 
         it += 3; // 65
         // 0x85 0x0F: Battery remaining capacity
         // 66
-        uint8_t battery_soc = *it;
+        data.capacity = *it;
         it += 2; // 67
         // 0x86 0x02: Number of battery temperature sensors             2                        1.0  count
         // 68
@@ -80,15 +85,13 @@ namespace
         it += 3; // 72
         // 0x89 0x00 0x00 0x00 0x00: Total battery cycle capacity
         // 73 74 75 76
-        uint32_t battery_cycle_capacity = (uint32_t) it[0] << 24 | (uint32_t) it[1] << 16 | (uint32_t) it[2] << 8 | it[3];
+        uint32_t battery_cycle_capacity = read4bytes(it);
         it += 5; // 77
         // ignore strings number
         it += 3;
 
     //    battery_current = (uint16_t) current_low_byte | current_hi_byte;
     //    batCurrent = (float)(10000-battery_current) * 0.01f - 100.0f;
-
-        data.capacity = battery_soc;
 
         //test energy
     //    if(energyAh == -1000000.0f) // initial setup
@@ -135,21 +138,14 @@ namespace
 BMSHandler* s_bmsHandler = nullptr;
 //---------------------------------------------------------------------------
 
-constexpr static const int txDataLen = 21;
-constexpr static const int txTransmitTimeout = 1000;
-
-static const uint8_t TxData[txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x06, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
-
-extern UART_HandleTypeDef huart2;
-
 BMSHandler::BMSHandler() {
-//    s_bmsHandler = this;
+    s_bmsHandler = this;
 }
 
 BMSHandler::~BMSHandler() {
-//    if (s_bmsHandler == this) {
-//        s_bmsHandler = nullptr;
-//    }
+    if (s_bmsHandler == this) {
+        s_bmsHandler = nullptr;
+    }
 }
 
 void BMSHandler::Request()
@@ -160,28 +156,36 @@ void BMSHandler::Request()
 	HAL_StatusTypeDef status{HAL_OK};
 
 	if (m_status == BMSStatus::RequestTimedOut) {
-		status = HAL_UART_Abort_IT(&huart2);
+		status = HAL_UART_Abort(&huart2);
 	}
 
-	s_bmsHandler = this;
+//	s_bmsHandler = this;
 	m_lastRequestTick = HAL_GetTick();
 
 	status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
-	if (status != HAL_OK)
+
+	if (status == HAL_ERROR)
 	{
-		//TODO: check status
-		status = HAL_UART_Abort_IT(&huart2);
-		status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
+		auto errCode = HAL_UART_GetError(&huart2);
+		if (errCode == HAL_UART_ERROR_ORE)
+		{
+			status = HAL_UART_Abort(&huart2);
+			status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
+		}
 	}
 
-	//TODO: check status
-    status = HAL_UART_Transmit(&huart2, TxData, txDataLen, txTransmitTimeout);
+	if (status == HAL_OK)
+	{
+		//TODO: check status
+		status = HAL_UART_Transmit_IT(&huart2, TxData, txDataLen);
+	}
+
     m_status = getRequestStatus(status);
 }
 
 void BMSHandler::Response(HAL_StatusTypeDef status)
 {
-	s_bmsHandler = nullptr;
+//	s_bmsHandler = nullptr;
 	m_lastResponseTick = HAL_GetTick();
 
 	m_status = getResponseStatus(status);
@@ -193,6 +197,7 @@ void BMSHandler::Response(HAL_StatusTypeDef status)
 		if (parseData(rxData, data)) {
 			UpdateData(static_cast<BatteryData&&>(data));
 		} else {
+			debugMsg = "parse error";
 			m_status = BMSStatus::Error;
 		}
 	}
@@ -212,41 +217,28 @@ void BMSHandler::UpdateData(BatteryData&& newData)
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
 {
-	HAL_UART_RxEventTypeTypeDef event = HAL_UARTEx_GetRxEventType(huart);
-//	if (event == HAL_UART_RXEVENT_IDLE)
-//	{
-//	    HAL_StatusTypeDef status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
-//
-//	}
-	static const char* msg = "data received";
-	s_bmsHandler->debugMsg = msg;
-	s_bmsHandler->Response(HAL_OK);
+	if (s_bmsHandler)
+	{
+		static const char* msg = "data received";
+		s_bmsHandler->debugMsg = msg;
+		s_bmsHandler->Response(HAL_OK);
+	}
 }
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
-
-    // #define HAL_UART_ERROR_PE                0x00000001U   /*!< Parity error        */
-    // #define HAL_UART_ERROR_NE                0x00000002U   /*!< Noise error         */
-    // #define HAL_UART_ERROR_FE                0x00000004U   /*!< Frame error         */
-    // #define HAL_UART_ERROR_ORE               0x00000008U   /*!< Overrun error       */
-    // #define HAL_UART_ERROR_DMA
-
-    static const char* err1 = "callback parity error";
-    static const char* err2 = "callback noise error";
-    static const char* err4 = "callback frame error";
-    static const char* err8 = "callback overrun error";
-    static const char* err16 = "callback dma error";
-
-	switch (huart->ErrorCode)
+	if (s_bmsHandler)
 	{
-        case HAL_UART_ERROR_PE:  s_bmsHandler->debugMsg = err1; break;
-        case HAL_UART_ERROR_NE:  s_bmsHandler->debugMsg = err2; break;
-        case HAL_UART_ERROR_FE:  s_bmsHandler->debugMsg = err4; break;
-        case HAL_UART_ERROR_ORE: s_bmsHandler->debugMsg = err8; break;
-        case HAL_UART_ERROR_DMA: s_bmsHandler->debugMsg = err16; break;
+	    s_bmsHandler->debugMsg = "clbk";
+	    if (huart->ErrorCode & HAL_UART_ERROR_PE) { s_bmsHandler->debugMsg += " parity"; }
+	    if (huart->ErrorCode & HAL_UART_ERROR_NE) { s_bmsHandler->debugMsg += " noise"; }
+	    if (huart->ErrorCode & HAL_UART_ERROR_FE) { s_bmsHandler->debugMsg += " frame"; }
+	    if (huart->ErrorCode & HAL_UART_ERROR_ORE) { s_bmsHandler->debugMsg += " overrun"; }
+	    if (huart->ErrorCode & HAL_UART_ERROR_DMA) { s_bmsHandler->debugMsg += " dma"; }
+	    s_bmsHandler->debugMsg += " err";
+
+		s_bmsHandler->Response(HAL_ERROR);
 	}
-	s_bmsHandler->Response(HAL_ERROR);
 }
 
 void BMSUpdater::Update()

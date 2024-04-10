@@ -13,6 +13,7 @@
 #include "../button.h"
 #include "main.h"
 #include "../BMS/bms_handler.h"
+#include <stdio.h>
 
 // ----------------- tmp here --------------------------
 class ScreenBrightnessController
@@ -216,6 +217,8 @@ void IdleProcess::Init()
 
 void IdleProcess::Update()
 {
+	printf("!!!!!!!!!!!\n");
+
     bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 
     m_pimpl->OnTick();

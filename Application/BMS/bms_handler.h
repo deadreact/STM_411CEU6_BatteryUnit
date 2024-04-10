@@ -10,6 +10,7 @@
 
 #include "bms_data.h"
 #include "stm32f4xx_hal.h"
+#include <string>
 
 class BMSHandler
 {
@@ -23,7 +24,7 @@ public:
     BMSStatus GetStatus() const { return m_status; }
     const BatteryData& GetData() const { return m_data; }
 
-    const char* debugMsg{nullptr};
+    std::string debugMsg;
 protected:
     void UpdateData(BatteryData&& newData);
 protected:
@@ -52,8 +53,8 @@ public:
 private:
 	BMSStatus m_prevStatus { BMSStatus::NoStatus };
 	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
-	const uint32_t m_requestTimeout{2000};
-	const uint32_t m_invalidatePeriodMsec{1000 * 5}; //5 sec
+	const uint32_t m_requestTimeout{1000};
+	const uint32_t m_invalidatePeriodMsec{500}; //
 };
 
 

@@ -9,6 +9,7 @@
 #define SHARED_DATA_H_
 
 #include <stdint.h>
+#include <string>
 
 enum class ProcessId: uint8_t
 {
@@ -43,7 +44,7 @@ struct ProcessData<ProcessId::Idle>
 
     int batCapacity{0};
     int batVoltage{0};
-    const char* errMsg{nullptr};
+    std::string errMsg;
     float batCurrent{0.f};
 };
 
