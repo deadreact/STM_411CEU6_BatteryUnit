@@ -285,10 +285,10 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellElementBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\BatteryMainElement.cpp">
+    <ClCompile Include="..\..\gui\src\containers\IOValue.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryMainElementBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\IOValueBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -766,10 +766,10 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellElementBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\BatteryMainElement.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\IOValue.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryMainElementBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\IOValueBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>

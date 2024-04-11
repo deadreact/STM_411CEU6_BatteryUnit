@@ -27,9 +27,9 @@ IdleScreenViewBase::IdleScreenViewBase()
     boxWithBorder1.setBorderSize(5);
     debugInfoContainer.add(boxWithBorder1);
 
-    errorLabel.setPosition(10, 13, 174, 86);
+    errorLabel.setPosition(10, 27, 174, 74);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
-    errorLabel.setLinespacing(1);
+    errorLabel.setLinespacing(0);
     errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
     Unicode::snprintf(errorLabelBuffer, ERRORLABEL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJG5).getText());
     errorLabel.setWildcard(errorLabelBuffer);

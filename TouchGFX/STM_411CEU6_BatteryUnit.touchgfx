@@ -2,45 +2,6 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen1",
-        "CanvasBufferSize": 4800,
-        "Components": [
-          {
-            "Type": "CircleProgress",
-            "Name": "circleProgress1",
-            "X": 79,
-            "Y": 45,
-            "Width": 150,
-            "Height": 150,
-            "Color": {
-              "Red": 255,
-              "Green": 38
-            },
-            "CenterX": 75.0,
-            "CenterY": 75.0,
-            "Radius": 65.0,
-            "LineWidth": 20.0,
-            "EndAngle": 360.0,
-            "CapPrecision": "Butt",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_circleprogress_backgrounds_medium.png",
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 100
-          }
-        ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "Trigger": {
-              "Type": "TriggerOnEveryTick",
-              "TickCount": 1
-            },
-            "Action": {
-              "Type": "ActionExecuteCode"
-            }
-          }
-        ]
-      },
-      {
         "Name": "Screen2",
         "CanvasBufferSize": 4800,
         "Components": [
@@ -49,8 +10,8 @@
             "Name": "sleepingLabel",
             "X": 107,
             "Y": 132,
-            "Width": 106,
-            "Height": 24,
+            "Width": 77,
+            "Height": 19,
             "Visible": false,
             "TextId": "__SingleUse_LX7P",
             "TextRotation": "0",
@@ -93,8 +54,8 @@
                 "Name": "brightnessTitle",
                 "X": 12,
                 "Y": 41,
-                "Width": 115,
-                "Height": 24,
+                "Width": 82,
+                "Height": 19,
                 "TextId": "__SingleUse_WPN4",
                 "TextRotation": "0",
                 "Color": {
@@ -109,8 +70,8 @@
                 "Name": "title",
                 "X": 12,
                 "Y": 10,
-                "Width": 99,
-                "Height": 24,
+                "Width": 70,
+                "Height": 19,
                 "TextId": "__SingleUse_XXXU",
                 "TextRotation": "0",
                 "Color": {
@@ -225,10 +186,9 @@
                 "Type": "TextArea",
                 "Name": "errorLabel",
                 "X": 10,
-                "Y": 13,
+                "Y": 27,
                 "Width": 174,
-                "Height": 86,
-                "LockPosition": true,
+                "Height": 74,
                 "TextId": "__SingleUse_268O",
                 "TextRotation": "0",
                 "Color": {
@@ -236,7 +196,6 @@
                   "Green": 189,
                   "Blue": 23
                 },
-                "LineSpacing": 1,
                 "Wildcard1": {
                   "TextId": "__SingleUse_RJG5",
                   "UseBuffer": true,
@@ -426,6 +385,165 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "Screen1",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "headerBox",
+            "Width": 320,
+            "Height": 50,
+            "Color": {
+              "Red": 15,
+              "Green": 18,
+              "Blue": 23
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "footerBox",
+            "Y": 190,
+            "Width": 320,
+            "Height": 50,
+            "LockPosition": true,
+            "Color": {
+              "Red": 15,
+              "Green": 18,
+              "Blue": 23
+            }
+          },
+          {
+            "Type": "ListLayout",
+            "Name": "capacityContainer",
+            "X": 160,
+            "Y": 75,
+            "Width": 110,
+            "Height": 91,
+            "Direction": "South",
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "capacityTextValue",
+                "Width": 110,
+                "Height": 51,
+                "TextId": "__SingleUse_5XWU",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 143,
+                  "Green": 181,
+                  "Blue": 239
+                },
+                "Wildcard1": {
+                  "TextId": "__SingleUse_ZKSS",
+                  "UseBuffer": true,
+                  "BufferSize": 4
+                }
+              },
+              {
+                "Type": "ImageProgress",
+                "Name": "circleProgress1",
+                "Y": 51,
+                "Width": 110,
+                "Height": 40,
+                "FileNameProgress": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large_action.png",
+                "AnchorAtZero": true,
+                "Direction": "Right",
+                "Preset": "alternate_theme\\presets\\imageprogress\\styled\\batteries\\action.json",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
+                "IndicatorPositionX": 5,
+                "IndicatorPositionY": 5,
+                "IndicatorPositionWidth": 94,
+                "IndicatorPositionHeight": 30,
+                "ProgressRangeMax": 100,
+                "ProgressInitialValue": 60
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "chargeTimeContainer",
+            "X": 6,
+            "Y": 63,
+            "Width": 154,
+            "Height": 114,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "chargeTimeValue",
+                "X": 20,
+                "Y": 12,
+                "Width": 100,
+                "Height": 91,
+                "TextId": "__SingleUse_NRH8",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 143,
+                  "Green": 181,
+                  "Blue": 239
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_7V8E",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "chargeTimeLabel",
+                "X": 4,
+                "Width": 123,
+                "Height": 13,
+                "TextId": "__SingleUse_MHL5",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 90,
+                  "Green": 117,
+                  "Blue": 206
+                },
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "iValue",
+            "X": 166,
+            "Y": 190,
+            "Width": 142,
+            "Height": 50,
+            "CustomContainerDefinitionName": "IOValue"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "oValue",
+            "X": 12,
+            "Y": 190,
+            "Width": 142,
+            "Height": 50,
+            "CustomContainerDefinitionName": "IOValue"
+          },
+          {
+            "Type": "Image",
+            "Name": "icon1",
+            "X": 6,
+            "Y": 5,
+            "Width": 40,
+            "Height": 40,
+            "RelativeFilename": "inverter40color.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "icon2",
+            "X": 46,
+            "Y": 5,
+            "Width": 40,
+            "Height": 40,
+            "RelativeFilename": "usb40.png"
+          }
+        ],
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [
@@ -501,70 +619,58 @@
         "Interactions": []
       },
       {
-        "Name": "BatteryMainElement",
-        "Width": 213,
-        "Height": 26,
+        "Name": "IOValue",
+        "X": 178,
+        "Y": 190,
+        "Width": 142,
+        "Height": 50,
         "Components": [
-          {
-            "Type": "BoxWithBorder",
-            "Name": "boxWithBorder1",
-            "Width": 116,
-            "Height": 26,
-            "Color": {
-              "Red": 16,
-              "Green": 50,
-              "Blue": 71
-            },
-            "BorderColor": {
-              "Red": 35,
-              "Green": 38,
-              "Blue": 41
-            },
-            "BorderSize": 5
-          },
-          {
-            "Type": "Box",
-            "Name": "box1",
-            "X": 116,
-            "Width": 97,
-            "Height": 26,
-            "Color": {
-              "Red": 195,
-              "Green": 210,
-              "Blue": 224
-            }
-          },
-          {
-            "Type": "TextArea",
-            "Name": "title",
-            "Y": 3,
-            "Width": 116,
-            "Height": 18,
-            "TextId": "__SingleUse_MDS6",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 195,
-              "Green": 210,
-              "Blue": 224
-            }
-          },
           {
             "Type": "TextArea",
             "Name": "value",
-            "X": 116,
-            "Y": 3,
-            "Width": 97,
-            "Height": 18,
-            "TextId": "__SingleUse_L7RN",
+            "Width": 88,
+            "Height": 50,
+            "TextId": "IOWildcard",
             "TextRotation": "0",
             "Color": {
-              "Red": 14,
-              "Green": 37,
-              "Blue": 51
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
             },
             "Wildcard1": {
+              "TextId": "__SingleUse_VZ51",
               "UseBuffer": true,
-              "BufferSize": 10
+              "BufferSize": 5
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ioLabel",
+            "X": 86,
+            "Y": 10,
+            "Width": 55,
+            "Height": 13,
+            "TextId": "OUTPUT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Watts",
+            "X": 86,
+            "Y": 25,
+            "Width": 55,
+            "Height": 15,
+            "TextId": "Watts",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
             }
           }
         ],
@@ -582,7 +688,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "Screen2",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

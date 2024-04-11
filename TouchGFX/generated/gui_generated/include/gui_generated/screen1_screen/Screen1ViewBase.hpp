@@ -8,8 +8,13 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/progress_indicators/CircleProgress.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/containers/ListLayout.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/progress_indicators/ImageProgress.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <gui/containers/IOValue.hpp>
+#include <touchgfx/widgets/Image.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -27,16 +32,28 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::CircleProgress circleProgress1;
-    touchgfx::PainterRGB565 circleProgress1Painter;
-
-private:
+    touchgfx::Box headerBox;
+    touchgfx::Box footerBox;
+    touchgfx::ListLayout capacityContainer;
+    touchgfx::TextAreaWithOneWildcard capacityTextValue;
+    touchgfx::ImageProgress circleProgress1;
+    touchgfx::Container chargeTimeContainer;
+    touchgfx::TextAreaWithOneWildcard chargeTimeValue;
+    touchgfx::TextArea chargeTimeLabel;
+    IOValue iValue;
+    IOValue oValue;
+    touchgfx::Image icon1;
+    touchgfx::Image icon2;
 
     /*
-     * Canvas Buffer Size
+     * Wildcard Buffers
      */
-    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
-    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+    static const uint16_t CAPACITYTEXTVALUE_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
+    static const uint16_t CHARGETIMEVALUE_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar chargeTimeValueBuffer[CHARGETIMEVALUE_SIZE];
+
+private:
 
 };
 

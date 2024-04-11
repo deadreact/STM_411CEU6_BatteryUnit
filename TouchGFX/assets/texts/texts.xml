@@ -4,13 +4,38 @@
     <Language Id="GB" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
-    <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_L7RN" Alignment="Center" TypographyId="Default">
+    <TextGroup Id="IOValueGroup">
+      <Text Id="IOWildcard" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_MDS6" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB"></Translation>
+      <Text Id="OUTPUT" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">OUTPUT</Translation>
+      </Text>
+      <Text Id="INPUT" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">INPUT</Translation>
+      </Text>
+      <Text Id="Watts" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">Watts</Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_VZ51" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">1234</Translation>
+      </Text>
+      <Text Id="__SingleUse_MHL5" Alignment="Left" TypographyId="MainText">
+        <Translation Language="GB">RECHARGING TIME</Translation>
+      </Text>
+      <Text Id="__SingleUse_7V8E" Alignment="Left" TypographyId="ValueLarge">
+        <Translation Language="GB">99</Translation>
+      </Text>
+      <Text Id="__SingleUse_NRH8" Alignment="Center" TypographyId="ValueLarge">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZKSS" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">100</Translation>
+      </Text>
+      <Text Id="__SingleUse_5XWU" Alignment="Center" TypographyId="ValueMedium">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
       </Text>
       <Text Id="__SingleUse_82HO" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0.0</Translation>
@@ -42,7 +67,7 @@
       <Text Id="__SingleUse_EFRY" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
       </Text>
-      <Text Id="__SingleUse_268O" Alignment="Left" TypographyId="Errors">
+      <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="wildcardId1" Alignment="Left" TypographyId="Values">
@@ -76,9 +101,11 @@
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
+    <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="MainText" Font="arial.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

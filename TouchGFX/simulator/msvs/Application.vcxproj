@@ -32,8 +32,8 @@
     <ClCompile Include="..\..\generated\gui_generated\src\idlescreen_screen\IdleScreenViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\BatteryCellElement.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellElementBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\containers\BatteryMainElement.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryMainElementBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\IOValue.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\IOValueBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -195,8 +195,8 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\idlescreen_screen\IdleScreenViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\BatteryCellElement.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellElementBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\containers\BatteryMainElement.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryMainElementBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\IOValue.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\IOValueBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
