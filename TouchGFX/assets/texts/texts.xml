@@ -42,7 +42,7 @@
       <Text Id="__SingleUse_EFRY" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
       </Text>
-      <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
+      <Text Id="__SingleUse_268O" Alignment="Left" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="wildcardId1" Alignment="Left" TypographyId="Values">

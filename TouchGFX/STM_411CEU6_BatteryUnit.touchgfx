@@ -225,9 +225,10 @@
                 "Type": "TextArea",
                 "Name": "errorLabel",
                 "X": 10,
-                "Y": 27,
+                "Y": 13,
                 "Width": 174,
-                "Height": 74,
+                "Height": 86,
+                "LockPosition": true,
                 "TextId": "__SingleUse_268O",
                 "TextRotation": "0",
                 "Color": {
@@ -235,6 +236,7 @@
                   "Green": 189,
                   "Blue": 23
                 },
+                "LineSpacing": 1,
                 "Wildcard1": {
                   "TextId": "__SingleUse_RJG5",
                   "UseBuffer": true,

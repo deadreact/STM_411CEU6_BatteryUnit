@@ -21,17 +21,15 @@ IdleScreenViewBase::IdleScreenViewBase()
     add(box2);
 
     debugInfoContainer.setPosition(0, 127, 195, 113);
-    boxWithBorder1.setWidth(195);
-    boxWithBorder1.setHeight(113);
+    boxWithBorder1.setPosition(0, 0, 195, 113);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(12, 27, 55));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     boxWithBorder1.setBorderSize(5);
     debugInfoContainer.add(boxWithBorder1);
 
-    errorLabel.setWidth(174);
-    errorLabel.setHeight(74);
+    errorLabel.setPosition(10, 13, 174, 86);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
-    errorLabel.setLinespacing(0);
+    errorLabel.setLinespacing(1);
     errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
     Unicode::snprintf(errorLabelBuffer, ERRORLABEL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJG5).getText());
     errorLabel.setWildcard(errorLabelBuffer);
@@ -41,6 +39,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     add(debugInfoContainer);
 
     batteryInfo.setPosition(10, 26, 300, 146);
+    batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
     containerCurrent.setWidth(185);
     containerCurrent.setHeight(23);
