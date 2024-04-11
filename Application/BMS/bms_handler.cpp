@@ -59,7 +59,7 @@ namespace
     		if (finishMark != rxData[length-5]) {
     			return BMSErrorFlags::ParseControlBytes;
     		}
-    		uint16_t checksum = sum<uint8_t, uint16_t>(rxData, rxData + length - 4);
+    		uint16_t checksum = sum<uint8_t, uint16_t>(rxData-2, rxData + length - 4);
     		if (checksum != read2bytes(rxData + length - 2)) {
     			return BMSErrorFlags::ParseChecksum;
     		}
