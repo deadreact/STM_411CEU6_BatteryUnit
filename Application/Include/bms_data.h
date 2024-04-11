@@ -22,22 +22,26 @@ enum class BMSStatus
 
 struct BMSErrorFlags
 {
-    constexpr static const uint32_t UART_Parity          = 0x0001;
-    constexpr static const uint32_t UART_Noise           = 0x0002;
-    constexpr static const uint32_t UART_Frame           = 0x0004;
-    constexpr static const uint32_t UART_Overrun         = 0x0008;
-    constexpr static const uint32_t UART_DMA             = 0x0010;
-    constexpr static const uint32_t UART_Timeout         = 0x0020;
-    constexpr static const uint32_t RequestTimeout       = 0x0040;
-    constexpr static const uint32_t ParseStartBits       = 0x0080;
-    constexpr static const uint32_t ParseCRC             = 0x0100;   // TODO:
-    constexpr static const uint32_t ParseValidation      = 0x0200;   // TODO:
-    // constexpr static const uint32_t _      = 0x0400;
-    // constexpr static const uint32_t _      = 0x0800;
-    constexpr static const uint32_t ValidResponseTimeout = 0x1000;
+    enum : uint32_t
+    {
+        UART_Parity          = 0x0001,
+        UART_Noise           = 0x0002,
+        UART_Frame           = 0x0004,
+        UART_Overrun         = 0x0008,
+        UART_DMA             = 0x0010,
+        UART_Timeout         = 0x0020,
+        RequestTimeout       = 0x0040,
+        // _                    = 0x0080,
+        ParseControlBytes    = 0x0100,
+        ParseChecksum        = 0x0200,
+        ParseValidation      = 0x0400,
+        // _                    = 0x0800,
+        ValidResponseTimeout = 0x1000,
 
-    constexpr static const uint32_t maskMinorErrors = 0x0FFF;
-    constexpr static const uint32_t maskMajorErrors = 0xF000;
+        maskMinorErrors      = 0x0FFF,
+        maskMajorErrors      = 0xF000,
+        maskParseErrors      = 0x0F00
+    };
 };
 
 struct BatteryData

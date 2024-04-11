@@ -30,10 +30,10 @@ namespace
         return (value & 0x7FFF) * ((value & 0x8000) == 0x8000 ? 1 : -1);
     }
 
-    template <typename T>
-    T sum(const T* begin, const T* end)
+    template <typename T, typename RT = T>
+    RT sum(const T* begin, const T* end)
     {
-    	T value{};
+    	RT value{};
     	while (begin != end) {
     		value += *begin++;
     	}
@@ -43,13 +43,61 @@ namespace
     uint16_t read2bytes(uint8_t* ptr) { return (uint16_t)ptr[0] << 8 | ptr[1]; }
     uint32_t read4bytes(uint8_t* ptr) { return (uint32_t)ptr[0] << 24 | (uint32_t) ptr[1] << 16 | (uint32_t) ptr[2] << 8 | ptr[3]; }
 
+    uint32_t checkValidity(uint8_t rxData[])
+    {
+    	constexpr static const uint16_t startMark = 0x4e57;
+    	constexpr static const uint16_t finishMark = 0x68;
+
+    	if (startMark != read2bytes(rxData)) {
+    		return BMSErrorFlags::ParseControlBytes;
+    	}
+    	rxData += 2;
+    	uint16_t length = read2bytes(rxData);
+
+    	if (length+2 <= BMSHandler::rxDataLen)
+    	{
+    		if (finishMark != rxData[length-5]) {
+    			return BMSErrorFlags::ParseControlBytes;
+    		}
+    		uint16_t checksum = sum<uint8_t, uint16_t>(rxData, rxData + length - 4);
+    		if (checksum != read2bytes(rxData + length - 2)) {
+    			return BMSErrorFlags::ParseChecksum;
+    		}
+    	}
+    	else if (length-2 <= BMSHandler::rxDataLen)
+    	{
+    		if (finishMark != rxData[length-5]) {
+				return BMSErrorFlags::ParseControlBytes;
+			}
+    		// WARN: Can't check checksum
+    	}
+    	else
+    	{
+    		// WARN: Can't check finishMark and checksum
+    	}
+
+    	return 0;
+    }
+
     uint32_t parseData(uint8_t rxData[], BatteryData& data)
     {
     	//    TODO validate by first 2 bits and crc!!!!!!!!!
-    	if (memcmp(rxData, TxData, 2) != 0) {
-    		return BMSErrorFlags::ParseStartBits;
+    	if (uint32_t errCode = checkValidity(rxData)) {
+    		return errCode;
     	}
-    	uint8_t* it = rxData + 12;
+
+    	uint8_t* it = rxData + 2;
+    	uint16_t length = read2bytes(it);
+    	it += 2;
+    	uint32_t terminalNumber = read4bytes(it);
+    	it += 4;
+    	uint8_t commandWord = *it; //0x01 Activation directive; 0x06 Read all data
+    	it++;
+    	uint8_t frameSource = *it; //0. Data box, 1. Bluetooth, 2. GPS, 3, PC PC PC
+		it++;
+		uint8_t transportType = *it; //0.Read data, 1.Answer frame 2.Data box active upload
+		it += 2;
+
 
         data.cellCount = *it / 3;
 
@@ -162,7 +210,9 @@ void BMSHandler::Response(HAL_StatusTypeDef status)
 		BatteryData data;
 
 		if (uint32_t errCode = parseData(rxData, data)) {
-			debugMsg = errCode == BMSErrorFlags::ParseStartBits ? "parse error start bits" : "parse error validation";
+			debugMsg = errCode == BMSErrorFlags::ParseControlBytes
+					? "parse control bytes"
+					: errCode == BMSErrorFlags::ParseChecksum ? "parse error checksum" : "parse error validation";
 			errFlags |= errCode;
 			m_status = BMSStatus::Error;
 		} else {

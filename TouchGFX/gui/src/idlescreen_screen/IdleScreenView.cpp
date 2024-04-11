@@ -47,7 +47,7 @@ void IdleScreenView::handleTickEvent()
 		{
 			m_bmsData.current = data.bms.current;
 			Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", (float)m_bmsData.current * 0.01f);
-			currentTextValue.resizeToCurrentText();
+//			currentTextValue.resizeToCurrentText();
 			currentTextValue.invalidate();
 		}
 
@@ -85,6 +85,10 @@ void IdleScreenView::handleTickEvent()
 	bool isMajorError = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
 	if (isMajorError == batteryInfo.isVisible())
 	{
+		if (isMajorError)
+		{
+			m_bmsData = BatteryData();
+		}
 		batteryInfo.setVisible(!isMajorError);
 		batteryInfo.invalidate();
 	}

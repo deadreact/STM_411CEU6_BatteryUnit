@@ -26,6 +26,8 @@ public:
 
     std::string debugMsg;
     uint32_t errFlags{0};
+
+    constexpr static const int rxDataLen = 280; // 279 bytes needed for 12 cells
 protected:
     void UpdateData(const BatteryData& newData);
 protected:
@@ -35,7 +37,6 @@ protected:
     uint32_t m_lastResponseTick{0};
     uint32_t m_lastDataUpdateTick{0};
 
-    constexpr static const int rxDataLen = 256;
     uint8_t rxData[rxDataLen];
 };
 
