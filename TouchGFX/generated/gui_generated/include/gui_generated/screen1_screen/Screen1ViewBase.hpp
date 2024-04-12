@@ -36,21 +36,25 @@ protected:
     touchgfx::Box footerBox;
     touchgfx::ListLayout capacityContainer;
     touchgfx::TextAreaWithOneWildcard capacityTextValue;
-    touchgfx::ImageProgress circleProgress1;
+    touchgfx::ImageProgress capacityValue;
     touchgfx::Container chargeTimeContainer;
     touchgfx::TextAreaWithOneWildcard chargeTimeValue;
     touchgfx::TextArea chargeTimeLabel;
+    touchgfx::TextArea minsLabel;
     IOValue iValue;
     IOValue oValue;
     touchgfx::Image icon1;
     touchgfx::Image icon2;
+    touchgfx::Image icon3;
+    touchgfx::Image icon4;
+    touchgfx::Image icon2_1;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t CAPACITYTEXTVALUE_SIZE = 4;
     touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
-    static const uint16_t CHARGETIMEVALUE_SIZE = 3;
+    static const uint16_t CHARGETIMEVALUE_SIZE = 4;
     touchgfx::Unicode::UnicodeChar chargeTimeValueBuffer[CHARGETIMEVALUE_SIZE];
 
 private:

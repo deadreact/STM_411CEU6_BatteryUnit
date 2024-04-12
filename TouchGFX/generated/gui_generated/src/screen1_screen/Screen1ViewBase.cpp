@@ -13,14 +13,14 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     headerBox.setPosition(0, 0, 320, 50);
-    headerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
+    headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
     add(headerBox);
 
     footerBox.setPosition(0, 190, 320, 50);
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
     add(footerBox);
 
-    capacityContainer.setXY(160, 75);
+    capacityContainer.setXY(185, 75);
     capacityContainer.setDirection(touchgfx::SOUTH);
     capacityTextValue.setWidth(110);
     capacityTextValue.setHeight(51);
@@ -31,19 +31,19 @@ Screen1ViewBase::Screen1ViewBase()
     capacityTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5XWU));
     capacityContainer.add(capacityTextValue);
 
-    circleProgress1.setProgressIndicatorPosition(5, 5, 94, 30);
-    circleProgress1.setRange(0, 100);
-    circleProgress1.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
-    circleProgress1.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ID));
-    circleProgress1.setBitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ACTION_ID);
-    circleProgress1.setValue(60);
-    circleProgress1.setAnchorAtZero(true);
-    capacityContainer.add(circleProgress1);
+    capacityValue.setProgressIndicatorPosition(5, 5, 94, 30);
+    capacityValue.setRange(0, 100);
+    capacityValue.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
+    capacityValue.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ID));
+    capacityValue.setBitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ACTION_ID);
+    capacityValue.setValue(60);
+    capacityValue.setAnchorAtZero(true);
+    capacityContainer.add(capacityValue);
 
     add(capacityContainer);
 
-    chargeTimeContainer.setPosition(6, 63, 154, 114);
-    chargeTimeValue.setXY(20, 12);
+    chargeTimeContainer.setPosition(6, 63, 154, 127);
+    chargeTimeValue.setXY(0, 6);
     chargeTimeValue.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     chargeTimeValue.setLinespacing(0);
     Unicode::snprintf(chargeTimeValueBuffer, CHARGETIMEVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_7V8E).getText());
@@ -52,11 +52,17 @@ Screen1ViewBase::Screen1ViewBase()
     chargeTimeValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NRH8));
     chargeTimeContainer.add(chargeTimeValue);
 
-    chargeTimeLabel.setXY(4, 0);
-    chargeTimeLabel.setColor(touchgfx::Color::getColorFromRGB(90, 117, 206));
+    chargeTimeLabel.setXY(2, 5);
+    chargeTimeLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     chargeTimeLabel.setLinespacing(0);
     chargeTimeLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MHL5));
     chargeTimeContainer.add(chargeTimeLabel);
+
+    minsLabel.setPosition(12, 101, 138, 21);
+    minsLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
+    minsLabel.setLinespacing(0);
+    minsLabel.setTypedText(touchgfx::TypedText(T_MINS));
+    chargeTimeContainer.add(minsLabel);
 
     add(chargeTimeContainer);
 
@@ -66,13 +72,25 @@ Screen1ViewBase::Screen1ViewBase()
     oValue.setXY(12, 190);
     add(oValue);
 
-    icon1.setXY(6, 5);
-    icon1.setBitmap(touchgfx::Bitmap(BITMAP_INVERTER40COLOR_ID));
+    icon1.setXY(2, 2);
+    icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
     add(icon1);
 
-    icon2.setXY(46, 5);
-    icon2.setBitmap(touchgfx::Bitmap(BITMAP_USB40_ID));
+    icon2.setXY(52, 2);
+    icon2.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_COOL_ID));
     add(icon2);
+
+    icon3.setXY(102, 2);
+    icon3.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_SNOW_ID));
+    add(icon3);
+
+    icon4.setXY(152, 2);
+    icon4.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_ELECTRICITY_ID));
+    add(icon4);
+
+    icon2_1.setXY(202, 2);
+    icon2_1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
+    add(icon2_1);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

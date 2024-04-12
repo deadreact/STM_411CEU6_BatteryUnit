@@ -395,9 +395,9 @@
             "Width": 320,
             "Height": 50,
             "Color": {
-              "Red": 15,
-              "Green": 18,
-              "Blue": 23
+              "Red": 31,
+              "Green": 32,
+              "Blue": 34
             }
           },
           {
@@ -416,7 +416,7 @@
           {
             "Type": "ListLayout",
             "Name": "capacityContainer",
-            "X": 160,
+            "X": 185,
             "Y": 75,
             "Width": 110,
             "Height": 91,
@@ -442,7 +442,7 @@
               },
               {
                 "Type": "ImageProgress",
-                "Name": "circleProgress1",
+                "Name": "capacityValue",
                 "Y": 51,
                 "Width": 110,
                 "Height": 40,
@@ -466,14 +466,13 @@
             "X": 6,
             "Y": 63,
             "Width": 154,
-            "Height": 114,
+            "Height": 127,
             "Components": [
               {
                 "Type": "TextArea",
                 "Name": "chargeTimeValue",
-                "X": 20,
-                "Y": 12,
-                "Width": 100,
+                "Y": 6,
+                "Width": 150,
                 "Height": 91,
                 "TextId": "__SingleUse_NRH8",
                 "TextRotation": "0",
@@ -486,23 +485,39 @@
                 "Wildcard1": {
                   "TextId": "__SingleUse_7V8E",
                   "UseBuffer": true,
-                  "BufferSize": 3
+                  "BufferSize": 4
                 }
               },
               {
                 "Type": "TextArea",
                 "Name": "chargeTimeLabel",
-                "X": 4,
-                "Width": 123,
-                "Height": 13,
+                "X": 2,
+                "Y": 5,
+                "Width": 132,
+                "Height": 14,
                 "TextId": "__SingleUse_MHL5",
                 "TextRotation": "0",
                 "Color": {
-                  "Red": 90,
-                  "Green": 117,
-                  "Blue": 206
+                  "Red": 104,
+                  "Green": 127,
+                  "Blue": 204
                 },
                 "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "minsLabel",
+                "X": 12,
+                "Y": 101,
+                "Width": 138,
+                "Height": 21,
+                "TextId": "Mins",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 104,
+                  "Green": 127,
+                  "Blue": 204
+                }
               }
             ]
           },
@@ -511,7 +526,7 @@
             "Name": "iValue",
             "X": 166,
             "Y": 190,
-            "Width": 142,
+            "Width": 150,
             "Height": 50,
             "CustomContainerDefinitionName": "IOValue"
           },
@@ -520,27 +535,54 @@
             "Name": "oValue",
             "X": 12,
             "Y": 190,
-            "Width": 142,
+            "Width": 150,
             "Height": 50,
             "CustomContainerDefinitionName": "IOValue"
           },
           {
             "Type": "Image",
             "Name": "icon1",
-            "X": 6,
-            "Y": 5,
-            "Width": 40,
-            "Height": 40,
-            "RelativeFilename": "inverter40color.png"
+            "X": 2,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "grayscale_power.png"
           },
           {
             "Type": "Image",
             "Name": "icon2",
-            "X": 46,
-            "Y": 5,
-            "Width": 40,
-            "Height": 40,
-            "RelativeFilename": "usb40.png"
+            "X": 52,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "grayscale_cool.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "icon3",
+            "X": 102,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "grayscale_snow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "icon4",
+            "X": 152,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "grayscale_electricity.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "icon2_1",
+            "X": 202,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "grayscale_temperature.png"
           }
         ],
         "Interactions": []
@@ -620,9 +662,9 @@
       },
       {
         "Name": "IOValue",
-        "X": 178,
+        "X": 172,
         "Y": 190,
-        "Width": 142,
+        "Width": 150,
         "Height": 50,
         "Components": [
           {
@@ -645,23 +687,8 @@
           },
           {
             "Type": "TextArea",
-            "Name": "ioLabel",
-            "X": 86,
-            "Y": 10,
-            "Width": 55,
-            "Height": 13,
-            "TextId": "OUTPUT",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 143,
-              "Green": 181,
-              "Blue": 239
-            }
-          },
-          {
-            "Type": "TextArea",
             "Name": "Watts",
-            "X": 86,
+            "X": 92,
             "Y": 25,
             "Width": 55,
             "Height": 15,
@@ -672,14 +699,24 @@
               "Green": 181,
               "Blue": 239
             }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ioLabel",
+            "X": 92,
+            "Y": 10,
+            "Width": 58,
+            "Height": 14,
+            "TextId": "OUTPUT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            }
           }
         ],
-        "Interactions": [],
-        "CustomTriggers": [
-          {
-            "Name": "readyToSetup"
-          }
-        ]
+        "Interactions": []
       }
     ],
     "Name": "MyApplication",

@@ -5,7 +5,7 @@
   </Languages>
   <Texts>
     <TextGroup Id="IOValueGroup">
-      <Text Id="IOWildcard" Alignment="Left" TypographyId="ValueMedium">
+      <Text Id="IOWildcard" Alignment="Right" TypographyId="ValueMedium">
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="OUTPUT" Alignment="Right" TypographyId="MainText">
@@ -19,6 +19,9 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="Mins" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">Mins</Translation>
+      </Text>
       <Text Id="__SingleUse_VZ51" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">1234</Translation>
       </Text>
@@ -26,7 +29,7 @@
         <Translation Language="GB">RECHARGING TIME</Translation>
       </Text>
       <Text Id="__SingleUse_7V8E" Alignment="Left" TypographyId="ValueLarge">
-        <Translation Language="GB">99</Translation>
+        <Translation Language="GB">100</Translation>
       </Text>
       <Text Id="__SingleUse_NRH8" Alignment="Center" TypographyId="ValueLarge">
         <Translation Language="GB">&lt;value&gt;</Translation>
@@ -106,6 +109,6 @@
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
     <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="MainText" Font="arial.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="MainText" Font="arial.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

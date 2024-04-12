@@ -28,7 +28,7 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // arial_40_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::MAINTEXT:
-        // arial_13_4bpp
+        // arial_14_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
     default:
         return 0;

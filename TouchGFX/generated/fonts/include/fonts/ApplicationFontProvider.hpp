@@ -30,7 +30,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId ERRORS = 3;      // SourceSansPro_Regular_20_4bpp
     static const touchgfx::FontId VALUELARGE = 4;  // arial_90_4bpp
     static const touchgfx::FontId VALUEMEDIUM = 5; // arial_40_4bpp
-    static const touchgfx::FontId MAINTEXT = 6;    // arial_13_4bpp
+    static const touchgfx::FontId MAINTEXT = 6;    // arial_14_4bpp
     static const uint16_t NUMBER_OF_FONTS = 7;
 };
 

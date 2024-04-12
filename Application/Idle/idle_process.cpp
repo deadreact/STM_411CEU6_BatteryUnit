@@ -168,7 +168,7 @@ void IdleProcess::Impl::OnTick()
     btnEnterSleep.onTick();
     btnBmsToggle.onTick();
 
-    if (sharedData.bmsActive) {
+    if (sharedData.screenId != 2) {
     	m_bmsUpdater.Update();
     } else {
     	UpdateAnalog();
@@ -181,8 +181,8 @@ void IdleProcess::Impl::HandleEvents()
     btnSleepHandler.handleEvent(btnEnterSleep.getLastEvent());
 
     if (btnBmsToggle.getLastEvent() == ButtonEvent::Release) {
-    	sharedData.bmsActive = !sharedData.bmsActive;
-    	if (sharedData.bmsActive)
+    	sharedData.screenId = (sharedData.screenId + 1) % 3;
+    	if (sharedData.screenId != 2)
     	{
     		m_bmsUpdater.Request();
     	}

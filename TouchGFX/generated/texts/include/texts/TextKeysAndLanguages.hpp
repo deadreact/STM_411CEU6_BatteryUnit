@@ -16,6 +16,7 @@ enum TEXTS
     T_OUTPUT,
     T_INPUT,
     T_WATTS,
+    T_MINS,
     T___SINGLEUSE_VZ51,
     T___SINGLEUSE_MHL5,
     T___SINGLEUSE_7V8E,

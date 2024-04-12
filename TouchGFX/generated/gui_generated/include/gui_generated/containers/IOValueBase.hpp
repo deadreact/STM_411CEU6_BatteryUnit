@@ -16,36 +16,17 @@ public:
     virtual ~IOValueBase();
     virtual void initialize();
 
-    /*
-     * Custom Trigger Callback Setters
-     */
-    void setReadyToSetupCallback(touchgfx::GenericCallback<>& callback)
-    {
-        this->readyToSetupCallback = &callback;
-    }
-
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
     }
 
     /*
-     * Custom Trigger Emitters
-     */
-    virtual void emitReadyToSetupCallback()
-    {
-        if (readyToSetupCallback && readyToSetupCallback->isValid())
-        {
-            this->readyToSetupCallback->execute();
-        }
-    }
-
-    /*
      * Member Declarations
      */
     touchgfx::TextAreaWithOneWildcard value;
-    touchgfx::TextArea ioLabel;
     touchgfx::TextArea Watts;
+    touchgfx::TextArea ioLabel;
 
     /*
      * Wildcard Buffers
@@ -54,11 +35,6 @@ protected:
     touchgfx::Unicode::UnicodeChar valueBuffer[VALUE_SIZE];
 
 private:
-
-    /*
-     * Custom Trigger Callback Declarations
-     */
-    touchgfx::GenericCallback<>* readyToSetupCallback;
 
 };
 

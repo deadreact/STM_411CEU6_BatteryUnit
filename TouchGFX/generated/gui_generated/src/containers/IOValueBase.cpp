@@ -5,12 +5,12 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/Color.hpp>
 
-IOValueBase::IOValueBase() :
-    readyToSetupCallback(0)
+IOValueBase::IOValueBase()
 {
-    setWidth(142);
+    setWidth(150);
     setHeight(50);
-    value.setPosition(0, 0, 88, 50);
+    value.setWidth(88);
+    value.setHeight(50);
     value.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     value.setLinespacing(0);
     Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VZ51).getText());
@@ -18,17 +18,17 @@ IOValueBase::IOValueBase() :
     value.setTypedText(touchgfx::TypedText(T_IOWILDCARD));
     add(value);
 
-    ioLabel.setPosition(86, 10, 55, 13);
-    ioLabel.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
-    ioLabel.setLinespacing(0);
-    ioLabel.setTypedText(touchgfx::TypedText(T_OUTPUT));
-    add(ioLabel);
-
-    Watts.setPosition(86, 25, 55, 15);
+    Watts.setPosition(92, 25, 55, 15);
     Watts.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     Watts.setLinespacing(0);
     Watts.setTypedText(touchgfx::TypedText(T_WATTS));
     add(Watts);
+
+    ioLabel.setPosition(92, 10, 58, 14);
+    ioLabel.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
+    ioLabel.setLinespacing(0);
+    ioLabel.setTypedText(touchgfx::TypedText(T_OUTPUT));
+    add(ioLabel);
 }
 
 IOValueBase::~IOValueBase()

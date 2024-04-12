@@ -24,6 +24,7 @@ struct BMSErrorFlags
 {
     enum : uint32_t
     {
+    	Ok                   = 0x0000,
         UART_Parity          = 0x0001,
         UART_Noise           = 0x0002,
         UART_Frame           = 0x0004,
@@ -40,7 +41,8 @@ struct BMSErrorFlags
 
         maskMinorErrors      = 0x0FFF,
         maskMajorErrors      = 0xF000,
-        maskParseErrors      = 0x0F00
+        maskParseErrors      = 0x0F00,
+        maskErrorDetails     = 0xFFFF0000
     };
 };
 
@@ -52,8 +54,9 @@ struct BatteryData
 	voltage_t cellVoltage[kMaxCellCount];
     voltage_t voltage{0};
     int16_t current{0};
-    uint8_t capacity{0}; // 0 - 100%
+    uint8_t capacityLevel{0}; // 0 - 100%
     uint8_t cellCount{0};
+    uint32_t capacityAh{0};
 
     // float energyAh{0};
 

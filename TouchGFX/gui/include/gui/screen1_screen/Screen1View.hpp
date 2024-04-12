@@ -13,6 +13,7 @@ public:
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
 protected:
+    BatteryData m_bmsData;
 };
 
 #endif // SCREEN1VIEW_HPP

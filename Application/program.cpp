@@ -12,7 +12,7 @@
 
 void Program_Process()
 {
-#if 1
+#if 0
     /* Check and handle if the system wasn't resumed from Standby mode */
     if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
     {

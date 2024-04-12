@@ -3,39 +3,41 @@
 #include <fonts/GeneratedFont.hpp>
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
-KEEP extern const touchgfx::GlyphNode glyphs_arial_13_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
+KEEP extern const touchgfx::GlyphNode glyphs_arial_14_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
     {     0, 0x0020,   0,   0,   0,   0,   4,   0,   0, 0x00 },
-    {     0, 0x003F,   7,   9,   9,   0,   7,   0,   0, 0x00 },
-    {    36, 0x0041,   9,   9,   9,   0,   9,   0,   0, 0x00 },
-    {    81, 0x0043,   9,   9,   9,   0,   9,   0,   0, 0x00 },
-    {   126, 0x0045,   7,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   162, 0x0047,  10,   9,   9,   0,  10,   0,   0, 0x00 },
-    {   207, 0x0048,   8,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   243, 0x0049,   2,   9,   9,   1,   4,   0,   0, 0x00 },
-    {   252, 0x004D,   9,   9,   9,   1,  11,   0,   0, 0x00 },
-    {   297, 0x004E,   8,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   333, 0x004F,  10,   9,   9,   0,  10,   0,   0, 0x00 },
-    {   378, 0x0050,   8,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   414, 0x0052,   8,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   450, 0x0054,   8,   9,   9,   0,   8,   0,   0, 0x00 },
-    {   486, 0x0055,   8,   9,   9,   1,   9,   0,   0, 0x00 },
-    {   522, 0x0057,  12,   9,   9,   0,  12,   0,   0, 0x00 },
-    {   576, 0x0061,   7,   7,   7,   0,   7,   0,   1, 0x00 },
-    {   604, 0x0073,   6,   7,   7,   0,   7,   1,   1, 0x00 },
-    {   625, 0x0074,   4,  10,  10,   0,   4,   0,   0, 0x00 }
+    {     0, 0x003F,   7,  11,  11,   0,   8,   0,   0, 0x00 },
+    {    44, 0x0041,  10,  11,  11,   0,   9,   0,   2, 0x00 },
+    {    99, 0x0043,  10,  11,  11,   0,  10,   0,   0, 0x00 },
+    {   154, 0x0045,   8,  11,  11,   1,   9,   0,   0, 0x00 },
+    {   198, 0x0047,  10,  11,  11,   0,  11,   0,   0, 0x00 },
+    {   253, 0x0048,   8,  11,  11,   1,  10,   0,   0, 0x00 },
+    {   297, 0x0049,   2,  11,  11,   1,   4,   0,   0, 0x00 },
+    {   308, 0x004D,  10,  11,  11,   1,  12,   0,   0, 0x00 },
+    {   363, 0x004E,   8,  11,  11,   1,  10,   0,   0, 0x00 },
+    {   407, 0x004F,  11,  11,  11,   0,  11,   0,   0, 0x00 },
+    {   473, 0x0050,   8,  11,  11,   1,   9,   0,   0, 0x00 },
+    {   517, 0x0052,   9,  11,  11,   1,  10,   0,   0, 0x00 },
+    {   572, 0x0054,   9,  11,  11,   0,   9,   2,   1, 0x00 },
+    {   627, 0x0055,   8,  11,  11,   1,  10,   0,   0, 0x00 },
+    {   671, 0x0057,  13,  11,  11,   0,  13,   0,   0, 0x00 },
+    {   748, 0x0061,   8,   8,   8,   0,   8,   3,   1, 0x00 },
+    {   780, 0x0069,   3,  11,  11,   0,   3,   0,   0, 0x00 },
+    {   802, 0x006E,   7,   8,   8,   0,   8,   0,   0, 0x00 },
+    {   834, 0x0073,   7,   8,   8,   0,   7,   4,   1, 0x00 },
+    {   866, 0x0074,   4,  11,  11,   0,   4,   0,   0, 0x00 }
 };
 
-// arial_13_4bpp
+// arial_14_4bpp
 FONT_TABLE_LOCATION_FLASH_PRAGMA
-KEEP extern const touchgfx::GlyphNode glyphs_arial_13_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE;
+KEEP extern const touchgfx::GlyphNode glyphs_arial_14_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE;
 FONT_GLYPH_LOCATION_FLASH_PRAGMA
-KEEP extern const uint8_t unicodes_arial_13_4bpp_0[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
+KEEP extern const uint8_t unicodes_arial_14_4bpp_0[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
 FONT_SEARCHTABLE_LOCATION_FLASH_PRAGMA
-KEEP extern const uint8_t* const unicodes_arial_13_4bpp[] FONT_SEARCHTABLE_LOCATION_FLASH_ATTRIBUTE = {
-    unicodes_arial_13_4bpp_0
+KEEP extern const uint8_t* const unicodes_arial_14_4bpp[] FONT_SEARCHTABLE_LOCATION_FLASH_ATTRIBUTE = {
+    unicodes_arial_14_4bpp_0
 };
 FONT_KERNING_LOCATION_FLASH_PRAGMA
-KEEP extern const touchgfx::KerningNode kerning_arial_13_4bpp[] FONT_KERNING_LOCATION_FLASH_ATTRIBUTE;
+KEEP extern const touchgfx::KerningNode kerning_arial_14_4bpp[] FONT_KERNING_LOCATION_FLASH_ATTRIBUTE;
 static const touchgfx::Unicode::UnicodeChar contextualForms4Long[][5] = {
     //                        key,    isol,   key2
     { /*0627 0644 0644 0647*/ 0x02ED, 0xFDF2, 0x0644, 0x0000, 0x0000 }, // ARABIC LIGATURE ALLAH
@@ -192,10 +194,10 @@ const touchgfx::FontContextualFormsTable arial_contextualFormsTable =
     sizeof(contextualForms06XX)/sizeof(contextualForms06XX[0])
 };
 
-touchgfx::GeneratedFont& getFont_arial_13_4bpp();
+touchgfx::GeneratedFont& getFont_arial_14_4bpp();
 
-touchgfx::GeneratedFont& getFont_arial_13_4bpp()
+touchgfx::GeneratedFont& getFont_arial_14_4bpp()
 {
-    static touchgfx::GeneratedFont arial_13_4bpp(glyphs_arial_13_4bpp, 19, 13, 13, 0, 0, 4, 1, 0, 0, unicodes_arial_13_4bpp, kerning_arial_13_4bpp, 63, 0, 0, &arial_contextualFormsTable);
-    return arial_13_4bpp;
+    static touchgfx::GeneratedFont arial_14_4bpp(glyphs_arial_14_4bpp, 21, 14, 14, 0, 0, 4, 1, 0, 1, unicodes_arial_14_4bpp, kerning_arial_14_4bpp, 63, 0, 0, &arial_contextualFormsTable);
+    return arial_14_4bpp;
 }
