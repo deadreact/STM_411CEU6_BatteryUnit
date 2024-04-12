@@ -12,6 +12,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
+    void setWatts(int val);
 protected:
     BatteryData m_bmsData;
 };

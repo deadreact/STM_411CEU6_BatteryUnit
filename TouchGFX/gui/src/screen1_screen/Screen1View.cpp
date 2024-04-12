@@ -1,6 +1,11 @@
 #include <gui/screen1_screen/Screen1View.hpp>
 #include <shared_data.h>
 
+namespace
+{
+
+}
+
 
 Screen1View::Screen1View()
 {
@@ -45,6 +50,25 @@ void Screen1View::handleTickEvent()
 			capacityTextValue.invalidate();
 		}
 
+		if (data.bms.current != m_bmsData.current)
+		{
+//			capacityValue.setValue(data.bms.capacityLevel);
+//			Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", data.bms.capacityLevel);
+//			capacityTextValue.invalidate();
+			setWatts(data.bms.current * data.bms.voltage / 10000);
+		}
+		else if (data.bms.voltage != m_bmsData.voltage)
+		{
+			setWatts(data.bms.current * data.bms.voltage / 10000);
+		}
+
 		m_bmsData = data.bms;
 	}
 }
+
+void Screen1View::setWatts(int val)
+{
+	oValue.setValue(val > 0 ? val : 0);
+	iValue.setValue(val < 0 ? -val : 0);
+}
+
