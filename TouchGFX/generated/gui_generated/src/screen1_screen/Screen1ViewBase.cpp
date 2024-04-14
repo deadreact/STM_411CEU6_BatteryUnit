@@ -42,55 +42,36 @@ Screen1ViewBase::Screen1ViewBase()
 
     add(capacityContainer);
 
-    chargeTimeContainer.setPosition(6, 63, 154, 127);
-    chargeTimeValue.setXY(0, 6);
-    chargeTimeValue.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
-    chargeTimeValue.setLinespacing(0);
-    Unicode::snprintf(chargeTimeValueBuffer, CHARGETIMEVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_7V8E).getText());
-    chargeTimeValue.setWildcard(chargeTimeValueBuffer);
-    chargeTimeValue.resizeToCurrentText();
-    chargeTimeValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NRH8));
-    chargeTimeContainer.add(chargeTimeValue);
-
-    chargeTimeLabel.setXY(2, 5);
-    chargeTimeLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
-    chargeTimeLabel.setLinespacing(0);
-    chargeTimeLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MHL5));
-    chargeTimeContainer.add(chargeTimeLabel);
-
-    minsLabel.setPosition(12, 101, 138, 21);
-    minsLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
-    minsLabel.setLinespacing(0);
-    minsLabel.setTypedText(touchgfx::TypedText(T_MINS));
-    chargeTimeContainer.add(minsLabel);
-
-    add(chargeTimeContainer);
-
-    iValue.setXY(166, 190);
-    add(iValue);
-
-    oValue.setXY(12, 190);
-    add(oValue);
-
     icon1.setXY(2, 2);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
+    icon1.setAlpha(44);
     add(icon1);
 
     icon2.setXY(52, 2);
     icon2.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_COOL_ID));
+    icon2.setAlpha(44);
     add(icon2);
 
     icon3.setXY(102, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_SNOW_ID));
+    icon3.setAlpha(44);
     add(icon3);
 
     icon4.setXY(152, 2);
     icon4.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_ELECTRICITY_ID));
+    icon4.setAlpha(44);
     add(icon4);
 
     icon2_1.setXY(202, 2);
     icon2_1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
+    icon2_1.setAlpha(44);
     add(icon2_1);
+
+    ioValue.setXY(87, 189);
+    add(ioValue);
+
+    chargeTimeContainer.setXY(6, 63);
+    add(chargeTimeContainer);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -100,6 +81,6 @@ Screen1ViewBase::~Screen1ViewBase()
 
 void Screen1ViewBase::setupScreen()
 {
-    iValue.initialize();
-    oValue.initialize();
+    ioValue.initialize();
+    chargeTimeContainer.initialize();
 }

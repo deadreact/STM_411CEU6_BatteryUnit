@@ -7,24 +7,23 @@
 
 IOValueBase::IOValueBase()
 {
-    setWidth(150);
+    setWidth(232);
     setHeight(50);
-    value.setWidth(88);
-    value.setHeight(50);
+    value.setPosition(0, 0, 160, 50);
     value.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VZ51).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_SX70).getText());
     value.setWildcard(valueBuffer);
     value.setTypedText(touchgfx::TypedText(T_IOWILDCARD));
     add(value);
 
-    Watts.setPosition(92, 25, 55, 15);
+    Watts.setPosition(163, 22, 30, 21);
     Watts.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     Watts.setLinespacing(0);
     Watts.setTypedText(touchgfx::TypedText(T_WATTS));
     add(Watts);
 
-    ioLabel.setPosition(92, 10, 58, 14);
+    ioLabel.setPosition(163, 4, 67, 25);
     ioLabel.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     ioLabel.setLinespacing(0);
     ioLabel.setTypedText(touchgfx::TypedText(T_OUTPUT));

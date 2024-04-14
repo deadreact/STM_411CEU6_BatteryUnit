@@ -134,7 +134,7 @@ namespace
         data.current = getCurrent(get2bytes(it));
         // it += 3;
         VERIFY_INC(it, 0x85);
-        data.capacityLevel = getbyte(it);
+        data.soc = getbyte(it);
         // it += 2;
         VERIFY_INC(it, 0x86);
         const uint8_t numOfNTC = getbyte(it);// it += 2;
@@ -316,6 +316,13 @@ void BMSHandler::Response(HAL_StatusTypeDef status)
 
 			m_status = BMSStatus::Error;
 		} else {
+#if SIMULATE_CHARGING
+			static int simCurrent = 90;
+			data.current += simCurrent;
+#elif SIMULATE_UNCHARGING
+			static int simCurrent = 90;
+			data.current -= simCurrent;
+#endif
 			UpdateData(data);
 		}
 	}

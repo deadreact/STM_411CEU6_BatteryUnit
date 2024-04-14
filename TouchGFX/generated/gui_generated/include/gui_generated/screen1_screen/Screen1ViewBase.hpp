@@ -11,10 +11,9 @@
 #include <touchgfx/containers/ListLayout.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/progress_indicators/ImageProgress.hpp>
-#include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
-#include <gui/containers/IOValue.hpp>
 #include <touchgfx/widgets/Image.hpp>
+#include <gui/containers/IOValue.hpp>
+#include <gui/containers/ChargeTime.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -37,25 +36,19 @@ protected:
     touchgfx::ListLayout capacityContainer;
     touchgfx::TextAreaWithOneWildcard capacityTextValue;
     touchgfx::ImageProgress capacityValue;
-    touchgfx::Container chargeTimeContainer;
-    touchgfx::TextAreaWithOneWildcard chargeTimeValue;
-    touchgfx::TextArea chargeTimeLabel;
-    touchgfx::TextArea minsLabel;
-    IOValue iValue;
-    IOValue oValue;
     touchgfx::Image icon1;
     touchgfx::Image icon2;
     touchgfx::Image icon3;
     touchgfx::Image icon4;
     touchgfx::Image icon2_1;
+    IOValue ioValue;
+    ChargeTime chargeTimeContainer;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t CAPACITYTEXTVALUE_SIZE = 4;
     touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
-    static const uint16_t CHARGETIMEVALUE_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar chargeTimeValueBuffer[CHARGETIMEVALUE_SIZE];
 
 private:
 

@@ -54,11 +54,11 @@ struct BatteryData
 	voltage_t cellVoltage[kMaxCellCount];
     voltage_t voltage{0};
     int16_t current{0};
-    uint8_t capacityLevel{0}; // 0 - 100%
+    uint8_t soc{0}; // 0 - 100%
     uint8_t cellCount{0};
     uint32_t capacityAh{0};
 
-    // float energyAh{0};
+    int calcTimeRemain(bool invertorOn = false) const;
 
     bool operator==(const BatteryData& other) const;
     inline bool operator!=(const BatteryData& other) const { return !operator==(other); }

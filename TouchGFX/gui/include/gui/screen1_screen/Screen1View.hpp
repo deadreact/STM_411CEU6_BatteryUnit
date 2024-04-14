@@ -15,6 +15,7 @@ public:
     void setWatts(int val);
 protected:
     BatteryData m_bmsData;
+    int m_chargeTimeMins{-1};
 };
 
 #endif // SCREEN1VIEW_HPP

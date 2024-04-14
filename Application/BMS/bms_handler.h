@@ -12,6 +12,9 @@
 #include "stm32f4xx_hal.h"
 #include <string>
 
+#define SIMULATE_CHARGING 0
+#define SIMULATE_UNCHARGING 1
+
 class BMSHandler
 {
 public:

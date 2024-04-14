@@ -6,15 +6,19 @@
 class IOValue : public IOValueBase
 {
 public:
-	enum IO {In, Out};
     IOValue();
     virtual ~IOValue() {}
 
     virtual void initialize();
-    void setValue(int val);
-    void setIO(IO io);
+    void setValue(float val);
+
 protected:
-    int m_value{-1};
+    enum class State { Idle, Charge, Uncharge };
+
+    void setState(State state);
+protected:
+    float m_value{0.f};
+    State m_state{State::Idle};
 };
 
 #endif // IOVALUE_HPP

@@ -28,8 +28,11 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // arial_40_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::MAINTEXT:
-        // arial_14_4bpp
+        // SourceSansPro_Black_18_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
+    case Typography::VALUELARGE2:
+        // arial_70_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
     default:
         return 0;
     }

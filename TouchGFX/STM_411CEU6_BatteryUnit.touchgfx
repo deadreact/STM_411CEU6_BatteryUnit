@@ -230,7 +230,7 @@
                         "Type": "TextArea",
                         "Name": "currentTitle",
                         "Y": 1,
-                        "Width": 55,
+                        "Width": 63,
                         "Height": 19,
                         "TextId": "__SingleUse_SFML",
                         "TextRotation": "0",
@@ -273,7 +273,7 @@
                       {
                         "Type": "TextArea",
                         "Name": "capacityTitle",
-                        "Width": 64,
+                        "Width": 46,
                         "Height": 19,
                         "TextId": "__SingleUse_6J8M",
                         "TextRotation": "0",
@@ -336,7 +336,7 @@
                       {
                         "Type": "TextArea",
                         "Name": "voltageTitle",
-                        "Width": 55,
+                        "Width": 65,
                         "Height": 19,
                         "TextId": "__SingleUse_EFRY",
                         "TextRotation": "0",
@@ -461,92 +461,14 @@
             ]
           },
           {
-            "Type": "Container",
-            "Name": "chargeTimeContainer",
-            "X": 6,
-            "Y": 63,
-            "Width": 154,
-            "Height": 127,
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "chargeTimeValue",
-                "Y": 6,
-                "Width": 150,
-                "Height": 91,
-                "TextId": "__SingleUse_NRH8",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 143,
-                  "Green": 181,
-                  "Blue": 239
-                },
-                "AutoSize": true,
-                "Wildcard1": {
-                  "TextId": "__SingleUse_7V8E",
-                  "UseBuffer": true,
-                  "BufferSize": 4
-                }
-              },
-              {
-                "Type": "TextArea",
-                "Name": "chargeTimeLabel",
-                "X": 2,
-                "Y": 5,
-                "Width": 132,
-                "Height": 14,
-                "TextId": "__SingleUse_MHL5",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 104,
-                  "Green": 127,
-                  "Blue": 204
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "TextArea",
-                "Name": "minsLabel",
-                "X": 12,
-                "Y": 101,
-                "Width": 138,
-                "Height": 21,
-                "TextId": "Mins",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 104,
-                  "Green": 127,
-                  "Blue": 204
-                }
-              }
-            ]
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "iValue",
-            "X": 166,
-            "Y": 190,
-            "Width": 150,
-            "Height": 50,
-            "CustomContainerDefinitionName": "IOValue"
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "oValue",
-            "X": 12,
-            "Y": 190,
-            "Width": 150,
-            "Height": 50,
-            "CustomContainerDefinitionName": "IOValue"
-          },
-          {
             "Type": "Image",
             "Name": "icon1",
             "X": 2,
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_power.png"
+            "RelativeFilename": "grayscale_power.png",
+            "Alpha": 44
           },
           {
             "Type": "Image",
@@ -555,7 +477,8 @@
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_cool.png"
+            "RelativeFilename": "grayscale_cool.png",
+            "Alpha": 44
           },
           {
             "Type": "Image",
@@ -564,7 +487,8 @@
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_snow.png"
+            "RelativeFilename": "grayscale_snow.png",
+            "Alpha": 44
           },
           {
             "Type": "Image",
@@ -573,7 +497,8 @@
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_electricity.png"
+            "RelativeFilename": "grayscale_electricity.png",
+            "Alpha": 44
           },
           {
             "Type": "Image",
@@ -582,7 +507,26 @@
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_temperature.png"
+            "RelativeFilename": "grayscale_temperature.png",
+            "Alpha": 44
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "ioValue",
+            "X": 87,
+            "Y": 189,
+            "Width": 232,
+            "Height": 50,
+            "CustomContainerDefinitionName": "IOValue"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "chargeTimeContainer",
+            "X": 6,
+            "Y": 63,
+            "Width": 166,
+            "Height": 127,
+            "CustomContainerDefinitionName": "ChargeTime"
           }
         ],
         "Interactions": []
@@ -662,15 +606,15 @@
       },
       {
         "Name": "IOValue",
-        "X": 172,
+        "X": 90,
         "Y": 190,
-        "Width": 150,
+        "Width": 232,
         "Height": 50,
         "Components": [
           {
             "Type": "TextArea",
             "Name": "value",
-            "Width": 88,
+            "Width": 160,
             "Height": 50,
             "TextId": "IOWildcard",
             "TextRotation": "0",
@@ -680,18 +624,18 @@
               "Blue": 239
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_VZ51",
+              "TextId": "__SingleUse_SX70",
               "UseBuffer": true,
-              "BufferSize": 5
+              "BufferSize": 7
             }
           },
           {
             "Type": "TextArea",
             "Name": "Watts",
-            "X": 92,
-            "Y": 25,
-            "Width": 55,
-            "Height": 15,
+            "X": 163,
+            "Y": 22,
+            "Width": 30,
+            "Height": 21,
             "TextId": "Watts",
             "TextRotation": "0",
             "Color": {
@@ -703,16 +647,93 @@
           {
             "Type": "TextArea",
             "Name": "ioLabel",
-            "X": 92,
-            "Y": 10,
-            "Width": 58,
-            "Height": 14,
+            "X": 163,
+            "Y": 4,
+            "Width": 67,
+            "Height": 25,
             "TextId": "OUTPUT",
             "TextRotation": "0",
             "Color": {
               "Red": 143,
               "Green": 181,
               "Blue": 239
+            }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "ChargeTime",
+        "Width": 166,
+        "Height": 127,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "chargeTimeLabel",
+            "X": 2,
+            "Y": 4,
+            "Width": 155,
+            "Height": 21,
+            "TextId": "RECHARGING_TIME",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "minsLabel",
+            "X": 94,
+            "Y": 101,
+            "Width": 66,
+            "Height": 19,
+            "TextId": "Mins",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "warningYellow",
+            "Y": 37,
+            "Width": 48,
+            "Height": 48,
+            "Visible": false,
+            "RelativeFilename": "warn_yellow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "warningRed",
+            "X": 20,
+            "Y": 33,
+            "Width": 64,
+            "Height": 64,
+            "Visible": false,
+            "RelativeFilename": "warn_red.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "Y": 12,
+            "Width": 166,
+            "Height": 96,
+            "TextId": "__SingleUse_A1VM",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_4ST7",
+              "UseBuffer": true,
+              "BufferSize": 4
             }
           }
         ],
@@ -725,8 +746,8 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen2",
-    "SelectedStartupLanguage": "GB",
+    "StartupScreenName": "Screen1",
+    "SelectedStartupLanguage": "UA",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
     "AvailableColorDepths": [

@@ -40,7 +40,7 @@ struct ProcessData<ProcessId::Idle>
     int analog1{0};
     int analog2{0};
 
-    int screenId{0};
+    int screenId{1};
 //    bool bmsError{false};
 
     BatteryData bms;

@@ -34,11 +34,11 @@ void IdleScreenView::handleTickEvent()
 
 	if (data.bms != m_bmsData)
 	{
-		if (data.bms.capacityLevel != m_bmsData.capacityLevel)
+		if (data.bms.soc != m_bmsData.soc)
 		{
-			m_bmsData.capacityLevel = data.bms.capacityLevel;
-			capacityValue.setValue(m_bmsData.capacityLevel);
-			Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.capacityLevel);
+			m_bmsData.soc = data.bms.soc;
+			capacityValue.setValue(m_bmsData.soc);
+			Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.soc);
 //			capacityTextValue.resizeToCurrentText();
 			capacityTextValue.invalidate();
 		}

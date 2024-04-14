@@ -18,6 +18,8 @@ const uint16_t BITMAP_GRAYSCALE_ELECTRICITY_ID = 8;
 const uint16_t BITMAP_GRAYSCALE_POWER_ID = 9;
 const uint16_t BITMAP_GRAYSCALE_SNOW_ID = 10;
 const uint16_t BITMAP_GRAYSCALE_TEMPERATURE_ID = 11;
+const uint16_t BITMAP_WARN_RED_ID = 12;
+const uint16_t BITMAP_WARN_YELLOW_ID = 13;
 
 namespace BitmapDatabase
 {
