@@ -16,6 +16,8 @@ public:
 protected:
     BatteryData m_bmsData;
     int m_chargeTimeMins{-1};
+    bool m_isBMSError{false};
+
 };
 
 #endif // SCREEN1VIEW_HPP

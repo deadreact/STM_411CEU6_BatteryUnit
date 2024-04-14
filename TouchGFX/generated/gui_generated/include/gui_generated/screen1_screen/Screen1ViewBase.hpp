@@ -14,6 +14,7 @@
 #include <touchgfx/widgets/Image.hpp>
 #include <gui/containers/IOValue.hpp>
 #include <gui/containers/ChargeTime.hpp>
+#include <gui/containers/AnimatedWarning.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -43,6 +44,7 @@ protected:
     touchgfx::Image icon2_1;
     IOValue ioValue;
     ChargeTime chargeTimeContainer;
+    AnimatedWarning warning;
 
     /*
      * Wildcard Buffers

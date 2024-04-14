@@ -463,52 +463,52 @@
           {
             "Type": "Image",
             "Name": "icon1",
-            "X": 2,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_power.png",
-            "Alpha": 44
-          },
-          {
-            "Type": "Image",
-            "Name": "icon2",
             "X": 52,
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_cool.png",
-            "Alpha": 44
+            "RelativeFilename": "grayscale_power.png",
+            "Alpha": 10
           },
           {
             "Type": "Image",
-            "Name": "icon3",
+            "Name": "icon2",
             "X": 102,
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_snow.png",
-            "Alpha": 44
+            "RelativeFilename": "grayscale_cool.png",
+            "Alpha": 10
           },
           {
             "Type": "Image",
-            "Name": "icon4",
+            "Name": "icon3",
             "X": 152,
             "Y": 2,
             "Width": 48,
             "Height": 48,
-            "RelativeFilename": "grayscale_electricity.png",
-            "Alpha": 44
+            "RelativeFilename": "grayscale_snow.png",
+            "Alpha": 10
           },
           {
             "Type": "Image",
-            "Name": "icon2_1",
+            "Name": "icon4",
             "X": 202,
             "Y": 2,
             "Width": 48,
             "Height": 48,
+            "RelativeFilename": "grayscale_electricity.png",
+            "Alpha": 10
+          },
+          {
+            "Type": "Image",
+            "Name": "icon2_1",
+            "X": 252,
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
             "RelativeFilename": "grayscale_temperature.png",
-            "Alpha": 44
+            "Alpha": 10
           },
           {
             "Type": "CustomContainerInstance",
@@ -527,6 +527,15 @@
             "Width": 166,
             "Height": 127,
             "CustomContainerDefinitionName": "ChargeTime"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "warning",
+            "Y": 2,
+            "Width": 48,
+            "Height": 48,
+            "Visible": false,
+            "CustomContainerDefinitionName": "AnimatedWarning"
           }
         ],
         "Interactions": []
@@ -623,6 +632,7 @@
               "Green": 181,
               "Blue": 239
             },
+            "Alpha": 44,
             "Wildcard1": {
               "TextId": "__SingleUse_SX70",
               "UseBuffer": true,
@@ -642,7 +652,8 @@
               "Red": 143,
               "Green": 181,
               "Blue": 239
-            }
+            },
+            "Alpha": 44
           },
           {
             "Type": "TextArea",
@@ -657,7 +668,8 @@
               "Red": 143,
               "Green": 181,
               "Blue": 239
-            }
+            },
+            "Alpha": 44
           }
         ],
         "Interactions": []
@@ -681,6 +693,7 @@
               "Green": 127,
               "Blue": 204
             },
+            "Alpha": 44,
             "AutoSize": true
           },
           {
@@ -696,7 +709,8 @@
               "Red": 104,
               "Green": 127,
               "Blue": 204
-            }
+            },
+            "Alpha": 44
           },
           {
             "Type": "Image",
@@ -730,11 +744,27 @@
               "Green": 181,
               "Blue": 239
             },
+            "Alpha": 44,
             "Wildcard1": {
               "TextId": "__SingleUse_4ST7",
               "UseBuffer": true,
               "BufferSize": 4
             }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "AnimatedWarning",
+        "Width": 48,
+        "Height": 48,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image",
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "warn_yellow.png"
           }
         ],
         "Interactions": []

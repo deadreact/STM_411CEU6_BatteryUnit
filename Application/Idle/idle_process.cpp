@@ -184,7 +184,7 @@ void IdleProcess::Impl::HandleEvents()
     	sharedData.screenId = (sharedData.screenId + 1) % 3;
     	if (sharedData.screenId != 2)
     	{
-    		m_bmsUpdater.Request();
+    		m_bmsUpdater.RequestAllData();
     	}
     }
 

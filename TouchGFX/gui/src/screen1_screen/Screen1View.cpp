@@ -43,6 +43,15 @@ void Screen1View::handleTickEvent()
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 
+	bool isMajorError = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
+	if (m_isBMSError != isMajorError)
+	{
+		warning.setVisible(isMajorError);
+		warning.invalidate();
+		m_isBMSError = isMajorError;
+	}
+	warning.handleTickEvent();
+
 	if (data.bms != m_bmsData)
 	{
 		if (data.bms.soc != m_bmsData.soc)

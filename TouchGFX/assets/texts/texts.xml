@@ -26,7 +26,7 @@
     <TextGroup Id="Unsorted">
       <Text Id="__SingleUse_4ST7" Alignment="Left" TypographyId="ValueLarge">
         <Translation Language="GB">New Text</Translation>
-        <Translation Language="UA">100</Translation>
+        <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="__SingleUse_A1VM" Alignment="Right" TypographyId="ValueLarge">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>

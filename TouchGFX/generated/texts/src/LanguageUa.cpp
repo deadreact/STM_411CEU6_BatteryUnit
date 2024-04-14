@@ -14,7 +14,7 @@ KEEP extern const uint32_t indicesUa[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     192, // T_OUTPUT: "??????"
     217, // T_INPUT: "?????"
     247, // T_WATTS: "???"
-    243, // T___SINGLEUSE_4ST7: "100"
+    241, // T___SINGLEUSE_4ST7: "0"
     8,   // T___SINGLEUSE_A1VM: "<>"
     26,  // T_REMAINING_TIME: "??? ???????????"
     251, // T_HOURS: "???"

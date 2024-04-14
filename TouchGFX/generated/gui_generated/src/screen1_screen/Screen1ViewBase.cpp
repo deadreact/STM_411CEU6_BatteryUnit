@@ -42,29 +42,29 @@ Screen1ViewBase::Screen1ViewBase()
 
     add(capacityContainer);
 
-    icon1.setXY(2, 2);
+    icon1.setXY(52, 2);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
-    icon1.setAlpha(44);
+    icon1.setAlpha(10);
     add(icon1);
 
-    icon2.setXY(52, 2);
+    icon2.setXY(102, 2);
     icon2.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_COOL_ID));
-    icon2.setAlpha(44);
+    icon2.setAlpha(10);
     add(icon2);
 
-    icon3.setXY(102, 2);
+    icon3.setXY(152, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_SNOW_ID));
-    icon3.setAlpha(44);
+    icon3.setAlpha(10);
     add(icon3);
 
-    icon4.setXY(152, 2);
+    icon4.setXY(202, 2);
     icon4.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_ELECTRICITY_ID));
-    icon4.setAlpha(44);
+    icon4.setAlpha(10);
     add(icon4);
 
-    icon2_1.setXY(202, 2);
+    icon2_1.setXY(252, 2);
     icon2_1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
-    icon2_1.setAlpha(44);
+    icon2_1.setAlpha(10);
     add(icon2_1);
 
     ioValue.setXY(87, 189);
@@ -72,6 +72,10 @@ Screen1ViewBase::Screen1ViewBase()
 
     chargeTimeContainer.setXY(6, 63);
     add(chargeTimeContainer);
+
+    warning.setXY(0, 2);
+    warning.setVisible(false);
+    add(warning);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -83,4 +87,5 @@ void Screen1ViewBase::setupScreen()
 {
     ioValue.initialize();
     chargeTimeContainer.initialize();
+    warning.initialize();
 }

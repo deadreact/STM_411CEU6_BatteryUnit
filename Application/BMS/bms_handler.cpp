@@ -10,10 +10,11 @@
 
 #define VERIFY_INC(iter, value) if (*iter++ != value) return (BMSErrorFlags::ParseValidation | ((uint32_t)value << 16))
 
-constexpr static const int txDataLen = 21;
+//constexpr static const int txDataLen = 21;
 constexpr static const int txTransmitTimeout = 1000;
 
-static const uint8_t TxData[txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x06, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
+static const uint8_t TxData[BMSHandler::txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, /**/0x06, 0x03, 0x00, /**/0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
+
 
 extern UART_HandleTypeDef huart2;
 //---------------------------------------------------------------------------
@@ -48,6 +49,44 @@ namespace
 
     inline uint16_t read2bytes(uint8_t* ptr) { return (uint16_t)ptr[0] << 8 | ptr[1]; }
     inline uint32_t read4bytes(uint8_t* ptr) { return (uint32_t)read2bytes(ptr) << 16 | read2bytes(ptr + 2); }
+
+    void write(uint8_t* &ptr, uint8_t data) { *ptr++ = data; }
+    void write(uint8_t* &ptr, uint16_t data) { ptr[0] = data >> 8; ptr[1] = data; ptr += 2; }
+    void write(uint8_t* &ptr, uint32_t data) { ptr[0] = data >> 24; ptr[1] = data >> 16; ptr[2] = data >> 8; ptr[3] = data; ptr += 4; }
+
+    uint16_t FillTxData(uint8_t* txData, uint8_t command = 0x06/*Read all*/, const uint8_t* data = nullptr, uint16_t dataLen = 1)
+    {
+    	static const uint32_t bmsTerminalNum = 0x00000000;
+    	static const uint8_t frameSource = 0x03;
+    	static const uint8_t transportType = 0x00;
+    	static const uint32_t recordNumber = 0x00000000;
+    	static const uint16_t crc = 0x0000;
+
+    	uint8_t* it = txData;
+    	write(it, uint16_t(0x4E57));
+    	write(it, uint16_t(dataLen + 0x12));
+    	write(it, bmsTerminalNum);
+    	write(it, command);
+    	write(it, frameSource);
+    	write(it, transportType);
+
+    	if (data) {
+    		for (; dataLen > 0; dataLen-- ) {
+    			write(it, *data);
+    		}
+    	} else {
+    		write(it, uint8_t(0x00));
+    	}
+    	write(it, recordNumber);
+    	write(it, uint8_t(0x68));
+    	write(it, crc);
+
+    	const uint16_t checksum = sum<uint8_t, uint16_t>(txData, txData + dataLen + 0x10);
+    	write(it, checksum);
+
+    	return it - txData;
+    }
+
 
     uint32_t checkValidity(uint8_t rxData[])
     {
@@ -116,11 +155,11 @@ namespace
         }
 
         VERIFY_INC(it, 0x80);
-        const uint16_t reader_tube_temperature = get2bytes(it);// it += 3;
+        const uint16_t reader_tube_temperature = getTemperature(get2bytes(it));// it += 3;
         VERIFY_INC(it, 0x81);
-        const uint16_t battery_box_temperature = get2bytes(it);// it += 3;
+        const uint16_t battery_box_temperature = getTemperature(get2bytes(it));// it += 3;
         VERIFY_INC(it, 0x82);
-        const uint16_t battery_temperature = get2bytes(it);// it += 3;
+        const uint16_t battery_temperature = getTemperature(get2bytes(it));// it += 3;
         // it += 9;
         VERIFY_INC(it, 0x83);
         data.voltage = get2bytes(it);
@@ -256,7 +295,7 @@ BMSHandler::~BMSHandler() {
     }
 }
 
-void BMSHandler::Request()
+void BMSHandler::Request(uint8_t* frameData, uint16_t frameLen)
 {
 	if (m_status == BMSStatus::Requested) {
 		return;
@@ -286,10 +325,29 @@ void BMSHandler::Request()
 	if (status == HAL_OK)
 	{
 		//TODO: check status
-		status = HAL_UART_Transmit_IT(&huart2, TxData, txDataLen);
+//		status = HAL_UART_Transmit_IT(&huart2, TxData, txDataLen);
+		status = HAL_UART_Transmit_IT(&huart2, frameData, frameLen);
 	}
 
     m_status = getRequestStatus(status);
+}
+
+void BMSHandler::RequestActivation()
+{
+	uint16_t len = FillTxData(txDataBuffer, 0x01);
+	Request(txDataBuffer, len);
+}
+
+void BMSHandler::RequestAllData()
+{
+	uint16_t len = FillTxData(txDataBuffer);
+	Request(txDataBuffer, len);
+}
+
+void BMSHandler::RequestData(uint8_t dataId)
+{
+	uint16_t len = FillTxData(txDataBuffer, 0x03, &dataId, 1);
+	Request(txDataBuffer, len);
 }
 
 void BMSHandler::Response(HAL_StatusTypeDef status)
@@ -372,7 +430,7 @@ void BMSUpdater::Update()
 {
 	if (m_status == BMSStatus::NoStatus)
 	{
-		Request();
+		RequestAllData();
 	}
 	else if (m_status == BMSStatus::Requested)
 	{
@@ -380,7 +438,7 @@ void BMSUpdater::Update()
 		{
 			m_status = BMSStatus::RequestTimedOut;
 			debugMsg = "request timed out";
-			Request();
+			RequestAllData();
 		}
 	}
 	else
@@ -389,12 +447,13 @@ void BMSUpdater::Update()
 		{
 			errFlags |= BMSErrorFlags::ValidResponseTimeout;
 			debugMsg = "valid response timed out";
+			RequestActivation();
 		}
 		if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
 		{
 			m_status = BMSStatus::InfoTimedOut;
 			debugMsg = "info timed out";
-			Request();
+			RequestAllData();
 		}
 	}
 

@@ -13,7 +13,7 @@
 #include <string>
 
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 1
+#define SIMULATE_UNCHARGING 0
 
 class BMSHandler
 {
@@ -21,7 +21,12 @@ public:
     BMSHandler();
     ~BMSHandler();
 
-    void Request();
+    void Request(uint8_t* frameData, uint16_t frameLen);
+
+    void RequestActivation();
+    void RequestAllData();
+    void RequestData(uint8_t dataId);
+
     void Response(HAL_StatusTypeDef status);
 
     BMSStatus GetStatus() const { return m_status; }
@@ -31,6 +36,7 @@ public:
     uint32_t errFlags{0};
 
     constexpr static const int rxDataLen = 280; // 279 bytes needed for 12 cells
+    constexpr static const int txDataLen = 21;
 protected:
     void UpdateData(const BatteryData& newData);
 protected:
@@ -41,6 +47,7 @@ protected:
     uint32_t m_lastDataUpdateTick{0};
 
     uint8_t rxData[rxDataLen];
+    uint8_t txDataBuffer[txDataLen];
 };
 
 enum class BMSUpdaterEvent : uint8_t
