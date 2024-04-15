@@ -14,6 +14,8 @@ public:
     virtual void handleTickEvent() override;
     void setWatts(int val);
 protected:
+    void updateBatteryData(const BatteryData& data);
+protected:
     BatteryData m_bmsData;
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};

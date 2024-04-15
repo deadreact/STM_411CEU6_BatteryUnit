@@ -18,24 +18,29 @@ void Screen1View::setupScreen()
 {
     Screen1ViewBase::setupScreen();
 
-//    iValue.setIO(IOValue::In);
-//    oValue.setIO(IOValue::Out);
-//    iValue.setValue(0);
-    ioValue.setValue(0);
-
+    if (SharedData::getProcessId() != ProcessId::Idle)
+	{
+		return;
+	}
+	const auto& data = SharedData::getData<ProcessId::Idle>();
+    updateBatteryData(data.bms);
 }
 
 void Screen1View::tearDownScreen()
 {
     Screen1ViewBase::tearDownScreen();
+//    m_bmsData = BatteryData();
+//    m_chargeTimeMins = -1;
+//    m_isBMSError = false;
+
 }
 
 void Screen1View::handleTickEvent()
 {
     if (SharedData::getProcessId() == ProcessId::Startup)
     {
-        auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
-        capacityValue.setValue(value);
+//        auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
+//        capacityValue.setValue(value);
     }
     if (SharedData::getProcessId() != ProcessId::Idle)
 	{
@@ -54,41 +59,55 @@ void Screen1View::handleTickEvent()
 
 	if (data.bms != m_bmsData)
 	{
-		if (data.bms.soc != m_bmsData.soc)
-		{
-			capacityValue.setValue(data.bms.soc);
-			Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", data.bms.soc);
-			capacityTextValue.invalidate();
-		}
-
-		if (data.bms.current != m_bmsData.current)
-		{
-//			capacityValue.setValue(data.bms.capacityLevel);
-
-//			capacityTextValue.invalidate();
-			setWatts(data.bms.current * data.bms.voltage);
-		}
-		else if (data.bms.voltage != m_bmsData.voltage)
-		{
-			setWatts(data.bms.current * data.bms.voltage);
-		}
-
-		int chargeValue = data.bms.calcTimeRemain();
-
-		if (chargeValue != m_chargeTimeMins)
-		{
-			chargeTimeContainer.setValue(chargeValue);
-			m_chargeTimeMins = chargeValue;
-		}
-
-		m_bmsData = data.bms;
+		updateBatteryData(data.bms);
 	}
 }
 
 void Screen1View::setWatts(int val)
 {
 	ioValue.setValue((float)val * 0.0001f);
-//	oValue.setValue(val < 0 ? -val : 0);
-//	iValue.setValue(val > 0 ? val : 0);
 }
+
+void Screen1View::updateBatteryData(const BatteryData& data)
+{
+	if (data.isValid())
+	{
+		if (data.soc != m_bmsData.soc)
+		{
+			capacityContainer.setValue(data.soc);
+			capacityContainerLarge.setValue(data.soc);
+		}
+
+		if (data.current != m_bmsData.current)
+		{
+			setWatts(data.current * data.voltage);
+
+			if (data.current == 0) {
+				capacityContainer.setVisible(false);
+				capacityContainerLarge.setVisible(true);
+				invalidate();
+			} else if (m_bmsData.current == 0) {
+				capacityContainer.setVisible(true);
+				capacityContainerLarge.setVisible(false);
+				invalidate();
+			}
+		}
+		else if (data.voltage != m_bmsData.voltage)
+		{
+			setWatts(data.current * data.voltage);
+		}
+
+		int chargeValue = data.calcTimeRemain();
+		if (chargeValue != m_chargeTimeMins)
+		{
+			chargeTimeContainer.setValue(chargeValue);
+			m_chargeTimeMins = chargeValue;
+		}
+	}
+
+	content.setVisible(data.isValid());
+
+	m_bmsData = data;
+}
+
 

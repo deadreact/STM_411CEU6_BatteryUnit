@@ -8,13 +8,13 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/ListLayout.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/containers/progress_indicators/ImageProgress.hpp>
+#include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <gui/containers/IOValue.hpp>
-#include <gui/containers/ChargeTime.hpp>
 #include <gui/containers/AnimatedWarning.hpp>
+#include <gui/containers/BatteryStatus.hpp>
+#include <gui/containers/BatteryStatusLarge.hpp>
+#include <gui/containers/ChargeTime.hpp>
+#include <gui/containers/IOValue.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -34,23 +34,18 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box headerBox;
     touchgfx::Box footerBox;
-    touchgfx::ListLayout capacityContainer;
-    touchgfx::TextAreaWithOneWildcard capacityTextValue;
-    touchgfx::ImageProgress capacityValue;
+    touchgfx::Container content;
+    touchgfx::Container iconsContainer;
     touchgfx::Image icon1;
     touchgfx::Image icon2;
     touchgfx::Image icon3;
     touchgfx::Image icon4;
-    touchgfx::Image icon2_1;
-    IOValue ioValue;
-    ChargeTime chargeTimeContainer;
+    touchgfx::Image icon5;
     AnimatedWarning warning;
-
-    /*
-     * Wildcard Buffers
-     */
-    static const uint16_t CAPACITYTEXTVALUE_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
+    BatteryStatus capacityContainer;
+    BatteryStatusLarge capacityContainerLarge;
+    ChargeTime chargeTimeContainer;
+    IOValue ioValue;
 
 private:
 

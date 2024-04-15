@@ -14,6 +14,7 @@
 #include "main.h"
 #include "../BMS/bms_handler.h"
 #include <cstring>
+#include <ili9341.h>
 
 // ----------------- tmp here --------------------------
 class ScreenBrightnessController
@@ -91,7 +92,7 @@ private:
 class BtnSleepHandler
 {
 public:
-    BtnSleepHandler(int& sleepingMode): sleepingMode(sleepingMode) {}
+    BtnSleepHandler(PowerModeState& powerModeState): powerModeState(powerModeState) {}
     void handleEvent(ButtonEvent event)
     {
         switch (event)
@@ -99,7 +100,7 @@ public:
             case ButtonEvent::Release:
             {
                 if (lastEvent == ButtonEvent::Press) {
-                    sleepingMode = 1;
+                	powerModeState = PowerModeState::StopRequested;
                 }
                 lastEvent = event;
 
@@ -113,7 +114,7 @@ public:
         }
     }
 private:
-    int& sleepingMode;
+    PowerModeState& powerModeState;
     ButtonEvent lastEvent{ButtonEvent::NoEvent};
 };
 // ---------------------------------------------------------------
@@ -132,8 +133,11 @@ struct IdleProcess::Impl
 //    ButtonEventProvider btnScreenOn{GPIOA, GPIO_PIN_12};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
     ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12};
+//    ButtonEventProvider btnBmsRequest{GPIOB, GPIO_PIN_3};
     KeyButtonToScreenHandler btnScreenOnHandler{sharedData.screenBrightness};
-    BtnSleepHandler btnSleepHandler{sharedData.sleepingMode};
+    BtnSleepHandler btnSleepHandler{sharedData.powerModeState};
+
+    bool m_bmsFirstResponseAchieved{false};
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -161,12 +165,14 @@ void IdleProcess::Impl::UpdateAnalog()
 
 void IdleProcess::Impl::OnTick()
 {
-    if (sharedData.sleepingMode) {
+    if (sharedData.powerModeState == PowerModeState::StopRequested) {
+    	m_bmsUpdater.UpdateAndStop();
         return;
     }
 //    btnScreenOn.onTick();
     btnEnterSleep.onTick();
     btnBmsToggle.onTick();
+//    btnBmsRequest.onTick();
 
     if (sharedData.screenId != 2) {
     	m_bmsUpdater.Update();
@@ -195,6 +201,16 @@ void IdleProcess::Impl::HandleEvents()
 		sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
 		sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
     }
+
+    if (sharedData.powerModeState == PowerModeState::StopRequested)
+    {
+    	if (m_bmsUpdater.GetStatus() == BMSStatus::Off)
+    	{
+    		ILI9341_EnableSleepMode(true);
+    		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+    		sharedData.powerModeState = PowerModeState::StopReady;
+    	}
+    }
 }
 
 
@@ -215,18 +231,19 @@ void IdleProcess::Init()
 
 void IdleProcess::Update()
 {
-	printf("!!!!!!!!!!!\n");
-
-    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
+//    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 
     m_pimpl->OnTick();
     MX_TouchGFX_Process();
     m_pimpl->HandleEvents();
 
-    if (gotoSleep)
+    if (m_pimpl->sharedData.powerModeState == PowerModeState::StopReady)
     {
         EnterStopMode();
-        m_pimpl->sharedData.sleepingMode = 0;
+//        m_pimpl->sharedData.sleepingMode = 0;
+        m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
+        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+        ILI9341_EnableSleepMode(false);
     }
 }
 

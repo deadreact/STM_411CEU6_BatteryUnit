@@ -24,6 +24,22 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="LOADING" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">Loading&lt;value&gt;...</Translation>
+        <Translation Language="UA">Завантаження&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_343D" Alignment="Center" TypographyId="ValueLarge2">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+        <Translation Language="UA">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_3FJH" Alignment="Left" TypographyId="ValueLarge2">
+        <Translation Language="GB">100</Translation>
+        <Translation Language="UA">100</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y8I9" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">100</Translation>
+        <Translation Language="UA">100</Translation>
+      </Text>
       <Text Id="__SingleUse_4ST7" Alignment="Left" TypographyId="ValueLarge">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">0</Translation>
@@ -52,11 +68,7 @@
         <Translation Language="GB">Minutes</Translation>
         <Translation Language="UA">хв</Translation>
       </Text>
-      <Text Id="__SingleUse_ZKSS" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">100</Translation>
-        <Translation Language="UA">100</Translation>
-      </Text>
-      <Text Id="__SingleUse_5XWU" Alignment="Center" TypographyId="ValueMedium">
+      <Text Id="SOC" Alignment="Center" TypographyId="ValueMedium">
         <Translation Language="GB">&lt;value&gt;%</Translation>
         <Translation Language="UA">&lt;value&gt;%</Translation>
       </Text>

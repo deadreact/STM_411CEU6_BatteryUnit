@@ -12,7 +12,6 @@ public:
     virtual void initialize();
     virtual void handleTickEvent();
 protected:
-    uint32_t m_tick{0};
     int m_dir{-5};
 };
 

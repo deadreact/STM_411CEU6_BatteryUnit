@@ -10,7 +10,7 @@
             "Name": "sleepingLabel",
             "X": 107,
             "Y": 132,
-            "Width": 77,
+            "Width": 37,
             "Height": 19,
             "Visible": false,
             "TextId": "__SingleUse_LX7P",
@@ -41,8 +41,7 @@
                   "Green": 187,
                   "Blue": 187
                 },
-                "Preset": "clay_theme\\presets\\textprogress\\rounded_dark.json",
-                "FileNameBackground": "__generated\\clay_theme_images_widgets_textprogress_backgrounds_rounded_dark.png",
+                "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
                 "IndicatorPositionX": 12,
                 "IndicatorPositionY": 10,
                 "IndicatorPositionWidth": 150,
@@ -54,7 +53,7 @@
                 "Name": "brightnessTitle",
                 "X": 12,
                 "Y": 41,
-                "Width": 82,
+                "Width": 88,
                 "Height": 19,
                 "TextId": "__SingleUse_WPN4",
                 "TextRotation": "0",
@@ -88,18 +87,15 @@
                 "Y": 92,
                 "Width": 300,
                 "Height": 5,
-                "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_thin_medium_action_0.png",
                 "Color": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
+                  "Red": 222,
+                  "Green": 141
                 },
                 "StartY": 2.0,
                 "EndY": 2.0,
                 "EndX": 300.0,
                 "LineWidth": 5.0,
                 "LineEndingStyle": "Butt",
-                "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\thin\\medium_action_0.json",
                 "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
                 "ProgressRangeMax": 4000,
                 "ProgressInitialValue": 2000
@@ -111,18 +107,15 @@
                 "Y": 115,
                 "Width": 300,
                 "Height": 5,
-                "FileNameProgress": "__generated\\alternate_theme_images_widgets_lineprogress_fillers_plain_thin_medium_action_0.png",
                 "Color": {
-                  "Red": 255,
-                  "Green": 255,
-                  "Blue": 255
+                  "Red": 222,
+                  "Green": 141
                 },
                 "StartY": 2.0,
                 "EndY": 2.0,
                 "EndX": 300.0,
                 "LineWidth": 5.0,
                 "LineEndingStyle": "Butt",
-                "Preset": "alternate_theme\\presets\\lineprogress\\images\\plain\\thin\\medium_action_0.json",
                 "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
                 "ProgressRangeMax": 4000,
                 "ProgressInitialValue": 2000
@@ -414,128 +407,116 @@
             }
           },
           {
-            "Type": "ListLayout",
-            "Name": "capacityContainer",
-            "X": 185,
-            "Y": 75,
-            "Width": 110,
-            "Height": 91,
-            "Direction": "South",
+            "Type": "Container",
+            "Name": "content",
+            "Width": 320,
+            "Height": 240,
             "Components": [
               {
-                "Type": "TextArea",
-                "Name": "capacityTextValue",
-                "Width": 110,
-                "Height": 51,
-                "TextId": "__SingleUse_5XWU",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 143,
-                  "Green": 181,
-                  "Blue": 239
-                },
-                "Wildcard1": {
-                  "TextId": "__SingleUse_ZKSS",
-                  "UseBuffer": true,
-                  "BufferSize": 4
-                }
+                "Type": "Container",
+                "Name": "iconsContainer",
+                "Width": 320,
+                "Height": 50,
+                "Components": [
+                  {
+                    "Type": "Image",
+                    "Name": "icon1",
+                    "X": 52,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "RelativeFilename": "grayscale_power.png",
+                    "Alpha": 10
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon2",
+                    "X": 102,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "RelativeFilename": "grayscale_cool.png",
+                    "Alpha": 10
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon3",
+                    "X": 152,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "RelativeFilename": "grayscale_snow.png",
+                    "Alpha": 10
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon4",
+                    "X": 202,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "RelativeFilename": "grayscale_electricity.png",
+                    "Alpha": 10
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon5",
+                    "X": 252,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "RelativeFilename": "grayscale_temperature.png",
+                    "Alpha": 10
+                  },
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "warning",
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "CustomContainerDefinitionName": "AnimatedWarning"
+                  }
+                ]
               },
               {
-                "Type": "ImageProgress",
-                "Name": "capacityValue",
-                "Y": 51,
+                "Type": "CustomContainerInstance",
+                "Name": "capacityContainer",
+                "X": 185,
+                "Y": 75,
                 "Width": 110,
-                "Height": 40,
-                "FileNameProgress": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large_action.png",
-                "AnchorAtZero": true,
-                "Direction": "Right",
-                "Preset": "alternate_theme\\presets\\imageprogress\\styled\\batteries\\action.json",
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
-                "IndicatorPositionX": 5,
-                "IndicatorPositionY": 5,
-                "IndicatorPositionWidth": 94,
-                "IndicatorPositionHeight": 30,
-                "ProgressRangeMax": 100,
-                "ProgressInitialValue": 60
+                "Height": 91,
+                "Visible": false,
+                "CustomContainerDefinitionName": "BatteryStatus"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "capacityContainerLarge",
+                "Y": 48,
+                "Width": 320,
+                "Height": 140,
+                "Visible": false,
+                "CustomContainerDefinitionName": "BatteryStatusLarge"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "chargeTimeContainer",
+                "X": 6,
+                "Y": 63,
+                "Width": 166,
+                "Height": 127,
+                "CustomContainerDefinitionName": "ChargeTime"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "ioValue",
+                "X": 87,
+                "Y": 189,
+                "Width": 232,
+                "Height": 50,
+                "CustomContainerDefinitionName": "IOValue"
               }
             ]
-          },
-          {
-            "Type": "Image",
-            "Name": "icon1",
-            "X": 52,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_power.png",
-            "Alpha": 10
-          },
-          {
-            "Type": "Image",
-            "Name": "icon2",
-            "X": 102,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_cool.png",
-            "Alpha": 10
-          },
-          {
-            "Type": "Image",
-            "Name": "icon3",
-            "X": 152,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_snow.png",
-            "Alpha": 10
-          },
-          {
-            "Type": "Image",
-            "Name": "icon4",
-            "X": 202,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_electricity.png",
-            "Alpha": 10
-          },
-          {
-            "Type": "Image",
-            "Name": "icon2_1",
-            "X": 252,
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "grayscale_temperature.png",
-            "Alpha": 10
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "ioValue",
-            "X": 87,
-            "Y": 189,
-            "Width": 232,
-            "Height": 50,
-            "CustomContainerDefinitionName": "IOValue"
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "chargeTimeContainer",
-            "X": 6,
-            "Y": 63,
-            "Width": 166,
-            "Height": 127,
-            "CustomContainerDefinitionName": "ChargeTime"
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "warning",
-            "Y": 2,
-            "Width": 48,
-            "Height": 48,
-            "Visible": false,
-            "CustomContainerDefinitionName": "AnimatedWarning"
           }
         ],
         "Interactions": []
@@ -765,6 +746,117 @@
             "Width": 48,
             "Height": 48,
             "RelativeFilename": "warn_yellow.png"
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "BatteryStatusLarge",
+        "Width": 320,
+        "Height": 140,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "capacityValue",
+            "X": 35,
+            "Y": 27,
+            "Width": 236,
+            "Height": 86,
+            "Color": {
+              "Red": 147,
+              "Green": 194,
+              "Blue": 52
+            },
+            "BorderColor": {
+              "Red": 26,
+              "Green": 26,
+              "Blue": 25
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "capacityImage",
+            "X": 28,
+            "Y": 20,
+            "Width": 265,
+            "Height": 100,
+            "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
+            "ScalingAlgorithm": "Bilinear Interpolation"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "capacityTextValue",
+            "X": 65,
+            "Y": 25,
+            "Width": 179,
+            "Height": 72,
+            "TextId": "__SingleUse_343D",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_3FJH",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "BatteryStatus",
+        "Width": 110,
+        "Height": 91,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "capacityTextValue",
+            "Width": 110,
+            "Height": 51,
+            "TextId": "SOC",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_Y8I9",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "capacityValue",
+            "X": 1,
+            "Y": 49,
+            "Width": 100,
+            "Height": 40,
+            "Color": {
+              "Red": 147,
+              "Green": 194,
+              "Blue": 52
+            },
+            "BorderColor": {
+              "Red": 26,
+              "Green": 26,
+              "Blue": 25
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "capacityImage",
+            "Y": 49,
+            "Width": 110,
+            "Height": 40,
+            "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
           }
         ],
         "Interactions": []

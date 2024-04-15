@@ -14,17 +14,12 @@ void AnimatedWarning::handleTickEvent()
 {
 	if (isVisible())
 	{
-//		auto dt = HAL_GetTick() - m_tick;
-		if (true)
+		int alpha = image.getAlpha() + m_dir;
+		if (alpha <= 0 || alpha >= 255)
 		{
-			auto alpha = image.getAlpha() + m_dir;
-			if (alpha == 0 || alpha == 255)
-			{
-				m_dir = -m_dir;
-			}
-			image.setAlpha(alpha);
-			image.invalidateContent();
-//			m_tick = HAL_GetTick();
+			m_dir = -m_dir;
 		}
+		image.setAlpha(alpha);
+		image.invalidateContent();
 	}
 }

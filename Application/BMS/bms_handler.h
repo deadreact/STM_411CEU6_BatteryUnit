@@ -13,7 +13,7 @@
 #include <string>
 
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 0
+#define SIMULATE_UNCHARGING 1
 
 class BMSHandler
 {
@@ -23,7 +23,8 @@ public:
 
     void Request(uint8_t* frameData, uint16_t frameLen);
 
-    void RequestActivation();
+    void RequestTurnOn();
+    void RequestTurnOff();
     void RequestAllData();
     void RequestData(uint8_t dataId);
 
@@ -40,11 +41,12 @@ public:
 protected:
     void UpdateData(const BatteryData& newData);
 protected:
-    BMSStatus m_status { BMSStatus::NoStatus };
+    BMSStatus m_status { BMSStatus::Off };
     BatteryData m_data;
     uint32_t m_lastRequestTick{0};
     uint32_t m_lastResponseTick{0};
     uint32_t m_lastDataUpdateTick{0};
+    uint32_t m_bmsOnResetTick{0};
 
     uint8_t rxData[rxDataLen];
     uint8_t txDataBuffer[txDataLen];
@@ -60,10 +62,11 @@ class BMSUpdater : public BMSHandler
 {
 public:
 	void Update();
+	void UpdateAndStop();
 	BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
 
 private:
-	BMSStatus m_prevStatus { BMSStatus::NoStatus };
+	BMSStatus m_prevStatus { BMSStatus::Off };
 	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
 	const uint32_t m_requestTimeout{1000};
 	const uint32_t m_invalidatePeriodMsec{500}; //

@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define SCRN_CS_GPIO_Port GPIOB
 #define LED_Pin GPIO_PIN_10
 #define LED_GPIO_Port GPIOB
+#define bms_on_Pin GPIO_PIN_8
+#define bms_on_GPIO_Port GPIOA
 #define bttn_screen_on_Pin GPIO_PIN_12
 #define bttn_screen_on_GPIO_Port GPIOA
 #define bttn_usb_on_Pin GPIO_PIN_3

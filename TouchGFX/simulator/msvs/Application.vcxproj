@@ -38,6 +38,10 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\ChargeTimeBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\AnimatedWarning.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\AnimatedWarningBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\BatteryStatus.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryStatusBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\BatteryStatusLarge.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryStatusLargeBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -205,6 +209,10 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ChargeTimeBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\AnimatedWarning.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\AnimatedWarningBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryStatus.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryStatusLarge.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusLargeBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

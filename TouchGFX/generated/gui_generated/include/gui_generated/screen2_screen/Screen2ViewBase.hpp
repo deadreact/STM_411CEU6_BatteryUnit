@@ -12,7 +12,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/containers/progress_indicators/TextProgress.hpp>
 #include <touchgfx/containers/progress_indicators/LineProgress.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565Bitmap.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 
 class Screen2ViewBase : public touchgfx::View<Screen2Presenter>
 {
@@ -36,9 +36,9 @@ protected:
     touchgfx::TextArea brightnessTitle;
     touchgfx::TextArea title;
     touchgfx::LineProgress lineProgress1;
-    touchgfx::PainterRGB565Bitmap lineProgress1Painter;
+    touchgfx::PainterRGB565 lineProgress1Painter;
     touchgfx::LineProgress lineProgress2;
-    touchgfx::PainterRGB565Bitmap lineProgress2Painter;
+    touchgfx::PainterRGB565 lineProgress2Painter;
 
 private:
 

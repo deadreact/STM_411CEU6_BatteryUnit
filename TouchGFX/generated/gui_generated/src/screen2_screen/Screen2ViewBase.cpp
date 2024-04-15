@@ -28,7 +28,7 @@ Screen2ViewBase::Screen2ViewBase()
     brightnessValue.setRange(0, 100);
     brightnessValue.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
     brightnessValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WOQL));
-    brightnessValue.setBackground(touchgfx::Bitmap(BITMAP_CLAY_THEME_IMAGES_WIDGETS_TEXTPROGRESS_BACKGROUNDS_ROUNDED_DARK_ID));
+    brightnessValue.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ID));
     brightnessValue.setValue(0);
     container1.add(brightnessValue);
 
@@ -48,7 +48,7 @@ Screen2ViewBase::Screen2ViewBase()
     lineProgress1.setProgressIndicatorPosition(0, 0, 300, 5);
     lineProgress1.setRange(0, 4000);
     lineProgress1.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_LINEPROGRESS_BACKGROUNDS_IMAGE_PLAIN_THIN_MEDIUM_0_ID));
-    lineProgress1Painter.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_LINEPROGRESS_FILLERS_PLAIN_THIN_MEDIUM_ACTION_0_ID));
+    lineProgress1Painter.setColor(touchgfx::Color::getColorFromRGB(222, 141, 0));
     lineProgress1.setPainter(lineProgress1Painter);
     lineProgress1.setStart(0, 2);
     lineProgress1.setEnd(300, 2);
@@ -61,7 +61,7 @@ Screen2ViewBase::Screen2ViewBase()
     lineProgress2.setProgressIndicatorPosition(0, 0, 300, 5);
     lineProgress2.setRange(0, 4000);
     lineProgress2.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_LINEPROGRESS_BACKGROUNDS_IMAGE_PLAIN_THIN_MEDIUM_0_ID));
-    lineProgress2Painter.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_LINEPROGRESS_FILLERS_PLAIN_THIN_MEDIUM_ACTION_0_ID));
+    lineProgress2Painter.setColor(touchgfx::Color::getColorFromRGB(222, 141, 0));
     lineProgress2.setPainter(lineProgress2Painter);
     lineProgress2.setStart(0, 2);
     lineProgress2.setEnd(300, 2);

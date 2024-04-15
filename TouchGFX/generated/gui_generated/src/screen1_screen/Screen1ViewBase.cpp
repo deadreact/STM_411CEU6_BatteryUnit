@@ -3,7 +3,6 @@
 /*********************************************************************************/
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 #include <images/BitmapDatabase.hpp>
 
 Screen1ViewBase::Screen1ViewBase()
@@ -20,62 +19,54 @@ Screen1ViewBase::Screen1ViewBase()
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
     add(footerBox);
 
-    capacityContainer.setXY(185, 75);
-    capacityContainer.setDirection(touchgfx::SOUTH);
-    capacityTextValue.setWidth(110);
-    capacityTextValue.setHeight(51);
-    capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
-    capacityTextValue.setLinespacing(0);
-    Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_ZKSS).getText());
-    capacityTextValue.setWildcard(capacityTextValueBuffer);
-    capacityTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5XWU));
-    capacityContainer.add(capacityTextValue);
-
-    capacityValue.setProgressIndicatorPosition(5, 5, 94, 30);
-    capacityValue.setRange(0, 100);
-    capacityValue.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
-    capacityValue.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ID));
-    capacityValue.setBitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ACTION_ID);
-    capacityValue.setValue(60);
-    capacityValue.setAnchorAtZero(true);
-    capacityContainer.add(capacityValue);
-
-    add(capacityContainer);
-
+    content.setPosition(0, 0, 320, 240);
+    iconsContainer.setPosition(0, 0, 320, 50);
     icon1.setXY(52, 2);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
     icon1.setAlpha(10);
-    add(icon1);
+    iconsContainer.add(icon1);
 
     icon2.setXY(102, 2);
     icon2.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_COOL_ID));
     icon2.setAlpha(10);
-    add(icon2);
+    iconsContainer.add(icon2);
 
     icon3.setXY(152, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_SNOW_ID));
     icon3.setAlpha(10);
-    add(icon3);
+    iconsContainer.add(icon3);
 
     icon4.setXY(202, 2);
     icon4.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_ELECTRICITY_ID));
     icon4.setAlpha(10);
-    add(icon4);
+    iconsContainer.add(icon4);
 
-    icon2_1.setXY(252, 2);
-    icon2_1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
-    icon2_1.setAlpha(10);
-    add(icon2_1);
-
-    ioValue.setXY(87, 189);
-    add(ioValue);
-
-    chargeTimeContainer.setXY(6, 63);
-    add(chargeTimeContainer);
+    icon5.setXY(252, 2);
+    icon5.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
+    icon5.setAlpha(10);
+    iconsContainer.add(icon5);
 
     warning.setXY(0, 2);
     warning.setVisible(false);
-    add(warning);
+    iconsContainer.add(warning);
+
+    content.add(iconsContainer);
+
+    capacityContainer.setXY(185, 75);
+    capacityContainer.setVisible(false);
+    content.add(capacityContainer);
+
+    capacityContainerLarge.setXY(0, 48);
+    capacityContainerLarge.setVisible(false);
+    content.add(capacityContainerLarge);
+
+    chargeTimeContainer.setXY(6, 63);
+    content.add(chargeTimeContainer);
+
+    ioValue.setXY(87, 189);
+    content.add(ioValue);
+
+    add(content);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -85,7 +76,9 @@ Screen1ViewBase::~Screen1ViewBase()
 
 void Screen1ViewBase::setupScreen()
 {
-    ioValue.initialize();
-    chargeTimeContainer.initialize();
     warning.initialize();
+    capacityContainer.initialize();
+    capacityContainerLarge.initialize();
+    chargeTimeContainer.initialize();
+    ioValue.initialize();
 }
