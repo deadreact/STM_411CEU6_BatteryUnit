@@ -38,17 +38,16 @@ void Button::onTick()
 bool Button::isPressed() const { return m_state == 0; }
 uint32_t Button::getPressedDuration() const { return isPressed() ? HAL_GetTick() - m_lastStateChangeTick : 0; }
 
-ButtonEventProvider::ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+ButtonEventProvider::ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t firstHoldTreshold, uint32_t nextHoldTreshold)
     : Button(GPIOx, GPIO_Pin)
     , m_pressedDuration(getPressedDuration())
+    , m_firstHoldTreshold(firstHoldTreshold)
+    , m_nextHoldTreshold(nextHoldTreshold)
 {}
 
 void ButtonEventProvider::onTick()
 {
-    static const uint32_t firstHoldTreshold = 400;
-    static const uint32_t nextHoldTreshold = 80;
-
-    const uint32_t holdTreshold = m_firstHoldTriggered ? nextHoldTreshold : firstHoldTreshold;
+    const uint32_t holdTreshold = m_firstHoldTriggered ? m_nextHoldTreshold : m_firstHoldTreshold;
 
 //    m_lastEvent = ButtonEvent::NoEvent;
     Button::onTick();
@@ -79,55 +78,65 @@ void ButtonEventProvider::onTick()
 
 ButtonEvent ButtonEventProvider::takeLastEvent()
 {
-	auto tmp = m_lastEvent;
-	m_lastEvent = ButtonEvent::NoEvent;
-	return tmp;
+    auto tmp = m_lastEvent;
+    m_lastEvent = ButtonEvent::NoEvent;
+    return tmp;
+}
+
+void ButtonEventProvider::setupHoldTriggerTimeouts(uint32_t firstHoldTreshold, uint32_t nextHoldTreshold)
+{
+    m_firstHoldTreshold = firstHoldTreshold;
+    m_nextHoldTreshold = nextHoldTreshold;
 }
 
 ButtonEventHandler::ButtonEventHandler(ButtonEventProvider* eventProvider, function_t onClick, function_t onHold)
-	: m_eventProvider(eventProvider)
-	, m_onClick(onClick)
-	, m_onHold(onHold)
+    : m_eventProvider(eventProvider)
+    , m_onClick(onClick)
+    , m_onHold(onHold)
 {}
 
 void ButtonEventHandler::handleEvent(ButtonEvent event)
 {
-	switch (event)
-	{
-		case ButtonEvent::Release:
-		{
-			if (m_lastEvent == ButtonEvent::Press) {
-				if (m_onClick) m_onClick();
-			}
-			m_lastEvent = event;
+    if (event == ButtonEvent::NoEvent) {
+        return;
+    }
 
-		} break;
-		case ButtonEvent::Press:
-			m_lastEvent = event;
-			break;
-		case ButtonEvent::Hold:
-		{
-			if (m_onHold) m_onHold();
-			m_lastEvent = event;
-		} break;
-		default:
-			break;
-	}
+    switch (event)
+    {
+        case ButtonEvent::Release:
+        {
+            if (m_lastEvent == ButtonEvent::Press) {
+                if (m_onClick) m_onClick();
+            }
+            m_lastEvent = event;
+
+        } break;
+        case ButtonEvent::Press:
+            m_lastEvent = event;
+            break;
+        case ButtonEvent::Hold:
+        {
+            if (m_onHold) m_onHold();
+            m_lastEvent = event;
+        } break;
+        default:
+            break;
+    }
 }
 
 void ButtonEventHandler::handleEvents()
 {
-	if (m_eventProvider)
-	{
-		handleEvent(m_eventProvider->takeLastEvent());
-	}
+    if (m_eventProvider)
+    {
+        handleEvent(m_eventProvider->takeLastEvent());
+    }
 }
 
 void ButtonEventHandler::setEventProvider(ButtonEventProvider* eventProvider)
 {
-	if (m_eventProvider != eventProvider) {
-		m_eventProvider = eventProvider;
-		m_lastEvent = ButtonEvent::NoEvent;
-	}
+    if (m_eventProvider != eventProvider) {
+        m_eventProvider = eventProvider;
+        m_lastEvent = ButtonEvent::NoEvent;
+    }
 }
 

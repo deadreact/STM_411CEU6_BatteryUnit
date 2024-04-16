@@ -11,6 +11,7 @@
 #include "app_touchgfx.h"
 #include "stm32f4xx_hal.h"
 #include "../button.h"
+#include "../led.h"
 #include "main.h"
 #include "../BMS/bms_handler.h"
 #include <cstring>
@@ -29,10 +30,14 @@ struct IdleProcess::Impl
 
     BMSUpdater m_bmsUpdater;
 
+    LedIndicator led{GPIOC, GPIO_PIN_13, LedIndicationType::Blinking};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
-    ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12};
+    ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12, 800, 800};
     ButtonEventHandler btnSleepHandler{&btnEnterSleep, [&]{ sharedData.powerModeState = PowerModeState::StopRequested; }};
-    ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }};
+    ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle
+    , [&]{ led.setIndicationType(LedIndicationType(((int)led.getIndicationType() + 1) % int(LedIndicationType::Count))); }
+    , [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
+    };
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -64,6 +69,8 @@ void IdleProcess::Impl::OnTick()
     	m_bmsUpdater.UpdateAndStop();
         return;
     }
+
+    led.onTick();
     btnEnterSleep.onTick();
     btnBmsToggle.onTick();
 

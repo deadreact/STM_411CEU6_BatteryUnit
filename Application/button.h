@@ -38,22 +38,28 @@ enum class ButtonEvent : uint8_t
 class ButtonEventProvider : protected Button
 {
 public:
-    ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+    ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t firstHoldTreshold = 800, uint32_t nextHoldTreshold = 0xffffffff/*disable*/);
 
     virtual void onTick() override;
     ButtonEvent takeLastEvent();
+
+    void setupHoldTriggerTimeouts(uint32_t firstHoldTreshold, uint32_t nextHoldTreshold = 0xffffffff/*disable*/);
 private:
     uint32_t m_pressedDuration;
     ButtonEvent m_lastEvent {ButtonEvent::NoEvent};
     bool m_firstHoldTriggered{false};
+
+    // config
+    uint32_t m_firstHoldTreshold{800};
+    uint32_t m_nextHoldTreshold{0xffffffff};
 };
 
 class ButtonEventHandler
 {
 public:
-	using function_t = std::function<void()>;
+    using function_t = std::function<void()>;
 
-	ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, function_t onClick = nullptr, function_t onHold = nullptr);
+    ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, function_t onClick = nullptr, function_t onHold = nullptr);
 
     void handleEvent(ButtonEvent event);
     void handleEvents();

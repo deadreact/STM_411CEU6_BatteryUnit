@@ -22,11 +22,39 @@ public:
     void toggle() const;
     void reset();
 
-    void setInterval(uint16_t interval);
-    uint16_t getInterval() const;
-private:
+    bool isOn() const;
+
+    void setInterval(uint32_t interval);
+    uint32_t getInterval() const;
+protected:
     uint32_t m_lastToggleTick{0};
     uint32_t m_interval{0xffffffff};
+};
+
+enum class LedIndicationType
+{
+    Off = 0,
+    On,
+    Blinking,
+    FastBlinking,
+    ShuffleBlinking,
+
+    Count
+};
+
+class LedIndicator : public Led
+{
+public:
+    LedIndicator(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, LedIndicationType initialState = LedIndicationType::Off);
+
+    virtual void onTick() override;
+
+    void setIndicationType(LedIndicationType indication);
+    LedIndicationType getIndicationType() const { return m_indication; }
+private:
+    void setupIndication();
+private:
+    LedIndicationType m_indication{LedIndicationType::Off};
 };
 
 #endif /* LED_H_ */

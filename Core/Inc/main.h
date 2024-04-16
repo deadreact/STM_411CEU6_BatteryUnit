@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define charg_pot_ud_Pin GPIO_PIN_13
+#define charg_pot_ud_GPIO_Port GPIOC
 #define charg_pot_inc_Pin GPIO_PIN_14
 #define charg_pot_inc_GPIO_Port GPIOC
 #define charg_pot_cs_Pin GPIO_PIN_15
