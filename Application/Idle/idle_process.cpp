@@ -16,107 +16,6 @@
 #include <cstring>
 #include <ili9341.h>
 
-// ----------------- tmp here --------------------------
-class ScreenBrightnessController
-{
-public:
-    ScreenBrightnessController(int& brightness)
-        : brightness(brightness)
-    {
-        ApplyBrightness();
-    }
-
-    void toggleScreen() {
-        screenOn = !screenOn;
-        ApplyBrightness();
-
-        if (!screenOn)
-        {
-//            __disable_irq();
-//            HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-//            __enable_irq();
-        }
-    }
-
-    void incBrightness() {
-        brightness = (brightness + 40) % 1000;
-        ApplyBrightness();
-    }
-private:
-    void ApplyBrightness() {
-        // brightnessHandle = screenOn ? brightness : 0;
-        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, screenOn ? GPIO_PIN_SET : GPIO_PIN_RESET);
-    }
-private:
-    int& brightness;
-    // volatile uint32_t& brightnessHandle {TIM2->CCR4};
-    bool screenOn {true};
-    ButtonEvent lastEvent {ButtonEvent::NoEvent};
-};
-
-class KeyButtonToScreenHandler
-{
-public:
-    KeyButtonToScreenHandler(int& brightness): controller(brightness) {}
-
-    void handleEvent(ButtonEvent event)
-    {
-        switch (event)
-        {
-            case ButtonEvent::Release:
-            {
-                if (lastEvent == ButtonEvent::Press) {
-                    controller.toggleScreen();
-                }
-                lastEvent = event;
-
-            } break;
-            case ButtonEvent::Press:
-                lastEvent = event;
-                break;
-            case ButtonEvent::Hold:
-            {
-                controller.incBrightness();
-                lastEvent = event;
-            } break;
-            default:
-                break;
-        }
-    }
-private:
-    ScreenBrightnessController controller;
-    ButtonEvent lastEvent{ButtonEvent::NoEvent};
-};
-
-// ---------------------------------------------------------------
-class BtnSleepHandler
-{
-public:
-    BtnSleepHandler(PowerModeState& powerModeState): powerModeState(powerModeState) {}
-    void handleEvent(ButtonEvent event)
-    {
-        switch (event)
-        {
-            case ButtonEvent::Release:
-            {
-                if (lastEvent == ButtonEvent::Press) {
-                	powerModeState = PowerModeState::StopRequested;
-                }
-                lastEvent = event;
-
-            } break;
-            case ButtonEvent::Press:
-            case ButtonEvent::Hold:
-                lastEvent = event;
-                break;
-            default:
-                break;
-        }
-    }
-private:
-    PowerModeState& powerModeState;
-    ButtonEvent lastEvent{ButtonEvent::NoEvent};
-};
 // ---------------------------------------------------------------
 
 struct IdleProcess::Impl
@@ -130,14 +29,10 @@ struct IdleProcess::Impl
 
     BMSUpdater m_bmsUpdater;
 
-//    ButtonEventProvider btnScreenOn{GPIOA, GPIO_PIN_12};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
     ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12};
-//    ButtonEventProvider btnBmsRequest{GPIOB, GPIO_PIN_3};
-    KeyButtonToScreenHandler btnScreenOnHandler{sharedData.screenBrightness};
-    BtnSleepHandler btnSleepHandler{sharedData.powerModeState};
-
-    bool m_bmsFirstResponseAchieved{false};
+    ButtonEventHandler btnSleepHandler{&btnEnterSleep, [&]{ sharedData.powerModeState = PowerModeState::StopRequested; }};
+    ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }};
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -169,10 +64,8 @@ void IdleProcess::Impl::OnTick()
     	m_bmsUpdater.UpdateAndStop();
         return;
     }
-//    btnScreenOn.onTick();
     btnEnterSleep.onTick();
     btnBmsToggle.onTick();
-//    btnBmsRequest.onTick();
 
     if (sharedData.screenId != 2) {
     	m_bmsUpdater.Update();
@@ -183,16 +76,8 @@ void IdleProcess::Impl::OnTick()
 
 void IdleProcess::Impl::HandleEvents()
 {
-//    btnScreenOnHandler.handleEvent(btnScreenOn.getLastEvent());
-    btnSleepHandler.handleEvent(btnEnterSleep.getLastEvent());
-
-    if (btnBmsToggle.getLastEvent() == ButtonEvent::Release) {
-    	sharedData.screenId = (sharedData.screenId + 1) % 3;
-    	if (sharedData.screenId != 2)
-    	{
-    		m_bmsUpdater.RequestAllData();
-    	}
-    }
+	btnSleepHandler.handleEvents();
+	btnScrSwitchHandler.handleEvents();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
@@ -215,6 +100,8 @@ void IdleProcess::Impl::HandleEvents()
 
 
 // -----------------------------------------------------------------
+//static void RequestStopMode() { SharedData:: }
+// -----------------------------------------------------------------
 
 IdleProcess::~IdleProcess()
 {
@@ -227,6 +114,7 @@ void IdleProcess::Init()
     SharedData::get().setProcessId<ProcessId::Idle>(&m_pimpl->sharedData);
 
     m_tickRate = 5;
+    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 }
 
 void IdleProcess::Update()

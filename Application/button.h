@@ -9,6 +9,7 @@
 #define BUTTON_H_
 
 #include "interface.h"
+#include <functional>
 
 class Button : public SinglePinElement, public ITickHandler
 {
@@ -40,14 +41,31 @@ public:
     ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
     virtual void onTick() override;
-    ButtonEvent getLastEvent() const { return m_lastEvent; }
+    ButtonEvent takeLastEvent();
 private:
     uint32_t m_pressedDuration;
     ButtonEvent m_lastEvent {ButtonEvent::NoEvent};
     bool m_firstHoldTriggered{false};
 };
 
+class ButtonEventHandler
+{
+public:
+	using function_t = std::function<void()>;
 
+	ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, function_t onClick = nullptr, function_t onHold = nullptr);
 
+    void handleEvent(ButtonEvent event);
+    void handleEvents();
+
+    void setEventProvider(ButtonEventProvider* eventProvider);
+    void setOnClickHandler(function_t handler) { m_onClick = handler; }
+    void setOnHoldHandler(function_t handler) { m_onHold = handler; }
+private:
+    ButtonEventProvider* m_eventProvider{nullptr};
+    function_t m_onClick{nullptr};
+    function_t m_onHold{nullptr};
+    ButtonEvent m_lastEvent{ButtonEvent::NoEvent};
+};
 
 #endif /* BUTTON_H_ */

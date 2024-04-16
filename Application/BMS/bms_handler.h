@@ -13,7 +13,7 @@
 #include <string>
 
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 1
+#define SIMULATE_UNCHARGING 0
 
 class BMSHandler
 {

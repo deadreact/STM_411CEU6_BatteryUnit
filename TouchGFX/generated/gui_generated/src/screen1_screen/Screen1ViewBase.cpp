@@ -20,6 +20,7 @@ Screen1ViewBase::Screen1ViewBase()
     add(footerBox);
 
     content.setPosition(0, 0, 320, 240);
+    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
     icon1.setXY(52, 2);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
@@ -57,7 +58,6 @@ Screen1ViewBase::Screen1ViewBase()
     content.add(capacityContainer);
 
     capacityContainerLarge.setXY(0, 48);
-    capacityContainerLarge.setVisible(false);
     content.add(capacityContainerLarge);
 
     chargeTimeContainer.setXY(6, 63);

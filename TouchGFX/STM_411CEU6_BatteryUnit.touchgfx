@@ -411,6 +411,7 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
+            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -495,7 +496,6 @@
                 "Y": 48,
                 "Width": 320,
                 "Height": 140,
-                "Visible": false,
                 "CustomContainerDefinitionName": "BatteryStatusLarge"
               },
               {
