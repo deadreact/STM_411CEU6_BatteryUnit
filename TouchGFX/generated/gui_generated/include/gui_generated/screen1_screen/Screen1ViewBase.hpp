@@ -11,10 +11,10 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <gui/containers/AnimatedWarning.hpp>
-#include <gui/containers/BatteryStatus.hpp>
 #include <gui/containers/BatteryStatusLarge.hpp>
-#include <gui/containers/ChargeTime.hpp>
 #include <gui/containers/IOValue.hpp>
+#include <gui/containers/ChargeTime.hpp>
+#include <gui/containers/BatteryStatus.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -42,10 +42,11 @@ protected:
     touchgfx::Image icon4;
     touchgfx::Image icon5;
     AnimatedWarning warning;
-    BatteryStatus capacityContainer;
     BatteryStatusLarge capacityContainerLarge;
-    ChargeTime chargeTimeContainer;
+    touchgfx::Container capacityContainerSmall;
     IOValue ioValue;
+    ChargeTime chargeTimeContainer;
+    BatteryStatus capacityContainer;
 
 private:
 

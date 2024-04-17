@@ -482,16 +482,6 @@
               },
               {
                 "Type": "CustomContainerInstance",
-                "Name": "capacityContainer",
-                "X": 185,
-                "Y": 75,
-                "Width": 110,
-                "Height": 91,
-                "Visible": false,
-                "CustomContainerDefinitionName": "BatteryStatus"
-              },
-              {
-                "Type": "CustomContainerInstance",
                 "Name": "capacityContainerLarge",
                 "Y": 48,
                 "Width": 320,
@@ -499,22 +489,41 @@
                 "CustomContainerDefinitionName": "BatteryStatusLarge"
               },
               {
-                "Type": "CustomContainerInstance",
-                "Name": "chargeTimeContainer",
-                "X": 6,
-                "Y": 63,
-                "Width": 166,
-                "Height": 127,
-                "CustomContainerDefinitionName": "ChargeTime"
-              },
-              {
-                "Type": "CustomContainerInstance",
-                "Name": "ioValue",
-                "X": 87,
-                "Y": 189,
-                "Width": 232,
-                "Height": 50,
-                "CustomContainerDefinitionName": "IOValue"
+                "Type": "Container",
+                "Name": "capacityContainerSmall",
+                "Y": 48,
+                "Width": 320,
+                "Height": 192,
+                "Visible": false,
+                "Components": [
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "ioValue",
+                    "X": 87,
+                    "Y": 141,
+                    "Width": 232,
+                    "Height": 50,
+                    "CustomContainerDefinitionName": "IOValue"
+                  },
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "chargeTimeContainer",
+                    "X": 6,
+                    "Y": 15,
+                    "Width": 166,
+                    "Height": 127,
+                    "CustomContainerDefinitionName": "ChargeTime"
+                  },
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "capacityContainer",
+                    "X": 185,
+                    "Y": 27,
+                    "Width": 110,
+                    "Height": 91,
+                    "CustomContainerDefinitionName": "BatteryStatus"
+                  }
+                ]
               }
             ]
           }

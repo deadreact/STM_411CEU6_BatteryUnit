@@ -53,18 +53,21 @@ Screen1ViewBase::Screen1ViewBase()
 
     content.add(iconsContainer);
 
-    capacityContainer.setXY(185, 75);
-    capacityContainer.setVisible(false);
-    content.add(capacityContainer);
-
     capacityContainerLarge.setXY(0, 48);
     content.add(capacityContainerLarge);
 
-    chargeTimeContainer.setXY(6, 63);
-    content.add(chargeTimeContainer);
+    capacityContainerSmall.setPosition(0, 48, 320, 192);
+    capacityContainerSmall.setVisible(false);
+    ioValue.setXY(87, 141);
+    capacityContainerSmall.add(ioValue);
 
-    ioValue.setXY(87, 189);
-    content.add(ioValue);
+    chargeTimeContainer.setXY(6, 15);
+    capacityContainerSmall.add(chargeTimeContainer);
+
+    capacityContainer.setXY(185, 27);
+    capacityContainerSmall.add(capacityContainer);
+
+    content.add(capacityContainerSmall);
 
     add(content);
 }
@@ -77,8 +80,8 @@ Screen1ViewBase::~Screen1ViewBase()
 void Screen1ViewBase::setupScreen()
 {
     warning.initialize();
-    capacityContainer.initialize();
     capacityContainerLarge.initialize();
-    chargeTimeContainer.initialize();
     ioValue.initialize();
+    chargeTimeContainer.initialize();
+    capacityContainer.initialize();
 }

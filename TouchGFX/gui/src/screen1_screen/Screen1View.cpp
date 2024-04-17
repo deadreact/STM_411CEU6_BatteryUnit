@@ -74,11 +74,11 @@ void Screen1View::updateBatteryData(const BatteryData& data)
 		setWatts(data.current * data.voltage);
 
 		if (data.current == 0) {
-			capacityContainer.setVisible(false);
+			capacityContainerSmall.setVisible(false);
 			capacityContainerLarge.setVisible(true);
 			invalidate();
 		} else if (m_bmsData.current == 0) {
-			capacityContainer.setVisible(true);
+			capacityContainerSmall.setVisible(true);
 			capacityContainerLarge.setVisible(false);
 			invalidate();
 		}
