@@ -57,21 +57,36 @@ private:
 class ButtonEventHandler
 {
 public:
-    using function_t = std::function<void()>;
+    using Fn = std::function<void()>;
 
-    ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, function_t onClick = nullptr, function_t onHold = nullptr);
+    ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = nullptr, Fn onHold = nullptr);
 
-    void handleEvent(ButtonEvent event);
+    virtual void handleEvent(ButtonEvent event);
     void handleEvents();
 
     void setEventProvider(ButtonEventProvider* eventProvider);
-    void setOnClickHandler(function_t handler) { m_onClick = handler; }
-    void setOnHoldHandler(function_t handler) { m_onHold = handler; }
-private:
+    void setOnClickHandler(Fn handler) { m_onClick = handler; }
+    void setOnHoldHandler(Fn handler) { m_onHold = handler; }
+protected:
     ButtonEventProvider* m_eventProvider{nullptr};
-    function_t m_onClick{nullptr};
-    function_t m_onHold{nullptr};
+    Fn m_onClick{nullptr};
+    Fn m_onHold{nullptr};
     ButtonEvent m_lastEvent{ButtonEvent::NoEvent};
+};
+
+
+class PwrButtonEventHandler: public ButtonEventHandler
+{
+public:
+	PwrButtonEventHandler(ButtonEventProvider* ep = nullptr, Fn onClick = nullptr, Fn onHold = nullptr, Fn onPress = nullptr, Fn onRealease = nullptr);
+
+	virtual void handleEvent(ButtonEvent event) override;
+
+	void setOnPressHandler(Fn handler) { m_onPress = handler; }
+	void setOnReleaseHandler(Fn handler) { m_onRelease = handler; }
+protected:
+	Fn m_onPress{nullptr};
+	Fn m_onRelease{nullptr};
 };
 
 #endif /* BUTTON_H_ */

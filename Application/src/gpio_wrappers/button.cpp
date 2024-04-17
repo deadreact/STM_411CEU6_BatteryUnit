@@ -105,7 +105,7 @@ void ButtonEventProvider::setupHoldTriggerTimeouts(uint32_t firstHoldTreshold, u
     m_nextHoldTreshold = nextHoldTreshold;
 }
 
-ButtonEventHandler::ButtonEventHandler(ButtonEventProvider* eventProvider, function_t onClick, function_t onHold)
+ButtonEventHandler::ButtonEventHandler(ButtonEventProvider* eventProvider, Fn onClick, Fn onHold)
     : m_eventProvider(eventProvider)
     , m_onClick(onClick)
     , m_onHold(onHold)
@@ -156,3 +156,59 @@ void ButtonEventHandler::setEventProvider(ButtonEventProvider* eventProvider)
     }
 }
 
+PwrButtonEventHandler::PwrButtonEventHandler(ButtonEventProvider* ep, Fn onClick, Fn onHold, Fn onPress, Fn onRealease)
+    : ButtonEventHandler(ep, onClick, onHold)
+    , m_onPress(onPress)
+    , m_onRelease(onRealease)
+{}
+
+void PwrButtonEventHandler::handleEvent(ButtonEvent event)
+{
+    if (event == ButtonEvent::NoEvent) {
+        return;
+    }
+
+    switch (event)
+	{
+		case ButtonEvent::Release:
+		{
+			if (m_onRelease) execute(m_onRelease);
+			if (m_lastEvent == ButtonEvent::Press) {
+				if (m_onClick) execute(m_onClick);
+			}
+			m_lastEvent = event;
+
+		} break;
+		case ButtonEvent::Press:
+		{
+			if (m_onPress) execute(m_onPress);
+			m_lastEvent = event;
+		} break;
+		case ButtonEvent::Hold:
+		{
+			if (m_onHold) execute(m_onHold);
+			m_lastEvent = event;
+		} break;
+		default:
+			break;
+	}
+
+//    switch (event)
+//    {
+//        case ButtonEvent::Release:
+//        {
+//            if (m_lastEvent == ButtonEvent::Press) {
+//                if (m_onClick) execute(m_onClick);
+//            } else if (m_lastEvent == ButtonEvent::Hold) {
+//            	if (m_onHold) execute(m_onHold);
+//            }
+//        }
+//        [[fallthrough]]
+//        case ButtonEvent::Press:
+//        case ButtonEvent::Hold:
+//        	m_lastEvent = event;
+//        break;
+//        default:
+//            break;
+//    }
+}

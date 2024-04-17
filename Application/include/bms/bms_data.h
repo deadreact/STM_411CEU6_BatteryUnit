@@ -12,9 +12,10 @@
 
 enum class BMSStatus
 {
-    Off,
-    OffRequested,
-    OnRequested,
+	NoStatus,
+//    Off,
+//    OffRequested,
+//    OnRequested,
     Requested,
     RequestTimedOut,
     Ok,
@@ -60,7 +61,7 @@ struct BatteryData
     uint8_t cellCount{0};
     uint32_t capacityAh{0};
 
-    bool isValid() const { return soc <= 100 && capacityAh > 0; }
+    bool isValid() const { return soc > 0 && soc <= 100 && capacityAh > 0; }
     int calcTimeRemain(bool invertorOn = false) const;
 
     bool operator==(const BatteryData& other) const;

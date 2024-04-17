@@ -81,11 +81,11 @@ void Error_Handler(void);
 #define bttn_screen_led_GPIO_Port GPIOA
 #define bttn_screen_on_Pin GPIO_PIN_12
 #define bttn_screen_on_GPIO_Port GPIOA
+#define bttn_screen_on_EXTI_IRQn EXTI15_10_IRQn
 #define bttn_usb_led_Pin GPIO_PIN_15
 #define bttn_usb_led_GPIO_Port GPIOA
 #define bttn_usb_on_Pin GPIO_PIN_3
 #define bttn_usb_on_GPIO_Port GPIOB
-#define bttn_usb_on_EXTI_IRQn EXTI3_IRQn
 #define usb_on_Pin GPIO_PIN_4
 #define usb_on_GPIO_Port GPIOB
 #define bttn_inv_led_Pin GPIO_PIN_5

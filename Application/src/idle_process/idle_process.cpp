@@ -20,6 +20,28 @@
 
 #include <bms/bms_handler.h>
 
+class Screen : protected SinglePinElement, public ITickHandler
+{
+public:
+	using SinglePinElement::SinglePinElement;
+
+	virtual void onTick() override
+	{
+		if (readPin()) {
+			MX_TouchGFX_Process();
+		}
+	}
+
+	void toggle()
+	{
+		ILI9341_EnableSleepMode(readPin());
+		HAL_GPIO_TogglePin(m_GPIOx, m_pin);
+	}
+
+	void on() { if (!readPin()) toggle(); }
+	void off() { if (readPin()) toggle(); }
+};
+
 // ---------------------------------------------------------------
 
 struct IdleProcess::Impl
@@ -29,20 +51,35 @@ struct IdleProcess::Impl
 
     void UpdateAnalog();
 
-    ProcessData<ProcessId::Idle> sharedData;
+    void OnPwrClick();
+    void OnPwrHold();
+    void OnPwrPress();
+    void OnPwrRelease();
 
+    // Data
+    ProcessData<ProcessId::Idle> sharedData;
+//    bool screenOn{true};
+
+    // Handlers
     BMSUpdater m_bmsUpdater;
 
-//    LedIndicator led{GPIOC, GPIO_PIN_13, LedIndicationType::Blinking};
+    Screen screen{LED_GPIO_Port, LED_Pin};
+    LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
-    ButtonEventProvider btnBmsToggle{GPIOA, GPIO_PIN_12, 800, 800};
+    ButtonEventProvider btnBmsToggle{GPIOB, GPIO_PIN_3, 800, 800};
+    ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
     ButtonEventHandler btnSleepHandler{&btnEnterSleep, [&]{ sharedData.powerModeState = PowerModeState::StopRequested; }};
     ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle
    	, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
 //    , [&]{ led.setIndicationType(LedIndicationType(((int)led.getIndicationType() + 1) % int(LedIndicationType::Count))); }
     };
 
-    IOTube btnLedTube{btnBmsToggle, {GPIOC, GPIO_PIN_13}};
+    PwrButtonEventHandler btnPwrHandler{&btnPwr, [&]{ OnPwrClick();}, [&]{ OnPwrHold();}, [&]{ OnPwrPress();}, [&]{ OnPwrRelease();}};
+
+    IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
+
+    IOTube invertorTube{{inv_ok_GPIO_Port, inv_ok_Pin}, {bttn_inv_led_GPIO_Port, bttn_inv_led_Pin}};
+    IOTube usbTube{{usb_on_GPIO_Port, usb_on_Pin}, {bttn_usb_led_GPIO_Port, bttn_usb_led_Pin}};
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -70,27 +107,35 @@ void IdleProcess::Impl::UpdateAnalog()
 
 void IdleProcess::Impl::OnTick()
 {
-    if (sharedData.powerModeState == PowerModeState::StopRequested) {
-        m_bmsUpdater.UpdateAndStop();
-        return;
-    }
 
+	screenLed.onTick();
 //    led.onTick();
-    btnLedTube.onTick();
+    boardLedTube.onTick();
     btnEnterSleep.onTick();
     btnBmsToggle.onTick();
+    btnPwr.onTick();
 
+    invertorTube.onTick();
+    usbTube.onTick();
+
+    if (sharedData.powerModeState == PowerModeState::StopRequested) {
+		m_bmsUpdater.UpdateAndStop();
+//		return;
+	} else
     if (sharedData.screenId != 2) {
         m_bmsUpdater.Update();
     } else {
         UpdateAnalog();
     }
+
+    screen.onTick();
 }
 
 void IdleProcess::Impl::HandleEvents()
 {
     btnSleepHandler.handleEvents();
     btnScrSwitchHandler.handleEvents();
+    btnPwrHandler.handleEvents();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
@@ -102,13 +147,57 @@ void IdleProcess::Impl::HandleEvents()
 
     if (sharedData.powerModeState == PowerModeState::StopRequested)
     {
-        if (m_bmsUpdater.GetStatus() == BMSStatus::Off)
+    	screenLed.setIndicationType(LedIndicationType::FastBlinking);
+        if (m_bmsUpdater.GetStatus() == BMSStatus::NoStatus)
         {
-            ILI9341_EnableSleepMode(true);
-            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-            sharedData.powerModeState = PowerModeState::StopReady;
+        	if (NVIC_GetEnableIRQ(bttn_screen_on_EXTI_IRQn))
+        	{
+        		screen.off();
+        		screenLed.setIndicationType(LedIndicationType::Off);
+        		sharedData.powerModeState = PowerModeState::StopReady;
+        	}
         }
     }
+    else
+    {
+    	if (m_bmsUpdater.isPowerOn())
+    	{
+    		if (m_bmsUpdater.GetStatus() != BMSStatus::Error && m_bmsUpdater.GetData().isValid())
+    		{
+    			screenLed.setIndicationType(LedIndicationType::On);
+    		}
+    		else
+    		{
+    			screenLed.setIndicationType(LedIndicationType::ShuffleBlinking);
+    		}
+    	}
+    	else
+    	{
+    		screenLed.setIndicationType(LedIndicationType::Off);
+    	}
+    }
+}
+
+
+void IdleProcess::Impl::OnPwrPress()
+{
+	HAL_NVIC_DisableIRQ(bttn_screen_on_EXTI_IRQn);
+}
+
+void IdleProcess::Impl::OnPwrRelease()
+{
+	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
+}
+
+void IdleProcess::Impl::OnPwrClick()
+{
+	screen.toggle();
+}
+
+void IdleProcess::Impl::OnPwrHold()
+{
+	sharedData.powerModeState = PowerModeState::StopRequested;
+	screen.off();
 }
 
 
@@ -127,7 +216,7 @@ void IdleProcess::Init()
     SharedData::get().setProcessId<ProcessId::Idle>(&m_pimpl->sharedData);
 
     m_tickRate = 5;
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+    m_pimpl->screen.on();
 }
 
 void IdleProcess::Update()
@@ -135,7 +224,9 @@ void IdleProcess::Update()
 //    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 
     m_pimpl->OnTick();
-    MX_TouchGFX_Process();
+//    if (m_pimpl->screen.readPin()) {
+//    	MX_TouchGFX_Process();
+//    }
     m_pimpl->HandleEvents();
 
     if (m_pimpl->sharedData.powerModeState == PowerModeState::StopReady)
@@ -143,8 +234,7 @@ void IdleProcess::Update()
         EnterStopMode();
 //        m_pimpl->sharedData.sleepingMode = 0;
         m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
-        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-        ILI9341_EnableSleepMode(false);
+        m_pimpl->screen.on();
     }
 }
 

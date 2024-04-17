@@ -94,20 +94,37 @@ void BMSHandler::Request(uint8_t* frameData, uint16_t frameLen)
     m_status = getRequestStatus(status);
 }
 
-void BMSHandler::RequestTurnOn()
+bool BMSHandler::RequestTurnOn()
 {
 //    uint16_t len = FillTxData(txDataBuffer, 0x01);
 //    Request(txDataBuffer, len);
-    m_bmsOnResetTick = HAL_GetTick() + 200;
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-    m_status = BMSStatus::OnRequested;
+//    m_bmsOnResetTick = HAL_GetTick() + 200;
+//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+//    m_status = BMSStatus::OnRequested;
+
+    if (isPowerOn() == isPowerRequested()) {
+    	m_bmsPwrRequest.togglePin();
+    }
+    return isPowerOn();
 }
 
-void BMSHandler::RequestTurnOff()
+bool BMSHandler::RequestTurnOff()
 {
-    m_bmsOnResetTick = HAL_GetTick() + 2500;
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-    m_status = BMSStatus::OffRequested;
+//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+//    m_status = BMSStatus::OffRequested;
+	if (isPowerOn()) {
+		if (m_bmsOnResetTick <= HAL_GetTick())
+		{
+			if (!isPowerRequested()) {
+				m_bmsOnResetTick = HAL_GetTick() + 2500;
+			} else {
+				m_bmsOnResetTick = HAL_GetTick() + 500;
+			}
+			m_bmsPwrRequest.togglePin();
+		}
+
+	}
+	return !isPowerOn();
 }
 
 void BMSHandler::RequestAllData()
@@ -200,66 +217,79 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 void BMSUpdater::Update()
 {
-    if (m_status == BMSStatus::Off)
-    {
-        RequestTurnOn();
-    }
-    else if (m_status == BMSStatus::OnRequested)
-    {
-        if (m_bmsOnResetTick <= HAL_GetTick())
-        {
-            m_bmsOnResetTick = 0;
-            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-            RequestAllData();
-        }
-    }
-    else if (m_status == BMSStatus::Requested)
-    {
-        if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
-        {
-            m_status = BMSStatus::RequestTimedOut;
-            debugMsg = "request timed out";
-            RequestAllData();
-        }
-    }
-    else
-    {
-        if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
-        {
-            errFlags |= BMSErrorFlags::ValidResponseTimeout;
-            debugMsg = "valid response timed out";
-            RequestTurnOn();
-        }
-        if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
-        {
-            m_status = BMSStatus::InfoTimedOut;
-            debugMsg = "info timed out";
-            RequestAllData();
-        }
-    }
+//    if (m_status == BMSStatus::Off)
+//    {
+//        RequestTurnOn();
+//    }
+//    else if (m_status == BMSStatus::OnRequested)
+//    {
+//        if (m_bmsOnResetTick <= HAL_GetTick())
+//        {
+//            m_bmsOnResetTick = 0;
+//            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+//            RequestAllData();
+//        }
+//    }
 
-    m_lastEvent = BMSUpdaterEvent::NoEvent;
-    if (m_prevStatus != m_status)
-    {
-        m_lastEvent = BMSUpdaterEvent::Updated;
-        m_prevStatus = m_status;
-    }
+	if (RequestTurnOn())
+	{
+		if (m_status == BMSStatus::NoStatus)
+		{
+			RequestAllData();
+		}
+		else if (m_status == BMSStatus::Requested)
+		{
+			if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
+			{
+				m_status = BMSStatus::RequestTimedOut;
+				debugMsg = "request timed out";
+				RequestAllData();
+			}
+		}
+		else
+		{
+			if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
+			{
+				errFlags |= BMSErrorFlags::ValidResponseTimeout;
+				debugMsg = "valid response timed out";
+	//            RequestTurnOn();
+				RequestAllData();
+			}
+			if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+			{
+				m_status = BMSStatus::InfoTimedOut;
+				debugMsg = "info timed out";
+				RequestAllData();
+			}
+		}
+
+		m_lastEvent = BMSUpdaterEvent::NoEvent;
+		if (m_prevStatus != m_status)
+		{
+			m_lastEvent = BMSUpdaterEvent::Updated;
+			m_prevStatus = m_status;
+		}
+	}
 }
 
 void BMSUpdater::UpdateAndStop()
 {
-    if (m_status == BMSStatus::OffRequested)
-    {
-        if (m_bmsOnResetTick <= HAL_GetTick())
-        {
-            m_bmsOnResetTick = 0;
-            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-            m_status = BMSStatus::Off;
-        }
-    }
-    else if (m_status != BMSStatus::Off)
-    {
-        RequestTurnOff();
-    }
+//    if (m_status == BMSStatus::OffRequested)
+//    {
+//        if (m_bmsOnResetTick <= HAL_GetTick())
+//        {
+//            m_bmsOnResetTick = 0;
+//            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+//            m_status = BMSStatus::Off;
+//        }
+//    }
+//    else if (m_status != BMSStatus::Off)
+//    {
+//        RequestTurnOff();
+//    }
+	if (RequestTurnOff())
+	{
+		m_status = BMSStatus::NoStatus;
+	}
 }
 
