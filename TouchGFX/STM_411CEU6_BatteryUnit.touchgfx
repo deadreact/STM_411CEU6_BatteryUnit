@@ -387,6 +387,7 @@
             "Name": "headerBox",
             "Width": 320,
             "Height": 50,
+            "Visible": false,
             "Color": {
               "Red": 31,
               "Green": 32,
@@ -399,6 +400,7 @@
             "Y": 190,
             "Width": 320,
             "Height": 50,
+            "Visible": false,
             "LockPosition": true,
             "Color": {
               "Red": 15,

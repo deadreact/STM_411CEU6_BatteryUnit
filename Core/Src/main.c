@@ -514,8 +514,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : bms_on_Pin bttn_screen_led_Pin bttn_usb_led_Pin */
-  GPIO_InitStruct.Pin = bms_on_Pin|bttn_screen_led_Pin|bttn_usb_led_Pin;
+  /*Configure GPIO pin : bms_on_Pin */
+  GPIO_InitStruct.Pin = bms_on_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(bms_on_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : bttn_screen_led_Pin bttn_usb_led_Pin */
+  GPIO_InitStruct.Pin = bttn_screen_led_Pin|bttn_usb_led_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

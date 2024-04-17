@@ -13,10 +13,12 @@ Screen1ViewBase::Screen1ViewBase()
 
     headerBox.setPosition(0, 0, 320, 50);
     headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
+    headerBox.setVisible(false);
     add(headerBox);
 
     footerBox.setPosition(0, 190, 320, 50);
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
+    footerBox.setVisible(false);
     add(footerBox);
 
     content.setPosition(0, 0, 320, 240);
