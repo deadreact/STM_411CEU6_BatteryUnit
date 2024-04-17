@@ -5,7 +5,23 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include "button.h"
+#include <gpio_wrappers/button.h>
+
+namespace
+{
+//    template <typename C, typename R>
+//    R get_method_return_type(R(C::*)()const);
+
+    template <typename F, typename... Args>
+    void execute(const F& fn, Args&&... args) {
+        fn(std::forward(args)...);
+    }
+
+    template <typename... Args>
+    void execute(void(*fn)(Args...), Args... args) {
+        (*fn)(args...);
+    }
+}
 
 Button::Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
     : SinglePinElement(GPIOx, GPIO_Pin)
@@ -106,7 +122,7 @@ void ButtonEventHandler::handleEvent(ButtonEvent event)
         case ButtonEvent::Release:
         {
             if (m_lastEvent == ButtonEvent::Press) {
-                if (m_onClick) m_onClick();
+                if (m_onClick) execute(m_onClick);
             }
             m_lastEvent = event;
 
@@ -116,7 +132,7 @@ void ButtonEventHandler::handleEvent(ButtonEvent event)
             break;
         case ButtonEvent::Hold:
         {
-            if (m_onHold) m_onHold();
+            if (m_onHold) execute(m_onHold);
             m_lastEvent = event;
         } break;
         default:

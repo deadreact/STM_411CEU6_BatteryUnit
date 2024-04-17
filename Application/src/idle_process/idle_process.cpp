@@ -5,17 +5,19 @@
  *      Author: deadreact
  */
 
-#include "idle_process.h"
+#include "../idle_process/idle_process.h"
+
 #include "power_modes.h"
-#include <shared_data.h>
 #include "app_touchgfx.h"
 #include "stm32f4xx_hal.h"
-#include "../button.h"
-#include "../led.h"
+#include <gpio_wrappers/button.h>
+#include <gpio_wrappers/led.h>
 #include "main.h"
-#include "../BMS/bms_handler.h"
 #include <cstring>
 #include <ili9341.h>
+#include <shared_data.h>
+
+#include <bms/bms_handler.h>
 
 // ---------------------------------------------------------------
 
@@ -44,21 +46,21 @@ extern ADC_HandleTypeDef hadc1;
 
 void IdleProcess::Impl::UpdateAnalog()
 {
-	ADC_ChannelConfTypeDef sConfig = {0};
-	sConfig.Rank = 1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-	sConfig.Channel = ADC_CHANNEL_1;
-	HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 500);
-	sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
-	sConfig.Channel = ADC_CHANNEL_4;
-	HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 500);
-	sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
-	HAL_ADC_Stop(&hadc1);
+    ADC_ChannelConfTypeDef sConfig = {0};
+    sConfig.Rank = 1;
+    sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+    sConfig.Channel = ADC_CHANNEL_1;
+    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 500);
+    sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+    sConfig.Channel = ADC_CHANNEL_4;
+    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 500);
+    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
 }
 
 
@@ -66,7 +68,7 @@ void IdleProcess::Impl::UpdateAnalog()
 void IdleProcess::Impl::OnTick()
 {
     if (sharedData.powerModeState == PowerModeState::StopRequested) {
-    	m_bmsUpdater.UpdateAndStop();
+        m_bmsUpdater.UpdateAndStop();
         return;
     }
 
@@ -75,33 +77,33 @@ void IdleProcess::Impl::OnTick()
     btnBmsToggle.onTick();
 
     if (sharedData.screenId != 2) {
-    	m_bmsUpdater.Update();
+        m_bmsUpdater.Update();
     } else {
-    	UpdateAnalog();
+        UpdateAnalog();
     }
 }
 
 void IdleProcess::Impl::HandleEvents()
 {
-	btnSleepHandler.handleEvents();
-	btnScrSwitchHandler.handleEvents();
+    btnSleepHandler.handleEvents();
+    btnScrSwitchHandler.handleEvents();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-    	sharedData.bms = m_bmsUpdater.GetData();
-		sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
-		sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
+        sharedData.bms = m_bmsUpdater.GetData();
+        sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
+        sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
     }
 
     if (sharedData.powerModeState == PowerModeState::StopRequested)
     {
-    	if (m_bmsUpdater.GetStatus() == BMSStatus::Off)
-    	{
-    		ILI9341_EnableSleepMode(true);
-    		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-    		sharedData.powerModeState = PowerModeState::StopReady;
-    	}
+        if (m_bmsUpdater.GetStatus() == BMSStatus::Off)
+        {
+            ILI9341_EnableSleepMode(true);
+            HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+            sharedData.powerModeState = PowerModeState::StopReady;
+        }
     }
 }
 

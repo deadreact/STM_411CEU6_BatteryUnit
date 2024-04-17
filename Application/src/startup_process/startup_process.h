@@ -5,8 +5,8 @@
  *      Author: deadreact
  */
 
-#ifndef STARTUP_STARTUP_PROCESS_H_
-#define STARTUP_STARTUP_PROCESS_H_
+#ifndef STARTUP_PROCESS_STARTUP_PROCESS_H_
+#define STARTUP_PROCESS_STARTUP_PROCESS_H_
 
 #include <shared_data.h>
 #include <stdint.h>
@@ -24,4 +24,4 @@ private:
     uint32_t m_startTick;
 };
 
-#endif /* STARTUP_STARTUP_PROCESS_H_ */
+#endif /* STARTUP_PROCESS_STARTUP_PROCESS_H_ */

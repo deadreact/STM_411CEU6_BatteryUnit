@@ -5,10 +5,11 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include "program.h"
+#include <program.h>
 #include "stm32f4xx_hal.h"
-#include "Startup/startup_process.h"
-#include "Idle/idle_process.h"
+
+#include "idle_process/idle_process.h"
+#include "startup_process/startup_process.h"
 
 void Program_Process()
 {

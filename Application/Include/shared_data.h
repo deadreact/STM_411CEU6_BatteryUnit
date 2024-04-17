@@ -8,15 +8,15 @@
 #ifndef SHARED_DATA_H_
 #define SHARED_DATA_H_
 
+#include <bms/bms_data.h>
 #include <stdint.h>
 #include <string>
-#include <bms_data.h>
 
 enum class PowerModeState: uint8_t
 {
     Normal,
     StopRequested,
-	StopReady,
+    StopReady,
     WakedUp
 };
 

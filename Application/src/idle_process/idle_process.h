@@ -5,8 +5,8 @@
  *      Author: deadreact
  */
 
-#ifndef IDLE_IDLE_PROCESS_H_
-#define IDLE_IDLE_PROCESS_H_
+#ifndef IDLE_PROCESS_IDLE_PROCESS_H_
+#define IDLE_PROCESS_IDLE_PROCESS_H_
 
 #include "../process.h"
 
@@ -23,4 +23,4 @@ private:
     Impl* m_pimpl{nullptr};
 };
 
-#endif /* IDLE_IDLE_PROCESS_H_ */
+#endif /* IDLE_PROCESS_IDLE_PROCESS_H_ */

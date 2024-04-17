@@ -20,11 +20,11 @@
   */
 /* USER CODE END Header */
 
+#include <shared_data.h>
 #include <TouchGFXHAL.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
 
-#include <shared_data.h>
 
 using namespace touchgfx;
 

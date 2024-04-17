@@ -5,7 +5,7 @@
  *      Author: deadreact
  */
 
-#include "shared_data.h"
+#include <shared_data.h>
 
 SharedData& SharedData::get()
 {

@@ -5,11 +5,12 @@
  *      Author: deadreact
  */
 
-#include "startup_process.h"
+#include "../startup_process/startup_process.h"
+
+#include <shared_data.h>
 #include "power_modes.h"
 #include "app_touchgfx.h"
 #include "stm32f4xx_hal.h"
-#include <shared_data.h>
 #include "main.h"
 
 static const int kDuration = 7000;

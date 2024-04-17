@@ -8,7 +8,7 @@
 #ifndef BMS_BMS_HANDLER_H_
 #define BMS_BMS_HANDLER_H_
 
-#include "bms_data.h"
+#include <bms/bms_data.h>
 #include "stm32f4xx_hal.h"
 #include <string>
 
@@ -54,23 +54,23 @@ protected:
 
 enum class BMSUpdaterEvent : uint8_t
 {
-	NoEvent,
-	Updated
+    NoEvent,
+    Updated
 };
 
 class BMSUpdater : public BMSHandler
 {
 public:
-	void Update();
-	void UpdateAndStop();
-	BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
+    void Update();
+    void UpdateAndStop();
+    BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
 
 private:
-	BMSStatus m_prevStatus { BMSStatus::Off };
-	BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
-	const uint32_t m_requestTimeout{1000};
-	const uint32_t m_invalidatePeriodMsec{500}; //
-	const uint32_t m_validResponseTimeout{10000}; //
+    BMSStatus m_prevStatus { BMSStatus::Off };
+    BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
+    const uint32_t m_requestTimeout{1000};
+    const uint32_t m_invalidatePeriodMsec{500}; //
+    const uint32_t m_validResponseTimeout{10000}; //
 };
 
 

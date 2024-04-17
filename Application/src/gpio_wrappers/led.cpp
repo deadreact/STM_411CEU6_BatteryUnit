@@ -5,7 +5,7 @@
  *      Author: deadreact
  */
 
-#include "led.h"
+#include <gpio_wrappers/led.h>
 
 Led::Led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
     : SinglePinElement(GPIOx, GPIO_Pin)
