@@ -31,8 +31,6 @@ void Led::reset()
     m_lastToggleTick = 0;
 }
 
-bool Led::isOn() const { return HAL_GPIO_ReadPin(m_GPIOx, m_pin); }
-
 void Led::setInterval(uint32_t interval) { m_interval = interval; }
 uint32_t Led::getInterval() const { return m_interval; }
 

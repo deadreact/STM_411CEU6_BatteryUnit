@@ -8,7 +8,7 @@
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
-#include "interface.h"
+#include <gpio_wrappers/interface.h>
 #include <functional>
 
 class Button : public SinglePinElement, public ITickHandler
@@ -35,7 +35,7 @@ enum class ButtonEvent : uint8_t
     Hold
 };
 
-class ButtonEventProvider : protected Button
+class ButtonEventProvider : public Button
 {
 public:
     ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t firstHoldTreshold = 800, uint32_t nextHoldTreshold = 0xffffffff/*disable*/);

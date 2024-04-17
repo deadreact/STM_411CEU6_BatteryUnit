@@ -27,13 +27,13 @@ Button::Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
     : SinglePinElement(GPIOx, GPIO_Pin)
     , m_lastChangeTick(HAL_GetTick())
     , m_lastStateChangeTick(m_lastChangeTick)
-    , m_lastPinState(HAL_GPIO_ReadPin(GPIOx, GPIO_Pin))
+    , m_lastPinState(readPin())
     , m_state(m_lastPinState)
 {}
 
 void Button::onTick()
 {
-    const auto state = HAL_GPIO_ReadPin(m_GPIOx, m_pin);
+    const auto state = readPin();
 
     if (state != m_lastPinState)
     {

@@ -8,7 +8,7 @@
 #ifndef LED_H_
 #define LED_H_
 
-#include "interface.h"
+#include <gpio_wrappers/interface.h>
 
 class Led : public SinglePinElement, public ITickHandler
 {
@@ -22,7 +22,7 @@ public:
     void toggle() const;
     void reset();
 
-    bool isOn() const;
+    inline bool isOn() const { return readPin(); }
 
     void setInterval(uint32_t interval);
     uint32_t getInterval() const;
