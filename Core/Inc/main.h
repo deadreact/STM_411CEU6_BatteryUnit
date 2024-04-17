@@ -94,6 +94,7 @@ void Error_Handler(void);
 #define bttn_inv_on_GPIO_Port GPIOB
 #define bms_ok_Pin GPIO_PIN_7
 #define bms_ok_GPIO_Port GPIOB
+#define bms_ok_EXTI_IRQn EXTI9_5_IRQn
 #define inv_ok_Pin GPIO_PIN_8
 #define inv_ok_GPIO_Port GPIOB
 #define inv_on_Pin GPIO_PIN_9
