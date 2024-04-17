@@ -234,7 +234,7 @@ void IdleProcess::Update()
         EnterStopMode();
 //        m_pimpl->sharedData.sleepingMode = 0;
         m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
-        m_pimpl->screen.on();
+//        m_pimpl->screen.on();
     }
 }
 

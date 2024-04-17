@@ -534,11 +534,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(bttn_screen_on_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : bttn_usb_on_Pin bttn_inv_on_Pin bms_ok_Pin */
-  GPIO_InitStruct.Pin = bttn_usb_on_Pin|bttn_inv_on_Pin|bms_ok_Pin;
+  /*Configure GPIO pins : bttn_usb_on_Pin bttn_inv_on_Pin */
+  GPIO_InitStruct.Pin = bttn_usb_on_Pin|bttn_inv_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : bms_ok_Pin */
+  GPIO_InitStruct.Pin = bms_ok_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(bms_ok_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : inv_ok_Pin */
   GPIO_InitStruct.Pin = inv_ok_Pin;

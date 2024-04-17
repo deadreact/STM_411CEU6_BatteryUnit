@@ -11,16 +11,6 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    headerBox.setPosition(0, 0, 320, 50);
-    headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
-    headerBox.setVisible(false);
-    add(headerBox);
-
-    footerBox.setPosition(0, 190, 320, 50);
-    footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
-    footerBox.setVisible(false);
-    add(footerBox);
-
     content.setPosition(0, 0, 320, 240);
     content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
@@ -58,16 +48,24 @@ Screen1ViewBase::Screen1ViewBase()
     capacityContainerLarge.setXY(0, 48);
     content.add(capacityContainerLarge);
 
-    capacityContainerSmall.setPosition(0, 48, 320, 192);
+    capacityContainerSmall.setPosition(0, 0, 320, 240);
     capacityContainerSmall.setVisible(false);
-    ioValue.setXY(87, 141);
+    ioValue.setXY(87, 189);
     capacityContainerSmall.add(ioValue);
 
-    chargeTimeContainer.setXY(6, 15);
+    chargeTimeContainer.setXY(6, 63);
     capacityContainerSmall.add(chargeTimeContainer);
 
-    capacityContainer.setXY(185, 27);
+    capacityContainer.setXY(185, 75);
     capacityContainerSmall.add(capacityContainer);
+
+    footerBox.setPosition(0, 190, 320, 5);
+    footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
+    capacityContainerSmall.add(footerBox);
+
+    headerBox.setPosition(0, 45, 320, 5);
+    headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
+    capacityContainerSmall.add(headerBox);
 
     content.add(capacityContainerSmall);
 

@@ -32,8 +32,6 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box headerBox;
-    touchgfx::Box footerBox;
     touchgfx::Container content;
     touchgfx::Container iconsContainer;
     touchgfx::Image icon1;
@@ -47,6 +45,8 @@ protected:
     IOValue ioValue;
     ChargeTime chargeTimeContainer;
     BatteryStatus capacityContainer;
+    touchgfx::Box footerBox;
+    touchgfx::Box headerBox;
 
 private:
 

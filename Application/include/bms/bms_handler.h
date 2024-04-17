@@ -21,7 +21,7 @@ public:
     BMSHandler();
     ~BMSHandler();
 
-    bool isPowerOn() const { return !m_bmsPwrStatus.readPin(); }
+    bool isPowerOn() const { return m_bmsPwrStatus.readPin(); }
     bool isPowerRequested() const { return m_bmsPwrRequest.readPin(); }
 
     void Request(uint8_t* frameData, uint16_t frameLen);

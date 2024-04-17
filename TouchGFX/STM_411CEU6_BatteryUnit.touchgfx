@@ -383,32 +383,6 @@
         "Name": "Screen1",
         "Components": [
           {
-            "Type": "Box",
-            "Name": "headerBox",
-            "Width": 320,
-            "Height": 50,
-            "Visible": false,
-            "Color": {
-              "Red": 31,
-              "Green": 32,
-              "Blue": 34
-            }
-          },
-          {
-            "Type": "Box",
-            "Name": "footerBox",
-            "Y": 190,
-            "Width": 320,
-            "Height": 50,
-            "Visible": false,
-            "LockPosition": true,
-            "Color": {
-              "Red": 15,
-              "Green": 18,
-              "Blue": 23
-            }
-          },
-          {
             "Type": "Container",
             "Name": "content",
             "Width": 320,
@@ -493,16 +467,15 @@
               {
                 "Type": "Container",
                 "Name": "capacityContainerSmall",
-                "Y": 48,
                 "Width": 320,
-                "Height": 192,
+                "Height": 240,
                 "Visible": false,
                 "Components": [
                   {
                     "Type": "CustomContainerInstance",
                     "Name": "ioValue",
                     "X": 87,
-                    "Y": 141,
+                    "Y": 189,
                     "Width": 232,
                     "Height": 50,
                     "CustomContainerDefinitionName": "IOValue"
@@ -511,7 +484,7 @@
                     "Type": "CustomContainerInstance",
                     "Name": "chargeTimeContainer",
                     "X": 6,
-                    "Y": 15,
+                    "Y": 63,
                     "Width": 166,
                     "Height": 127,
                     "CustomContainerDefinitionName": "ChargeTime"
@@ -520,10 +493,34 @@
                     "Type": "CustomContainerInstance",
                     "Name": "capacityContainer",
                     "X": 185,
-                    "Y": 27,
+                    "Y": 75,
                     "Width": 110,
                     "Height": 91,
                     "CustomContainerDefinitionName": "BatteryStatus"
+                  },
+                  {
+                    "Type": "Box",
+                    "Name": "footerBox",
+                    "Y": 190,
+                    "Width": 320,
+                    "Height": 5,
+                    "Color": {
+                      "Red": 15,
+                      "Green": 18,
+                      "Blue": 23
+                    }
+                  },
+                  {
+                    "Type": "Box",
+                    "Name": "headerBox",
+                    "Y": 45,
+                    "Width": 320,
+                    "Height": 5,
+                    "Color": {
+                      "Red": 31,
+                      "Green": 32,
+                      "Blue": 34
+                    }
                   }
                 ]
               }
