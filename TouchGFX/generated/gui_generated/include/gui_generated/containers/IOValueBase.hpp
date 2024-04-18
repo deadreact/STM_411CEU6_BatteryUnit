@@ -31,7 +31,7 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t VALUE_SIZE = 7;
+    static const uint16_t VALUE_SIZE = 5;
     touchgfx::Unicode::UnicodeChar valueBuffer[VALUE_SIZE];
 
 private:

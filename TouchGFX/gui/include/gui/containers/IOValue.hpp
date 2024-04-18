@@ -2,6 +2,7 @@
 #define IOVALUE_HPP
 
 #include <gui_generated/containers/IOValueBase.hpp>
+#include <gui/common/common.h>
 
 class IOValue : public IOValueBase
 {
@@ -10,15 +11,13 @@ public:
     virtual ~IOValue() {}
 
     virtual void initialize();
-    void setValue(float val);
+    void setValue(int val);
 
 protected:
-    enum class State { Idle, Charge, Uncharge };
-
-    void setState(State state);
+    void setState(ChargeState state);
 protected:
-    float m_value{0.f};
-    State m_state{State::Idle};
+    int m_value{0};
+    ChargeState m_state{ChargeState::Idle};
 };
 
 #endif // IOVALUE_HPP

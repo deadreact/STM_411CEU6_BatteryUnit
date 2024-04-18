@@ -12,45 +12,58 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
-    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
-    icon1.setXY(52, 2);
-    icon1.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_POWER_ID));
-    icon1.setAlpha(10);
+    icon1.setXY(52, 1);
+    icon1.setBitmap(touchgfx::Bitmap(BITMAP_ICON7_ID));
+    icon1.setVisible(false);
     iconsContainer.add(icon1);
 
-    icon2.setXY(102, 2);
-    icon2.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_COOL_ID));
-    icon2.setAlpha(10);
-    iconsContainer.add(icon2);
+    _icon2.setXY(102, 2);
+    _icon2.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
+    _icon2.setVisible(false);
+    iconsContainer.add(_icon2);
 
     icon3.setXY(152, 2);
-    icon3.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_SNOW_ID));
-    icon3.setAlpha(10);
+    icon3.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
+    icon3.setVisible(false);
     iconsContainer.add(icon3);
 
     icon4.setXY(202, 2);
-    icon4.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_ELECTRICITY_ID));
-    icon4.setAlpha(10);
+    icon4.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
+    icon4.setVisible(false);
     iconsContainer.add(icon4);
 
-    icon5.setXY(252, 2);
-    icon5.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_TEMPERATURE_ID));
-    icon5.setAlpha(10);
+    icon5.setXY(250, 0);
+    icon5.setBitmap(touchgfx::Bitmap(BITMAP_ICON5_ID));
+    icon5.setVisible(false);
     iconsContainer.add(icon5);
 
     warning.setXY(0, 2);
     warning.setVisible(false);
     iconsContainer.add(warning);
 
+    icon_fan.setXY(102, 2);
+    icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
+    icon_fan.setWidth(48);
+    icon_fan.setHeight(48);
+    icon_fan.setBitmapPosition(0.0f, 0.0f);
+    icon_fan.setScale(1.0f);
+    icon_fan.setCameraDistance(1000.0f);
+    icon_fan.setOrigo(24.0f, 24.0f, 1000.0f);
+    icon_fan.setCamera(24.0f, 24.0f);
+    icon_fan.setAngles(0.0f, 0.0f, 0.0f);
+    icon_fan.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    icon_fan.setVisible(false);
+    iconsContainer.add(icon_fan);
+
     content.add(iconsContainer);
 
     capacityContainerLarge.setXY(0, 48);
+    capacityContainerLarge.setVisible(false);
     content.add(capacityContainerLarge);
 
     capacityContainerSmall.setPosition(0, 0, 320, 240);
-    capacityContainerSmall.setVisible(false);
-    ioValue.setXY(87, 189);
+    ioValue.setXY(0, 190);
     capacityContainerSmall.add(ioValue);
 
     chargeTimeContainer.setXY(6, 63);
@@ -59,11 +72,11 @@ Screen1ViewBase::Screen1ViewBase()
     capacityContainer.setXY(185, 75);
     capacityContainerSmall.add(capacityContainer);
 
-    footerBox.setPosition(0, 190, 320, 5);
+    footerBox.setPosition(0, 190, 320, 3);
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
     capacityContainerSmall.add(footerBox);
 
-    headerBox.setPosition(0, 45, 320, 5);
+    headerBox.setPosition(0, 47, 320, 3);
     headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
     capacityContainerSmall.add(headerBox);
 

@@ -23,7 +23,7 @@ KEEP extern const uint32_t indicesUa[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     52,  // T_REMAINING_TIME: "??? ???????????"
     277, // T_HOURS: "???"
     83,  // T_RECHARGING_TIME: "??? ??????????"
-    265, // T___SINGLEUSE_SX70: "0.0"
+    267, // T___SINGLEUSE_SX70: "0"
     284, // T_MINS: "??"
     144, // T_SOC: "<>%"
     265, // T___SINGLEUSE_82HO: "0.0"

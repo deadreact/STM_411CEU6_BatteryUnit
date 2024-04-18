@@ -33,6 +33,9 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::VALUELARGE2:
         // arial_70_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+    case Typography::LARGETEXT:
+        // SourceSansPro_Black_25_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
     default:
         return 0;
     }

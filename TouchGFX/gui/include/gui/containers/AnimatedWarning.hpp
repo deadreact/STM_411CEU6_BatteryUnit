@@ -7,7 +7,7 @@ class AnimatedWarning : public AnimatedWarningBase
 {
 public:
     AnimatedWarning();
-    virtual ~AnimatedWarning() {}
+    virtual ~AnimatedWarning();
 
     virtual void initialize();
     virtual void handleTickEvent();

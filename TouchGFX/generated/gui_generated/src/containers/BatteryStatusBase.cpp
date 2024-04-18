@@ -24,6 +24,11 @@ BatteryStatusBase::BatteryStatusBase()
     capacityValue.setBorderSize(5);
     add(capacityValue);
 
+    animBox.setPosition(92, 54, 4, 30);
+    animBox.setColor(touchgfx::Color::getColorFromRGB(17, 234, 17));
+    animBox.setVisible(false);
+    add(animBox);
+
     capacityImage.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_IMAGEPROGRESS_STYLED_BATTERIES_BATTERY_LARGE_ID));
     capacityImage.setPosition(0, 49, 110, 40);
     capacityImage.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);

@@ -1,9 +1,15 @@
 #include <gui/containers/BatteryStatus.hpp>
 #include <touchgfx/Color.hpp>
+#include "stm32f4xx_hal.h"
 
 BatteryStatus::BatteryStatus()
 {
+	touchgfx::Application::getInstance()->registerTimerWidget(this);
+}
 
+BatteryStatus::~BatteryStatus()
+{
+	touchgfx::Application::getInstance()->unregisterTimerWidget(this);
 }
 
 void BatteryStatus::initialize()
@@ -11,14 +17,75 @@ void BatteryStatus::initialize()
     BatteryStatusBase::initialize();
 }
 
+void BatteryStatus::handleTickEvent()
+{
+	static int16_t animDuration = 1000;
+	static int16_t frameRate = 1000/60;
+	if (m_state != ChargeState::Idle)
+	{
+		int duration = HAL_GetTick() - m_dirChangeTick;
+		auto frame = duration / frameRate;
+		if (frame != m_lastFrame)
+		{
+			if (duration >= animDuration) {
+				m_dirChangeTick = HAL_GetTick();
+				animBox.setAlpha(255);
+			} else {
+				// ((animDuration - duration) * (-255) + duration * 255)/ animDuration
+				auto nAlpha = 510*duration/animDuration - 255;
+				animBox.setAlpha(nAlpha < 0 ? -nAlpha : nAlpha);
+				m_lastFrame = frame;
+			}
+
+			animBox.invalidate();
+		}
+	}
+}
+
 void BatteryStatus::setValue(int val)
 {
 	if (val != m_value)
 	{
 		m_value = val;
-		capacityValue.setWidth(val);
-		capacityValue.setColor(touchgfx::Color::getColorFromRGB(255 - val * 2.5, val * 2.5, 5));
+		auto color = touchgfx::Color::getColorFromRGB(255 - val * 2.5, val * 2.5, 5);
+		capacityValue.setWidth(10 + val * 0.9);
+		capacityValue.setColor(color);
 		Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", val);
+
+//		if (m_state == ChargeState::Charge) {
+			int16_t x = ((100 - m_value) * 7 + m_value * 95)/100;
+			animBox.setX(x);
+//		} else if (m_state == ChargeState::Uncharge) {
+//			int16_t x = ((100 - m_value) * 6 + m_value * 86)/100;
+//			int16_t w = ((100 - m_value) * 1 + m_value * 10)/100;
+//			animBox.setX(x);
+//			animBox.setWidth(w);
+//		}
+
 		invalidateContent();
 	}
 }
+
+void BatteryStatus::setChargeState(ChargeState state)
+{
+	if (m_state != state)
+	{
+		m_state = state;
+		animBox.setColor(state == ChargeState::Charge ? 0xff11ea11 : 0xffea1111);
+		animBox.setVisible(state != ChargeState::Idle);
+
+		if (state == ChargeState::Charge) {
+			int16_t x = ((100 - m_value) * 7 + m_value * 95 + 50)/100;
+			int16_t w = ((100 - m_value) * 10 + m_value * 4 + 50)/100;
+			animBox.setX(x);
+			animBox.setWidth(w);
+		} else if (state == ChargeState::Uncharge) {
+			int16_t x = ((100 - m_value) * 6 + m_value * 86 + 50)/100;
+			int16_t w = ((100 - m_value) * 1 + m_value * 10 + 50)/100;
+			animBox.setX(x);
+			animBox.setWidth(w);
+		}
+		invalidateContent();
+	}
+}
+

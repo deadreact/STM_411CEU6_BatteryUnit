@@ -11,6 +11,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <gui/containers/AnimatedWarning.hpp>
+#include <touchgfx/widgets/AnimationTextureMapper.hpp>
 #include <gui/containers/BatteryStatusLarge.hpp>
 #include <gui/containers/IOValue.hpp>
 #include <gui/containers/ChargeTime.hpp>
@@ -35,11 +36,12 @@ protected:
     touchgfx::Container content;
     touchgfx::Container iconsContainer;
     touchgfx::Image icon1;
-    touchgfx::Image icon2;
+    touchgfx::Image _icon2;
     touchgfx::Image icon3;
     touchgfx::Image icon4;
     touchgfx::Image icon5;
     AnimatedWarning warning;
+    touchgfx::AnimationTextureMapper icon_fan;
     BatteryStatusLarge capacityContainerLarge;
     touchgfx::Container capacityContainerSmall;
     IOValue ioValue;

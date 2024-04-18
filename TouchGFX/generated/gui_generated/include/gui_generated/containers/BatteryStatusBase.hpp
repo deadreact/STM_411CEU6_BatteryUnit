@@ -8,6 +8,7 @@
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/ScalableImage.hpp>
 
 class BatteryStatusBase : public touchgfx::Container
@@ -27,6 +28,7 @@ protected:
      */
     touchgfx::TextAreaWithOneWildcard capacityTextValue;
     touchgfx::BoxWithBorder capacityValue;
+    touchgfx::Box animBox;
     touchgfx::ScalableImage capacityImage;
 
     /*

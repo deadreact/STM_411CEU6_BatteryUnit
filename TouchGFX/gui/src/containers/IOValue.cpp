@@ -13,37 +13,41 @@ void IOValue::initialize()
     IOValueBase::initialize();
 }
 
-void IOValue::setValue(float val)
+void IOValue::setValue(int val)
 {
 	if (m_value != val)
 	{
-		Unicode::snprintfFloat(valueBuffer, VALUE_SIZE, "%.1f", val);
+		Unicode::snprintf(valueBuffer, VALUE_SIZE, "%d", val < 0 ? -val : val);
 
-		setState(val < 0 ? State::Uncharge : (val > 0 ? State::Charge : State::Idle));
+		setState(val < 0 ? ChargeState::Uncharge : (val > 0 ? ChargeState::Charge : ChargeState::Idle));
 		value.invalidate();
 
 		m_value = val;
 	}
 }
-void IOValue::setState(State state)
+void IOValue::setState(ChargeState state)
 {
 	if (m_state != state)
 	{
-		ioLabel.setVisible(state != State::Idle);
-		value.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
-		Watts.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
+		ioLabel.setVisible(state != ChargeState::Idle);
+		value.setVisible(state != ChargeState::Idle);
+		Watts.setVisible(state != ChargeState::Idle);
+//		value.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
+//		Watts.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
 //#8EEDA6 #ED8E8E
 
-		if (state != State::Idle)
+		if (state != ChargeState::Idle)
 		{
-			TypedTextId textId = state == State::Charge ? T_INPUT : T_OUTPUT;
+			TypedTextId textId = state == ChargeState::Charge ? T_INPUT : T_OUTPUT;
+			uint32_t color = state == ChargeState::Charge ? 0xff11ed11 : 0xffed1111;
 			if (ioLabel.getTypedText().getId() != textId)
 			{
 				ioLabel.setTypedText(touchgfx::TypedText(textId));
-				ioLabel.resizeToCurrentTextWithAlignment();
-				ioLabel.setX(state == State::Charge ? 175 : 163);
-				Watts.setX(state == State::Charge ? 175 : 163);
-				value.setX(state == State::Charge ? 10 : 0);
+				ioLabel.setColor(color);
+//				ioLabel.resizeToCurrentTextWithAlignment();
+//				ioLabel.setX(state == State::Charge ? 175 : 163);
+//				Watts.setX(state == State::Charge ? 175 : 163);
+//				value.setX(state == State::Charge ? 10 : 0);
 			}
 		}
 		m_state = state;

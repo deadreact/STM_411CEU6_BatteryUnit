@@ -213,6 +213,7 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\BatteryStatusLarge.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusLargeBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\common\common.h"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

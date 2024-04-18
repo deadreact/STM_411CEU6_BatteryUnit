@@ -10,11 +10,11 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="OUTPUT" Alignment="Right" TypographyId="MainText">
+      <Text Id="OUTPUT" Alignment="Right" TypographyId="LargeText">
         <Translation Language="GB">OUTPUT</Translation>
         <Translation Language="UA">РОЗРЯД</Translation>
       </Text>
-      <Text Id="INPUT" Alignment="Right" TypographyId="MainText">
+      <Text Id="INPUT" Alignment="Right" TypographyId="LargeText">
         <Translation Language="GB">INPUT</Translation>
         <Translation Language="UA">ЗАРЯД</Translation>
       </Text>
@@ -62,7 +62,7 @@
       </Text>
       <Text Id="__SingleUse_SX70" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">0.0</Translation>
-        <Translation Language="UA">0.0</Translation>
+        <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="Mins" Alignment="Right" TypographyId="MainText">
         <Translation Language="GB">Minutes</Translation>
@@ -163,5 +163,6 @@
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

@@ -387,7 +387,6 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
-            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -399,21 +398,21 @@
                     "Type": "Image",
                     "Name": "icon1",
                     "X": 52,
-                    "Y": 2,
+                    "Y": 1,
                     "Width": 48,
                     "Height": 48,
-                    "RelativeFilename": "grayscale_power.png",
-                    "Alpha": 10
+                    "Visible": false,
+                    "RelativeFilename": "icon7.png"
                   },
                   {
                     "Type": "Image",
-                    "Name": "icon2",
+                    "Name": "_icon2",
                     "X": 102,
                     "Y": 2,
                     "Width": 48,
                     "Height": 48,
-                    "RelativeFilename": "grayscale_cool.png",
-                    "Alpha": 10
+                    "Visible": false,
+                    "RelativeFilename": "icon11.png"
                   },
                   {
                     "Type": "Image",
@@ -422,8 +421,8 @@
                     "Y": 2,
                     "Width": 48,
                     "Height": 48,
-                    "RelativeFilename": "grayscale_snow.png",
-                    "Alpha": 10
+                    "Visible": false,
+                    "RelativeFilename": "icon17.png"
                   },
                   {
                     "Type": "Image",
@@ -432,18 +431,17 @@
                     "Y": 2,
                     "Width": 48,
                     "Height": 48,
-                    "RelativeFilename": "grayscale_electricity.png",
-                    "Alpha": 10
+                    "Visible": false,
+                    "RelativeFilename": "icon15.png"
                   },
                   {
                     "Type": "Image",
                     "Name": "icon5",
-                    "X": 252,
-                    "Y": 2,
+                    "X": 250,
                     "Width": 48,
                     "Height": 48,
-                    "RelativeFilename": "grayscale_temperature.png",
-                    "Alpha": 10
+                    "Visible": false,
+                    "RelativeFilename": "icon5.png"
                   },
                   {
                     "Type": "CustomContainerInstance",
@@ -453,6 +451,25 @@
                     "Height": 48,
                     "Visible": false,
                     "CustomContainerDefinitionName": "AnimatedWarning"
+                  },
+                  {
+                    "Type": "TextureMapper",
+                    "Name": "icon_fan",
+                    "X": 102,
+                    "Y": 2,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "UseAnimation": true,
+                    "RenderingAlgorithm": "Bilinear Interpolation",
+                    "FileNameImage": "icon11.png",
+                    "LockBitmapToCenter": true,
+                    "Scale": 1.0,
+                    "LockOrigoToCenter": true,
+                    "XOrigo": 24.0,
+                    "YOrigo": 24.0,
+                    "ZOrigo": 1000.0,
+                    "CameraDistance": 1000.0
                   }
                 ]
               },
@@ -462,6 +479,7 @@
                 "Y": 48,
                 "Width": 320,
                 "Height": 140,
+                "Visible": false,
                 "CustomContainerDefinitionName": "BatteryStatusLarge"
               },
               {
@@ -469,14 +487,13 @@
                 "Name": "capacityContainerSmall",
                 "Width": 320,
                 "Height": 240,
-                "Visible": false,
+                "LockPosition": true,
                 "Components": [
                   {
                     "Type": "CustomContainerInstance",
                     "Name": "ioValue",
-                    "X": 87,
-                    "Y": 189,
-                    "Width": 232,
+                    "Y": 190,
+                    "Width": 320,
                     "Height": 50,
                     "CustomContainerDefinitionName": "IOValue"
                   },
@@ -503,7 +520,7 @@
                     "Name": "footerBox",
                     "Y": 190,
                     "Width": 320,
-                    "Height": 5,
+                    "Height": 3,
                     "Color": {
                       "Red": 15,
                       "Green": 18,
@@ -513,9 +530,9 @@
                   {
                     "Type": "Box",
                     "Name": "headerBox",
-                    "Y": 45,
+                    "Y": 47,
                     "Width": 320,
-                    "Height": 5,
+                    "Height": 3,
                     "Color": {
                       "Red": 31,
                       "Green": 32,
@@ -604,15 +621,15 @@
       },
       {
         "Name": "IOValue",
-        "X": 90,
         "Y": 190,
-        "Width": 232,
+        "Width": 320,
         "Height": 50,
         "Components": [
           {
             "Type": "TextArea",
             "Name": "value",
-            "Width": 160,
+            "X": 160,
+            "Width": 117,
             "Height": 50,
             "TextId": "IOWildcard",
             "TextRotation": "0",
@@ -621,17 +638,16 @@
               "Green": 181,
               "Blue": 239
             },
-            "Alpha": 44,
             "Wildcard1": {
               "TextId": "__SingleUse_SX70",
               "UseBuffer": true,
-              "BufferSize": 7
+              "BufferSize": 5
             }
           },
           {
             "Type": "TextArea",
             "Name": "Watts",
-            "X": 163,
+            "X": 285,
             "Y": 22,
             "Width": 30,
             "Height": 21,
@@ -641,24 +657,20 @@
               "Red": 143,
               "Green": 181,
               "Blue": 239
-            },
-            "Alpha": 44
+            }
           },
           {
             "Type": "TextArea",
             "Name": "ioLabel",
-            "X": 163,
-            "Y": 4,
-            "Width": 67,
-            "Height": 25,
+            "Width": 160,
+            "Height": 50,
             "TextId": "OUTPUT",
             "TextRotation": "0",
             "Color": {
-              "Red": 143,
-              "Green": 181,
-              "Blue": 239
-            },
-            "Alpha": 44
+              "Red": 237,
+              "Green": 17,
+              "Blue": 17
+            }
           }
         ],
         "Interactions": []
@@ -858,11 +870,26 @@
             "BorderSize": 5
           },
           {
+            "Type": "Box",
+            "Name": "animBox",
+            "X": 92,
+            "Y": 54,
+            "Width": 4,
+            "Height": 30,
+            "Visible": false,
+            "Color": {
+              "Red": 17,
+              "Green": 234,
+              "Blue": 17
+            }
+          },
+          {
             "Type": "ScalableImage",
             "Name": "capacityImage",
             "Y": 49,
             "Width": 110,
             "Height": 40,
+            "LockPosition": true,
             "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
             "ScalingAlgorithm": "Nearest-neighbor"
           }
