@@ -30,12 +30,16 @@ protected:
     touchgfx::Image warningYellow;
     touchgfx::Image warningRed;
     touchgfx::TextAreaWithOneWildcard value;
+    touchgfx::TextAreaWithOneWildcard valueAdditional;
+    touchgfx::TextArea hoursLabel;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t VALUE_SIZE = 4;
     touchgfx::Unicode::UnicodeChar valueBuffer[VALUE_SIZE];
+    static const uint16_t VALUEADDITIONAL_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar valueAdditionalBuffer[VALUEADDITIONAL_SIZE];
 
 private:
 

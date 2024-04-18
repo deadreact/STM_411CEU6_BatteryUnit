@@ -12,6 +12,7 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
+    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
     icon1.setXY(52, 1);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_ICON7_ID));
@@ -28,11 +29,6 @@ Screen1ViewBase::Screen1ViewBase()
     icon3.setVisible(false);
     iconsContainer.add(icon3);
 
-    icon4.setXY(202, 2);
-    icon4.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
-    icon4.setVisible(false);
-    iconsContainer.add(icon4);
-
     icon5.setXY(250, 0);
     icon5.setBitmap(touchgfx::Bitmap(BITMAP_ICON5_ID));
     icon5.setVisible(false);
@@ -42,7 +38,7 @@ Screen1ViewBase::Screen1ViewBase()
     warning.setVisible(false);
     iconsContainer.add(warning);
 
-    icon_fan.setXY(102, 2);
+    icon_fan.setXY(102, 0);
     icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
     icon_fan.setWidth(48);
     icon_fan.setHeight(48);
@@ -55,6 +51,20 @@ Screen1ViewBase::Screen1ViewBase()
     icon_fan.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     icon_fan.setVisible(false);
     iconsContainer.add(icon_fan);
+
+    icon_inv.setXY(201, 2);
+    icon_inv.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
+    icon_inv.setWidth(48);
+    icon_inv.setHeight(48);
+    icon_inv.setBitmapPosition(0.0f, 0.0f);
+    icon_inv.setScale(1.0f);
+    icon_inv.setCameraDistance(1000.0f);
+    icon_inv.setOrigo(24.0f, 24.0f, 1000.0f);
+    icon_inv.setCamera(24.0f, 24.0f);
+    icon_inv.setAngles(0.0f, 0.0f, 0.0f);
+    icon_inv.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    icon_inv.setVisible(false);
+    iconsContainer.add(icon_inv);
 
     content.add(iconsContainer);
 
@@ -83,6 +93,19 @@ Screen1ViewBase::Screen1ViewBase()
     content.add(capacityContainerSmall);
 
     add(content);
+
+    loading.setXY(124, 84);
+    loading.setBitmap(touchgfx::Bitmap(BITMAP_LOADING_ID));
+    loading.setWidth(72);
+    loading.setHeight(72);
+    loading.setBitmapPosition(0.0f, 0.0f);
+    loading.setScale(1.0f);
+    loading.setCameraDistance(1000.0f);
+    loading.setOrigo(36.0f, 36.0f, 1000.0f);
+    loading.setCamera(36.0f, 36.0f);
+    loading.setAngles(0.0f, 0.0f, 0.0f);
+    loading.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
+    add(loading);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

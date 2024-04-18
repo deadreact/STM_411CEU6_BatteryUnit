@@ -24,6 +24,22 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_5DW8" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">30</Translation>
+      </Text>
+      <Text Id="__SingleUse_7F9D" Alignment="Right" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_8789" Alignment="Center" TypographyId="ValueNormal">
+        <Translation Language="GB">&lt;value&gt;v</Translation>
+        <Translation Language="UA">V: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_RJTF" Alignment="Left" TypographyId="ValueNormal">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
       <Text Id="LOADING" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">Loading&lt;value&gt;...</Translation>
         <Translation Language="UA">Завантаження&lt;value&gt;</Translation>
@@ -42,7 +58,7 @@
       </Text>
       <Text Id="__SingleUse_4ST7" Alignment="Left" TypographyId="ValueLarge">
         <Translation Language="GB">New Text</Translation>
-        <Translation Language="UA">0</Translation>
+        <Translation Language="UA">4</Translation>
       </Text>
       <Text Id="__SingleUse_A1VM" Alignment="Right" TypographyId="ValueLarge">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
@@ -53,8 +69,8 @@
         <Translation Language="UA">ЧАС РОЗРЯДЖАННЯ</Translation>
       </Text>
       <Text Id="Hours" Alignment="Right" TypographyId="MainText">
-        <Translation Language="GB">Hours</Translation>
-        <Translation Language="UA">Год</Translation>
+        <Translation Language="GB">hours</Translation>
+        <Translation Language="UA">год</Translation>
       </Text>
       <Text Id="RECHARGING_TIME" Alignment="Left" TypographyId="MainText">
         <Translation Language="GB">RECHARGING TIME</Translation>
@@ -92,7 +108,7 @@
         <Translation Language="GB"></Translation>
         <Translation Language="UA"></Translation>
       </Text>
-      <Text Id="__SingleUse_BZBL" Alignment="Center" TypographyId="Values">
+      <Text Id="VoltageVal" Alignment="Right" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;v</Translation>
         <Translation Language="UA">&lt;value&gt;в</Translation>
       </Text>
@@ -159,10 +175,11 @@
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
-    <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
   </Typographies>
 </TextDatabase>

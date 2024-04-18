@@ -18,13 +18,16 @@ KEEP extern const touchgfx::GlyphNode glyphs_arial_90_4bpp[] FONT_TABLE_LOCATION
     { 10669, 0x0037,  42,  65,  64,   4,  50,   0,   0, 0x00 },
     { 12034, 0x0038,  44,  66,  65,   3,  50,   0,   0, 0x00 },
     { 13486, 0x0039,  44,  66,  65,   3,  50,   0,   0, 0x00 },
-    { 14938, 0x003F,  42,  66,  66,   4,  50,   0,   0, 0x00 },
-    { 16324, 0x004E,  52,  65,  65,   6,  65,   0,   0, 0x00 },
-    { 18014, 0x0054,  52,  65,  65,   2,  55,   5,   1, 0x00 },
-    { 19704, 0x0065,  44,  49,  48,   3,  50,   6,   1, 0x00 },
-    { 20782, 0x0074,  24,  64,  63,   1,  25,   0,   0, 0x00 },
-    { 21550, 0x0077,  65,  47,  47,   0,  65,   7,   1, 0x00 },
-    { 23101, 0x0078,  45,  47,  47,   0,  45,   0,   0, 0x00 }
+    { 14938, 0x003C,  44,  44,  54,   4,  53,   0,   0, 0x00 },
+    { 15906, 0x003E,  44,  44,  54,   4,  53,   0,   0, 0x00 },
+    { 16874, 0x003F,  42,  66,  66,   4,  50,   0,   0, 0x00 },
+    { 18260, 0x004E,  52,  65,  65,   6,  65,   0,   0, 0x00 },
+    { 19950, 0x0054,  52,  65,  65,   2,  55,   5,   1, 0x00 },
+    { 21640, 0x005C,  25,  67,  66,   0,  25,   0,   0, 0x00 },
+    { 22511, 0x0065,  44,  49,  48,   3,  50,   6,   1, 0x00 },
+    { 23589, 0x0074,  24,  64,  63,   1,  25,   0,   0, 0x00 },
+    { 24357, 0x0077,  65,  47,  47,   0,  65,   7,   1, 0x00 },
+    { 25908, 0x0078,  45,  47,  47,   0,  45,   0,   0, 0x00 }
 };
 
 // arial_90_4bpp
@@ -43,6 +46,6 @@ touchgfx::GeneratedFont& getFont_arial_90_4bpp();
 
 touchgfx::GeneratedFont& getFont_arial_90_4bpp()
 {
-    static touchgfx::GeneratedFont arial_90_4bpp(glyphs_arial_90_4bpp, 21, 91, 90, 0, 0, 4, 1, 0, 0, unicodes_arial_90_4bpp, kerning_arial_90_4bpp, 63, 0, 0, &arial_contextualFormsTable);
+    static touchgfx::GeneratedFont arial_90_4bpp(glyphs_arial_90_4bpp, 24, 91, 90, 0, 0, 4, 1, 0, 0, unicodes_arial_90_4bpp, kerning_arial_90_4bpp, 63, 0, 0, &arial_contextualFormsTable);
     return arial_90_4bpp;
 }

@@ -2,14 +2,27 @@
 
 FONT_KERNING_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::KerningNode kerning_SourceSansPro_Black_25_4bpp[] FONT_KERNING_LOCATION_FLASH_ATTRIBUTE = {
+    { 0x0054, -1 },  // (First char = [0x0054, T], Second char = [0x002D, hyphen], Kerning dist = -1)
+    { 0x0050, -3 },  // (First char = [0x0050, P], Second char = [0x002E, period], Kerning dist = -3)
+    { 0x0054, -3 },  // (First char = [0x0054, T], Second char = [0x002E, period], Kerning dist = -3)
+    { 0x0055, -1 },  // (First char = [0x0055, U], Second char = [0x002E, period], Kerning dist = -1)
+    { 0x0414,  1 },  // (First char = [0x0414, uni0414], Second char = [0x002E, period], Kerning dist = 1)
+    { 0x0420, -3 },  // (First char = [0x0420, uni0420], Second char = [0x002E, period], Kerning dist = -3)
     { 0x0410, -1 },  // (First char = [0x0410, uni0410], Second char = [0x003F, question], Kerning dist = -1)
     { 0x0054, -1 },  // (First char = [0x0054, T], Second char = [0x004F, O], Kerning dist = -1)
+    { 0x002D, -1 },  // (First char = [0x002D, hyphen], Second char = [0x0054, T], Kerning dist = -1)
+    { 0x002E, -2 },  // (First char = [0x002E, period], Second char = [0x0054, T], Kerning dist = -2)
     { 0x004F, -1 },  // (First char = [0x004F, O], Second char = [0x0054, T], Kerning dist = -1)
+    { 0x005C, -1 },  // (First char = [0x005C, backslash], Second char = [0x0054, T], Kerning dist = -1)
     { 0x0410, -1 },  // (First char = [0x0410, uni0410], Second char = [0x0054, T], Kerning dist = -1)
+    { 0x002E, -1 },  // (First char = [0x002E, period], Second char = [0x0055, U], Kerning dist = -1)
+    { 0x0410, -1 },  // (First char = [0x0410, uni0410], Second char = [0x005C, backslash], Kerning dist = -1)
     { 0x0420, -1 },  // (First char = [0x0420, uni0420], Second char = [0x0410, uni0410], Kerning dist = -1)
+    { 0x002E,  1 },  // (First char = [0x002E, period], Second char = [0x0414, uni0414], Kerning dist = 1)
     { 0x0410,  1 },  // (First char = [0x0410, uni0410], Second char = [0x0414, uni0414], Kerning dist = 1)
     { 0x0414,  1 },  // (First char = [0x0414, uni0414], Second char = [0x0414, uni0414], Kerning dist = 1)
     { 0x0420, -1 },  // (First char = [0x0420, uni0420], Second char = [0x0414, uni0414], Kerning dist = -1)
     { 0x041E, -1 },  // (First char = [0x041E, uni041E], Second char = [0x0417, uni0417], Kerning dist = -1)
     { 0x0420, -1 },  // (First char = [0x0420, uni0420], Second char = [0x0417, uni0417], Kerning dist = -1)
+    { 0x002D, -1 },  // (First char = [0x002D, hyphen], Second char = [0x042F, uni042F], Kerning dist = -1)
 };

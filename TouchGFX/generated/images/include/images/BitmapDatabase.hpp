@@ -15,8 +15,9 @@ const uint16_t BITMAP_ICON15_ID = 5;
 const uint16_t BITMAP_ICON17_ID = 6;
 const uint16_t BITMAP_ICON5_ID = 7;
 const uint16_t BITMAP_ICON7_ID = 8;
-const uint16_t BITMAP_WARN_RED_ID = 9;
-const uint16_t BITMAP_WARN_YELLOW_ID = 10;
+const uint16_t BITMAP_LOADING_ID = 9;
+const uint16_t BITMAP_WARN_RED_ID = 10;
+const uint16_t BITMAP_WARN_YELLOW_ID = 11;
 
 namespace BitmapDatabase
 {

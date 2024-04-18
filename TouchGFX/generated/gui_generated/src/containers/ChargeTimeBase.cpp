@@ -14,14 +14,12 @@ ChargeTimeBase::ChargeTimeBase()
     chargeTimeLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     chargeTimeLabel.setLinespacing(0);
     chargeTimeLabel.setTypedText(touchgfx::TypedText(T_RECHARGING_TIME));
-    chargeTimeLabel.setAlpha(44);
     add(chargeTimeLabel);
 
-    minsLabel.setPosition(94, 101, 66, 19);
+    minsLabel.setPosition(66, 101, 94, 19);
     minsLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     minsLabel.setLinespacing(0);
     minsLabel.setTypedText(touchgfx::TypedText(T_MINS));
-    minsLabel.setAlpha(44);
     add(minsLabel);
 
     warningYellow.setXY(0, 37);
@@ -34,14 +32,27 @@ ChargeTimeBase::ChargeTimeBase()
     warningRed.setVisible(false);
     add(warningRed);
 
-    value.setPosition(0, 12, 166, 96);
+    value.setPosition(0, 12, 106, 98);
     value.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     value.setLinespacing(0);
     Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4ST7).getText());
     value.setWildcard(valueBuffer);
     value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_A1VM));
-    value.setAlpha(44);
     add(value);
+
+    valueAdditional.setPosition(116, 53, 44, 48);
+    valueAdditional.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
+    valueAdditional.setLinespacing(0);
+    Unicode::snprintf(valueAdditionalBuffer, VALUEADDITIONAL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5DW8).getText());
+    valueAdditional.setWildcard(valueAdditionalBuffer);
+    valueAdditional.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7F9D));
+    add(valueAdditional);
+
+    hoursLabel.setPosition(56, 101, 50, 19);
+    hoursLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
+    hoursLabel.setLinespacing(0);
+    hoursLabel.setTypedText(touchgfx::TypedText(T_HOURS));
+    add(hoursLabel);
 }
 
 ChargeTimeBase::~ChargeTimeBase()

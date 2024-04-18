@@ -9,7 +9,7 @@
 BatteryStatusBase::BatteryStatusBase()
 {
     setWidth(110);
-    setHeight(91);
+    setHeight(114);
     capacityTextValue.setPosition(0, 0, 110, 51);
     capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     capacityTextValue.setLinespacing(0);
@@ -33,6 +33,14 @@ BatteryStatusBase::BatteryStatusBase()
     capacityImage.setPosition(0, 49, 110, 40);
     capacityImage.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     add(capacityImage);
+
+    voltageValue.setPosition(0, 89, 110, 25);
+    voltageValue.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
+    voltageValue.setLinespacing(0);
+    Unicode::snprintf(voltageValueBuffer, VOLTAGEVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJTF).getText());
+    voltageValue.setWildcard(voltageValueBuffer);
+    voltageValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8789));
+    add(voltageValue);
 }
 
 BatteryStatusBase::~BatteryStatusBase()

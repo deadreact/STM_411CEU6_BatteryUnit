@@ -42,18 +42,18 @@ void BatteryStatus::handleTickEvent()
 	}
 }
 
-void BatteryStatus::setValue(int val)
+void BatteryStatus::setSOC(int val)
 {
-	if (val != m_value)
+	if (val != m_soc)
 	{
-		m_value = val;
+		m_soc = val;
 		auto color = touchgfx::Color::getColorFromRGB(255 - val * 2.5, val * 2.5, 5);
 		capacityValue.setWidth(10 + val * 0.9);
 		capacityValue.setColor(color);
 		Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", val);
 
 //		if (m_state == ChargeState::Charge) {
-			int16_t x = ((100 - m_value) * 7 + m_value * 95)/100;
+			int16_t x = ((100 - m_soc) * 7 + m_soc * 95)/100;
 			animBox.setX(x);
 //		} else if (m_state == ChargeState::Uncharge) {
 //			int16_t x = ((100 - m_value) * 6 + m_value * 86)/100;
@@ -66,6 +66,16 @@ void BatteryStatus::setValue(int val)
 	}
 }
 
+void BatteryStatus::setVoltage(int val)
+{
+	if (val != m_voltage)
+	{
+		m_voltage = val;
+		Unicode::snprintfFloat(voltageValueBuffer, VOLTAGEVALUE_SIZE, "%.2f", val * 0.01f);
+		voltageValue.invalidate();
+	}
+}
+
 void BatteryStatus::setChargeState(ChargeState state)
 {
 	if (m_state != state)
@@ -75,13 +85,13 @@ void BatteryStatus::setChargeState(ChargeState state)
 		animBox.setVisible(state != ChargeState::Idle);
 
 		if (state == ChargeState::Charge) {
-			int16_t x = ((100 - m_value) * 7 + m_value * 95 + 50)/100;
-			int16_t w = ((100 - m_value) * 10 + m_value * 4 + 50)/100;
+			int16_t x = ((100 - m_soc) * 7 + m_soc * 95 + 50)/100;
+			int16_t w = ((100 - m_soc) * 10 + m_soc * 4 + 50)/100;
 			animBox.setX(x);
 			animBox.setWidth(w);
 		} else if (state == ChargeState::Uncharge) {
-			int16_t x = ((100 - m_value) * 6 + m_value * 86 + 50)/100;
-			int16_t w = ((100 - m_value) * 1 + m_value * 10 + 50)/100;
+			int16_t x = ((100 - m_soc) * 6 + m_soc * 86 + 50)/100;
+			int16_t w = ((100 - m_soc) * 1 + m_soc * 10 + 50)/100;
 			animBox.setX(x);
 			animBox.setWidth(w);
 		}

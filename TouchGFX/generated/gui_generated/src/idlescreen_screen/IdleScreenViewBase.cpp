@@ -99,7 +99,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     voltageTextValue.setLinespacing(0);
     Unicode::snprintf(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID3).getText());
     voltageTextValue.setWildcard(voltageTextValueBuffer);
-    voltageTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BZBL));
+    voltageTextValue.setTypedText(touchgfx::TypedText(T_VOLTAGEVAL));
     containerVoltage.add(voltageTextValue);
 
     batteryMainInfo.add(containerVoltage);

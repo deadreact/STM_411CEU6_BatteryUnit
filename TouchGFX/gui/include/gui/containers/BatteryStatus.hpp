@@ -12,10 +12,12 @@ public:
 
     virtual void initialize();
     virtual void handleTickEvent() override;
-    void setValue(int val);
+    void setSOC(int val);
+    void setVoltage(int val);
     void setChargeState(ChargeState state);
 protected:
-    int m_value{0};
+    int m_soc{0};
+    int m_voltage{0};
     ChargeState m_state{ChargeState::Idle};
 
     // animation

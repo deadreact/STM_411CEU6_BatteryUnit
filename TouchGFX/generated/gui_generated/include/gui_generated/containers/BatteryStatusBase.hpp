@@ -30,12 +30,15 @@ protected:
     touchgfx::BoxWithBorder capacityValue;
     touchgfx::Box animBox;
     touchgfx::ScalableImage capacityImage;
+    touchgfx::TextAreaWithOneWildcard voltageValue;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t CAPACITYTEXTVALUE_SIZE = 4;
     touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
+    static const uint16_t VOLTAGEVALUE_SIZE = 6;
+    touchgfx::Unicode::UnicodeChar voltageValueBuffer[VOLTAGEVALUE_SIZE];
 
 private:
 
