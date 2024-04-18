@@ -52,6 +52,7 @@ struct ProcessData<ProcessId::Idle>
 //    bool bmsError{false};
 
     BatteryData bms;
+    SmoothedValue smoothedCurrent;
     std::string bmsErrMsg;
     uint32_t bmsErrFlags{0};
 };

@@ -14,7 +14,7 @@ public:
     virtual void handleTickEvent() override;
     void setWatts(int val);
 protected:
-    void updateBatteryData(const BatteryData& data);
+    void updateBatteryData(const BatteryData& data, int16_t smoothedCurr);
     void setIconFanVisible(bool visible);
     void setIconInvVisible(bool visible);
 protected:

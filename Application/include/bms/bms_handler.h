@@ -60,7 +60,8 @@ protected:
 enum class BMSUpdaterEvent : uint8_t
 {
     NoEvent,
-    Updated
+    Updated,
+	DataUpdated
 };
 
 class BMSUpdater : public BMSHandler

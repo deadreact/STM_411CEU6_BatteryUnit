@@ -62,9 +62,22 @@ struct BatteryData
     uint32_t capacityAh{0};
 
     bool isValid() const { return soc > 0 && soc <= 100 && capacityAh > 0; }
-    int calcTimeRemain(bool invertorOn = false) const;
+    int calcTimeRemain(int16_t curr, bool invertorOn = false) const;
 
     bool operator==(const BatteryData& other) const;
     inline bool operator!=(const BatteryData& other) const { return !operator==(other); }
 };
+
+struct SmoothedValue
+{
+	constexpr static const int kBufferSize = 10;
+	int16_t values[kBufferSize];
+	int16_t valuesSet{0};
+
+	SmoothedValue();
+
+	void set(int16_t value);
+	int16_t get() const;
+};
+
 #endif /* BMS_BMS_DATA_H_ */

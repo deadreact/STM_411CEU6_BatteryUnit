@@ -20,7 +20,7 @@ bool BatteryData::operator==(const BatteryData& other) const
         /*&& energyAh == other.energyAh*/;
 }
 
-int BatteryData::calcTimeRemain(bool invertorOn) const
+int BatteryData::calcTimeRemain(int16_t curr, bool invertorOn) const
 {
      /*
     Time
@@ -38,25 +38,54 @@ int BatteryData::calcTimeRemain(bool invertorOn) const
         }
       */
 
-    if (current < 0)
+    if (curr < 0)
     {
-        return int(soc * capacityAh * 60) / current; // minutes
+        return int(soc * capacityAh * 60) / curr; // minutes
     }
-    else if (current > 0)
+    else if (curr > 0)
     {
         if (invertorOn)
         {
-            return int((100 - soc) * capacityAh * 60)/current;
+            return int((100 - soc) * capacityAh * 60)/curr;
         }
         else if (soc <= 80)
         {
-            return int(capacityAh * (80 - soc) * 60)/current + (capacityAh * 20 * 60)/(current * 0.5f);
+            return int(capacityAh * (80 - soc) * 60)/curr + (capacityAh * 20 * 60)/(curr * 0.5f);
         }
         else
         {
-            return int((100 - soc) * capacityAh * 60)/current;
+            return int((100 - soc) * capacityAh * 60)/curr;
         }
     }
     return 0;
+}
+
+
+SmoothedValue::SmoothedValue()
+{
+	memset(values, 0, sizeof(values));
+}
+
+void SmoothedValue::set(int16_t value)
+{
+	valuesSet = valuesSet < kBufferSize ? valuesSet + 1 : kBufferSize;
+	for (int16_t* ptr = values + valuesSet - 1; ptr != values; --ptr) {
+		*ptr = *(ptr - 1);
+	}
+
+	values[0] = value;
+
+}
+
+int16_t SmoothedValue::get() const {
+	if (valuesSet == 0) {
+		return 0;
+	}
+	int32_t sum = values[0];
+	for (const int16_t* ptr = values + valuesSet - 1; ptr != values; --ptr) {
+		sum += *ptr;
+	}
+
+	return sum / valuesSet;
 }
 

@@ -266,7 +266,12 @@ void BMSUpdater::Update()
 		m_lastEvent = BMSUpdaterEvent::NoEvent;
 		if (m_prevStatus != m_status)
 		{
-			m_lastEvent = BMSUpdaterEvent::Updated;
+			if (m_prevStatus == BMSStatus::Requested && m_status == BMSStatus::Ok) {
+				m_lastEvent = BMSUpdaterEvent::DataUpdated;
+			} else {
+				m_lastEvent = BMSUpdaterEvent::Updated;
+			}
+
 			m_prevStatus = m_status;
 		}
 	}

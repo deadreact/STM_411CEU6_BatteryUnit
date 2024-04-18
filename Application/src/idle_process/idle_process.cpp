@@ -143,6 +143,10 @@ void IdleProcess::Impl::HandleEvents()
         sharedData.bms = m_bmsUpdater.GetData();
         sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
         sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
+
+        if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
+        	sharedData.smoothedCurrent.set(sharedData.bms.current);
+        }
     }
 
     if (sharedData.powerModeState == PowerModeState::StopRequested)

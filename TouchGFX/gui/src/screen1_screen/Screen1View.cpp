@@ -19,7 +19,8 @@ void Screen1View::setupScreen()
 		return;
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
-    updateBatteryData(data.bms);
+	auto smoothedCurr = data.smoothedCurrent.get();
+    updateBatteryData(data.bms, smoothedCurr);
 }
 
 void Screen1View::tearDownScreen()
@@ -53,9 +54,10 @@ void Screen1View::handleTickEvent()
 		m_isBMSError = isMajorError;
 	}
 
-	if (data.bms != m_bmsData)
+	auto smoothedCurr = data.smoothedCurrent.get();
+	if (data.bms != m_bmsData || smoothedCurr != m_bmsData.current)
 	{
-		updateBatteryData(data.bms);
+		updateBatteryData(data.bms, smoothedCurr);
 	}
 }
 
@@ -64,29 +66,30 @@ void Screen1View::setWatts(int val)
 	ioValue.setValue((val + 5000) / 10000);
 }
 
-void Screen1View::updateBatteryData(const BatteryData& data)
+void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCurr)
 {
+
 	if (data.soc != m_bmsData.soc)
 	{
 		capacityContainer.setSOC(data.soc);
 //		capacityContainerLarge.setValue(data.soc);
 	}
 
-	if (data.current != m_bmsData.current)
+	if (smoothedCurr != m_bmsData.current)
 	{
-		setWatts(data.current * data.voltage);
-		capacityContainer.setChargeState(data.current > 0 ? ChargeState::Charge : (data.current < 0 ? ChargeState::Uncharge : ChargeState::Idle));
-		setIconFanVisible(data.current > 0);
+		setWatts(smoothedCurr * data.voltage);
+		capacityContainer.setChargeState(smoothedCurr > 0 ? ChargeState::Charge : (smoothedCurr < 0 ? ChargeState::Uncharge : ChargeState::Idle));
+		setIconFanVisible(smoothedCurr > 0);
 //		setIconInvVisible(true);
 	}
 
 	if (data.voltage != m_bmsData.voltage)
 	{
-		setWatts(data.current * data.voltage);
+		setWatts(smoothedCurr * data.voltage);
 		capacityContainer.setVoltage(data.voltage);
 	}
 
-	int chargeValue = data.calcTimeRemain();
+	int chargeValue = data.calcTimeRemain(smoothedCurr);
 	if (chargeValue != m_chargeTimeMins)
 	{
 		chargeTimeContainer.setValue(chargeValue);
