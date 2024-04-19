@@ -50,7 +50,7 @@ struct IdleProcess::Impl
 //    , [&]{ led.setIndicationType(LedIndicationType(((int)led.getIndicationType() + 1) % int(LedIndicationType::Count))); }
     };
 
-    PwrButtonEventHandler btnPwrHandler{&btnPwr, [&]{ OnPwrClick();}, [&]{ OnPwrHold();}, [&]{ OnPwrPress();}, [&]{ OnPwrRelease();}};
+    ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ OnPwrClick();}, [&]{ OnPwrHold();}};
 
     IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
 
@@ -131,7 +131,8 @@ void IdleProcess::Impl::HandleEvents()
     	screenLed.setIndicationType(LedIndicationType::FastBlinking);
         if (m_bmsUpdater.getStatus() == BMSStatus::NoStatus)
         {
-        	if (NVIC_GetEnableIRQ(bttn_screen_on_EXTI_IRQn))
+//        	if (NVIC_GetEnableIRQ(bttn_screen_on_EXTI_IRQn))
+        	if (!btnPwr.isPressed())
         	{
         		screen.off();
         		screenLed.setIndicationType(LedIndicationType::Off);
@@ -141,6 +142,14 @@ void IdleProcess::Impl::HandleEvents()
     }
     else
     {
+    	if (sharedData.powerModeState == PowerModeState::WakedUp)
+    	{
+    		if (!btnPwr.isPressed())
+    		{
+    			sharedData.powerModeState = PowerModeState::Normal;
+    		}
+    	}
+
     	if (m_bmsUpdater.isPowerOn())
     	{
     		if (m_bmsUpdater.getStatus() != BMSStatus::Error && m_bmsUpdater.getData().isValid())
@@ -162,23 +171,27 @@ void IdleProcess::Impl::HandleEvents()
 
 void IdleProcess::Impl::OnPwrPress()
 {
-	HAL_NVIC_DisableIRQ(bttn_screen_on_EXTI_IRQn);
+//	HAL_NVIC_DisableIRQ(bttn_screen_on_EXTI_IRQn);
 }
 
 void IdleProcess::Impl::OnPwrRelease()
 {
-	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
+//	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
 }
 
 void IdleProcess::Impl::OnPwrClick()
 {
-	screen.toggle();
+	if (sharedData.powerModeState == PowerModeState::Normal) {
+		screen.toggle();
+	}
 }
 
 void IdleProcess::Impl::OnPwrHold()
 {
-	sharedData.powerModeState = PowerModeState::StopRequested;
-	screen.off();
+	if (sharedData.powerModeState == PowerModeState::Normal) {
+		sharedData.powerModeState = PowerModeState::StopRequested;
+		screen.off();
+	}
 }
 
 
@@ -205,17 +218,14 @@ void IdleProcess::update()
 //    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 
     m_pimpl->OnTick();
-//    if (m_pimpl->screen.readPin()) {
-//    	MX_TouchGFX_Process();
-//    }
     m_pimpl->HandleEvents();
 
     if (m_pimpl->sharedData.powerModeState == PowerModeState::StopReady)
     {
+    	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
         EnterStopMode();
-//        m_pimpl->sharedData.sleepingMode = 0;
         m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
-//        m_pimpl->screen.on();
+        m_pimpl->screen.on();
     }
 }
 
