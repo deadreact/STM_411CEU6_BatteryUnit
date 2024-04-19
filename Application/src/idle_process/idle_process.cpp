@@ -23,15 +23,15 @@
 
 struct IdleProcess::Impl
 {
-    void OnTick();
-    void HandleEvents();
+    void onTick();
+    void handleEvents();
 
-    void UpdateAnalog();
+    void updateAnalog();
 
-    void OnPwrClick();
-    void OnPwrHold();
-    void OnPwrPress();
-    void OnPwrRelease();
+    void onPwrClick();
+    void onPwrHold();
+    void onPwrPress();
+    void onPwrRelease();
 
     // Data
     ProcessData<ProcessId::Idle> sharedData;
@@ -50,7 +50,7 @@ struct IdleProcess::Impl
 //    , [&]{ led.setIndicationType(LedIndicationType(((int)led.getIndicationType() + 1) % int(LedIndicationType::Count))); }
     };
 
-    ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ OnPwrClick();}, [&]{ OnPwrHold();}};
+    ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
 
     IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
 
@@ -60,7 +60,7 @@ struct IdleProcess::Impl
 
 extern ADC_HandleTypeDef hadc1;
 
-void IdleProcess::Impl::UpdateAnalog()
+void IdleProcess::Impl::updateAnalog()
 {
     ADC_ChannelConfTypeDef sConfig = {0};
     sConfig.Rank = 1;
@@ -81,7 +81,7 @@ void IdleProcess::Impl::UpdateAnalog()
 
 
 
-void IdleProcess::Impl::OnTick()
+void IdleProcess::Impl::onTick()
 {
 	m_invHandler.onTick();
 	screenLed.onTick();
@@ -101,13 +101,13 @@ void IdleProcess::Impl::OnTick()
     if (sharedData.screenId != 2) {
         m_bmsUpdater.update();
     } else {
-        UpdateAnalog();
+        updateAnalog();
     }
 
     screen.onTick();
 }
 
-void IdleProcess::Impl::HandleEvents()
+void IdleProcess::Impl::handleEvents()
 {
     btnSleepHandler.handleEvents();
     btnScrSwitchHandler.handleEvents();
@@ -169,24 +169,24 @@ void IdleProcess::Impl::HandleEvents()
 }
 
 
-void IdleProcess::Impl::OnPwrPress()
+void IdleProcess::Impl::onPwrPress()
 {
 //	HAL_NVIC_DisableIRQ(bttn_screen_on_EXTI_IRQn);
 }
 
-void IdleProcess::Impl::OnPwrRelease()
+void IdleProcess::Impl::onPwrRelease()
 {
 //	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
 }
 
-void IdleProcess::Impl::OnPwrClick()
+void IdleProcess::Impl::onPwrClick()
 {
 	if (sharedData.powerModeState == PowerModeState::Normal) {
 		screen.toggle();
 	}
 }
 
-void IdleProcess::Impl::OnPwrHold()
+void IdleProcess::Impl::onPwrHold()
 {
 	if (sharedData.powerModeState == PowerModeState::Normal) {
 		sharedData.powerModeState = PowerModeState::StopRequested;
@@ -215,10 +215,8 @@ void IdleProcess::init()
 
 void IdleProcess::update()
 {
-//    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
-
-    m_pimpl->OnTick();
-    m_pimpl->HandleEvents();
+    m_pimpl->onTick();
+    m_pimpl->handleEvents();
 
     if (m_pimpl->sharedData.powerModeState == PowerModeState::StopReady)
     {
