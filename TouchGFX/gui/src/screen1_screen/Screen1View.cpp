@@ -103,6 +103,7 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 	}
 
 	m_bmsData = data;
+	m_bmsData.current = smoothedCurr;
 }
 
 void Screen1View::setIconFanVisible(bool visible)
