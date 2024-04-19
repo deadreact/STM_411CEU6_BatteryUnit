@@ -34,7 +34,7 @@
       </Text>
       <Text Id="__SingleUse_8789" Alignment="Center" TypographyId="ValueNormal">
         <Translation Language="GB">&lt;value&gt;v</Translation>
-        <Translation Language="UA">V: &lt;value&gt;</Translation>
+        <Translation Language="UA">U: &lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_RJTF" Alignment="Left" TypographyId="ValueNormal">
         <Translation Language="GB">New Text</Translation>
