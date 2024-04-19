@@ -10,6 +10,16 @@
 
 #include "stm32f4xx_hal.h"
 
+#define GPIOWARAPPERS_USE_VIRTUAL
+
+#ifdef GPIOWARAPPERS_USE_VIRTUAL
+#define VIRTUAL virtual
+#define OVERRIDE override
+#else
+#define VIRTUAL
+#define OVERRIDE
+#endif
+
 class SinglePinElement
 {
 public:
@@ -26,8 +36,10 @@ protected:
 class ITickHandler
 {
 public:
+#ifdef GPIOWARAPPERS_USE_VIRTUAL
     virtual ~ITickHandler() {}
     virtual void onTick() = 0;
+#endif
 };
 
 
