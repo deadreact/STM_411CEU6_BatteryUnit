@@ -11,6 +11,7 @@
 #include <gpio_wrappers/button.h>
 #include <gpio_wrappers/led.h>
 #include <gpio_wrappers/io_tube.h>
+#include <gpio_wrappers/usb_handler.h>
 #include <gpio_wrappers/tft_display_320x240.h>
 #include "main.h"
 #include <cstring>
@@ -40,6 +41,7 @@ struct IdleProcess::Impl
     // Handlers
     BMSUpdater m_bmsUpdater;
     InverterHandler m_invHandler;
+    USBHandler m_usbHandler;
 
     TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
@@ -54,10 +56,10 @@ struct IdleProcess::Impl
 
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
 
-    IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
+//    IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
 
 //    IOTube invertorTube{{inv_ok_GPIO_Port, inv_ok_Pin}, {bttn_inv_led_GPIO_Port, bttn_inv_led_Pin}};
-    IOTube usbTube{{usb_on_GPIO_Port, usb_on_Pin}, {bttn_usb_led_GPIO_Port, bttn_usb_led_Pin}};
+//    IOTube usbTube{{usb_on_GPIO_Port, usb_on_Pin}, {bttn_usb_led_GPIO_Port, bttn_usb_led_Pin}};
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -86,15 +88,17 @@ void IdleProcess::Impl::updateAnalog()
 void IdleProcess::Impl::onTick()
 {
 	m_invHandler.onTick();
+	m_usbHandler.onTick();
+
 	screenLed.onTick();
 //    led.onTick();
-    boardLedTube.onTick();
+//    boardLedTube.onTick();
 //    btnEnterSleep.onTick();
     btnBmsToggle.onTick();
     btnPwr.onTick();
 
 //    invertorTube.onTick();
-    usbTube.onTick();
+//    usbTube.onTick();
 
     m_bmsUpdater.update();
 
@@ -111,6 +115,7 @@ void IdleProcess::Impl::handleEvents()
     btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
     m_invHandler.handleEvents();
+    m_usbHandler.handleEvents();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
