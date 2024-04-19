@@ -96,12 +96,6 @@ void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
 
 bool BMSHandler::requestTurnOn()
 {
-//    uint16_t len = FillTxData(txDataBuffer, 0x01);
-//    Request(txDataBuffer, len);
-//    m_bmsOnResetTick = HAL_GetTick() + 200;
-//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-//    m_status = BMSStatus::OnRequested;
-
     if (isPowerOn() == isPowerRequested()) {
     	m_bmsPwrRequest.togglePin();
     }
@@ -110,8 +104,6 @@ bool BMSHandler::requestTurnOn()
 
 bool BMSHandler::requestTurnOff()
 {
-//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-//    m_status = BMSStatus::OffRequested;
 	if (isPowerOn()) {
 		if (m_bmsOnResetTick <= HAL_GetTick())
 		{
@@ -184,7 +176,7 @@ void BMSHandler::updateData(const BatteryData& newData)
     if (m_data != newData)
     {
         // check internal conditions
-        m_data = newData; // std::move
+        m_data = newData;
         // notify others
     }
 }
@@ -217,84 +209,57 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 void BMSUpdater::update()
 {
-//    if (m_status == BMSStatus::Off)
-//    {
-//        RequestTurnOn();
-//    }
-//    else if (m_status == BMSStatus::OnRequested)
-//    {
-//        if (m_bmsOnResetTick <= HAL_GetTick())
-//        {
-//            m_bmsOnResetTick = 0;
-//            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-//            RequestAllData();
-//        }
-//    }
-
-	if (requestTurnOn())
+	if (m_isActive)
 	{
-		if (m_status == BMSStatus::NoStatus)
+		if (requestTurnOn())
 		{
-			requestAllData();
-		}
-		else if (m_status == BMSStatus::Requested)
-		{
-			if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
+			if (m_status == BMSStatus::NoStatus)
 			{
-				m_status = BMSStatus::RequestTimedOut;
-				debugMsg = "request timed out";
 				requestAllData();
 			}
-		}
-		else
-		{
-			if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
+			else if (m_status == BMSStatus::Requested)
 			{
-				errFlags |= BMSErrorFlags::ValidResponseTimeout;
-				debugMsg = "valid response timed out";
-	//            RequestTurnOn();
-				requestAllData();
+				if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
+				{
+					m_status = BMSStatus::RequestTimedOut;
+					debugMsg = "request timed out";
+					requestAllData();
+				}
 			}
-			if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+			else
 			{
-				m_status = BMSStatus::InfoTimedOut;
-				debugMsg = "info timed out";
-				requestAllData();
-			}
-		}
-
-//		m_lastEvent = BMSUpdaterEvent::NoEvent;
-		if (m_prevStatus != m_status)
-		{
-			if (m_prevStatus == BMSStatus::Requested && m_status == BMSStatus::Ok) {
-				m_lastEvent = BMSUpdaterEvent::DataUpdated;
-			} else {
-				m_lastEvent = BMSUpdaterEvent::Updated;
+				if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
+				{
+					errFlags |= BMSErrorFlags::ValidResponseTimeout;
+					debugMsg = "valid response timed out";
+					requestAllData();
+				}
+				if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+				{
+					m_status = BMSStatus::InfoTimedOut;
+					debugMsg = "info timed out";
+					requestAllData();
+				}
 			}
 
-			m_prevStatus = m_status;
+			if (m_prevStatus != m_status)
+			{
+				if (m_prevStatus == BMSStatus::Requested && m_status == BMSStatus::Ok) {
+					m_lastEvent = BMSUpdaterEvent::DataUpdated;
+				} else {
+					m_lastEvent = BMSUpdaterEvent::Updated;
+				}
+
+				m_prevStatus = m_status;
+			}
 		}
 	}
-}
-
-void BMSUpdater::updateAndStop()
-{
-//    if (m_status == BMSStatus::OffRequested)
-//    {
-//        if (m_bmsOnResetTick <= HAL_GetTick())
-//        {
-//            m_bmsOnResetTick = 0;
-//            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-//            m_status = BMSStatus::Off;
-//        }
-//    }
-//    else if (m_status != BMSStatus::Off)
-//    {
-//        RequestTurnOff();
-//    }
-	if (requestTurnOff())
+	else
 	{
-		m_status = BMSStatus::NoStatus;
+		if (requestTurnOff())
+		{
+			m_status = BMSStatus::NoStatus;
+		}
 	}
 }
 

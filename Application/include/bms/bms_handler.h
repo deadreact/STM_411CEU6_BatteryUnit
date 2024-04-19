@@ -11,6 +11,7 @@
 #include <bms/bms_data.h>
 #include <gpio_wrappers/interface.h>
 #include <string>
+#include <main.h> // GPIO defines & HAL
 
 #define SIMULATE_CHARGING 0
 #define SIMULATE_UNCHARGING 1
@@ -44,8 +45,8 @@ public:
 protected:
     void updateData(const BatteryData& newData);
 protected:
-    SinglePinElement m_bmsPwrRequest{GPIOA, GPIO_PIN_8};
-    SinglePinElement m_bmsPwrStatus{GPIOB, GPIO_PIN_7};
+    SinglePinElement m_bmsPwrRequest{bms_on_GPIO_Port, bms_on_Pin};
+    SinglePinElement m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
     uint32_t m_lastRequestTick{0};
@@ -68,9 +69,11 @@ class BMSUpdater : public BMSHandler
 {
 public:
     void update();
-    void updateAndStop();
     BMSUpdaterEvent takeLastEvent();
+
+    void setActive(bool active) { m_isActive = active; }
 private:
+    bool m_isActive{true};
     BMSStatus m_prevStatus { BMSStatus::NoStatus };
     BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
     const uint32_t m_requestTimeout{1000};
