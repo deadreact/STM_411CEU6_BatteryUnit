@@ -18,9 +18,13 @@ public:
 
 	virtual void onTick() override;
 
+	inline bool isOn() const { return readPin(); }
+
 	void toggle();
 	void on() { if (!readPin()) toggle(); }
 	void off() { if (readPin()) toggle(); }
+private:
+//	uint32_t m_
 };
 
 #endif /* SRC_GPIO_WRAPPERS_TFT_DISPLAY_320X240_H_ */

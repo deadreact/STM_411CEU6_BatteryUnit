@@ -38,6 +38,7 @@ struct IdleProcess::Impl
 
     // Data
     ProcessData<ProcessId::Idle> sharedData;
+    uint32_t m_wakedUpTimeout{0};
     // Handlers
     BMSUpdater m_bmsUpdater;
     InverterHandler m_invHandler;
@@ -114,8 +115,9 @@ void IdleProcess::Impl::handleEvents()
 //    btnSleepHandler.handleEvents();
     btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
-    m_invHandler.handleEvents();
     m_usbHandler.handleEvents();
+    m_invHandler.handleEvents();
+    sharedData.invState = m_invHandler.getState();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
@@ -152,7 +154,7 @@ void IdleProcess::Impl::handlePowerState()
 	else
 	{
 		m_bmsUpdater.setActive(true);
-		if (sharedData.powerModeState == PowerModeState::WakedUp)
+		if (sharedData.powerModeState == PowerModeState::WakedUp && m_wakedUpTimeout <= HAL_GetTick())
 		{
 			if (!btnPwr.isPressed())
 			{
@@ -233,6 +235,7 @@ void IdleProcess::update()
     	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
         EnterStopMode();
         m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
+        m_pimpl->m_wakedUpTimeout = HAL_GetTick() + 100;
         m_pimpl->screen.on();
     }
 }

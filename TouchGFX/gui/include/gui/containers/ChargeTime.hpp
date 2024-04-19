@@ -7,12 +7,10 @@ class ChargeTime : public ChargeTimeBase
 {
 	enum class Format
 	{
-		Hidden,
 		Full,
 		Hours,
 		Minutes,
 		Minimum
-//		Maximum
 	};
 public:
     ChargeTime();
@@ -26,7 +24,7 @@ protected:
     void applyFormat();
 protected:
     int m_value{0};
-    Format m_format{Format::Hidden};
+    Format m_format{Format::Hours};
     constexpr static const int kYellowTreshold = 30;
     constexpr static const int kRedTreshold = 10;
 };

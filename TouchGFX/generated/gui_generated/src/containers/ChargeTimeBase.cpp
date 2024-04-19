@@ -8,12 +8,12 @@
 
 ChargeTimeBase::ChargeTimeBase()
 {
-    setWidth(166);
+    setWidth(170);
     setHeight(127);
     chargeTimeLabel.setXY(2, 4);
     chargeTimeLabel.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     chargeTimeLabel.setLinespacing(0);
-    chargeTimeLabel.setTypedText(touchgfx::TypedText(T_RECHARGING_TIME));
+    chargeTimeLabel.setTypedText(touchgfx::TypedText(T_REMAINING_TIME));
     add(chargeTimeLabel);
 
     minsLabel.setPosition(66, 101, 94, 19);

@@ -32,7 +32,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     149, // T_SOC: "<>%"
     270, // T___SINGLEUSE_82HO: "0.0"
     152, // T___SINGLEUSE_7FIN: "<>v"
-    295, // T___SINGLEUSE_IKNA: "1"
+    298, // T___SINGLEUSE_IKNA: "1"
     12,  // T___SINGLEUSE_GCQW: "<>"
     13,  // T___SINGLEUSE_RJG5: ""
     152, // T_VOLTAGEVAL: "<>v"

@@ -41,8 +41,9 @@ void ChargeTime::setValue(int val)
 			format = Format::Minutes;
 		} else if (absVal > 0) {
 			format = Format::Minimum;
-		} else {
-			format = Format::Hidden;
+		} else { // 0
+			format = Format::Hours;
+			hours = 99;
 		}
 
 		setFormat(format);
@@ -116,7 +117,6 @@ void ChargeTime::setTime(int h, int m)
 		Unicode::snprintf(valueBuffer, VALUE_SIZE, "< 1");
 		value.invalidate();
 	} break;
-//	case Format::Maximum:
 	default:
 		break;
 	}
@@ -124,17 +124,11 @@ void ChargeTime::setTime(int h, int m)
 
 void ChargeTime::applyFormat()
 {
-	setVisible(m_format != Format::Hidden);
+	minsLabel.setVisible(m_format == Format::Minimum || m_format == Format::Minutes || m_format == Format::Full);
+	hoursLabel.setVisible(m_format == Format::Hours || m_format == Format::Full);
 
-	if (m_format != Format::Hidden)
-	{
-		minsLabel.setVisible(m_format == Format::Minimum || m_format == Format::Minutes || m_format == Format::Full);
-		hoursLabel.setVisible(m_format == Format::Hours || m_format == Format::Full);
+	valueAdditional.setVisible(m_format == Format::Full);
 
-//			value.setVisible(m_format != Format::Maximum);
-		valueAdditional.setVisible(m_format == Format::Full);
-
-		value.setWidth(m_format == Format::Full ? 106 : getWidth());
-		hoursLabel.setWidth(m_format == Format::Full ? 50 : 104);
-	}
+	value.setWidth(m_format == Format::Full ? 106 : getWidth());
+	hoursLabel.setWidth(m_format == Format::Full ? 50 : 104);
 }

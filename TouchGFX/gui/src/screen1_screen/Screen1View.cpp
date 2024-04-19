@@ -4,6 +4,7 @@
 
 Screen1View::Screen1View()
 	: Screen1ViewBase()
+	, m_invState{InverterState::Off}
 	, textureMapperAnimationEndedCallback(this, &Screen1View::textureMapperAnimationEndedCallbackHandler)
 {
 	icon_fan.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
@@ -59,6 +60,11 @@ void Screen1View::handleTickEvent()
 	{
 		updateBatteryData(data.bms, smoothedCurr);
 	}
+
+	if (m_invState != data.invState) {
+		m_invState = data.invState;
+		updateInvState();
+	}
 }
 
 void Screen1View::setWatts(int val)
@@ -80,7 +86,7 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 		setWatts(smoothedCurr * data.voltage);
 		capacityContainer.setChargeState(smoothedCurr > 0 ? ChargeState::Charge : (smoothedCurr < 0 ? ChargeState::Uncharge : ChargeState::Idle));
 		setIconFanVisible(smoothedCurr > 0);
-//		setIconInvVisible(true);
+//		updateInvState(true);
 	}
 
 	if (data.voltage != m_bmsData.voltage)
@@ -121,19 +127,20 @@ void Screen1View::setIconFanVisible(bool visible)
 	}
 }
 
-void Screen1View::setIconInvVisible(bool visible)
+void Screen1View::updateInvState()
 {
-	if (visible != icon_inv.isVisible())
-	{
-		icon_inv.setVisible(visible);
+	icon_inv.setVisible(m_invState != InverterState::Off);
 
-		if (visible) {
-			auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
-			icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
-			icon_inv.startAnimation();
-		} else {
-			icon_inv.cancelAnimationTextureMapperAnimation();
-		}
+	if (m_invState == InverterState::Intermediate)
+	{
+		auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
+		icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
+		icon_inv.startAnimation();
+	}
+	else
+	{
+		icon_inv.cancelAnimationTextureMapperAnimation();
+		icon_inv.setScale(1);
 	}
 }
 
@@ -148,7 +155,7 @@ void Screen1View::textureMapperAnimationEndedCallbackHandler(const touchgfx::Ani
 	}
 	else if (&src == &icon_inv)
 	{
-		if (icon_inv.isVisible()) {
+		if (m_invState == InverterState::Intermediate) {
 			auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
 			icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
 			icon_inv.startAnimation();

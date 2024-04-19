@@ -4,6 +4,8 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 
+enum class InverterState;
+
 class Screen1View : public Screen1ViewBase
 {
 public:
@@ -16,9 +18,10 @@ public:
 protected:
     void updateBatteryData(const BatteryData& data, int16_t smoothedCurr);
     void setIconFanVisible(bool visible);
-    void setIconInvVisible(bool visible);
+    void updateInvState();
 protected:
     BatteryData m_bmsData;
+    InverterState m_invState;
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
 

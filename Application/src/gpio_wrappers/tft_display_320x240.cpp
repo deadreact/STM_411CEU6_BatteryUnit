@@ -11,13 +11,13 @@
 
 void TFTDisplay320x240::onTick()
 {
-	if (readPin()) {
+	if (isOn()) {
 		MX_TouchGFX_Process();
 	}
 }
 
 void TFTDisplay320x240::toggle()
 {
-	ILI9341_EnableSleepMode(readPin());
+//	ILI9341_EnableSleepMode(isOn());
 	togglePin();
 }

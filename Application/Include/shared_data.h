@@ -9,6 +9,7 @@
 #define SHARED_DATA_H_
 
 #include <bms/bms_data.h>
+#include <inverter/inverter_handler.h>
 #include <stdint.h>
 #include <string>
 
@@ -49,7 +50,7 @@ struct ProcessData<ProcessId::Idle>
 
     int screenId{1};
     PowerModeState powerModeState{PowerModeState::Normal};
-//    bool bmsError{false};
+    InverterState invState{InverterState::Off};
 
     BatteryData bms;
     SmoothedValue smoothedCurrent;

@@ -511,7 +511,7 @@
                     "Name": "chargeTimeContainer",
                     "X": 6,
                     "Y": 63,
-                    "Width": 166,
+                    "Width": 170,
                     "Height": 127,
                     "CustomContainerDefinitionName": "ChargeTime"
                   },
@@ -704,7 +704,7 @@
       },
       {
         "Name": "ChargeTime",
-        "Width": 166,
+        "Width": 170,
         "Height": 127,
         "Components": [
           {
@@ -712,9 +712,9 @@
             "Name": "chargeTimeLabel",
             "X": 2,
             "Y": 4,
-            "Width": 155,
+            "Width": 166,
             "Height": 21,
-            "TextId": "RECHARGING_TIME",
+            "TextId": "REMAINING_TIME",
             "TextRotation": "0",
             "Color": {
               "Red": 104,
