@@ -17,7 +17,7 @@ class Button : public SinglePinElement, public ITickHandler
 public:
     Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
-    VIRTUAL void onTick() OVERRIDE;
+    virtual void onTick() override;
     bool isPressed() const;
     uint32_t getPressedDuration() const;
 private:
@@ -40,7 +40,7 @@ class ButtonEventProvider : public Button
 public:
     ButtonEventProvider(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t firstHoldTreshold = 800, uint32_t nextHoldTreshold = 0xffffffff/*disable*/);
 
-    VIRTUAL void onTick() OVERRIDE;
+    virtual void onTick() override;
     ButtonEvent takeLastEvent();
 
     void setupHoldTriggerTimeouts(uint32_t firstHoldTreshold, uint32_t nextHoldTreshold = 0xffffffff/*disable*/);
@@ -61,7 +61,7 @@ public:
 
     ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = nullptr, Fn onHold = nullptr);
 
-    VIRTUAL void handleEvent(ButtonEvent event);
+    virtual void handleEvent(ButtonEvent event);
     void handleEvents();
 
     void setEventProvider(ButtonEventProvider* eventProvider);
@@ -80,7 +80,7 @@ class PwrButtonEventHandler: public ButtonEventHandler
 public:
 	PwrButtonEventHandler(ButtonEventProvider* ep = nullptr, Fn onClick = nullptr, Fn onHold = nullptr, Fn onPress = nullptr, Fn onRealease = nullptr);
 
-	VIRTUAL void handleEvent(ButtonEvent event) OVERRIDE;
+	virtual void handleEvent(ButtonEvent event) override;
 
 	void setOnPressHandler(Fn handler) { m_onPress = handler; }
 	void setOnReleaseHandler(Fn handler) { m_onRelease = handler; }

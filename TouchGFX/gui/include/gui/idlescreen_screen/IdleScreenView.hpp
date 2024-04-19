@@ -1,10 +1,10 @@
 #ifndef IDLESCREENVIEW_HPP
 #define IDLESCREENVIEW_HPP
 
+#include <bms/bms_data.h>
 #include <gui_generated/idlescreen_screen/IdleScreenViewBase.hpp>
 #include <gui/idlescreen_screen/IdleScreenPresenter.hpp>
 #include <gui/containers/BatteryCellElement.hpp>
-#include <bms_data.h>
 
 class IdleScreenView : public IdleScreenViewBase
 {

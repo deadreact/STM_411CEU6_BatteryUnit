@@ -15,7 +15,7 @@ class Led : public SinglePinElement, public ITickHandler
 public:
     Led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
-    VIRTUAL void onTick() OVERRIDE;
+    virtual void onTick() override;
 
     void on() const;
     void off() const;
@@ -47,7 +47,7 @@ class LedIndicator : public Led
 public:
     LedIndicator(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, LedIndicationType initialState = LedIndicationType::Off);
 
-    VIRTUAL void onTick() OVERRIDE;
+    virtual void onTick() override;
 
     void setIndicationType(LedIndicationType indication);
     LedIndicationType getIndicationType() const { return m_indication; }

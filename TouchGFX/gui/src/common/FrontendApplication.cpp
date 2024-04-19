@@ -31,31 +31,37 @@ void FrontendApplication::handleTickEvent()
             break;
         case ProcessId::Idle:
         {
-        	bmsActive = SharedData::getData<ProcessId::Idle>().bmsActive;
-        	if (bmsActive)
-        	{
-                touchgfx::makeTransition<IdleScreenView, IdleScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-        	}
-        	else
-        	{
-                touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-        	}
+        	showScreen(SharedData::getData<ProcessId::Idle>().screenId);
         }
             break;
         default:
             break;
         }
     }
-    else if (m_processId == ProcessId::Idle && bmsActive != SharedData::getData<ProcessId::Idle>().bmsActive)
+    else if (m_processId == ProcessId::Idle)
     {
-    	bmsActive = SharedData::getData<ProcessId::Idle>().bmsActive;
-		if (bmsActive)
-		{
-			touchgfx::makeTransition<IdleScreenView, IdleScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-		}
-		else
-		{
-			touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-		}
+    	showScreen(SharedData::getData<ProcessId::Idle>().screenId);
     }
 }
+
+void FrontendApplication::showScreen(int id)
+{
+	if (m_screenId != id)
+	{
+		m_screenId = id;
+		switch (id)
+		{
+		case 0:
+			touchgfx::makeTransition<IdleScreenView, IdleScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			break;
+		case 1:
+			touchgfx::makeTransition<Screen1View, Screen1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			break;
+		case 2:
+			touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			break;
+		}
+	}
+}
+
+

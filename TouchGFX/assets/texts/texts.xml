@@ -2,83 +2,184 @@
 <TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.23.2">
   <Languages>
     <Language Id="GB" />
+    <Language Id="UA" />
   </Languages>
   <Texts>
-    <TextGroup Id="Group1" />
-    <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_L7RN" Alignment="Center" TypographyId="Default">
+    <TextGroup Id="IOValueGroup">
+      <Text Id="IOWildcard" Alignment="Right" TypographyId="ValueMedium">
         <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_MDS6" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB"></Translation>
+      <Text Id="OUTPUT" Alignment="Right" TypographyId="LargeText">
+        <Translation Language="GB">OUTPUT</Translation>
+        <Translation Language="UA">РОЗРЯД</Translation>
+      </Text>
+      <Text Id="INPUT" Alignment="Right" TypographyId="LargeText">
+        <Translation Language="GB">INPUT</Translation>
+        <Translation Language="UA">ЗАРЯД</Translation>
+      </Text>
+      <Text Id="Watts" Alignment="Left" TypographyId="MainText">
+        <Translation Language="GB">Watts</Translation>
+        <Translation Language="UA">Ват</Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_5DW8" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">30</Translation>
+      </Text>
+      <Text Id="__SingleUse_7F9D" Alignment="Right" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_8789" Alignment="Center" TypographyId="ValueNormal">
+        <Translation Language="GB">&lt;value&gt;v</Translation>
+        <Translation Language="UA">V: &lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_RJTF" Alignment="Left" TypographyId="ValueNormal">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="LOADING" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">Loading&lt;value&gt;...</Translation>
+        <Translation Language="UA">Завантаження&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_343D" Alignment="Center" TypographyId="ValueLarge2">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+        <Translation Language="UA">&lt;value&gt;%</Translation>
+      </Text>
+      <Text Id="__SingleUse_3FJH" Alignment="Left" TypographyId="ValueLarge2">
+        <Translation Language="GB">100</Translation>
+        <Translation Language="UA">100</Translation>
+      </Text>
+      <Text Id="__SingleUse_Y8I9" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">100</Translation>
+        <Translation Language="UA">100</Translation>
+      </Text>
+      <Text Id="__SingleUse_4ST7" Alignment="Left" TypographyId="ValueLarge">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">4</Translation>
+      </Text>
+      <Text Id="__SingleUse_A1VM" Alignment="Right" TypographyId="ValueLarge">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="REMAINING_TIME" Alignment="Left" TypographyId="MainText">
+        <Translation Language="GB">REMAINING TIME</Translation>
+        <Translation Language="UA">ЧАС РОЗРЯДЖАННЯ</Translation>
+      </Text>
+      <Text Id="Hours" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">hours</Translation>
+        <Translation Language="UA">год</Translation>
+      </Text>
+      <Text Id="RECHARGING_TIME" Alignment="Left" TypographyId="MainText">
+        <Translation Language="GB">RECHARGING TIME</Translation>
+        <Translation Language="UA">ЧАС ЗАРЯДЖАННЯ</Translation>
+      </Text>
+      <Text Id="__SingleUse_SX70" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">0.0</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="Mins" Alignment="Right" TypographyId="MainText">
+        <Translation Language="GB">Minutes</Translation>
+        <Translation Language="UA">хв</Translation>
+      </Text>
+      <Text Id="SOC" Alignment="Center" TypographyId="ValueMedium">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+        <Translation Language="UA">&lt;value&gt;%</Translation>
       </Text>
       <Text Id="__SingleUse_82HO" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0.0</Translation>
+        <Translation Language="UA">0.0</Translation>
       </Text>
       <Text Id="__SingleUse_7FIN" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;v</Translation>
+        <Translation Language="UA">&lt;value&gt;в</Translation>
       </Text>
       <Text Id="__SingleUse_IKNA" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">1</Translation>
+        <Translation Language="UA">1</Translation>
       </Text>
       <Text Id="__SingleUse_GCQW" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_RJG5" Alignment="Left" TypographyId="Errors">
         <Translation Language="GB"></Translation>
+        <Translation Language="UA"></Translation>
       </Text>
-      <Text Id="__SingleUse_BZBL" Alignment="Center" TypographyId="Values">
+      <Text Id="VoltageVal" Alignment="Right" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;v</Translation>
+        <Translation Language="UA">&lt;value&gt;в</Translation>
       </Text>
       <Text Id="__SingleUse_572H" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0</Translation>
+        <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="__SingleUse_X3W7" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;%</Translation>
+        <Translation Language="UA">&lt;value&gt;%</Translation>
       </Text>
       <Text Id="wildcardId3" Alignment="Left" TypographyId="Small">
         <Translation Language="GB">0</Translation>
+        <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="__SingleUse_EFRY" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
+        <Translation Language="UA">Вольтаж</Translation>
       </Text>
       <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
       <Text Id="wildcardId1" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0</Translation>
+        <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="__SingleUse_SFML" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Current</Translation>
+        <Translation Language="UA">Поточне</Translation>
       </Text>
       <Text Id="__SingleUse_6J8M" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Capacity</Translation>
+        <Translation Language="UA">Заряд</Translation>
       </Text>
       <Text Id="wildcardId2" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">50</Translation>
+        <Translation Language="UA">50</Translation>
       </Text>
       <Text Id="batCapacity" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
       <Text Id="__SingleUse_LX7P" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Sleeping...</Translation>
+        <Translation Language="UA">Сон..</Translation>
       </Text>
       <Text Id="__SingleUse_WOQL" Alignment="Center" TypographyId="Default">
         <Translation Language="GB">&lt;&gt; %</Translation>
+        <Translation Language="UA">&lt;&gt; %</Translation>
       </Text>
       <Text Id="__SingleUse_WPN4" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Brightness:</Translation>
+        <Translation Language="UA">Яскравість:</Translation>
       </Text>
       <Text Id="__SingleUse_XXXU" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Idle mode</Translation>
+        <Translation Language="UA">Idle mode</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
+    <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
   </Typographies>
 </TextDatabase>

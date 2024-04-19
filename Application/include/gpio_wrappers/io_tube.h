@@ -15,7 +15,7 @@ class IOTube : public ITickHandler
 public:
 	IOTube(const SinglePinElement& in, const SinglePinElement& out, bool inverted = false);
 
-	VIRTUAL void onTick() OVERRIDE;
+	virtual void onTick() override;
 private:
 	SinglePinElement m_in;
 	SinglePinElement m_out;

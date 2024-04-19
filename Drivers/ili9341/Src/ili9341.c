@@ -182,7 +182,12 @@ void ILI9341_Init(void)
     LCD_WR_DATA(0x2C);
 
     LCD_direction(ROTATE_270);
+}
 
+
+void ILI9341_EnableSleepMode(int sleepMode)
+{
+	LCD_WR_REG(sleepMode ? 0x10 : 0x11);
 }
 
 void ILI9341_SetWindow(uint16_t start_x, uint16_t start_y, uint16_t end_x, uint16_t end_y)

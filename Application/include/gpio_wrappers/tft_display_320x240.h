@@ -16,7 +16,7 @@ class TFTDisplay320x240 : protected SinglePinElement, public ITickHandler
 public:
 	using SinglePinElement::SinglePinElement;
 
-	VIRTUAL void onTick() OVERRIDE;
+	virtual void onTick() override;
 
 	void toggle();
 	void on() { if (!readPin()) toggle(); }

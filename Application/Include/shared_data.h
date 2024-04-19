@@ -8,9 +8,17 @@
 #ifndef SHARED_DATA_H_
 #define SHARED_DATA_H_
 
+#include <bms/bms_data.h>
 #include <stdint.h>
 #include <string>
-#include <bms_data.h>
+
+enum class PowerModeState: uint8_t
+{
+    Normal,
+    StopRequested,
+    StopReady,
+    WakedUp
+};
 
 enum class ProcessId: uint8_t
 {
@@ -36,23 +44,17 @@ template <>
 struct ProcessData<ProcessId::Idle>
 {
     int screenBrightness {500};
-    mutable int sleepingMode{0};
     int analog1{0};
     int analog2{0};
 
-    bool bmsActive{false};
+    int screenId{1};
+    PowerModeState powerModeState{PowerModeState::Normal};
 //    bool bmsError{false};
 
     BatteryData bms;
+    SmoothedValue smoothedCurrent;
     std::string bmsErrMsg;
     uint32_t bmsErrFlags{0};
-
-//    int batCapacity{0};
-//    int batVoltage{0};
-//    uint8_t cellCount{0};
-//    uint16_t cellVoltage[12];
-//
-//    float batCurrent{0.f};
 };
 
 

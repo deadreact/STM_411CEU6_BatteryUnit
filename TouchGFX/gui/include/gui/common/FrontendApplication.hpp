@@ -15,9 +15,10 @@ public:
     virtual ~FrontendApplication() { }
 
     virtual void handleTickEvent() override;
+    void showScreen(int id);
 private:
     ProcessId m_processId;
-    bool bmsActive{false};
+    int m_screenId{2};
 };
 
 #endif // FRONTENDAPPLICATION_HPP

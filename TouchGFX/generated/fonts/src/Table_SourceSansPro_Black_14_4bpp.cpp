@@ -19,7 +19,8 @@ KEEP extern const touchgfx::GlyphNode glyphs_SourceSansPro_Black_14_4bpp[] FONT_
     {   382, 0x0038,   7,   9,   9,   0,   8,   0,   0, 0x00 }, // eight
     {   418, 0x0039,   7,   9,   9,   0,   8,   0,   0, 0x00 }, // nine
     {   454, 0x003F,   7,  10,  10,   0,   7,   0,   0, 0x00 }, // question
-    {   494, 0x0076,   8,   7,   7,   0,   8,   1,   1, 0x00 }  // v
+    {   494, 0x0076,   8,   7,   7,   0,   8,   1,   1, 0x00 }, // v
+    {   522, 0x0432,   7,   7,   7,   0,   8,   0,   0, 0x00 }  // uni0432
 };
 
 // SourceSansPro_Black_14_4bpp
@@ -37,6 +38,6 @@ touchgfx::GeneratedFont& getFont_SourceSansPro_Black_14_4bpp();
 
 touchgfx::GeneratedFont& getFont_SourceSansPro_Black_14_4bpp()
 {
-    static touchgfx::GeneratedFont SourceSansPro_Black_14_4bpp(glyphs_SourceSansPro_Black_14_4bpp, 16, 14, 14, 0, 0, 4, 1, 0, 0, unicodes_SourceSansPro_Black_14_4bpp, kerning_SourceSansPro_Black_14_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SourceSansPro_Black_14_4bpp(glyphs_SourceSansPro_Black_14_4bpp, 17, 14, 14, 0, 0, 4, 1, 0, 0, unicodes_SourceSansPro_Black_14_4bpp, kerning_SourceSansPro_Black_14_4bpp, 63, 0, 0, 0);
     return SourceSansPro_Black_14_4bpp;
 }

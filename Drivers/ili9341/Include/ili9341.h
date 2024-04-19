@@ -42,6 +42,7 @@ SOFTWARE.
 #define GUI_HEIGHT 240
 
 void ILI9341_Init(void);
+void ILI9341_EnableSleepMode(int sleepMode);
 void ILI9341_SetWindow(uint16_t start_x, uint16_t start_y, uint16_t end_x, uint16_t end_y);
 void ILI9341_DrawBitmap(uint16_t w, uint16_t h, uint8_t *s);
 void ILI9341_WritePixel(uint16_t x, uint16_t y, uint16_t color);

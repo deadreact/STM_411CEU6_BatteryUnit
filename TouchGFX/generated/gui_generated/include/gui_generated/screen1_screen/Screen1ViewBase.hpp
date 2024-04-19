@@ -8,8 +8,14 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/progress_indicators/CircleProgress.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <gui/containers/AnimatedWarning.hpp>
+#include <touchgfx/widgets/AnimationTextureMapper.hpp>
+#include <gui/containers/BatteryStatusLarge.hpp>
+#include <gui/containers/IOValue.hpp>
+#include <gui/containers/ChargeTime.hpp>
+#include <gui/containers/BatteryStatus.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -27,16 +33,25 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::CircleProgress circleProgress1;
-    touchgfx::PainterRGB565 circleProgress1Painter;
+    touchgfx::Container content;
+    touchgfx::Container iconsContainer;
+    touchgfx::Image icon1;
+    touchgfx::Image _icon2;
+    touchgfx::Image icon3;
+    touchgfx::Image icon5;
+    AnimatedWarning warning;
+    touchgfx::AnimationTextureMapper icon_fan;
+    touchgfx::AnimationTextureMapper icon_inv;
+    BatteryStatusLarge capacityContainerLarge;
+    touchgfx::Container capacityContainerSmall;
+    IOValue ioValue;
+    ChargeTime chargeTimeContainer;
+    BatteryStatus capacityContainer;
+    touchgfx::Box footerBox;
+    touchgfx::Box headerBox;
+    touchgfx::AnimationTextureMapper loading;
 
 private:
-
-    /*
-     * Canvas Buffer Size
-     */
-    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
-    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
 };
 

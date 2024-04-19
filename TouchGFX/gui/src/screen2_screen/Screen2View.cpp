@@ -21,17 +21,17 @@ void Screen2View::handleTickEvent()
     if (SharedData::getProcessId() == ProcessId::Idle)
     {
         const auto& data = SharedData::getData<ProcessId::Idle>();
-        if (sleepingLabel.isVisible() != data.sleepingMode)
-        {
-            sleepingLabel.setVisible(data.sleepingMode);
-            sleepingLabel.invalidate();
-            container1.setVisible(!data.sleepingMode);
-            container1.invalidate();
-        }
-
-        if (data.sleepingMode) {
-            return;
-        }
+//        if (sleepingLabel.isVisible() != data.sleepingMode)
+//        {
+//            sleepingLabel.setVisible(data.sleepingMode);
+//            sleepingLabel.invalidate();
+//            container1.setVisible(!data.sleepingMode);
+//            container1.invalidate();
+//        }
+//
+//        if (data.sleepingMode) {
+//            return;
+//        }
 
         if (data.screenBrightness != m_screenBrightness)
         {
