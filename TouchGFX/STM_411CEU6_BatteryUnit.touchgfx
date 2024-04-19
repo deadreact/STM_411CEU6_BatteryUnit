@@ -553,13 +553,6 @@
             ]
           },
           {
-            "Type": "Box",
-            "Name": "fadeWidget",
-            "Width": 320,
-            "Height": 240,
-            "Visible": false
-          },
-          {
             "Type": "TextureMapper",
             "Name": "loading",
             "X": 124,

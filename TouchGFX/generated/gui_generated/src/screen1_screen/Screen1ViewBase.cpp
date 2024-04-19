@@ -94,11 +94,6 @@ Screen1ViewBase::Screen1ViewBase()
 
     add(content);
 
-    fadeWidget.setPosition(0, 0, 320, 240);
-    fadeWidget.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    fadeWidget.setVisible(false);
-    add(fadeWidget);
-
     loading.setXY(124, 84);
     loading.setBitmap(touchgfx::Bitmap(BITMAP_LOADING_2_ID));
     loading.setWidth(72);

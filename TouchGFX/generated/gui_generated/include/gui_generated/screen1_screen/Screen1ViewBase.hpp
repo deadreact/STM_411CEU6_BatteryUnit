@@ -50,7 +50,6 @@ protected:
     BatteryStatus capacityContainer;
     touchgfx::Box footerBox;
     touchgfx::Box headerBox;
-    touchgfx::Box fadeWidget;
     touchgfx::TextureMapper loading;
 
 private:
