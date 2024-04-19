@@ -18,16 +18,16 @@ void Program_Process()
     if(__HAL_PWR_GET_FLAG(PWR_FLAG_SB) == RESET)
     {
         StartupProcess p;
-        p.Init();
-        p.Run();
+        p.init();
+        p.run();
     }
 //    HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1);
     __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
 //    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 #endif
     IdleProcess p;
-    p.Init();
-    p.Run();
+    p.init();
+    p.run();
 }
 
 void AfterStopMode()

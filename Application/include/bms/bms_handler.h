@@ -24,17 +24,17 @@ public:
     bool isPowerOn() const { return m_bmsPwrStatus.readPin(); }
     bool isPowerRequested() const { return m_bmsPwrRequest.readPin(); }
 
-    void Request(uint8_t* frameData, uint16_t frameLen);
+    void request(uint8_t* frameData, uint16_t frameLen);
 
-    bool RequestTurnOn();
-    bool RequestTurnOff();
-    void RequestAllData();
-    void RequestData(uint8_t dataId);
+    bool requestTurnOn();
+    bool requestTurnOff();
+    void requestAllData();
+    void requestData(uint8_t dataId);
 
-    void Response(HAL_StatusTypeDef status);
+    void response(HAL_StatusTypeDef status);
 
-    BMSStatus GetStatus() const { return m_status; }
-    const BatteryData& GetData() const { return m_data; }
+    BMSStatus getStatus() const { return m_status; }
+    const BatteryData& getData() const { return m_data; }
 
     std::string debugMsg;
     uint32_t errFlags{0};
@@ -42,7 +42,7 @@ public:
     constexpr static const int rxDataLen = 280; // 279 bytes needed for 12 cells
     constexpr static const int txDataLen = 21;
 protected:
-    void UpdateData(const BatteryData& newData);
+    void updateData(const BatteryData& newData);
 protected:
     SinglePinElement m_bmsPwrRequest{GPIOA, GPIO_PIN_8};
     SinglePinElement m_bmsPwrStatus{GPIOB, GPIO_PIN_7};
@@ -67,9 +67,9 @@ enum class BMSUpdaterEvent : uint8_t
 class BMSUpdater : public BMSHandler
 {
 public:
-    void Update();
-    void UpdateAndStop();
-    BMSUpdaterEvent GetLastEvent() const { return m_lastEvent; }
+    void update();
+    void updateAndStop();
+    BMSUpdaterEvent getLastEvent() const { return m_lastEvent; }
 
 private:
     BMSStatus m_prevStatus { BMSStatus::NoStatus };

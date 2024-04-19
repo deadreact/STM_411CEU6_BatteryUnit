@@ -12,12 +12,12 @@ class Process
 {
 public:
     virtual ~Process() {}
-    virtual void Init() = 0;
-    virtual void Deinit() {}
+    virtual void init() = 0;
+    virtual void deinit() {}
 
-    void Run();
+    void run();
 protected:
-    virtual void Update() = 0;
+    virtual void update() = 0;
 
     bool m_isRunning{false};
     unsigned int m_tickRate{1};

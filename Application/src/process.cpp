@@ -10,7 +10,7 @@
 
 Process* Process::sm_current = nullptr;
 
-void Process::Run()
+void Process::run()
 {
     if (sm_current) {
         sm_current->m_isRunning = false;
@@ -26,10 +26,10 @@ void Process::Run()
         if (updateTick <= HAL_GetTick())
         {
             updateTick = HAL_GetTick() + m_tickRate;
-            Update();
+            update();
         }
     }
 
     sm_current = nullptr;
-    Deinit();
+    deinit();
 }

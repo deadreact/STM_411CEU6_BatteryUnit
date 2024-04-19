@@ -15,9 +15,9 @@ class IdleProcess : public Process
 public:
     virtual ~IdleProcess();
 
-    virtual void Init() override;
+    virtual void init() override;
 protected:
-    virtual void Update() override;
+    virtual void update() override;
 private:
     struct Impl;
     Impl* m_pimpl{nullptr};

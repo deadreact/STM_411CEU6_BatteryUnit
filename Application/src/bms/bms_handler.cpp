@@ -57,7 +57,7 @@ BMSHandler::~BMSHandler() {
     }
 }
 
-void BMSHandler::Request(uint8_t* frameData, uint16_t frameLen)
+void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
 {
     if (m_status == BMSStatus::Requested) {
         return;
@@ -94,7 +94,7 @@ void BMSHandler::Request(uint8_t* frameData, uint16_t frameLen)
     m_status = getRequestStatus(status);
 }
 
-bool BMSHandler::RequestTurnOn()
+bool BMSHandler::requestTurnOn()
 {
 //    uint16_t len = FillTxData(txDataBuffer, 0x01);
 //    Request(txDataBuffer, len);
@@ -108,7 +108,7 @@ bool BMSHandler::RequestTurnOn()
     return isPowerOn();
 }
 
-bool BMSHandler::RequestTurnOff()
+bool BMSHandler::requestTurnOff()
 {
 //    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
 //    m_status = BMSStatus::OffRequested;
@@ -127,19 +127,19 @@ bool BMSHandler::RequestTurnOff()
 	return !isPowerOn();
 }
 
-void BMSHandler::RequestAllData()
+void BMSHandler::requestAllData()
 {
     uint16_t len = jk::fillFrame(txDataBuffer);
-    Request(txDataBuffer, len);
+    request(txDataBuffer, len);
 }
 
-void BMSHandler::RequestData(uint8_t dataId)
+void BMSHandler::requestData(uint8_t dataId)
 {
     uint16_t len = jk::fillFrame(txDataBuffer, 0x03, &dataId, 1);
-    Request(txDataBuffer, len);
+    request(txDataBuffer, len);
 }
 
-void BMSHandler::Response(HAL_StatusTypeDef status)
+void BMSHandler::response(HAL_StatusTypeDef status)
 {
 //    s_bmsHandler = nullptr;
     m_lastResponseTick = HAL_GetTick();
@@ -170,14 +170,14 @@ void BMSHandler::Response(HAL_StatusTypeDef status)
             static int simCurrent = 90;
             data.current -= simCurrent;
 #endif
-            UpdateData(data);
+            updateData(data);
         }
     }
 
     memset(rxData, 0, sizeof(rxData));
 }
 
-void BMSHandler::UpdateData(const BatteryData& newData)
+void BMSHandler::updateData(const BatteryData& newData)
 {
     m_lastDataUpdateTick = HAL_GetTick();
     errFlags &= ~BMSErrorFlags::maskMajorErrors;
@@ -195,7 +195,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
     {
         s_bmsHandler->debugMsg = "data received";
         s_bmsHandler->errFlags &= ~BMSErrorFlags::maskMinorErrors;
-        s_bmsHandler->Response(HAL_OK);
+        s_bmsHandler->response(HAL_OK);
     }
 }
 
@@ -211,11 +211,11 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
         if (huart->ErrorCode & HAL_UART_ERROR_DMA) { s_bmsHandler->debugMsg += " dma"; }
         s_bmsHandler->debugMsg += " err";
         s_bmsHandler->errFlags |= huart->ErrorCode;
-        s_bmsHandler->Response(HAL_ERROR);
+        s_bmsHandler->response(HAL_ERROR);
     }
 }
 
-void BMSUpdater::Update()
+void BMSUpdater::update()
 {
 //    if (m_status == BMSStatus::Off)
 //    {
@@ -231,11 +231,11 @@ void BMSUpdater::Update()
 //        }
 //    }
 
-	if (RequestTurnOn())
+	if (requestTurnOn())
 	{
 		if (m_status == BMSStatus::NoStatus)
 		{
-			RequestAllData();
+			requestAllData();
 		}
 		else if (m_status == BMSStatus::Requested)
 		{
@@ -243,7 +243,7 @@ void BMSUpdater::Update()
 			{
 				m_status = BMSStatus::RequestTimedOut;
 				debugMsg = "request timed out";
-				RequestAllData();
+				requestAllData();
 			}
 		}
 		else
@@ -253,13 +253,13 @@ void BMSUpdater::Update()
 				errFlags |= BMSErrorFlags::ValidResponseTimeout;
 				debugMsg = "valid response timed out";
 	//            RequestTurnOn();
-				RequestAllData();
+				requestAllData();
 			}
 			if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
 			{
 				m_status = BMSStatus::InfoTimedOut;
 				debugMsg = "info timed out";
-				RequestAllData();
+				requestAllData();
 			}
 		}
 
@@ -277,7 +277,7 @@ void BMSUpdater::Update()
 	}
 }
 
-void BMSUpdater::UpdateAndStop()
+void BMSUpdater::updateAndStop()
 {
 //    if (m_status == BMSStatus::OffRequested)
 //    {
@@ -292,7 +292,7 @@ void BMSUpdater::UpdateAndStop()
 //    {
 //        RequestTurnOff();
 //    }
-	if (RequestTurnOff())
+	if (requestTurnOff())
 	{
 		m_status = BMSStatus::NoStatus;
 	}

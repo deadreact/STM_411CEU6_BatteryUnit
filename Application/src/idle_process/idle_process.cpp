@@ -119,11 +119,11 @@ void IdleProcess::Impl::OnTick()
     usbTube.onTick();
 
     if (sharedData.powerModeState == PowerModeState::StopRequested) {
-		m_bmsUpdater.UpdateAndStop();
+		m_bmsUpdater.updateAndStop();
 //		return;
 	} else
     if (sharedData.screenId != 2) {
-        m_bmsUpdater.Update();
+        m_bmsUpdater.update();
     } else {
         UpdateAnalog();
     }
@@ -137,10 +137,10 @@ void IdleProcess::Impl::HandleEvents()
     btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
 
-    BMSUpdaterEvent bmsEvent = m_bmsUpdater.GetLastEvent();
+    BMSUpdaterEvent bmsEvent = m_bmsUpdater.getLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-        sharedData.bms = m_bmsUpdater.GetData();
+        sharedData.bms = m_bmsUpdater.getData();
         sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
         sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
 
@@ -152,7 +152,7 @@ void IdleProcess::Impl::HandleEvents()
     if (sharedData.powerModeState == PowerModeState::StopRequested)
     {
     	screenLed.setIndicationType(LedIndicationType::FastBlinking);
-        if (m_bmsUpdater.GetStatus() == BMSStatus::NoStatus)
+        if (m_bmsUpdater.getStatus() == BMSStatus::NoStatus)
         {
         	if (NVIC_GetEnableIRQ(bttn_screen_on_EXTI_IRQn))
         	{
@@ -166,7 +166,7 @@ void IdleProcess::Impl::HandleEvents()
     {
     	if (m_bmsUpdater.isPowerOn())
     	{
-    		if (m_bmsUpdater.GetStatus() != BMSStatus::Error && m_bmsUpdater.GetData().isValid())
+    		if (m_bmsUpdater.getStatus() != BMSStatus::Error && m_bmsUpdater.getData().isValid())
     		{
     			screenLed.setIndicationType(LedIndicationType::On);
     		}
@@ -214,7 +214,7 @@ IdleProcess::~IdleProcess()
     delete m_pimpl;
 }
 
-void IdleProcess::Init()
+void IdleProcess::init()
 {
     m_pimpl = new IdleProcess::Impl;
     SharedData::get().setProcessId<ProcessId::Idle>(&m_pimpl->sharedData);
@@ -223,7 +223,7 @@ void IdleProcess::Init()
     m_pimpl->screen.on();
 }
 
-void IdleProcess::Update()
+void IdleProcess::update()
 {
 //    bool gotoSleep = m_pimpl->sharedData.sleepingMode > 1;
 

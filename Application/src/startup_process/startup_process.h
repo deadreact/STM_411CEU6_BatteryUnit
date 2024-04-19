@@ -15,10 +15,10 @@
 class StartupProcess : public Process
 {
 public:
-    virtual void Init() override;
-    virtual void Deinit() override;
+    virtual void init() override;
+    virtual void deinit() override;
 protected:
-    virtual void Update() override;
+    virtual void update() override;
 private:
     ProcessData<ProcessId::Startup> data;
     uint32_t m_startTick;
