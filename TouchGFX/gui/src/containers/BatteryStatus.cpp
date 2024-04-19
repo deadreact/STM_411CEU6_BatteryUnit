@@ -19,8 +19,8 @@ void BatteryStatus::initialize()
 
 void BatteryStatus::handleTickEvent()
 {
-	static int16_t animDuration = 1000;
-	static int16_t frameRate = 1000/60;
+	static const int16_t animDuration = 1000;
+	static const int16_t frameRate = 1000/60;
 	if (m_state == ChargeState::Charge)
 	{
 		int duration = HAL_GetTick() - m_dirChangeTick;

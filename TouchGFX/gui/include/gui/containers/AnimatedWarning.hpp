@@ -12,7 +12,9 @@ public:
     virtual void initialize();
     virtual void handleTickEvent();
 protected:
-    int m_dir{-5};
+    // animation
+    uint32_t m_dirChangeTick{0};
+    uint8_t m_lastFrame{0};
 };
 
 #endif // ANIMATEDWARNING_HPP
