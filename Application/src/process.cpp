@@ -25,7 +25,7 @@ void Process::run()
     {
         if (updateTick <= HAL_GetTick())
         {
-            updateTick = HAL_GetTick() + m_tickRate;
+            updateTick += m_tickRate;
             update();
         }
     }
