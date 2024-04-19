@@ -5,42 +5,19 @@
  *      Author: deadreact
  */
 
-#include "../idle_process/idle_process.h"
+#include "idle_process.h"
 
 #include "power_modes.h"
-#include "app_touchgfx.h"
-#include "stm32f4xx_hal.h"
 #include <gpio_wrappers/button.h>
 #include <gpio_wrappers/led.h>
 #include <gpio_wrappers/io_tube.h>
+#include <gpio_wrappers/tft_display_320x240.h>
 #include "main.h"
 #include <cstring>
-#include <ili9341.h>
 #include <shared_data.h>
 
 #include <bms/bms_handler.h>
-
-class Screen : protected SinglePinElement, public ITickHandler
-{
-public:
-	using SinglePinElement::SinglePinElement;
-
-	virtual void onTick() override
-	{
-		if (readPin()) {
-			MX_TouchGFX_Process();
-		}
-	}
-
-	void toggle()
-	{
-		ILI9341_EnableSleepMode(readPin());
-		HAL_GPIO_TogglePin(m_GPIOx, m_pin);
-	}
-
-	void on() { if (!readPin()) toggle(); }
-	void off() { if (readPin()) toggle(); }
-};
+#include <inverter/inverter_handler.h>
 
 // ---------------------------------------------------------------
 
@@ -58,12 +35,11 @@ struct IdleProcess::Impl
 
     // Data
     ProcessData<ProcessId::Idle> sharedData;
-//    bool screenOn{true};
-
     // Handlers
     BMSUpdater m_bmsUpdater;
+    InverterHandler m_invHandler;
 
-    Screen screen{LED_GPIO_Port, LED_Pin};
+    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
     ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
     ButtonEventProvider btnBmsToggle{GPIOB, GPIO_PIN_3, 800, 800};
@@ -78,7 +54,7 @@ struct IdleProcess::Impl
 
     IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
 
-    IOTube invertorTube{{inv_ok_GPIO_Port, inv_ok_Pin}, {bttn_inv_led_GPIO_Port, bttn_inv_led_Pin}};
+//    IOTube invertorTube{{inv_ok_GPIO_Port, inv_ok_Pin}, {bttn_inv_led_GPIO_Port, bttn_inv_led_Pin}};
     IOTube usbTube{{usb_on_GPIO_Port, usb_on_Pin}, {bttn_usb_led_GPIO_Port, bttn_usb_led_Pin}};
 };
 
@@ -107,7 +83,7 @@ void IdleProcess::Impl::UpdateAnalog()
 
 void IdleProcess::Impl::OnTick()
 {
-
+	m_invHandler.onTick();
 	screenLed.onTick();
 //    led.onTick();
     boardLedTube.onTick();
@@ -115,7 +91,7 @@ void IdleProcess::Impl::OnTick()
     btnBmsToggle.onTick();
     btnPwr.onTick();
 
-    invertorTube.onTick();
+//    invertorTube.onTick();
     usbTube.onTick();
 
     if (sharedData.powerModeState == PowerModeState::StopRequested) {
@@ -136,8 +112,9 @@ void IdleProcess::Impl::HandleEvents()
     btnSleepHandler.handleEvents();
     btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
+    m_invHandler.handleEvents();
 
-    BMSUpdaterEvent bmsEvent = m_bmsUpdater.getLastEvent();
+    BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
         sharedData.bms = m_bmsUpdater.getData();

@@ -13,7 +13,7 @@
 #include <string>
 
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 0
+#define SIMULATE_UNCHARGING 1
 
 class BMSHandler
 {
@@ -69,8 +69,7 @@ class BMSUpdater : public BMSHandler
 public:
     void update();
     void updateAndStop();
-    BMSUpdaterEvent getLastEvent() const { return m_lastEvent; }
-
+    BMSUpdaterEvent takeLastEvent();
 private:
     BMSStatus m_prevStatus { BMSStatus::NoStatus };
     BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };

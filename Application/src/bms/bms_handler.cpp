@@ -263,7 +263,7 @@ void BMSUpdater::update()
 			}
 		}
 
-		m_lastEvent = BMSUpdaterEvent::NoEvent;
+//		m_lastEvent = BMSUpdaterEvent::NoEvent;
 		if (m_prevStatus != m_status)
 		{
 			if (m_prevStatus == BMSStatus::Requested && m_status == BMSStatus::Ok) {
@@ -298,3 +298,8 @@ void BMSUpdater::updateAndStop()
 	}
 }
 
+BMSUpdaterEvent BMSUpdater::takeLastEvent() {
+	auto tmp = m_lastEvent;
+	m_lastEvent = BMSUpdaterEvent::NoEvent;
+	return tmp;
+}
