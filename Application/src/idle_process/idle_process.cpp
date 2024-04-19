@@ -139,6 +139,7 @@ void IdleProcess::Impl::handlePowerState()
 	if (sharedData.powerModeState == PowerModeState::StopRequested)
 	{
 		m_bmsUpdater.setActive(false);
+		m_invHandler.setActive(false);
 		screenLed.setIndicationType(LedIndicationType::FastBlinking);
 		if (m_bmsUpdater.getStatus() == BMSStatus::NoStatus)
 		{
@@ -154,6 +155,7 @@ void IdleProcess::Impl::handlePowerState()
 	else
 	{
 		m_bmsUpdater.setActive(true);
+		m_invHandler.setActive(true);
 		if (sharedData.powerModeState == PowerModeState::WakedUp && m_wakedUpTimeout <= HAL_GetTick())
 		{
 			if (!btnPwr.isPressed())

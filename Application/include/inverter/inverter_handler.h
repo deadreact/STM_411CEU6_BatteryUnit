@@ -28,23 +28,21 @@ public:
 	void onTick();
 	void handleEvents();
 
+	void setActive(bool active);
 	inline InverterState getState() const { return InverterState(m_led.getIndicationType()); }
 private:
 	void onBtnClicked();
 private:
 	ButtonEventProvider m_btn{bttn_inv_on_GPIO_Port, bttn_inv_on_Pin};
 	LedIndicator m_led{bttn_inv_led_GPIO_Port, bttn_inv_led_Pin};
-	SinglePinElement m_invFeedback{inv_ok_GPIO_Port, inv_ok_Pin};
+	SinglePinElement m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
 	SinglePinElement m_invOn{inv_on_GPIO_Port, inv_on_Pin};
-//	IOTube m_tube{m_invFeedback, m_led};
 
 	ButtonEventHandler m_btnHandler{&m_btn, [&]{ onBtnClicked(); }};
 	
-//	uint32_t m_lastOnFeedbackTick{0};
-//	uint32_t m_lastOffFeedbackTick{0};
-//	uint32_t m_stableFeedbackDuration{0};
 	uint32_t m_stableStateCheckTick{0};
 	uint32_t m_forceTurnOffTick{0};
+	bool m_isActive{true};
 
 //	bool m_isOn{false};
 };
