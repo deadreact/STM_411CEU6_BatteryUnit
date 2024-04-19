@@ -11,7 +11,7 @@ constexpr static const uint32_t kLabelBlue = 0xFF687FCC;
 
 ChargeTime::ChargeTime()
 {
-
+	applyFormat();
 }
 
 void ChargeTime::initialize()
@@ -21,7 +21,6 @@ void ChargeTime::initialize()
 
 void ChargeTime::setValue(int val)
 {
-//	val = std::min(999, std::max(-999, val));
 	if (val != m_value)
 	{
 		const int absVal = val < 0 ? -val : val;
@@ -30,12 +29,12 @@ void ChargeTime::setValue(int val)
 
 		Format format;
 		if (absVal > 9 * 60 + 30) {
-			if (hours > 24) {
-				format = Format::Maximum;
+			if (hours >= 99) {
+				hours = 99;
 			} else {
 				hours = (absVal + 30)/ 60;
-				format = Format::Hours;
 			}
+			format = Format::Hours;
 		} else if (absVal > 59) {
 			format = Format::Full;
 		} else if (absVal > 1) {
@@ -49,9 +48,7 @@ void ChargeTime::setValue(int val)
 		setFormat(format);
 		setTime(hours, mins);
 
-//		Unicode::snprintf(valueBuffer, VALUE_SIZE, "%d", (val < 0 ? -val : val));
 		m_value = val;
-		//#CC6868
 
 		if (val >= 0 || val < -kYellowTreshold)
 		{
@@ -79,11 +76,6 @@ void ChargeTime::setValue(int val)
 		warningYellow.setVisible(val >= -kYellowTreshold && val < -kRedTreshold);
 		warningRed.setVisible(val >= -kRedTreshold && val < 0);
 
-//		uint8_t alpha = (val == 0 || val == 999 || val == -999) ? kZeroAlpha : 255;
-//		value.setAlpha(alpha);
-//		chargeTimeLabel.setAlpha(alpha);
-//		minsLabel.setAlpha(alpha);
-
 		invalidate();
 	}
 }
@@ -94,19 +86,7 @@ void ChargeTime::setFormat(Format format)
 	if (format != m_format)
 	{
 		m_format = format;
-		setVisible(format != Format::Hidden);
-
-		if (format != Format::Hidden)
-		{
-			minsLabel.setVisible(format == Format::Minimum || format == Format::Minutes || format == Format::Full);
-			hoursLabel.setVisible(format == Format::Hours || format == Format::Full);
-
-			value.setVisible(format != Format::Maximum);
-			valueAdditional.setVisible(format == Format::Full);
-
-			value.setWidth(format == Format::Full ? 106 : getWidth());
-			hoursLabel.setWidth(format == Format::Full ? 50 : 104);
-		}
+		applyFormat();
 	}
 }
 
@@ -134,14 +114,27 @@ void ChargeTime::setTime(int h, int m)
 	case Format::Minimum:
 	{
 		Unicode::snprintf(valueBuffer, VALUE_SIZE, "< 1");
-//		Unicode::snprintf(valueAdditionalBuffer, VALUEADDITIONAL_SIZE, "%d", 1);
 		value.invalidate();
-//		valueAdditional.invalidate();
 	} break;
-	case Format::Maximum:
+//	case Format::Maximum:
 	default:
 		break;
 	}
 }
 
+void ChargeTime::applyFormat()
+{
+	setVisible(m_format != Format::Hidden);
 
+	if (m_format != Format::Hidden)
+	{
+		minsLabel.setVisible(m_format == Format::Minimum || m_format == Format::Minutes || m_format == Format::Full);
+		hoursLabel.setVisible(m_format == Format::Hours || m_format == Format::Full);
+
+//			value.setVisible(m_format != Format::Maximum);
+		valueAdditional.setVisible(m_format == Format::Full);
+
+		value.setWidth(m_format == Format::Full ? 106 : getWidth());
+		hoursLabel.setWidth(m_format == Format::Full ? 50 : 104);
+	}
+}

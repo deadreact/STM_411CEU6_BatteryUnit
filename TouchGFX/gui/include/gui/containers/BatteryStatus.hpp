@@ -18,7 +18,7 @@ public:
 protected:
     int m_soc{0};
     int m_voltage{0};
-    ChargeState m_state{ChargeState::Idle};
+    ChargeState m_state{InvalidChargeState};
 
     // animation
     uint32_t m_dirChangeTick{0};

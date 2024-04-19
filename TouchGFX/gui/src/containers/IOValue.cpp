@@ -5,7 +5,7 @@ constexpr static const uint8_t kZeroAlpha = 44;
 
 IOValue::IOValue()
 {
-
+	setState(ChargeState::Idle);
 }
 
 void IOValue::initialize()
@@ -32,9 +32,6 @@ void IOValue::setState(ChargeState state)
 		ioLabel.setVisible(state != ChargeState::Idle);
 		value.setVisible(state != ChargeState::Idle);
 		Watts.setVisible(state != ChargeState::Idle);
-//		value.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
-//		Watts.setAlpha(state != State::Idle ? 255 : kZeroAlpha);
-//#8EEDA6 #ED8E8E
 
 		if (state != ChargeState::Idle)
 		{
@@ -44,10 +41,6 @@ void IOValue::setState(ChargeState state)
 			{
 				ioLabel.setTypedText(touchgfx::TypedText(textId));
 				ioLabel.setColor(color);
-//				ioLabel.resizeToCurrentTextWithAlignment();
-//				ioLabel.setX(state == State::Charge ? 175 : 163);
-//				Watts.setX(state == State::Charge ? 175 : 163);
-//				value.setX(state == State::Charge ? 10 : 0);
 			}
 		}
 		m_state = state;

@@ -11,8 +11,8 @@ class ChargeTime : public ChargeTimeBase
 		Full,
 		Hours,
 		Minutes,
-		Minimum,
-		Maximum
+		Minimum
+//		Maximum
 	};
 public:
     ChargeTime();
@@ -22,6 +22,8 @@ public:
     void setValue(int val);
     void setFormat(Format format);
     void setTime(int h, int m);
+protected:
+    void applyFormat();
 protected:
     int m_value{0};
     Format m_format{Format::Hidden};

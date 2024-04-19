@@ -12,12 +12,11 @@ public:
 
     virtual void initialize();
     void setValue(int val);
-
 protected:
     void setState(ChargeState state);
 protected:
     int m_value{0};
-    ChargeState m_state{ChargeState::Idle};
+    ChargeState m_state{InvalidChargeState};
 };
 
 #endif // IOVALUE_HPP
