@@ -12,7 +12,8 @@
 #include <touchgfx/widgets/Image.hpp>
 #include <gui/containers/AnimatedWarning.hpp>
 #include <touchgfx/widgets/AnimationTextureMapper.hpp>
-#include <gui/containers/BatteryStatusLarge.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/mixins/MoveAnimator.hpp>
 #include <gui/containers/IOValue.hpp>
 #include <gui/containers/ChargeTime.hpp>
 #include <gui/containers/BatteryStatus.hpp>
@@ -43,8 +44,7 @@ protected:
     AnimatedWarning warning;
     touchgfx::AnimationTextureMapper icon_fan;
     touchgfx::AnimationTextureMapper icon_inv;
-    BatteryStatusLarge capacityContainerLarge;
-    touchgfx::Container capacityContainerSmall;
+    touchgfx::MoveAnimator< touchgfx::Container > capacityContainerSmall;
     IOValue ioValue;
     ChargeTime chargeTimeContainer;
     BatteryStatus capacityContainer;

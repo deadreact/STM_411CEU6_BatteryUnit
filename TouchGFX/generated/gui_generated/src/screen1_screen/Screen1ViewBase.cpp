@@ -68,25 +68,21 @@ Screen1ViewBase::Screen1ViewBase()
 
     content.add(iconsContainer);
 
-    capacityContainerLarge.setXY(0, 48);
-    capacityContainerLarge.setVisible(false);
-    content.add(capacityContainerLarge);
-
-    capacityContainerSmall.setPosition(0, 0, 320, 240);
-    ioValue.setXY(0, 190);
+    capacityContainerSmall.setPosition(0, 47, 320, 193);
+    ioValue.setXY(0, 143);
     capacityContainerSmall.add(ioValue);
 
-    chargeTimeContainer.setXY(6, 63);
+    chargeTimeContainer.setXY(6, 16);
     capacityContainerSmall.add(chargeTimeContainer);
 
-    capacityContainer.setXY(185, 75);
+    capacityContainer.setXY(185, 28);
     capacityContainerSmall.add(capacityContainer);
 
-    footerBox.setPosition(0, 190, 320, 3);
+    footerBox.setPosition(0, 143, 320, 3);
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
     capacityContainerSmall.add(footerBox);
 
-    headerBox.setPosition(0, 47, 320, 3);
+    headerBox.setPosition(0, 0, 320, 3);
     headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
     capacityContainerSmall.add(headerBox);
 
@@ -116,7 +112,6 @@ Screen1ViewBase::~Screen1ViewBase()
 void Screen1ViewBase::setupScreen()
 {
     warning.initialize();
-    capacityContainerLarge.initialize();
     ioValue.initialize();
     chargeTimeContainer.initialize();
     capacityContainer.initialize();
