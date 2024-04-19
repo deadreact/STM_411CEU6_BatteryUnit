@@ -21,7 +21,7 @@ void BatteryStatus::handleTickEvent()
 {
 	static int16_t animDuration = 1000;
 	static int16_t frameRate = 1000/60;
-	if (m_state != ChargeState::Idle)
+	if (m_state == ChargeState::Charge)
 	{
 		int duration = HAL_GetTick() - m_dirChangeTick;
 		auto frame = duration / frameRate;
@@ -52,15 +52,10 @@ void BatteryStatus::setSOC(int val)
 		capacityValue.setColor(color);
 		Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", val);
 
-//		if (m_state == ChargeState::Charge) {
-			int16_t x = ((100 - m_soc) * 7 + m_soc * 95)/100;
-			animBox.setX(x);
-//		} else if (m_state == ChargeState::Uncharge) {
-//			int16_t x = ((100 - m_value) * 6 + m_value * 86)/100;
-//			int16_t w = ((100 - m_value) * 1 + m_value * 10)/100;
-//			animBox.setX(x);
-//			animBox.setWidth(w);
-//		}
+		int16_t x = ((100 - m_soc) * 7 + m_soc * 95 + 50)/100;
+		int16_t w = ((100 - m_soc) * 10 + m_soc * 4 + 50)/100;
+		animBox.setX(x);
+		animBox.setWidth(w);
 
 		invalidateContent();
 	}
@@ -81,21 +76,21 @@ void BatteryStatus::setChargeState(ChargeState state)
 	if (m_state != state)
 	{
 		m_state = state;
-		animBox.setColor(state == ChargeState::Charge ? 0xff11ea11 : 0xffea1111);
-		animBox.setVisible(state != ChargeState::Idle);
+//		animBox.setColor(state == ChargeState::Charge ? 0xff11ea11 : 0xffea1111);
+		animBox.setVisible(state == ChargeState::Charge);
 
-		if (state == ChargeState::Charge) {
-			int16_t x = ((100 - m_soc) * 7 + m_soc * 95 + 50)/100;
-			int16_t w = ((100 - m_soc) * 10 + m_soc * 4 + 50)/100;
-			animBox.setX(x);
-			animBox.setWidth(w);
-		} else if (state == ChargeState::Uncharge) {
-			int16_t x = ((100 - m_soc) * 6 + m_soc * 86 + 50)/100;
-			int16_t w = ((100 - m_soc) * 1 + m_soc * 10 + 50)/100;
-			animBox.setX(x);
-			animBox.setWidth(w);
-		}
-		invalidateContent();
+//		if (state == ChargeState::Charge) {
+//			int16_t x = ((100 - m_soc) * 7 + m_soc * 95 + 50)/100;
+//			int16_t w = ((100 - m_soc) * 10 + m_soc * 4 + 50)/100;
+//			animBox.setX(x);
+//			animBox.setWidth(w);
+//		} else if (state == ChargeState::Uncharge) {
+//			int16_t x = ((100 - m_soc) * 6 + m_soc * 86 + 50)/100;
+//			int16_t w = ((100 - m_soc) * 1 + m_soc * 10 + 50)/100;
+//			animBox.setX(x);
+//			animBox.setWidth(w);
+//		}
+		animBox.invalidate();
 	}
 }
 
