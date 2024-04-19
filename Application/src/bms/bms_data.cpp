@@ -68,8 +68,7 @@ SmoothedValue::SmoothedValue()
 
 void SmoothedValue::set(int16_t value)
 {
-	valuesSet = valuesSet < kBufferSize ? valuesSet + 1 : kBufferSize;
-	for (int16_t* ptr = values + valuesSet - 1; ptr != values; --ptr) {
+	for (int16_t* ptr = values + kBufferSize - 1; ptr != values; --ptr) {
 		*ptr = *(ptr - 1);
 	}
 
@@ -77,15 +76,15 @@ void SmoothedValue::set(int16_t value)
 
 }
 
-int16_t SmoothedValue::get() const {
-	if (valuesSet == 0) {
-		return 0;
-	}
-	int32_t sum = values[0];
-	for (const int16_t* ptr = values + valuesSet - 1; ptr != values; --ptr) {
-		sum += *ptr;
+int16_t SmoothedValue::get() const
+{
+	constexpr float koef[kBufferSize] = {0.2f, 0.2f, 0.15f, 0.15f, 0.1f, 0.05f, 0.04f, 0.04f, 0.03f, 0.02f};
+
+	float result = 0.f;
+	for (int i = 0; i < kBufferSize; ++i) {
+		result += values[i] * koef[i];
 	}
 
-	return sum / valuesSet;
+	return result;
 }
 

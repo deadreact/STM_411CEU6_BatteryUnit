@@ -12,7 +12,7 @@
 #include <gpio_wrappers/interface.h>
 #include <string>
 
-#define SIMULATE_CHARGING 1
+#define SIMULATE_CHARGING 0
 #define SIMULATE_UNCHARGING 0
 
 class BMSHandler

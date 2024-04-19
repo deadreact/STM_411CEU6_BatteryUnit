@@ -72,7 +72,6 @@ struct SmoothedValue
 {
 	constexpr static const int kBufferSize = 10;
 	int16_t values[kBufferSize];
-	int16_t valuesSet{0};
 
 	SmoothedValue();
 
