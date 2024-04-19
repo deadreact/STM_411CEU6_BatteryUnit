@@ -18,3 +18,13 @@ void USBHandler::handleEvents()
 	m_btnHandler.handleEvents();
 }
 
+void USBHandler::setActive(bool active)
+{
+	if (m_isActive != active)
+	{
+		m_isActive = active;
+		if (!active) {
+			m_usbOn.writePin(GPIO_PIN_RESET);
+		}
+	}
+}
