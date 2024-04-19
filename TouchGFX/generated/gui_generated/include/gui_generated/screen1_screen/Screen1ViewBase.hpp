@@ -16,6 +16,7 @@
 #include <gui/containers/IOValue.hpp>
 #include <gui/containers/ChargeTime.hpp>
 #include <gui/containers/BatteryStatus.hpp>
+#include <touchgfx/widgets/TextureMapper.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -49,7 +50,8 @@ protected:
     BatteryStatus capacityContainer;
     touchgfx::Box footerBox;
     touchgfx::Box headerBox;
-    touchgfx::AnimationTextureMapper loading;
+    touchgfx::Box fadeWidget;
+    touchgfx::TextureMapper loading;
 
 private:
 

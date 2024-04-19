@@ -488,7 +488,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin|LED_Pin
-                          |usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin, GPIO_PIN_RESET);
+                          |fatal_error_Pin|usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, bms_on_Pin|bttn_screen_led_Pin|bttn_usb_led_Pin, GPIO_PIN_RESET);
@@ -521,6 +521,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : fatal_error_Pin usb_on_Pin inv_on_Pin */
+  GPIO_InitStruct.Pin = fatal_error_Pin|usb_on_Pin|inv_on_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
   /*Configure GPIO pin : bms_on_Pin */
   GPIO_InitStruct.Pin = bms_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -545,13 +552,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = bttn_usb_on_Pin|bttn_inv_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : usb_on_Pin inv_on_Pin */
-  GPIO_InitStruct.Pin = usb_on_Pin|inv_on_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : bms_ok_Pin */

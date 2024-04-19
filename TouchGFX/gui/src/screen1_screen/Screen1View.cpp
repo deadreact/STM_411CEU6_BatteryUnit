@@ -22,6 +22,7 @@ void Screen1View::setupScreen()
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 	auto smoothedCurr = data.smoothedCurrent.get();
     updateBatteryData(data.bms, smoothedCurr);
+    showContent(data.bms.isValid());
 }
 
 void Screen1View::tearDownScreen()
@@ -65,6 +66,13 @@ void Screen1View::handleTickEvent()
 		m_invState = data.invState;
 		updateInvState();
 	}
+
+	if (loading.isVisible() && m_loadingAnimTimeout <= HAL_GetTick())
+	{
+		loading.setZAngle(loading.getZAngle() + PI/6);
+		loading.invalidate();
+		m_loadingAnimTimeout = HAL_GetTick() + 50;
+	}
 }
 
 void Screen1View::setWatts(int val)
@@ -103,9 +111,7 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 	}
 
 	if (m_bmsData.isValid() != data.isValid()) {
-		loading.setVisible(!data.isValid());
-		content.setVisible(data.isValid());
-		invalidate();
+		showContent(data.isValid());
 	}
 
 	m_bmsData = data;
@@ -143,6 +149,14 @@ void Screen1View::updateInvState()
 		icon_inv.setScale(1);
 	}
 }
+
+void Screen1View::showContent(bool show)
+{
+	loading.setVisible(!show);
+	content.setVisible(show);
+	invalidate();
+}
+
 
 void Screen1View::textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src)
 {

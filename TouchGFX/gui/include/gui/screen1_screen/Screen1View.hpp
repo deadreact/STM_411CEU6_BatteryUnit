@@ -19,11 +19,13 @@ protected:
     void updateBatteryData(const BatteryData& data, int16_t smoothedCurr);
     void setIconFanVisible(bool visible);
     void updateInvState();
+    void showContent(bool show);
 protected:
     BatteryData m_bmsData;
     InverterState m_invState;
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
+    uint32_t m_loadingAnimTimeout{0};
 
     touchgfx::Callback<Screen1View, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
     void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);
