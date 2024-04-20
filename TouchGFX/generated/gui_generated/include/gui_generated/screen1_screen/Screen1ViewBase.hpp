@@ -36,10 +36,10 @@ protected:
     touchgfx::Box __background;
     touchgfx::Container content;
     touchgfx::Container iconsContainer;
-    touchgfx::Image icon_usb;
     touchgfx::Image icon3;
     touchgfx::Image icon5;
     touchgfx::AnimationTextureMapper icon_fan;
+    touchgfx::Image icon_usb;
     touchgfx::Image icon_inv;
     touchgfx::Image icon_warn;
     touchgfx::MoveAnimator< touchgfx::Container > capacityContainerSmall;

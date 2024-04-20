@@ -91,7 +91,9 @@ void IdleProcess::Impl::handleEvents()
     btnPwrHandler.handleEvents();
     m_usbHandler.handleEvents();
     m_invHandler.handleEvents();
+
     sharedData.invState = m_invHandler.getState();
+    sharedData.usbState = m_usbHandler.isOn();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)

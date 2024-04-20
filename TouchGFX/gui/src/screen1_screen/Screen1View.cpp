@@ -67,6 +67,12 @@ void Screen1View::handleTickEvent()
 		updateInvState();
 	}
 
+	if (m_usbState != data.usbState) {
+		m_usbState = data.usbState;
+		icon_usb.setVisible(m_usbState);
+		icon_usb.invalidate();
+	}
+
 	if (loading.isVisible() && m_loadingAnimTimeout <= HAL_GetTick())
 	{
 		loading.setZAngle(loading.getZAngle() + PI/6);
@@ -92,7 +98,6 @@ void Screen1View::setWatts(int val)
 
 void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCurr)
 {
-
 	if (data.soc != m_bmsData.soc)
 	{
 		capacityContainer.setSOC(data.soc);

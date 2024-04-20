@@ -52,6 +52,7 @@ struct ProcessData<ProcessId::Idle>
     int screenId{1};
     PowerModeState powerModeState{PowerModeState::Normal};
     InverterState invState{InverterState::Off};
+    bool usbState{false};
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;

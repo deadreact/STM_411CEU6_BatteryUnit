@@ -397,18 +397,8 @@
                 "Components": [
                   {
                     "Type": "Image",
-                    "Name": "icon_usb",
-                    "X": 52,
-                    "Y": 1,
-                    "Width": 48,
-                    "Height": 48,
-                    "Visible": false,
-                    "RelativeFilename": "grayscale_usb2.png"
-                  },
-                  {
-                    "Type": "Image",
                     "Name": "icon3",
-                    "X": 152,
+                    "X": 52,
                     "Y": 2,
                     "Width": 48,
                     "Height": 48,
@@ -441,6 +431,15 @@
                     "YOrigo": 24.0,
                     "ZOrigo": 1000.0,
                     "CameraDistance": 1000.0
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_usb",
+                    "X": 152,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "grayscale_usb2.png"
                   },
                   {
                     "Type": "Image",

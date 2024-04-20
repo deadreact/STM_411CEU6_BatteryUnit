@@ -24,6 +24,7 @@ protected:
 protected:
     BatteryData m_bmsData;
     InverterState m_invState;
+    bool m_usbState{false};
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
     uint32_t m_loadingAnimTimeout{0};

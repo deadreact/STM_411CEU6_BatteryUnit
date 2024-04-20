@@ -19,6 +19,8 @@ public:
 	void handleEvents();
 
     void setActive(bool active);
+
+    inline bool isOn() const { return m_usbOn.readPin(); }
 private:
 
 	ButtonEventProvider m_btn{bttn_usb_on_GPIO_Port, bttn_usb_on_Pin};
