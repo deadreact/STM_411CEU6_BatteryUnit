@@ -59,8 +59,8 @@ struct BatteryData
     uint8_t cellCount{0};
     uint32_t capacityAh{0};
 
-    uint32_t warningMsg{0};
-    uint32_t status{0};
+    uint16_t warningMsg{0};
+    uint16_t status{0};
 
     bool isValid() const { return soc > 0 && soc <= 100 && capacityAh > 0; }
     int calcTimeRemain(int16_t curr, bool invertorOn = false) const;
