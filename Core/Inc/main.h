@@ -63,8 +63,9 @@ void Error_Handler(void);
 #define charg_pot_inc_GPIO_Port GPIOC
 #define charg_pot_cs_Pin GPIO_PIN_15
 #define charg_pot_cs_GPIO_Port GPIOC
-#define ADC_charge_dcOk_Pin GPIO_PIN_1
-#define ADC_charge_dcOk_GPIO_Port GPIOA
+#define charger_dcOk_Pin GPIO_PIN_1
+#define charger_dcOk_GPIO_Port GPIOA
+#define charger_dcOk_EXTI_IRQn EXTI1_IRQn
 #define ADC_thermal_Pin GPIO_PIN_4
 #define ADC_thermal_GPIO_Port GPIOA
 #define SCRN_DC_Pin GPIO_PIN_0
@@ -75,8 +76,8 @@ void Error_Handler(void);
 #define SCRN_CS_GPIO_Port GPIOB
 #define LED_Pin GPIO_PIN_10
 #define LED_GPIO_Port GPIOB
-#define fatal_error_Pin GPIO_PIN_15
-#define fatal_error_GPIO_Port GPIOB
+#define charger_off_Pin GPIO_PIN_15
+#define charger_off_GPIO_Port GPIOB
 #define bms_on_Pin GPIO_PIN_8
 #define bms_on_GPIO_Port GPIOA
 #define bttn_screen_led_Pin GPIO_PIN_11

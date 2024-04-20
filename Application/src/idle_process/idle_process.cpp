@@ -67,20 +67,8 @@ extern ADC_HandleTypeDef hadc1;
 
 void IdleProcess::Impl::updateAnalog()
 {
-    ADC_ChannelConfTypeDef sConfig = {0};
-    sConfig.Rank = 1;
-    sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-    sConfig.Channel = ADC_CHANNEL_1;
-    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-    HAL_ADC_Start(&hadc1);
     HAL_ADC_PollForConversion(&hadc1, 500);
     sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
-    HAL_ADC_Stop(&hadc1);
-    sConfig.Channel = ADC_CHANNEL_4;
-    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 500);
-    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
     HAL_ADC_Stop(&hadc1);
 }
 
