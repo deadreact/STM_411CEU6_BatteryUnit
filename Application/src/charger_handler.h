@@ -42,7 +42,7 @@ private:
 	template <State>
 	void updateState();
 
-	void changeState(State state, uint32_t flags);
+	void changeState(State state, uint32_t flags = 0);
 	void analyzeBMSData(const BatteryData& data);
 private:
 	SinglePinElement m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};

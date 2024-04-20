@@ -38,14 +38,22 @@ template <>
 void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 {
 	const auto currentTick = HAL_GetTick();
+	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto majorErrors = (data.bmsErrFlags & BMSErrorFlags::maskMajorErrors);
 
 	if (m_tickStartInvestigation > currentTick) {
-		// May do smth
+		if (m_errFlags != majorErrors)
+		{
+			m_errFlags = majorErrors;
+			if (m_errFlags) {
+				m_tickStartInvestigation = currentTick + 5000;
+			} else {
+				changeState(State::Idle);
+			}
+		}
 		return;
 	}
 
-	const auto& data = SharedData::getData<ProcessId::Idle>();
-	const auto majorErrors = (data.bmsErrFlags & BMSErrorFlags::maskMajorErrors);
 	m_errFlags |= majorErrors;
 
 	// TurnOffTimeout: Вирубаємо?
@@ -197,7 +205,7 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 	if (!isOvervoltage) {
 		m_overvoltageNoErrorTick = currentTick;
 	} else if (m_overvoltageNoErrorTick < currentTick - kOvervoltageErrorTheshold) {
-
+		changeState(State::Error);
 	}
 }
 
