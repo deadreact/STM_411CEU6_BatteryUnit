@@ -17,7 +17,7 @@ public:
 
 	virtual void onTick() override;
 private:
-	SinglePinElement m_in;
+	const SinglePinElement m_in;
 	SinglePinElement m_out;
 	uint8_t m_inverted{0};
 };

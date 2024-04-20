@@ -35,7 +35,7 @@ private:
 private:
 	ButtonEventProvider m_btn{bttn_inv_on_GPIO_Port, bttn_inv_on_Pin};
 	LedIndicator m_led{bttn_inv_led_GPIO_Port, bttn_inv_led_Pin};
-	SinglePinElement m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
+	const SinglePinElement m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
 	SinglePinElement m_invOn{inv_on_GPIO_Port, inv_on_Pin};
 
 	ButtonEventHandler m_btnHandler{&m_btn, [&]{ onBtnClicked(); }};

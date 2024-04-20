@@ -17,9 +17,9 @@ public:
 
     virtual void onTick() override;
 
-    void on() const;
-    void off() const;
-    void toggle() const;
+    inline void on() { writePin(GPIO_PIN_SET); }
+    inline void off() { writePin(GPIO_PIN_RESET); }
+    inline void toggle() { togglePin(); }
     void reset();
 
     inline bool isOn() const { return readPin(); }

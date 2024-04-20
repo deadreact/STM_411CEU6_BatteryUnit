@@ -46,8 +46,8 @@ private:
 	void analyzeBMSData(const BatteryData& data);
 private:
 	SinglePinElement m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
-	SinglePinElement m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
-	SinglePinElement m_bmsOkStatus{bms_ok_GPIO_Port, bms_ok_Pin};
+	const SinglePinElement m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
+	const SinglePinElement m_bmsOkStatus{bms_ok_GPIO_Port, bms_ok_Pin};
 
 	uint32_t m_tickStartInvestigation{0xffffffff};
 	uint32_t m_errFlags{0};

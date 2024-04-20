@@ -19,8 +19,8 @@ public:
     {}
 
     inline GPIO_PinState readPin() const { return HAL_GPIO_ReadPin(m_GPIOx, m_pin); }
-    inline void writePin(GPIO_PinState state) const { return HAL_GPIO_WritePin(m_GPIOx, m_pin, state); }
-    inline void togglePin() const { return HAL_GPIO_TogglePin(m_GPIOx, m_pin); }
+    inline void writePin(GPIO_PinState state) { return HAL_GPIO_WritePin(m_GPIOx, m_pin, state); }
+    inline void togglePin() { return HAL_GPIO_TogglePin(m_GPIOx, m_pin); }
 protected:
     GPIO_TypeDef* const m_GPIOx;
     const uint16_t m_pin;

@@ -46,7 +46,7 @@ protected:
     void updateData(const BatteryData& newData);
 protected:
     SinglePinElement m_bmsPwrRequest{bms_on_GPIO_Port, bms_on_Pin};
-    SinglePinElement m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
+    const SinglePinElement m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
 

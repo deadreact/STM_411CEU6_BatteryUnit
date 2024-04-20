@@ -21,10 +21,6 @@ void Led::onTick()
     }
 }
 
-void Led::on() const { HAL_GPIO_WritePin(m_GPIOx, m_pin, GPIO_PIN_SET); }
-void Led::off() const { HAL_GPIO_WritePin(m_GPIOx, m_pin, GPIO_PIN_RESET); }
-void Led::toggle() const { HAL_GPIO_TogglePin(m_GPIOx, m_pin); }
-
 void Led::reset()
 {
     m_interval = 0xffffffff;

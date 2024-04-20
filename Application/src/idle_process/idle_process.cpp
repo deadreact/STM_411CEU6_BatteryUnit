@@ -46,21 +46,13 @@ struct IdleProcess::Impl
 
     TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
-//    ButtonEventProvider btnEnterSleep{GPIOB, GPIO_PIN_6};
     ButtonEventProvider btnBmsToggle{GPIOB, GPIO_PIN_3, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
-//    ButtonEventHandler btnSleepHandler{&btnEnterSleep, [&]{ sharedData.powerModeState = PowerModeState::StopRequested; }};
     ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle
    	, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
-//    , [&]{ led.setIndicationType(LedIndicationType(((int)led.getIndicationType() + 1) % int(LedIndicationType::Count))); }
     };
 
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
-
-//    IOTube boardLedTube{{bms_ok_GPIO_Port, bms_ok_Pin}, {GPIOC, GPIO_PIN_13}};
-
-//    IOTube invertorTube{{inv_ok_GPIO_Port, inv_ok_Pin}, {bttn_inv_led_GPIO_Port, bttn_inv_led_Pin}};
-//    IOTube usbTube{{usb_on_GPIO_Port, usb_on_Pin}, {bttn_usb_led_GPIO_Port, bttn_usb_led_Pin}};
 };
 
 extern ADC_HandleTypeDef hadc1;
@@ -81,14 +73,8 @@ void IdleProcess::Impl::onTick()
 	m_usbHandler.onTick();
 
 	screenLed.onTick();
-//    led.onTick();
-//    boardLedTube.onTick();
-//    btnEnterSleep.onTick();
     btnBmsToggle.onTick();
     btnPwr.onTick();
-
-//    invertorTube.onTick();
-//    usbTube.onTick();
 
     m_bmsUpdater.update();
 
@@ -101,7 +87,6 @@ void IdleProcess::Impl::onTick()
 
 void IdleProcess::Impl::handleEvents()
 {
-//    btnSleepHandler.handleEvents();
     btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
     m_usbHandler.handleEvents();
