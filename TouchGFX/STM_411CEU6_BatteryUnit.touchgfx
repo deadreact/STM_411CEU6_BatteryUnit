@@ -387,7 +387,6 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
-            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -501,6 +500,7 @@
                     "Y": 143,
                     "Width": 320,
                     "Height": 3,
+                    "Visible": false,
                     "Color": {
                       "Red": 15,
                       "Green": 18,
@@ -512,11 +512,29 @@
                     "Name": "headerBox",
                     "Width": 320,
                     "Height": 3,
+                    "Visible": false,
                     "Color": {
                       "Red": 31,
                       "Green": 32,
                       "Blue": 34
                     }
+                  },
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage1",
+                    "Width": 320,
+                    "Height": 2,
+                    "Filename": "gradient_x.png",
+                    "ScalingAlgorithm": "Nearest-neighbor"
+                  },
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage1_1",
+                    "Y": 144,
+                    "Width": 320,
+                    "Height": 2,
+                    "Filename": "gradient_left.png",
+                    "ScalingAlgorithm": "Bilinear Interpolation"
                   }
                 ]
               }
@@ -529,6 +547,7 @@
             "Y": 84,
             "Width": 72,
             "Height": 72,
+            "Visible": false,
             "RenderingAlgorithm": "Bilinear Interpolation",
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,

@@ -12,7 +12,6 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
-    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
     icon3.setXY(52, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
@@ -67,11 +66,23 @@ Screen1ViewBase::Screen1ViewBase()
 
     footerBox.setPosition(0, 143, 320, 3);
     footerBox.setColor(touchgfx::Color::getColorFromRGB(15, 18, 23));
+    footerBox.setVisible(false);
     capacityContainerSmall.add(footerBox);
 
     headerBox.setPosition(0, 0, 320, 3);
     headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
+    headerBox.setVisible(false);
     capacityContainerSmall.add(headerBox);
+
+    scalableImage1.setBitmap(touchgfx::Bitmap(BITMAP_GRADIENT_X_ID));
+    scalableImage1.setPosition(0, 0, 320, 2);
+    scalableImage1.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
+    capacityContainerSmall.add(scalableImage1);
+
+    scalableImage1_1.setBitmap(touchgfx::Bitmap(BITMAP_GRADIENT_LEFT_ID));
+    scalableImage1_1.setPosition(0, 144, 320, 2);
+    scalableImage1_1.setScalingAlgorithm(touchgfx::ScalableImage::BILINEAR_INTERPOLATION);
+    capacityContainerSmall.add(scalableImage1_1);
 
     content.add(capacityContainerSmall);
 
@@ -88,6 +99,7 @@ Screen1ViewBase::Screen1ViewBase()
     loading.setCamera(36.0f, 36.0f);
     loading.setAngles(0.0f, 0.0f, 0.0f);
     loading.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    loading.setVisible(false);
     add(loading);
 }
 
