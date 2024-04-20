@@ -19,6 +19,7 @@
 
 #include <bms/bms_handler.h>
 #include <inverter/inverter_handler.h>
+#include "../charger_handler.h"
 
 // ---------------------------------------------------------------
 
@@ -43,6 +44,7 @@ struct IdleProcess::Impl
     BMSUpdater m_bmsUpdater;
     InverterHandler m_invHandler;
     USBHandler m_usbHandler;
+    ChargerHandler m_chargerHandler;
 
     TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
@@ -77,6 +79,7 @@ void IdleProcess::Impl::onTick()
     btnPwr.onTick();
 
     m_bmsUpdater.update();
+    m_chargerHandler.update();
 
     if (sharedData.screenId == 2) {
         updateAnalog();
@@ -107,6 +110,18 @@ void IdleProcess::Impl::handleEvents()
         }
     }
 
+    const auto chargEvent = m_chargerHandler.takeLastEvent();
+    if (chargEvent != ChargerHandlerEvent::NoEvent)
+    {
+    	if (chargEvent == ChargerHandlerEvent::BMSTurnOffNeeded) {
+    		m_bmsUpdater.setActive(false);
+    	} else if (chargEvent == ChargerHandlerEvent::BMSTurnOnNeeded) {
+    		m_bmsUpdater.setActive(true);
+    	}  else if (chargEvent == ChargerHandlerEvent::ChargeError) {
+    		sharedData.bmsErrMsg += " charge err";
+    	}
+    }
+
     handlePowerState();
 }
 
@@ -131,12 +146,13 @@ void IdleProcess::Impl::handlePowerState()
 	}
 	else
 	{
-		m_bmsUpdater.setActive(true);
-		m_invHandler.setActive(true);
-		m_usbHandler.setActive(true);
-		if (sharedData.powerModeState == PowerModeState::WakedUp && m_wakedUpTimeout <= HAL_GetTick())
+		if (sharedData.powerModeState == PowerModeState::WakedUp)
 		{
-			if (!btnPwr.isPressed())
+			m_bmsUpdater.setActive(true);
+			m_invHandler.setActive(true);
+			m_usbHandler.setActive(true);
+
+			if (m_wakedUpTimeout <= HAL_GetTick() && !btnPwr.isPressed())
 			{
 				sharedData.powerModeState = PowerModeState::Normal;
 			}

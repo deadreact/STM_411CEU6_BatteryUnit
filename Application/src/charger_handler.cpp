@@ -74,7 +74,7 @@ void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 
 		if (step == 0)
 		{
-			m_errFlags &= (0xfffffff0 | ++step);
+			m_errFlags = (m_errFlags & 0xfffffff0) | 1;
 			m_lastEvent = ChargerHandlerEvent::BMSTurnOffNeeded;
 			// request to turn off bms
 		}
@@ -82,7 +82,7 @@ void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 		{
 			if (!m_bmsOkStatus.readPin()) // Turned off
 			{
-				m_errFlags &= (0xfffffff0 | ++step);
+				m_errFlags = (m_errFlags & 0xfffffff0) | 2;
 				m_lastEvent = ChargerHandlerEvent::BMSTurnOnNeeded;
 				// request to turn on
 			}
@@ -91,7 +91,7 @@ void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 		{
 			if (m_bmsOkStatus.readPin()) // Turned on
 			{
-				m_errFlags &= (0xfffffff0 | ++step);
+				m_errFlags = (m_errFlags & 0xfffffff0) | 3;
 				// request data
 			}
 		}

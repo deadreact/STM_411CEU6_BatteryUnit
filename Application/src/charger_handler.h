@@ -55,7 +55,7 @@ private:
 	State m_state{State::Idle};
 	ChargerHandlerEvent m_lastEvent{ChargerHandlerEvent::NoEvent};
 
-	uint16_t m_overvoltageNoErrorTick{0};
+	uint16_t m_overvoltageNoErrorTick{0xffffffff};
 	static const uint16_t kOvervoltageSingleValue{3900};
 	static const uint16_t kOvervoltageErrorTheshold{60 * 1000}; // 1 min
 };
