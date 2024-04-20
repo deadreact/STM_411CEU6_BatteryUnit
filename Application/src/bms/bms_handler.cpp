@@ -292,6 +292,7 @@ void BMSUpdater::setActive(bool active)
 	if (m_isActive != active)
 	{
 		m_isActive = active;
+		errFlags = 0;
 		if (active) {
 			m_bmsTurnedOnLastTick = HAL_GetTick();
 		} else {

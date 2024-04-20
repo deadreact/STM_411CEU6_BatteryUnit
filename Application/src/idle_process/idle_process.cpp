@@ -111,11 +111,11 @@ void IdleProcess::Impl::handleEvents()
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-        sharedData.bms = m_bmsUpdater.getData();
         sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
         sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
+        	sharedData.bms = m_bmsUpdater.getData();
         	sharedData.smoothedCurrent.set(sharedData.bms.current);
         }
     }
