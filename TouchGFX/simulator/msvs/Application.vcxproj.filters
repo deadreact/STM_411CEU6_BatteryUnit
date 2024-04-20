@@ -823,6 +823,9 @@
     <ClInclude Include="..\..\gui\include\gui\common\common.h">
       <Filter>Source Files\gui\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\common\BlinkingAnimation.h">
+      <Filter>Source Files\gui\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc">

@@ -19,11 +19,6 @@ Screen1ViewBase::Screen1ViewBase()
     icon1.setVisible(false);
     iconsContainer.add(icon1);
 
-    _icon2.setXY(102, 2);
-    _icon2.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
-    _icon2.setVisible(false);
-    iconsContainer.add(_icon2);
-
     icon3.setXY(152, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
     icon3.setVisible(false);
@@ -54,15 +49,6 @@ Screen1ViewBase::Screen1ViewBase()
 
     icon_inv.setXY(201, 2);
     icon_inv.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
-    icon_inv.setWidth(48);
-    icon_inv.setHeight(48);
-    icon_inv.setBitmapPosition(0.0f, 0.0f);
-    icon_inv.setScale(1.0f);
-    icon_inv.setCameraDistance(1000.0f);
-    icon_inv.setOrigo(24.0f, 24.0f, 1000.0f);
-    icon_inv.setCamera(24.0f, 24.0f);
-    icon_inv.setAngles(0.0f, 0.0f, 0.0f);
-    icon_inv.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     icon_inv.setVisible(false);
     iconsContainer.add(icon_inv);
 

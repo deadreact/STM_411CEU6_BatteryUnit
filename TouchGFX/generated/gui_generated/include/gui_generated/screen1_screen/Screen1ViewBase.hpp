@@ -38,12 +38,11 @@ protected:
     touchgfx::Container content;
     touchgfx::Container iconsContainer;
     touchgfx::Image icon1;
-    touchgfx::Image _icon2;
     touchgfx::Image icon3;
     touchgfx::Image icon5;
     AnimatedWarning warning;
     touchgfx::AnimationTextureMapper icon_fan;
-    touchgfx::AnimationTextureMapper icon_inv;
+    touchgfx::Image icon_inv;
     touchgfx::MoveAnimator< touchgfx::Container > capacityContainerSmall;
     IOValue ioValue;
     ChargeTime chargeTimeContainer;

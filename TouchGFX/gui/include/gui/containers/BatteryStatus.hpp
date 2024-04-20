@@ -3,6 +3,8 @@
 
 #include <gui_generated/containers/BatteryStatusBase.hpp>
 #include <gui/common/common.h>
+#include <gui/common/BlinkingAnimation.h>
+
 
 class BatteryStatus : public BatteryStatusBase
 {
@@ -20,9 +22,7 @@ protected:
     int m_voltage{0};
     ChargeState m_state{InvalidChargeState};
 
-    // animation
-    uint32_t m_dirChangeTick{0};
-    uint8_t m_lastFrame{0};
+    BlinkingAnimation<touchgfx::Box> m_animation{animBox, 1000};
 };
 
 #endif // BATTERYSTATUS_HPP

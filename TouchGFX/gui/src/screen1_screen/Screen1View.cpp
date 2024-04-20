@@ -8,7 +8,7 @@ Screen1View::Screen1View()
 	, textureMapperAnimationEndedCallback(this, &Screen1View::textureMapperAnimationEndedCallbackHandler)
 {
 	icon_fan.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
-	icon_inv.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
+//	icon_inv.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
 }
 
 void Screen1View::setupScreen()
@@ -72,6 +72,11 @@ void Screen1View::handleTickEvent()
 		loading.setZAngle(loading.getZAngle() + PI/6);
 		loading.invalidate();
 		m_loadingAnimTimeout = HAL_GetTick() + 50;
+	}
+
+	if (m_invState == InverterState::Intermediate)
+	{
+		invAnimation.handleTickEvent();
 	}
 }
 
@@ -137,17 +142,11 @@ void Screen1View::updateInvState()
 {
 	icon_inv.setVisible(m_invState != InverterState::Off);
 
-	if (m_invState == InverterState::Intermediate)
+	if (m_invState == InverterState::On)
 	{
-		auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
-		icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
-		icon_inv.startAnimation();
+		icon_inv.setAlpha(255);
 	}
-	else
-	{
-		icon_inv.cancelAnimationTextureMapperAnimation();
-		icon_inv.setScale(1);
-	}
+	icon_inv.invalidate();
 }
 
 void Screen1View::showContent(bool show)
@@ -174,13 +173,13 @@ void Screen1View::textureMapperAnimationEndedCallbackHandler(const touchgfx::Ani
 			icon_fan.startAnimation();
 		}
 	}
-	else if (&src == &icon_inv)
-	{
-		if (m_invState == InverterState::Intermediate) {
-			auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
-			icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
-			icon_inv.startAnimation();
-		}
-	}
+//	else if (&src == &icon_inv)
+//	{
+//		if (m_invState == InverterState::Intermediate) {
+//			auto ease = icon_inv.getScale() > 0 ? touchgfx::EasingEquations::quadEaseOut : touchgfx::EasingEquations::quadEaseIn;
+//			icon_inv.setupAnimation(touchgfx::AnimationTextureMapper::SCALE, 1.f - icon_inv.getScale(), 40, 0, ease);
+//			icon_inv.startAnimation();
+//		}
+//	}
 }
 

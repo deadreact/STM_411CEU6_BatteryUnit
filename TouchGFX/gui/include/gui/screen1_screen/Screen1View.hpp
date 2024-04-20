@@ -3,6 +3,7 @@
 
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
+#include <gui/common/BlinkingAnimation.h>
 
 enum class InverterState;
 
@@ -26,6 +27,8 @@ protected:
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
     uint32_t m_loadingAnimTimeout{0};
+
+    BlinkingAnimation<touchgfx::Image> invAnimation{icon_inv, 800};
 
     touchgfx::Callback<Screen1View, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
     void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);

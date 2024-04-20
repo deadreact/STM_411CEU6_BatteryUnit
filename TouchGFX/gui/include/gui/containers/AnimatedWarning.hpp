@@ -2,6 +2,7 @@
 #define ANIMATEDWARNING_HPP
 
 #include <gui_generated/containers/AnimatedWarningBase.hpp>
+#include <gui/common/BlinkingAnimation.h>
 
 class AnimatedWarning : public AnimatedWarningBase
 {
@@ -12,9 +13,7 @@ public:
     virtual void initialize();
     virtual void handleTickEvent();
 protected:
-    // animation
-    uint32_t m_dirChangeTick{0};
-    uint8_t m_lastFrame{0};
+    BlinkingAnimation<touchgfx::Image> m_animation{image, 800};
 };
 
 #endif // ANIMATEDWARNING_HPP

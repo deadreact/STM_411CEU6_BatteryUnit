@@ -407,16 +407,6 @@
                   },
                   {
                     "Type": "Image",
-                    "Name": "_icon2",
-                    "X": 102,
-                    "Y": 2,
-                    "Width": 48,
-                    "Height": 48,
-                    "Visible": false,
-                    "RelativeFilename": "icon11.png"
-                  },
-                  {
-                    "Type": "Image",
                     "Name": "icon3",
                     "X": 152,
                     "Y": 2,
@@ -462,23 +452,14 @@
                     "CameraDistance": 1000.0
                   },
                   {
-                    "Type": "TextureMapper",
+                    "Type": "Image",
                     "Name": "icon_inv",
                     "X": 201,
                     "Y": 2,
                     "Width": 48,
                     "Height": 48,
                     "Visible": false,
-                    "UseAnimation": true,
-                    "RenderingAlgorithm": "Bilinear Interpolation",
-                    "FileNameImage": "icon15.png",
-                    "LockBitmapToCenter": true,
-                    "Scale": 1.0,
-                    "LockOrigoToCenter": true,
-                    "XOrigo": 24.0,
-                    "YOrigo": 24.0,
-                    "ZOrigo": 1000.0,
-                    "CameraDistance": 1000.0
+                    "RelativeFilename": "icon15.png"
                   }
                 ]
               },
