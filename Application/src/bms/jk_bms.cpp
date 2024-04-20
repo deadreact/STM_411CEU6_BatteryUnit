@@ -269,7 +269,7 @@ namespace
 
         */
         VERIFY(frame, BATTERY_WARNING_MSG);
-        const uint16_t batteryWarnMsg = frame.read2bytes();
+        frame >> data.warningMsg;
         /*
         0-bit:charging MOS state 1 on 0 off this is for
         uploading prompt
@@ -284,7 +284,7 @@ namespace
         that the charging MOS tube is on
         */
         VERIFY(frame, BATTERY_STATUS_INFO);
-        const uint16_t batteryStatus = frame.read2bytes();
+        frame >> data.status;
 
         VERIFY(frame, TOTAL_VOLTAGE_OVERVOLTAGE_PROTECTION);
 

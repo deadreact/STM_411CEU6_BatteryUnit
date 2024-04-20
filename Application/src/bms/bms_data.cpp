@@ -12,11 +12,13 @@
 bool BatteryData::operator==(const BatteryData& other) const
 {
     return cellCount == other.cellCount
-        && (cellCount == 0 || memcmp(cellVoltage, other.cellVoltage, sizeof(voltage_t)*cellCount) == 0)
+        && (cellCount == 0 || memcmp(cellVoltage, other.cellVoltage, sizeof(uint16_t)*cellCount) == 0)
         && voltage == other.voltage
         && current == other.current
         && soc == other.soc
         && capacityAh == other.capacityAh
+        && warningMsg == other.warningMsg
+        && status == other.status
         /*&& energyAh == other.energyAh*/;
 }
 

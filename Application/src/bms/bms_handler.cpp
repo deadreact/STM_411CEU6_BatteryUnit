@@ -207,19 +207,28 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
     }
 }
 
+BMSUpdater::BMSUpdater()
+	: m_bmsTurnedOnLastTick(HAL_GetTick())
+	, m_bmsTurnedOffLastTick(HAL_GetTick())
+{}
+
 void BMSUpdater::update()
 {
+	const auto currentTick = HAL_GetTick();
+
 	if (m_isActive)
 	{
 		if (requestTurnOn())
 		{
+			m_bmsTurnedOnLastTick = currentTick;
+
 			if (m_status == BMSStatus::NoStatus)
 			{
 				requestAllData();
 			}
 			else if (m_status == BMSStatus::Requested)
 			{
-				if ((HAL_GetTick() - m_lastRequestTick > m_requestTimeout))
+				if ((currentTick - m_lastRequestTick > m_requestTimeout))
 				{
 					m_status = BMSStatus::RequestTimedOut;
 					debugMsg = "request timed out";
@@ -228,13 +237,13 @@ void BMSUpdater::update()
 			}
 			else
 			{
-				if (HAL_GetTick() - m_lastDataUpdateTick > m_validResponseTimeout)
+				if (currentTick - m_lastDataUpdateTick > m_validResponseTimeout)
 				{
 					errFlags |= BMSErrorFlags::ValidResponseTimeout;
 					debugMsg = "valid response timed out";
 					requestAllData();
 				}
-				if (HAL_GetTick() - m_lastResponseTick > m_invalidatePeriodMsec)
+				if (currentTick - m_lastResponseTick > m_invalidatePeriodMsec)
 				{
 					m_status = BMSStatus::InfoTimedOut;
 					debugMsg = "info timed out";
@@ -253,12 +262,21 @@ void BMSUpdater::update()
 				m_prevStatus = m_status;
 			}
 		}
+		else if (currentTick - m_bmsTurnedOnLastTick > m_turnOnTimeout)
+		{
+			errFlags |= BMSErrorFlags::TurnOnTimeout;
+		}
 	}
 	else
 	{
 		if (requestTurnOff())
 		{
+			m_bmsTurnedOffLastTick = currentTick;
 			m_status = BMSStatus::NoStatus;
+		}
+		else if (currentTick - m_bmsTurnedOffLastTick > m_turnOffTimeout)
+		{
+			errFlags |= BMSErrorFlags::TurnOffTimeout;
 		}
 	}
 }
@@ -268,3 +286,18 @@ BMSUpdaterEvent BMSUpdater::takeLastEvent() {
 	m_lastEvent = BMSUpdaterEvent::NoEvent;
 	return tmp;
 }
+
+void BMSUpdater::setActive(bool active)
+{
+	if (m_isActive != active)
+	{
+		m_isActive = active;
+		if (active) {
+			m_bmsTurnedOnLastTick = HAL_GetTick();
+		} else {
+			m_bmsTurnedOffLastTick = HAL_GetTick();
+		}
+	}
+}
+
+

@@ -49,6 +49,7 @@ protected:
     SinglePinElement m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
+
     uint32_t m_lastRequestTick{0};
     uint32_t m_lastResponseTick{0};
     uint32_t m_lastDataUpdateTick{0};
@@ -68,17 +69,24 @@ enum class BMSUpdaterEvent : uint8_t
 class BMSUpdater : public BMSHandler
 {
 public:
+	BMSUpdater();
     void update();
     BMSUpdaterEvent takeLastEvent();
 
-    void setActive(bool active) { m_isActive = active; }
+    void setActive(bool active);
 private:
     bool m_isActive{true};
     BMSStatus m_prevStatus { BMSStatus::NoStatus };
     BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
+
+    uint32_t m_bmsTurnedOnLastTick{0};
+    uint32_t m_bmsTurnedOffLastTick{0};
+
     const uint32_t m_requestTimeout{1000};
     const uint32_t m_invalidatePeriodMsec{500}; //
     const uint32_t m_validResponseTimeout{10000}; //
+    const uint32_t m_turnOnTimeout{10000}; //
+    const uint32_t m_turnOffTimeout{10000}; //
 };
 
 

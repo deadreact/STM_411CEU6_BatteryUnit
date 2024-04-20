@@ -13,9 +13,6 @@
 enum class BMSStatus
 {
 	NoStatus,
-//    Off,
-//    OffRequested,
-//    OnRequested,
     Requested,
     RequestTimedOut,
     Ok,
@@ -41,6 +38,8 @@ struct BMSErrorFlags
         ParseValidation      = 0x0400,
         ParseUnsupportedType = 0x0800,
         ValidResponseTimeout = 0x1000,
+        TurnOnTimeout 		 = 0x2000,
+        TurnOffTimeout 		 = 0x4000,
 
         maskMinorErrors      = 0x0FFF,
         maskMajorErrors      = 0xF000,
@@ -52,14 +51,16 @@ struct BMSErrorFlags
 struct BatteryData
 {
     constexpr static uint8_t kMaxCellCount = 12;
-    using voltage_t = uint16_t;
 
-    voltage_t cellVoltage[kMaxCellCount];
-    voltage_t voltage{0};
+    uint16_t cellVoltage[kMaxCellCount];
+    uint16_t voltage{0};
     int16_t current{0};
     uint8_t soc{0xff}; // 0 - 100%, invalid
     uint8_t cellCount{0};
     uint32_t capacityAh{0};
+
+    uint32_t warningMsg{0};
+    uint32_t status{0};
 
     bool isValid() const { return soc > 0 && soc <= 100 && capacityAh > 0; }
     int calcTimeRemain(int16_t curr, bool invertorOn = false) const;
