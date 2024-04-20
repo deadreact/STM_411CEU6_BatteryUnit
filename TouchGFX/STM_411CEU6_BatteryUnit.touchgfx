@@ -387,6 +387,7 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
+            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -396,13 +397,13 @@
                 "Components": [
                   {
                     "Type": "Image",
-                    "Name": "icon1",
+                    "Name": "icon_usb",
                     "X": 52,
                     "Y": 1,
                     "Width": 48,
                     "Height": 48,
                     "Visible": false,
-                    "RelativeFilename": "icon7.png"
+                    "RelativeFilename": "grayscale_usb2.png"
                   },
                   {
                     "Type": "Image",
@@ -529,7 +530,6 @@
             "Y": 84,
             "Width": 72,
             "Height": 72,
-            "Visible": false,
             "RenderingAlgorithm": "Bilinear Interpolation",
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,

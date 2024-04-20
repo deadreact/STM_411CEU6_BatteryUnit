@@ -12,11 +12,12 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
+    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
-    icon1.setXY(52, 1);
-    icon1.setBitmap(touchgfx::Bitmap(BITMAP_ICON7_ID));
-    icon1.setVisible(false);
-    iconsContainer.add(icon1);
+    icon_usb.setXY(52, 1);
+    icon_usb.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_USB2_ID));
+    icon_usb.setVisible(false);
+    iconsContainer.add(icon_usb);
 
     icon3.setXY(152, 2);
     icon3.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
@@ -87,7 +88,6 @@ Screen1ViewBase::Screen1ViewBase()
     loading.setCamera(36.0f, 36.0f);
     loading.setAngles(0.0f, 0.0f, 0.0f);
     loading.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
-    loading.setVisible(false);
     add(loading);
 }
 
