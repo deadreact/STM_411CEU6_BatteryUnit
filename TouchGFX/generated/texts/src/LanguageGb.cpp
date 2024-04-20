@@ -19,8 +19,6 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     152, // T___SINGLEUSE_8789: "<>v"
     167, // T___SINGLEUSE_RJTF: "New Text"
     14,  // T_LOADING: "Loading<>..."
-    149, // T___SINGLEUSE_343D: "<>%"
-    274, // T___SINGLEUSE_3FJH: "100"
     274, // T___SINGLEUSE_Y8I9: "100"
     167, // T___SINGLEUSE_4ST7: "New Text"
     26,  // T___SINGLEUSE_A1VM: "New Text<>"

@@ -12,7 +12,6 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
-    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
     icon1.setXY(52, 1);
     icon1.setBitmap(touchgfx::Bitmap(BITMAP_ICON7_ID));
@@ -28,10 +27,6 @@ Screen1ViewBase::Screen1ViewBase()
     icon5.setBitmap(touchgfx::Bitmap(BITMAP_ICON5_ID));
     icon5.setVisible(false);
     iconsContainer.add(icon5);
-
-    warning.setXY(0, 2);
-    warning.setVisible(false);
-    iconsContainer.add(warning);
 
     icon_fan.setXY(102, 0);
     icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
@@ -51,6 +46,11 @@ Screen1ViewBase::Screen1ViewBase()
     icon_inv.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
     icon_inv.setVisible(false);
     iconsContainer.add(icon_inv);
+
+    icon_warn.setXY(0, 0);
+    icon_warn.setBitmap(touchgfx::Bitmap(BITMAP_WARN_YELLOW_ID));
+    icon_warn.setVisible(false);
+    iconsContainer.add(icon_warn);
 
     content.add(iconsContainer);
 
@@ -83,10 +83,11 @@ Screen1ViewBase::Screen1ViewBase()
     loading.setBitmapPosition(0.0f, 0.0f);
     loading.setScale(1.0f);
     loading.setCameraDistance(1000.0f);
-    loading.setOrigo(36.0f, 36.0f, 1000.0f);
+    loading.setOrigo(35.5f, 35.5f, 1000.0f);
     loading.setCamera(36.0f, 36.0f);
     loading.setAngles(0.0f, 0.0f, 0.0f);
-    loading.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
+    loading.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
+    loading.setVisible(false);
     add(loading);
 }
 
@@ -97,7 +98,6 @@ Screen1ViewBase::~Screen1ViewBase()
 
 void Screen1ViewBase::setupScreen()
 {
-    warning.initialize();
     ioValue.initialize();
     chargeTimeContainer.initialize();
     capacityContainer.initialize();

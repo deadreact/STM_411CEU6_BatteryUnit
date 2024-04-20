@@ -387,7 +387,6 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
-            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -425,15 +424,6 @@
                     "RelativeFilename": "icon5.png"
                   },
                   {
-                    "Type": "CustomContainerInstance",
-                    "Name": "warning",
-                    "Y": 2,
-                    "Width": 48,
-                    "Height": 48,
-                    "Visible": false,
-                    "CustomContainerDefinitionName": "AnimatedWarning"
-                  },
-                  {
                     "Type": "TextureMapper",
                     "Name": "icon_fan",
                     "X": 102,
@@ -460,6 +450,14 @@
                     "Height": 48,
                     "Visible": false,
                     "RelativeFilename": "icon15.png"
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_warn",
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "warn_yellow.png"
                   }
                 ]
               },
@@ -531,13 +529,13 @@
             "Y": 84,
             "Width": 72,
             "Height": 72,
-            "RenderingAlgorithm": "Nearest-neighbor",
+            "Visible": false,
+            "RenderingAlgorithm": "Bilinear Interpolation",
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,
             "Scale": 1.0,
-            "LockOrigoToCenter": true,
-            "XOrigo": 36.0,
-            "YOrigo": 36.0,
+            "XOrigo": 35.5,
+            "YOrigo": 35.5,
             "ZOrigo": 1000.0,
             "CameraDistance": 1000.0
           }
@@ -780,78 +778,6 @@
               "Red": 104,
               "Green": 127,
               "Blue": 204
-            }
-          }
-        ],
-        "Interactions": []
-      },
-      {
-        "Name": "AnimatedWarning",
-        "Width": 48,
-        "Height": 48,
-        "Components": [
-          {
-            "Type": "Image",
-            "Name": "image",
-            "Width": 48,
-            "Height": 48,
-            "RelativeFilename": "warn_yellow.png"
-          }
-        ],
-        "Interactions": []
-      },
-      {
-        "Name": "BatteryStatusLarge",
-        "Width": 320,
-        "Height": 140,
-        "Components": [
-          {
-            "Type": "BoxWithBorder",
-            "Name": "capacityValue",
-            "X": 35,
-            "Y": 27,
-            "Width": 236,
-            "Height": 86,
-            "Color": {
-              "Red": 147,
-              "Green": 194,
-              "Blue": 52
-            },
-            "BorderColor": {
-              "Red": 26,
-              "Green": 26,
-              "Blue": 25
-            },
-            "BorderSize": 5
-          },
-          {
-            "Type": "ScalableImage",
-            "Name": "capacityImage",
-            "X": 28,
-            "Y": 20,
-            "Width": 265,
-            "Height": 100,
-            "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
-            "ScalingAlgorithm": "Bilinear Interpolation"
-          },
-          {
-            "Type": "TextArea",
-            "Name": "capacityTextValue",
-            "X": 65,
-            "Y": 25,
-            "Width": 179,
-            "Height": 72,
-            "TextId": "__SingleUse_343D",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 143,
-              "Green": 181,
-              "Blue": 239
-            },
-            "Wildcard1": {
-              "TextId": "__SingleUse_3FJH",
-              "UseBuffer": true,
-              "BufferSize": 4
             }
           }
         ],

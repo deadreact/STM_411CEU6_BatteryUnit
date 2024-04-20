@@ -44,14 +44,6 @@
         <Translation Language="GB">Loading&lt;value&gt;...</Translation>
         <Translation Language="UA">Завантаження&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_343D" Alignment="Center" TypographyId="ValueLarge2">
-        <Translation Language="GB">&lt;value&gt;%</Translation>
-        <Translation Language="UA">&lt;value&gt;%</Translation>
-      </Text>
-      <Text Id="__SingleUse_3FJH" Alignment="Left" TypographyId="ValueLarge2">
-        <Translation Language="GB">100</Translation>
-        <Translation Language="UA">100</Translation>
-      </Text>
       <Text Id="__SingleUse_Y8I9" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">100</Translation>
         <Translation Language="UA">100</Translation>

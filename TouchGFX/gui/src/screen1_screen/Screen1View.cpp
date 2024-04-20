@@ -51,8 +51,8 @@ void Screen1View::handleTickEvent()
 	bool isMajorError = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
 	if (m_isBMSError != isMajorError)
 	{
-		warning.setVisible(isMajorError);
-		warning.invalidate();
+		icon_warn.setVisible(isMajorError);
+		icon_warn.invalidate();
 		m_isBMSError = isMajorError;
 	}
 
@@ -76,7 +76,12 @@ void Screen1View::handleTickEvent()
 
 	if (m_invState == InverterState::Intermediate)
 	{
-		invAnimation.handleTickEvent();
+		m_invAnimation.handleTickEvent();
+	}
+
+	if (isMajorError)
+	{
+		m_warnAnimation.handleTickEvent();
 	}
 }
 

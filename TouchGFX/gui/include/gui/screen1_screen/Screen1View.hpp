@@ -28,7 +28,8 @@ protected:
     bool m_isBMSError{false};
     uint32_t m_loadingAnimTimeout{0};
 
-    BlinkingAnimation<touchgfx::Image> invAnimation{icon_inv, 800};
+    BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};
+    BlinkingAnimation<touchgfx::Image> m_warnAnimation{icon_warn, 800};
 
     touchgfx::Callback<Screen1View, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
     void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);

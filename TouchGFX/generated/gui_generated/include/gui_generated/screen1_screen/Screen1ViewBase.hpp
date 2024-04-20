@@ -10,7 +10,6 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <gui/containers/AnimatedWarning.hpp>
 #include <touchgfx/widgets/AnimationTextureMapper.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/mixins/MoveAnimator.hpp>
@@ -40,9 +39,9 @@ protected:
     touchgfx::Image icon1;
     touchgfx::Image icon3;
     touchgfx::Image icon5;
-    AnimatedWarning warning;
     touchgfx::AnimationTextureMapper icon_fan;
     touchgfx::Image icon_inv;
+    touchgfx::Image icon_warn;
     touchgfx::MoveAnimator< touchgfx::Container > capacityContainerSmall;
     IOValue ioValue;
     ChargeTime chargeTimeContainer;
