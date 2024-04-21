@@ -69,7 +69,7 @@ void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
     }
 
 //    s_bmsHandler = this;
-    m_lastRequestTick = HAL_GetTick();
+    m_requestTimeout.reset();
 
     status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
 
@@ -109,12 +109,12 @@ bool BMSHandler::requestTurnOn()
 bool BMSHandler::requestTurnOff()
 {
 	if (isPowerOn()) {
-		if (m_bmsOnResetTick <= HAL_GetTick())
+		if (m_bmsOnResetTimeout.isReached())
 		{
 			if (!isPowerRequested()) {
-				m_bmsOnResetTick = HAL_GetTick() + 2500;
+				m_bmsOnResetTimeout.reset(2500);
 			} else {
-				m_bmsOnResetTick = HAL_GetTick() + 500;
+				m_bmsOnResetTimeout.reset(500);
 			}
 			m_bmsPwrRequest.togglePin();
 		}
@@ -138,7 +138,7 @@ void BMSHandler::requestData(uint8_t dataId)
 void BMSHandler::response(HAL_StatusTypeDef status)
 {
 //    s_bmsHandler = nullptr;
-    m_lastResponseTick = HAL_GetTick();
+    m_responseTimeout.reset();
 
     m_status = getResponseStatus(status);
 
@@ -175,7 +175,7 @@ void BMSHandler::response(HAL_StatusTypeDef status)
 
 void BMSHandler::updateData(const BatteryData& newData)
 {
-    m_lastDataUpdateTick = HAL_GetTick();
+    m_dataUpdateTimeout.reset();
     errFlags &= ~BMSErrorFlags::maskMajorErrors;
     if (m_data != newData)
     {
@@ -212,19 +212,21 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 }
 
 BMSUpdater::BMSUpdater()
-	: m_bmsTurnedOnLastTick(HAL_GetTick())
-	, m_bmsTurnedOffLastTick(HAL_GetTick())
-{}
+{
+	m_requestTimeout = kRequestTimeout;
+	m_responseTimeout = kInvalidatePeriodMsec;
+	m_dataUpdateTimeout = kValidResponseTimeout;
+//	m_bmsOnResetTick.timeout = kRequestTimeout;
+
+}
 
 void BMSUpdater::update()
 {
-	const auto currentTick = HAL_GetTick();
-
 	if (m_isActive)
 	{
 		if (requestTurnOn())
 		{
-			m_bmsTurnedOnLastTick = currentTick;
+			m_bmsTurnOnTimeout.reset();
 
 			if (m_status == BMSStatus::NoStatus)
 			{
@@ -232,7 +234,7 @@ void BMSUpdater::update()
 			}
 			else if (m_status == BMSStatus::Requested)
 			{
-				if ((currentTick - m_lastRequestTick > m_requestTimeout))
+				if (m_requestTimeout.isReached())
 				{
 					m_status = BMSStatus::RequestTimedOut;
 					debugMsg = "request timed out";
@@ -240,7 +242,7 @@ void BMSUpdater::update()
 			}
 			else
 			{
-				if (currentTick - m_lastDataUpdateTick > m_validResponseTimeout)
+				if (m_dataUpdateTimeout.isReached())
 				{
 					errFlags |= BMSErrorFlags::ValidResponseTimeout;
 					debugMsg = "valid response timed out";
@@ -251,7 +253,7 @@ void BMSUpdater::update()
 					errFlags |= BMSErrorFlags::RequestTimeout;
 					requestAllData();
 				}
-				else if (currentTick - m_lastResponseTick > m_invalidatePeriodMsec)
+				else if (m_responseTimeout.isReached())
 				{
 					m_status = BMSStatus::InfoTimedOut;
 					debugMsg = "info timed out";
@@ -270,7 +272,7 @@ void BMSUpdater::update()
 				m_prevStatus = m_status;
 			}
 		}
-		else if (currentTick - m_bmsTurnedOnLastTick > m_turnOnTimeout)
+		else if (m_bmsTurnOnTimeout.isReached())
 		{
 			errFlags |= BMSErrorFlags::TurnOnTimeout;
 		}
@@ -279,10 +281,10 @@ void BMSUpdater::update()
 	{
 		if (requestTurnOff())
 		{
-			m_bmsTurnedOffLastTick = currentTick;
+			m_bmsTurnOffTimeout.reset();
 			m_status = BMSStatus::NoStatus;
 		}
-		else if (currentTick - m_bmsTurnedOffLastTick > m_turnOffTimeout)
+		else if (m_bmsTurnOffTimeout.isReached())
 		{
 			errFlags |= BMSErrorFlags::TurnOffTimeout;
 		}
@@ -302,9 +304,9 @@ void BMSUpdater::setActive(bool active)
 		m_isActive = active;
 		errFlags = 0;
 		if (active) {
-			m_bmsTurnedOnLastTick = HAL_GetTick();
+			m_bmsTurnOnTimeout.reset();
 		} else {
-			m_bmsTurnedOffLastTick = HAL_GetTick();
+			m_bmsTurnOffTimeout.reset();
 		}
 	}
 }

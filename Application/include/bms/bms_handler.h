@@ -10,6 +10,7 @@
 
 #include <bms/bms_data.h>
 #include <gpio_wrappers/interface.h>
+#include <application_utils.h>
 #include <string>
 #include <main.h> // GPIO defines & HAL
 
@@ -50,10 +51,10 @@ protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
 
-    uint32_t m_lastRequestTick{0};
-    uint32_t m_lastResponseTick{0};
-    uint32_t m_lastDataUpdateTick{0};
-    uint32_t m_bmsOnResetTick{0};
+    Timeout m_requestTimeout;
+    Timeout m_responseTimeout;
+    Timeout m_dataUpdateTimeout;
+    Timeout m_bmsOnResetTimeout;
 
     uint8_t rxData[rxDataLen];
     uint8_t txDataBuffer[txDataLen];
@@ -79,14 +80,12 @@ private:
     BMSStatus m_prevStatus { BMSStatus::NoStatus };
     BMSUpdaterEvent m_lastEvent { BMSUpdaterEvent::NoEvent };
 
-    uint32_t m_bmsTurnedOnLastTick{0};
-    uint32_t m_bmsTurnedOffLastTick{0};
+    StaticTimeout<10000> m_bmsTurnOnTimeout;
+    StaticTimeout<10000> m_bmsTurnOffTimeout;
 
-    const uint32_t m_requestTimeout{1000};
-    const uint32_t m_invalidatePeriodMsec{500}; //
-    const uint32_t m_validResponseTimeout{10000}; //
-    const uint32_t m_turnOnTimeout{10000}; //
-    const uint32_t m_turnOffTimeout{10000}; //
+    constexpr static const uint16_t kRequestTimeout{1000};
+    constexpr static const uint16_t kInvalidatePeriodMsec{500};
+    constexpr static const uint16_t kValidResponseTimeout{10000};
 };
 
 
