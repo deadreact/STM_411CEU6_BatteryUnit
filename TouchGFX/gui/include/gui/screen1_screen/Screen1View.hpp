@@ -20,7 +20,7 @@ protected:
     void updateBatteryData(const BatteryData& data, int16_t smoothedCurr);
     void setIconFanVisible(bool visible);
     void updateInvState();
-    void showContent(bool show);
+    void showLoading(bool show);
 protected:
     BatteryData m_bmsData;
     InverterState m_invState;

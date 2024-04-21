@@ -51,6 +51,7 @@ protected:
     touchgfx::Box headerBox;
     touchgfx::ScalableImage scalableImage1;
     touchgfx::ScalableImage scalableImage1_1;
+    touchgfx::Box loading_bg;
     touchgfx::TextureMapper loading;
 
 private:

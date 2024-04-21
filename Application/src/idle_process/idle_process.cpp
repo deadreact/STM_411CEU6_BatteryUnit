@@ -48,9 +48,9 @@ struct IdleProcess::Impl
 
     TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
-    ButtonEventProvider btnBmsToggle{GPIOB, GPIO_PIN_3, 800, 800};
+    ButtonEventProvider btnScrSwitch{GPIOA, GPIO_PIN_0, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
-    ButtonEventHandler btnScrSwitchHandler{&btnBmsToggle
+    ButtonEventHandler btnScrSwitchHandler{&btnScrSwitch
    	, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
     };
 
@@ -75,7 +75,7 @@ void IdleProcess::Impl::onTick()
 	m_usbHandler.onTick();
 
 	screenLed.onTick();
-    btnBmsToggle.onTick();
+    btnScrSwitch.onTick();
     btnPwr.onTick();
 
     m_bmsUpdater.update();
@@ -117,9 +117,13 @@ void IdleProcess::Impl::handleEvents()
     		sharedData.errFlags |= 0x01000000;
     	} else {
     		sharedData.errMsg = "charge err";
-    		sharedData.errFlags = 0x01000000;
+    		sharedData.errFlags |= 0x01000000;
     	}
 	}
+    else
+    {
+    	sharedData.errFlags &= ~0x01000000;
+    }
 
 //    const auto chargEvent = m_chargerHandler.takeLastEvent();
 //    if (chargEvent != ChargerHandlerEvent::NoEvent)

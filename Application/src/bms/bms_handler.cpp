@@ -65,7 +65,6 @@ void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
     HAL_StatusTypeDef status{HAL_OK};
 
     if (m_status == BMSStatus::RequestTimedOut) {
-        errFlags |= BMSErrorFlags::RequestTimeout;
         status = HAL_UART_Abort(&huart2);
     }
 
@@ -74,6 +73,11 @@ void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
 
     status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
 
+    if (status == HAL_BUSY)
+    {
+    	status = HAL_UART_Abort(&huart2);
+    	status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
+    }
     if (status == HAL_ERROR)
     {
         auto errCode = HAL_UART_GetError(&huart2);
@@ -232,7 +236,6 @@ void BMSUpdater::update()
 				{
 					m_status = BMSStatus::RequestTimedOut;
 					debugMsg = "request timed out";
-					requestAllData();
 				}
 			}
 			else
@@ -243,7 +246,12 @@ void BMSUpdater::update()
 					debugMsg = "valid response timed out";
 					requestAllData();
 				}
-				if (currentTick - m_lastResponseTick > m_invalidatePeriodMsec)
+				else if (m_status == BMSStatus::RequestTimedOut)
+				{
+					errFlags |= BMSErrorFlags::RequestTimeout;
+					requestAllData();
+				}
+				else if (currentTick - m_lastResponseTick > m_invalidatePeriodMsec)
 				{
 					m_status = BMSStatus::InfoTimedOut;
 					debugMsg = "info timed out";

@@ -33,9 +33,10 @@ void BatteryStatus::setSOC(int val)
 		auto color = touchgfx::Color::getColorFromRGB(255 - val * 2.5, val * 2.5, 5);
 		capacityValue.setWidth(10 + val * 0.9);
 		capacityValue.setColor(color);
+		animBox.setColor(color);
 		Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", val);
 
-		int16_t x = ((100 - m_soc) * 7 + m_soc * 95 + 50)/100;
+		int16_t x = ((100 - m_soc) * 6 + m_soc * 95 + 50)/100;
 		int16_t w = ((100 - m_soc) * 10 + m_soc * 4 + 50)/100;
 		animBox.setX(x);
 		animBox.setWidth(w);

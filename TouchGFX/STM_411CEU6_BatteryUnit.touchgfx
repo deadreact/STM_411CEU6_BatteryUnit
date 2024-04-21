@@ -387,7 +387,6 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
-            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -542,12 +541,21 @@
             ]
           },
           {
+            "Type": "Box",
+            "Name": "loading_bg",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "Alpha": 148
+          },
+          {
             "Type": "TextureMapper",
             "Name": "loading",
             "X": 124,
             "Y": 84,
             "Width": 72,
             "Height": 72,
+            "Visible": false,
             "RenderingAlgorithm": "Bilinear Interpolation",
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,

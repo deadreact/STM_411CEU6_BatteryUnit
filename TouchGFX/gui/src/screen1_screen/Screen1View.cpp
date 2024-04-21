@@ -21,8 +21,8 @@ void Screen1View::setupScreen()
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 	auto smoothedCurr = data.smoothedCurrent.get();
-    updateBatteryData(data.bms, smoothedCurr);
-    showContent(data.bms.isValid());
+    updateBatteryData(data.bms, data.bms.isValid() ? smoothedCurr: 0);
+    showLoading(!data.bms.isValid());
 }
 
 void Screen1View::tearDownScreen()
@@ -64,7 +64,7 @@ void Screen1View::handleTickEvent()
 		m_isChargError = isChargError;
 	}
 
-	auto smoothedCurr = data.smoothedCurrent.get();
+	auto smoothedCurr = (m_isBMSError || !data.bms.isValid()) ? 0 : data.smoothedCurrent.get();
 	if (data.bms != m_bmsData || smoothedCurr != m_bmsData.current)
 	{
 		updateBatteryData(data.bms, smoothedCurr);
@@ -93,7 +93,7 @@ void Screen1View::handleTickEvent()
 		m_invAnimation.handleTickEvent();
 	}
 
-	if (isMajorError)
+	if (m_isBMSError)
 	{
 		m_warnAnimation.handleTickEvent();
 	}
@@ -134,7 +134,7 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 	}
 
 	if (m_bmsData.isValid() != data.isValid()) {
-		showContent(data.isValid());
+		showLoading(!data.isValid());
 	}
 
 	m_bmsData = data;
@@ -167,17 +167,19 @@ void Screen1View::updateInvState()
 	icon_inv.invalidate();
 }
 
-void Screen1View::showContent(bool show)
+void Screen1View::showLoading(bool show)
 {
-	loading.setVisible(!show);
-	content.setVisible(show);
+	loading.setVisible(show);
+	loading_bg.setVisible(show);
+//	content.setVisible(show);
+	loading_bg.invalidate();
 
 	if (show) {
-		loading.invalidate();
-		capacityContainerSmall.setY(47-240);
-		capacityContainerSmall.startMoveAnimation(0, 47, 10, touchgfx::EasingEquations::linearEaseNone, touchgfx::EasingEquations::backEaseOut);
+
+//		capacityContainerSmall.setY(47-240);
+//		capacityContainerSmall.startMoveAnimation(0, 47, 10, touchgfx::EasingEquations::linearEaseNone, touchgfx::EasingEquations::backEaseOut);
 	} else {
-		invalidate();
+//		invalidate();
 	}
 }
 

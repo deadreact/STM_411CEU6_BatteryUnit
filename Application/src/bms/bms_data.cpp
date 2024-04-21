@@ -65,6 +65,11 @@ int BatteryData::calcTimeRemain(int16_t curr, bool invertorOn) const
 
 SmoothedValue::SmoothedValue()
 {
+	reset();
+}
+
+void SmoothedValue::reset()
+{
 	memset(values, 0, sizeof(values));
 }
 
@@ -80,7 +85,7 @@ void SmoothedValue::set(int16_t value)
 
 int16_t SmoothedValue::get() const
 {
-	constexpr float koef[kBufferSize] = {0.2f, 0.2f, 0.15f, 0.15f, 0.1f, 0.05f, 0.04f, 0.04f, 0.03f, 0.02f};
+	constexpr float koef[kBufferSize] = {0.25f, 0.25f, 0.2f, 0.2f, 0.1f};
 
 	float result = 0.f;
 	for (int i = 0; i < kBufferSize; ++i) {

@@ -71,7 +71,7 @@ struct BatteryData
 
 struct SmoothedValue
 {
-	constexpr static const int kBufferSize = 10;
+	constexpr static const int kBufferSize = 5;
 	int16_t values[kBufferSize];
 
 	SmoothedValue();
