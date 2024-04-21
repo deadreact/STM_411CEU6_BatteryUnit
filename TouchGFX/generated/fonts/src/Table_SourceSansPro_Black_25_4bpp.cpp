@@ -4,6 +4,7 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_SourceSansPro_Black_25_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
+    {     0, 0x0020,   0,   0,   0,   0,   5,   0,   0, 0x00 }, // space
     {     0, 0x002B,  13,  13,  15,   0,  14,   0,   0, 0x00 }, // plus
     {    91, 0x002D,   7,   4,   9,   1,   9,   0,   1, 0x00 }, // hyphen
     {   107, 0x002E,   6,   6,   6,   1,   8,   1,   5, 0x00 }, // period
@@ -17,22 +18,25 @@ KEEP extern const touchgfx::GlyphNode glyphs_SourceSansPro_Black_25_4bpp[] FONT_
     {   924, 0x0037,  12,  17,  17,   1,  14,   0,   0, 0x00 }, // seven
     {  1026, 0x0038,  12,  17,  17,   1,  14,   0,   0, 0x00 }, // eight
     {  1128, 0x0039,  13,  17,  17,   0,  14,   0,   0, 0x00 }, // nine
-    {  1247, 0x003C,  13,  13,  15,   0,  14,   0,   0, 0x00 }, // less
-    {  1338, 0x003E,  13,  13,  15,   0,  14,   0,   0, 0x00 }, // greater
-    {  1429, 0x003F,  10,  18,  18,   1,  12,   6,   1, 0x00 }, // question
-    {  1519, 0x0049,   6,  17,  17,   1,   8,   0,   0, 0x00 }, // I
-    {  1570, 0x004E,  14,  17,  17,   1,  17,   0,   0, 0x00 }, // N
-    {  1689, 0x004F,  16,  17,  17,   1,  17,   7,   1, 0x00 }, // O
-    {  1825, 0x0050,  14,  17,  17,   1,  15,   0,   0, 0x00 }, // P
-    {  1944, 0x0054,  14,  17,  17,   0,  14,   8,   5, 0x00 }, // T
-    {  2063, 0x0055,  15,  17,  17,   1,  17,  13,   1, 0x00 }, // U
-    {  2199, 0x005C,   8,  22,  18,   0,   8,  14,   1, 0x00 }, // backslash
-    {  2287, 0x0410,  16,  17,  17,  -1,  15,  15,   1, 0x00 }, // uni0410
-    {  2423, 0x0414,  17,  21,  17,   0,  17,  16,   4, 0x00 }, // uni0414
-    {  2612, 0x0417,  14,  17,  17,   0,  14,  20,   2, 0x00 }, // uni0417
-    {  2731, 0x041E,  16,  17,  17,   1,  17,   0,   0, 0x00 }, // uni041E
-    {  2867, 0x0420,  14,  17,  17,   1,  15,   0,   0, 0x00 }, // uni0420
-    {  2986, 0x042F,  14,  17,  17,   0,  16,  22,   1, 0x00 }  // uni042F
+    {  1247, 0x003A,   6,  13,  13,   1,   8,   6,   1, 0x00 }, // colon
+    {  1286, 0x003C,  13,  13,  15,   0,  14,   0,   0, 0x00 }, // less
+    {  1377, 0x003E,  13,  13,  15,   0,  14,   0,   0, 0x00 }, // greater
+    {  1468, 0x003F,  10,  18,  18,   1,  12,   7,   2, 0x00 }, // question
+    {  1558, 0x0041,  16,  17,  17,  -1,  15,   9,   2, 0x00 }, // A
+    {  1694, 0x0049,   6,  17,  17,   1,   8,   0,   0, 0x00 }, // I
+    {  1745, 0x004D,  17,  17,  17,   1,  19,   0,   0, 0x00 }, // M
+    {  1898, 0x004E,  14,  17,  17,   1,  17,   0,   0, 0x00 }, // N
+    {  2017, 0x004F,  16,  17,  17,   1,  17,  11,   1, 0x00 }, // O
+    {  2153, 0x0050,  14,  17,  17,   1,  15,   0,   0, 0x00 }, // P
+    {  2272, 0x0054,  14,  17,  17,   0,  14,  12,   6, 0x00 }, // T
+    {  2391, 0x0055,  15,  17,  17,   1,  17,  18,   1, 0x00 }, // U
+    {  2527, 0x005C,   8,  22,  18,   0,   8,  19,   2, 0x00 }, // backslash
+    {  2615, 0x0410,  16,  17,  17,  -1,  15,  21,   1, 0x00 }, // uni0410
+    {  2751, 0x0414,  17,  21,  17,   0,  17,  22,   5, 0x00 }, // uni0414
+    {  2940, 0x0417,  14,  17,  17,   0,  14,  27,   2, 0x00 }, // uni0417
+    {  3059, 0x041E,  16,  17,  17,   1,  17,   0,   0, 0x00 }, // uni041E
+    {  3195, 0x0420,  14,  17,  17,   1,  15,   0,   0, 0x00 }, // uni0420
+    {  3314, 0x042F,  14,  17,  17,   0,  16,  29,   1, 0x00 }  // uni042F
 };
 
 // SourceSansPro_Black_25_4bpp
@@ -50,6 +54,6 @@ touchgfx::GeneratedFont& getFont_SourceSansPro_Black_25_4bpp();
 
 touchgfx::GeneratedFont& getFont_SourceSansPro_Black_25_4bpp()
 {
-    static touchgfx::GeneratedFont SourceSansPro_Black_25_4bpp(glyphs_SourceSansPro_Black_25_4bpp, 29, 29, 25, 0, 0, 4, 1, 1, 0, unicodes_SourceSansPro_Black_25_4bpp, kerning_SourceSansPro_Black_25_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SourceSansPro_Black_25_4bpp(glyphs_SourceSansPro_Black_25_4bpp, 33, 29, 25, 0, 0, 4, 1, 1, 0, unicodes_SourceSansPro_Black_25_4bpp, kerning_SourceSansPro_Black_25_4bpp, 63, 0, 0, 0);
     return SourceSansPro_Black_25_4bpp;
 }

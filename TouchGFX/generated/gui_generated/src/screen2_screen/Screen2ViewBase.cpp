@@ -71,6 +71,39 @@ Screen2ViewBase::Screen2ViewBase()
     container1.add(lineProgress2);
 
     add(container1);
+
+    time.setPosition(38, 200, 107, 31);
+    time.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
+    time.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2S3V));
+    time.displayLeadingZeroForHourIndicator(true);
+    time.setDisplayMode(touchgfx::DigitalClock::DISPLAY_24_HOUR);
+    time.setTime24Hour(10, 10, 0);
+    add(time);
+
+    dateDay.setXY(40, 152);
+    dateDay.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
+    dateDay.setLinespacing(0);
+    Unicode::snprintf(dateDayBuffer, DATEDAY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Q8T6).getText());
+    dateDay.setWildcard(dateDayBuffer);
+    dateDay.resizeToCurrentText();
+    dateDay.setTypedText(touchgfx::TypedText(T___SINGLEUSE_1BLP));
+    add(dateDay);
+
+    date.setXY(82, 152);
+    date.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
+    date.setLinespacing(0);
+    touchgfx::Unicode::snprintf(dateBuffer1, DATEBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_7LU3).getText());
+    date.setWildcard1(dateBuffer1);
+    touchgfx::Unicode::snprintf(dateBuffer2, DATEBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_YKHV).getText());
+    date.setWildcard2(dateBuffer2);
+    date.resizeToCurrentText();
+    date.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2RNP));
+    add(date);
+
+    alarm.setXY(236, 152);
+    alarm.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
+    alarm.setVisible(false);
+    add(alarm);
 }
 
 Screen2ViewBase::~Screen2ViewBase()

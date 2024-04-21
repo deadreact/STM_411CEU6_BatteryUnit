@@ -12,10 +12,14 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
+
+    void updateTime();
 protected:
     int m_screenBrightness{0};
     int m_analog1{0};
     int m_analog2{0};
+
+    uint32_t m_lastUpdateTimeTick{0};
 };
 
 #endif // SCREEN2VIEW_HPP

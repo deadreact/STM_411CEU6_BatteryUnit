@@ -24,6 +24,34 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_YKHV" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">2022</Translation>
+      </Text>
+      <Text Id="__SingleUse_7LU3" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">01</Translation>
+      </Text>
+      <Text Id="01" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_2RNP" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text&lt;value&gt;&lt;value&gt;</Translation>
+        <Translation Language="UA">.&lt;value&gt;.&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_Q8T6" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">01</Translation>
+      </Text>
+      <Text Id="__SingleUse_1BLP" Alignment="Left" TypographyId="ValueMedium">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2S3V" Alignment="Left" TypographyId="LargeText">
+        <Translation Language="GB">&lt;&gt;</Translation>
+        <Translation Language="UA">&lt;&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_5DW8" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">30</Translation>
@@ -171,7 +199,7 @@
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" WidgetWildcardCharacters="0123456789 :APM" />
     <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
   </Typographies>
 </TextDatabase>

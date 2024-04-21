@@ -13,6 +13,9 @@
 #include <touchgfx/containers/progress_indicators/TextProgress.hpp>
 #include <touchgfx/containers/progress_indicators/LineProgress.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/containers/clock/DigitalClock.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/Image.hpp>
 
 class Screen2ViewBase : public touchgfx::View<Screen2Presenter>
 {
@@ -39,6 +42,20 @@ protected:
     touchgfx::PainterRGB565 lineProgress1Painter;
     touchgfx::LineProgress lineProgress2;
     touchgfx::PainterRGB565 lineProgress2Painter;
+    touchgfx::DigitalClock time;
+    touchgfx::TextAreaWithOneWildcard dateDay;
+    touchgfx::TextAreaWithTwoWildcards date;
+    touchgfx::Image alarm;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t DATEDAY_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar dateDayBuffer[DATEDAY_SIZE];
+    static const uint16_t DATEBUFFER1_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar dateBuffer1[DATEBUFFER1_SIZE];
+    static const uint16_t DATEBUFFER2_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar dateBuffer2[DATEBUFFER2_SIZE];
 
 private:
 
