@@ -101,8 +101,8 @@ void IdleProcess::Impl::handleEvents()
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)
     {
-        sharedData.bmsErrMsg = m_bmsUpdater.debugMsg;
-        sharedData.bmsErrFlags = m_bmsUpdater.errFlags;
+        sharedData.errMsg = m_bmsUpdater.debugMsg;
+        sharedData.errFlags = m_bmsUpdater.errFlags;
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
         	sharedData.bms = m_bmsUpdater.getData();
@@ -110,17 +110,28 @@ void IdleProcess::Impl::handleEvents()
         }
     }
 
-    const auto chargEvent = m_chargerHandler.takeLastEvent();
-    if (chargEvent != ChargerHandlerEvent::NoEvent)
-    {
-    	if (chargEvent == ChargerHandlerEvent::BMSTurnOffNeeded) {
-    		m_bmsUpdater.setActive(false);
-    	} else if (chargEvent == ChargerHandlerEvent::BMSTurnOnNeeded) {
-    		m_bmsUpdater.setActive(true);
-    	}  else if (chargEvent == ChargerHandlerEvent::ChargeError) {
-    		sharedData.bmsErrMsg += " charge err";
+    const auto chargState = m_chargerHandler.getState();
+    if (chargState == ChargerState::Error) {
+    	if (bmsEvent != BMSUpdaterEvent::NoEvent) {
+    		sharedData.errMsg += " charge err";
+    		sharedData.errFlags |= 0x01000000;
+    	} else {
+    		sharedData.errMsg = "charge err";
+    		sharedData.errFlags = 0x01000000;
     	}
-    }
+	}
+
+//    const auto chargEvent = m_chargerHandler.takeLastEvent();
+//    if (chargEvent != ChargerHandlerEvent::NoEvent)
+//    {
+//    	if (chargEvent == ChargerHandlerEvent::BMSTurnOffNeeded) {
+//    		m_bmsUpdater.setActive(false);
+//    	} else if (chargEvent == ChargerHandlerEvent::BMSTurnOnNeeded) {
+//    		m_bmsUpdater.setActive(true);
+//    	}  else if (chargEvent == ChargerHandlerEvent::ChargeError) {
+//    		sharedData.bmsErrMsg += " charge err";
+//    	}
+//    }
 
     handlePowerState();
 }
@@ -151,6 +162,7 @@ void IdleProcess::Impl::handlePowerState()
 			m_bmsUpdater.setActive(true);
 			m_invHandler.setActive(true);
 			m_usbHandler.setActive(true);
+			m_chargerHandler.resetState();
 
 			if (m_wakedUpTimeout <= HAL_GetTick() && !btnPwr.isPressed())
 			{

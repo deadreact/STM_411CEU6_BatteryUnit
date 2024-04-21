@@ -82,7 +82,7 @@ void IdleScreenView::handleTickEvent()
 		}
 	}
 
-	bool isMajorError = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
+	bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
 	if (isMajorError == batteryInfo.isVisible())
 	{
 		if (isMajorError)
@@ -93,7 +93,7 @@ void IdleScreenView::handleTickEvent()
 		batteryInfo.invalidate();
 	}
 
-	if (data.bmsErrMsg != (const char*)errMsg)
+	if (data.errMsg != (const char*)errMsg)
 	{
 		memset(errorLabelBuffer,0, ERRORLABEL_SIZE * 2);
 
@@ -103,8 +103,8 @@ void IdleScreenView::handleTickEvent()
 			errorLabelBuffer[i] = *(msgIt++);
 		}
 
-		int bytesCpy = std::min(data.bmsErrMsg.size(), sizeof(errMsg) - 1);
-		memcpy(errMsg, data.bmsErrMsg.c_str(), bytesCpy);
+		int bytesCpy = std::min(data.errMsg.size(), sizeof(errMsg) - 1);
+		memcpy(errMsg, data.errMsg.c_str(), bytesCpy);
 		errMsg[bytesCpy] = '\0';
 
 		errorLabelBuffer[i] = '\n';

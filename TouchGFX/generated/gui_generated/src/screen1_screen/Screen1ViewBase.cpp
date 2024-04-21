@@ -12,11 +12,12 @@ Screen1ViewBase::Screen1ViewBase()
     add(__background);
 
     content.setPosition(0, 0, 320, 240);
+    content.setVisible(false);
     iconsContainer.setPosition(0, 0, 320, 50);
-    icon3.setXY(52, 2);
-    icon3.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
-    icon3.setVisible(false);
-    iconsContainer.add(icon3);
+    icon_chargErr.setXY(52, 2);
+    icon_chargErr.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
+    icon_chargErr.setVisible(false);
+    iconsContainer.add(icon_chargErr);
 
     icon5.setXY(250, 0);
     icon5.setBitmap(touchgfx::Bitmap(BITMAP_ICON5_ID));
@@ -99,7 +100,6 @@ Screen1ViewBase::Screen1ViewBase()
     loading.setCamera(36.0f, 36.0f);
     loading.setAngles(0.0f, 0.0f, 0.0f);
     loading.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
-    loading.setVisible(false);
     add(loading);
 }
 

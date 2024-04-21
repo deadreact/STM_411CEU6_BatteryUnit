@@ -37,7 +37,7 @@ protected:
     touchgfx::Box __background;
     touchgfx::Container content;
     touchgfx::Container iconsContainer;
-    touchgfx::Image icon3;
+    touchgfx::Image icon_chargErr;
     touchgfx::Image icon5;
     touchgfx::AnimationTextureMapper icon_fan;
     touchgfx::Image icon_usb;

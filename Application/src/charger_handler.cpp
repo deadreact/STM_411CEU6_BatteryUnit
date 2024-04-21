@@ -10,7 +10,7 @@
 #include <shared_data.h>
 
 template <>
-void ChargerHandler::updateState<ChargerHandler::State::Idle>()
+void ChargerHandler::updateState<ChargerState::Idle>()
 {
 	if (m_chargerDcOkPin.readPin())
 	{
@@ -18,10 +18,10 @@ void ChargerHandler::updateState<ChargerHandler::State::Idle>()
 		{
 			const auto& data = SharedData::getData<ProcessId::Idle>();
 
-			uint32_t majorErrors = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
+			uint32_t majorErrors = data.errFlags & BMSErrorFlags::maskMajorErrors;
 			if (majorErrors)
 			{
-				changeState(State::Investigation, majorErrors);
+				changeState(ChargerState::Investigation, majorErrors);
 			}
 			else
 			{
@@ -35,20 +35,20 @@ void ChargerHandler::updateState<ChargerHandler::State::Idle>()
 }
 
 template <>
-void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
+void ChargerHandler::updateState<ChargerState::Investigation>()
 {
 	const auto currentTick = HAL_GetTick();
 	const auto& data = SharedData::getData<ProcessId::Idle>();
-	const auto majorErrors = (data.bmsErrFlags & BMSErrorFlags::maskMajorErrors);
+	const auto majorErrors = (data.errFlags & BMSErrorFlags::maskMajorErrors);
 
 	if (m_tickStartInvestigation > currentTick) {
 		if (m_errFlags != majorErrors)
 		{
 			m_errFlags = majorErrors;
 			if (m_errFlags) {
-				m_tickStartInvestigation = currentTick + 5000;
+				m_tickStartInvestigation = currentTick + 10000;
 			} else {
-				changeState(State::Idle);
+				changeState(ChargerState::Idle);
 			}
 		}
 		return;
@@ -59,50 +59,51 @@ void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 	// TurnOffTimeout: Вирубаємо?
 	if (m_errFlags & BMSErrorFlags::TurnOffTimeout)
 	{
-		changeState(State::Error, BMSErrorFlags::TurnOffTimeout);
+		changeState(ChargerState::Error, BMSErrorFlags::TurnOffTimeout);
 	}
 	// TurnOnTimeout: пробуємо request ?
 	else if (m_errFlags & BMSErrorFlags::TurnOnTimeout)
 	{
-		changeState(State::Error, BMSErrorFlags::TurnOnTimeout);
+		changeState(ChargerState::Error, BMSErrorFlags::TurnOnTimeout);
 	}
 	// ValidResponseTimeout: пробуємо вимк/увімк/чекаємо респонс
 	else if (m_errFlags & BMSErrorFlags::ValidResponseTimeout)
 	{
-		m_chargerOffPin.writePin(GPIO_PIN_SET);
-		uint8_t step = m_errFlags & 0xf;
-
-		if (step == 0)
-		{
-			m_errFlags = (m_errFlags & 0xfffffff0) | 1;
-			m_lastEvent = ChargerHandlerEvent::BMSTurnOffNeeded;
-			// request to turn off bms
-		}
-		else if (step == 1)
-		{
-			if (!m_bmsOkStatus.readPin()) // Turned off
-			{
-				m_errFlags = (m_errFlags & 0xfffffff0) | 2;
-				m_lastEvent = ChargerHandlerEvent::BMSTurnOnNeeded;
-				// request to turn on
-			}
-		}
-		else if (step == 2)
-		{
-			if (m_bmsOkStatus.readPin()) // Turned on
-			{
-				m_errFlags = (m_errFlags & 0xfffffff0) | 3;
-				// request data
-			}
-		}
-		else
-		{
-			if (majorErrors) {
-				changeState(State::Error, BMSErrorFlags::ValidResponseTimeout);
-			} else if (m_bmsDataRevision < data.bms.getDataRevision()) {
-				changeState(State::Idle, 0);
-			}
-		}
+		changeState(ChargerState::Error, BMSErrorFlags::ValidResponseTimeout);
+//		m_chargerOffPin.writePin(GPIO_PIN_SET);
+//		uint8_t step = m_errFlags & 0xf;
+//
+//		if (step == 0)
+//		{
+//			m_errFlags = (m_errFlags & 0xfffffff0) | 1;
+//			m_lastEvent = ChargerHandlerEvent::BMSTurnOffNeeded;
+//			// request to turn off bms
+//		}
+//		else if (step == 1)
+//		{
+//			if (!m_bmsOkStatus.readPin()) // Turned off
+//			{
+//				m_errFlags = (m_errFlags & 0xfffffff0) | 2;
+//				m_lastEvent = ChargerHandlerEvent::BMSTurnOnNeeded;
+//				// request to turn on
+//			}
+//		}
+//		else if (step == 2)
+//		{
+//			if (m_bmsOkStatus.readPin()) // Turned on
+//			{
+//				m_errFlags = (m_errFlags & 0xfffffff0) | 3;
+//				// request data
+//			}
+//		}
+//		else
+//		{
+//			if (majorErrors) {
+//				changeState(State::Error, BMSErrorFlags::ValidResponseTimeout);
+//			} else if (m_bmsDataRevision < data.bms.getDataRevision()) {
+//				changeState(State::Idle, 0);
+//			}
+//		}
 	}
 	// Внутрішній аналіз
 	else
@@ -111,12 +112,12 @@ void ChargerHandler::updateState<ChargerHandler::State::Investigation>()
 //			analyzeBMSData(data.bms);
 //		}
 
-		changeState(State::Error, m_errFlags);
+		changeState(ChargerState::Error, m_errFlags);
 	}
 }
 
 template <>
-void ChargerHandler::updateState<ChargerHandler::State::Error>()
+void ChargerHandler::updateState<ChargerState::Error>()
 {
 	m_chargerOffPin.writePin(GPIO_PIN_SET);
 }
@@ -136,40 +137,40 @@ void ChargerHandler::update()
 {
 	switch (m_state)
 	{
-	case State::Idle:
-		updateState<State::Idle>();
+	case ChargerState::Idle:
+		updateState<ChargerState::Idle>();
 		break;
-	case State::Investigation:
-		updateState<State::Investigation>();
+	case ChargerState::Investigation:
+		updateState<ChargerState::Investigation>();
 		break;
-	case State::Error:
-		updateState<State::Error>();
+	case ChargerState::Error:
+		updateState<ChargerState::Error>();
 		break;
 	}
 }
 
 
-void ChargerHandler::changeState(State state, uint32_t flags)
+void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 {
 	if (m_state != state)
 	{
-		if (state == State::Idle)
+		if (state == ChargerState::Idle)
 		{
 			m_chargerOffPin.writePin(GPIO_PIN_RESET);
 		}
-		else if (state == State::Investigation)
+		else if (state == ChargerState::Investigation)
 		{
-			// 1. 5 сек чекаємо, може роздуплиться
-			m_tickStartInvestigation = HAL_GetTick() + 5000;
-			m_errFlags = flags;
+			// 1. 10 сек чекаємо, може роздуплиться
+			m_tickStartInvestigation = HAL_GetTick() + 10000;
 		}
-		else if (state == State::Error)
+		else if (state == ChargerState::Error)
 		{
 			m_chargerOffPin.writePin(GPIO_PIN_SET);
 			m_lastEvent = ChargerHandlerEvent::ChargeError;
 		}
 
 		m_state = state;
+		m_errFlags = flags;
 	}
 }
 
@@ -205,7 +206,7 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 	if (!isOvervoltage) {
 		m_overvoltageNoErrorTick = currentTick;
 	} else if (m_overvoltageNoErrorTick < currentTick - kOvervoltageErrorTheshold) {
-		changeState(State::Error);
+		changeState(ChargerState::Error);
 	}
 }
 

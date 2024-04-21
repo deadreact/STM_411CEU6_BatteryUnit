@@ -387,6 +387,7 @@
             "Name": "content",
             "Width": 320,
             "Height": 240,
+            "Visible": false,
             "Components": [
               {
                 "Type": "Container",
@@ -396,7 +397,7 @@
                 "Components": [
                   {
                     "Type": "Image",
-                    "Name": "icon3",
+                    "Name": "icon_chargErr",
                     "X": 52,
                     "Y": 2,
                     "Width": 48,
@@ -547,7 +548,6 @@
             "Y": 84,
             "Width": 72,
             "Height": 72,
-            "Visible": false,
             "RenderingAlgorithm": "Bilinear Interpolation",
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,

@@ -27,6 +27,7 @@ protected:
     bool m_usbState{false};
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
+    bool m_isChargError{false};
     uint32_t m_loadingAnimTimeout{0};
 
     BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};

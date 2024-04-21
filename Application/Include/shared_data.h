@@ -56,8 +56,8 @@ struct ProcessData<ProcessId::Idle>
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;
-    std::string bmsErrMsg;
-    uint32_t bmsErrFlags{0};
+    std::string errMsg;
+    uint32_t errFlags{0};
 };
 
 

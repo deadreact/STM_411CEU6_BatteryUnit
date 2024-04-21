@@ -48,12 +48,20 @@ void Screen1View::handleTickEvent()
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 
-	bool isMajorError = data.bmsErrFlags & BMSErrorFlags::maskMajorErrors;
+	bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
 	if (m_isBMSError != isMajorError)
 	{
 		icon_warn.setVisible(isMajorError);
 		icon_warn.invalidate();
 		m_isBMSError = isMajorError;
+	}
+
+	bool isChargError = data.errFlags & 0x01000000;
+	if (m_isChargError != isChargError)
+	{
+		icon_chargErr.setVisible(isChargError);
+		icon_chargErr.invalidate();
+		m_isChargError = isChargError;
 	}
 
 	auto smoothedCurr = data.smoothedCurrent.get();

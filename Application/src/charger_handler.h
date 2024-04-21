@@ -28,34 +28,37 @@ enum class ChargerError
 	OvervoltageError
 };
 
+enum class ChargerState { Idle, Investigation, Error };
+
 class ChargerHandler
 {
-public:
-	enum class State { Idle, Investigation, Error };
 public:
 	ChargerHandler();
 
 	void update();
 
+	inline ChargerState getState() const { return m_state; }
+	inline void resetState() { changeState(ChargerState::Idle); }
+
 	ChargerHandlerEvent takeLastEvent();
 private:
-	template <State>
+	template <ChargerState>
 	void updateState();
 
-	void changeState(State state, uint32_t flags = 0);
+	void changeState(ChargerState state, uint32_t flags = 0);
 	void analyzeBMSData(const BatteryData& data);
 private:
 	SinglePinElement m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
 	const SinglePinElement m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
-	const SinglePinElement m_bmsOkStatus{bms_ok_GPIO_Port, bms_ok_Pin};
+//	const SinglePinElement m_bmsOkStatus{bms_ok_GPIO_Port, bms_ok_Pin};
 
 	uint32_t m_tickStartInvestigation{0xffffffff};
 	uint32_t m_errFlags{0};
 	uint32_t m_bmsDataRevision{0};
-	State m_state{State::Idle};
+	ChargerState m_state{ChargerState::Idle};
 	ChargerHandlerEvent m_lastEvent{ChargerHandlerEvent::NoEvent};
 
-	uint16_t m_overvoltageNoErrorTick{0xffff};
+	uint32_t m_overvoltageNoErrorTick{0xffffffff};
 	static const uint16_t kOvervoltageSingleValue{3900};
 	static const uint16_t kOvervoltageErrorTheshold{60 * 1000}; // 1 min
 };
