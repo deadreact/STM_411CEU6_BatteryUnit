@@ -478,13 +478,9 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, charg_pot_ud_Pin|charg_pot_inc_Pin|charg_pot_cs_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin|LED_Pin
@@ -492,20 +488,6 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, bms_on_Pin|bttn_screen_led_Pin|bttn_usb_led_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : charg_pot_ud_Pin */
-  GPIO_InitStruct.Pin = charg_pot_ud_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(charg_pot_ud_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : charg_pot_inc_Pin charg_pot_cs_Pin */
-  GPIO_InitStruct.Pin = charg_pot_inc_Pin|charg_pot_cs_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA0 */
   GPIO_InitStruct.Pin = GPIO_PIN_0;

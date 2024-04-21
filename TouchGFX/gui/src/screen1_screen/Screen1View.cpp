@@ -171,16 +171,7 @@ void Screen1View::showLoading(bool show)
 {
 	loading.setVisible(show);
 	loading_bg.setVisible(show);
-//	content.setVisible(show);
-	loading_bg.invalidate();
-
-	if (show) {
-
-//		capacityContainerSmall.setY(47-240);
-//		capacityContainerSmall.startMoveAnimation(0, 47, 10, touchgfx::EasingEquations::linearEaseNone, touchgfx::EasingEquations::backEaseOut);
-	} else {
-//		invalidate();
-	}
+	invalidate();
 }
 
 
