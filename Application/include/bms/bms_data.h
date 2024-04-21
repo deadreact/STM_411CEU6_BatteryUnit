@@ -76,6 +76,7 @@ struct SmoothedValue
 
 	SmoothedValue();
 
+	void reset();
 	void set(int16_t value);
 	int16_t get() const;
 };
