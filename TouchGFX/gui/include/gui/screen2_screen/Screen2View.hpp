@@ -3,6 +3,7 @@
 
 #include <gui_generated/screen2_screen/Screen2ViewBase.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
+#include <application_utils.h>
 
 class Screen2View : public Screen2ViewBase
 {
@@ -19,7 +20,7 @@ protected:
     int m_analog1{0};
     int m_analog2{0};
 
-    uint32_t m_lastUpdateTimeTick{0};
+    Timeout m_timer{500};
 };
 
 #endif // SCREEN2VIEW_HPP

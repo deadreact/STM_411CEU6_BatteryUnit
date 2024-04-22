@@ -9,7 +9,7 @@
 #define STARTUP_PROCESS_STARTUP_PROCESS_H_
 
 #include <shared_data.h>
-#include <stdint.h>
+#include <application_utils.h>
 #include "../process.h"
 
 class StartupProcess : public Process
@@ -21,7 +21,7 @@ protected:
     virtual void update() override;
 private:
     ProcessData<ProcessId::Startup> data;
-    uint32_t m_startTick;
+    CTimeout m_standbyTimeout{7000};
 };
 
 #endif /* STARTUP_PROCESS_STARTUP_PROCESS_H_ */

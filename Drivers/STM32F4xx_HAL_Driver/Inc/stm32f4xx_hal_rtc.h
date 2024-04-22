@@ -154,8 +154,8 @@ typedef struct
 
   uint32_t Alarm;                /*!< Specifies the alarm .
                                       This parameter can be a value of @ref RTC_Alarms_Definitions */
-} RTC_AlarmTypeDef;
 
+} RTC_AlarmTypeDef;
 /**
   * @brief  RTC Handle Structure definition
   */

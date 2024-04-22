@@ -20,10 +20,10 @@ namespace detail
 		inline void reset() { startTick = HAL_GetTick(); }
 		inline void inc() { startTick += timeout; }
 
-		inline bool isReached() const { return (HAL_GetTick() - startTick) > timeout; }
-
 		inline T getTimeout() const { return timeout; }
 		inline uint32_t getStartTick() const { return startTick; }
+		inline uint32_t getDuration() const { return HAL_GetTick() - startTick; }
+		inline bool isReached() const { return getDuration() > timeout; }
 	protected:
 		TimeoutBase(T timeout): timeout(timeout) {}
 
