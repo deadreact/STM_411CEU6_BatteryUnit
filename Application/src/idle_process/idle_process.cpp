@@ -106,7 +106,12 @@ void IdleProcess::Impl::handleEvents()
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
         	sharedData.bms = m_bmsUpdater.getData();
-        	sharedData.smoothedCurrent.set(sharedData.bms.current);
+        	if (sharedData.bms.isValid()) {
+        		sharedData.smoothedCurrent.set(sharedData.bms.current);
+        	} else {
+        		sharedData.smoothedCurrent.reset();
+        	}
+
         }
     }
 
