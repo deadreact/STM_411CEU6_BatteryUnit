@@ -10,22 +10,15 @@
 
 #include <gpio_wrappers/interface.h>
 #include <main.h>
+#include <utils/timeout.h>
 
 struct BatteryData;
 
-enum class ChargerHandlerEvent
+enum class ChargerError: uint32_t
 {
-	NoEvent,
-	BMSTurnOffNeeded,
-	BMSTurnOnNeeded,
-	ChargeError
-};
-
-enum class ChargerError
-{
-	NoError,
-	BMSError,
-	OvervoltageError
+	NoError 		 = 0,
+	BMSError 		 = 0x01000000,
+	OvervoltageError = 0x02000000
 };
 
 enum class ChargerState { Idle, Investigation, Error };
@@ -39,8 +32,6 @@ public:
 
 	inline ChargerState getState() const { return m_state; }
 	inline void resetState() { changeState(ChargerState::Idle); }
-
-	ChargerHandlerEvent takeLastEvent();
 private:
 	template <ChargerState>
 	void updateState();
@@ -50,17 +41,14 @@ private:
 private:
 	SinglePinElement m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
 	const SinglePinElement m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
-//	const SinglePinElement m_bmsOkStatus{bms_ok_GPIO_Port, bms_ok_Pin};
 
-	uint32_t m_tickStartInvestigation{0xffffffff};
 	uint32_t m_errFlags{0};
 	uint32_t m_bmsDataRevision{0};
 	ChargerState m_state{ChargerState::Idle};
-	ChargerHandlerEvent m_lastEvent{ChargerHandlerEvent::NoEvent};
 
-	uint32_t m_overvoltageNoErrorTick{0xffffffff};
 	static const uint16_t kOvervoltageSingleValue{3900};
-	static const uint16_t kOvervoltageErrorTheshold{60 * 1000}; // 1 min
+	CTimeout m_investigationTimeout{10000};
+	CTimeout m_overvoltageTimeout{60 * 1000}; // 1 min
 };
 
 #endif /* SRC_CHARGER_HANDLER_H_ */

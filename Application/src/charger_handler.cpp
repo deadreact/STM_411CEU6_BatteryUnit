@@ -37,16 +37,15 @@ void ChargerHandler::updateState<ChargerState::Idle>()
 template <>
 void ChargerHandler::updateState<ChargerState::Investigation>()
 {
-	const auto currentTick = HAL_GetTick();
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 	const auto majorErrors = (data.errFlags & BMSErrorFlags::maskMajorErrors);
 
-	if (m_tickStartInvestigation > currentTick) {
+	if (m_investigationTimeout.isReached()) {
 		if (m_errFlags != majorErrors)
 		{
 			m_errFlags = majorErrors;
 			if (m_errFlags) {
-				m_tickStartInvestigation = currentTick + 10000;
+				m_investigationTimeout.reset();
 			} else {
 				changeState(ChargerState::Idle);
 			}
@@ -54,66 +53,7 @@ void ChargerHandler::updateState<ChargerState::Investigation>()
 		return;
 	}
 
-	m_errFlags |= majorErrors;
-
-	// TurnOffTimeout: Вирубаємо?
-	if (m_errFlags & BMSErrorFlags::TurnOffTimeout)
-	{
-		changeState(ChargerState::Error, BMSErrorFlags::TurnOffTimeout);
-	}
-	// TurnOnTimeout: пробуємо request ?
-	else if (m_errFlags & BMSErrorFlags::TurnOnTimeout)
-	{
-		changeState(ChargerState::Error, BMSErrorFlags::TurnOnTimeout);
-	}
-	// ValidResponseTimeout: пробуємо вимк/увімк/чекаємо респонс
-	else if (m_errFlags & BMSErrorFlags::ValidResponseTimeout)
-	{
-		changeState(ChargerState::Error, BMSErrorFlags::ValidResponseTimeout);
-//		m_chargerOffPin.writePin(GPIO_PIN_SET);
-//		uint8_t step = m_errFlags & 0xf;
-//
-//		if (step == 0)
-//		{
-//			m_errFlags = (m_errFlags & 0xfffffff0) | 1;
-//			m_lastEvent = ChargerHandlerEvent::BMSTurnOffNeeded;
-//			// request to turn off bms
-//		}
-//		else if (step == 1)
-//		{
-//			if (!m_bmsOkStatus.readPin()) // Turned off
-//			{
-//				m_errFlags = (m_errFlags & 0xfffffff0) | 2;
-//				m_lastEvent = ChargerHandlerEvent::BMSTurnOnNeeded;
-//				// request to turn on
-//			}
-//		}
-//		else if (step == 2)
-//		{
-//			if (m_bmsOkStatus.readPin()) // Turned on
-//			{
-//				m_errFlags = (m_errFlags & 0xfffffff0) | 3;
-//				// request data
-//			}
-//		}
-//		else
-//		{
-//			if (majorErrors) {
-//				changeState(State::Error, BMSErrorFlags::ValidResponseTimeout);
-//			} else if (m_bmsDataRevision < data.bms.getDataRevision()) {
-//				changeState(State::Idle, 0);
-//			}
-//		}
-	}
-	// Внутрішній аналіз
-	else
-	{
-//		if (m_bmsDataRevision < data.bms.getDataRevision()) {
-//			analyzeBMSData(data.bms);
-//		}
-
-		changeState(ChargerState::Error, m_errFlags);
-	}
+	changeState(ChargerState::Error, m_errFlags);
 }
 
 template <>
@@ -126,12 +66,6 @@ void ChargerHandler::updateState<ChargerState::Error>()
 ChargerHandler::ChargerHandler()
 {}
 
-ChargerHandlerEvent ChargerHandler::takeLastEvent()
-{
-	auto tmp = m_lastEvent;
-	m_lastEvent = ChargerHandlerEvent::NoEvent;
-	return tmp;
-}
 
 void ChargerHandler::update()
 {
@@ -161,12 +95,11 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 		else if (state == ChargerState::Investigation)
 		{
 			// 1. 10 сек чекаємо, може роздуплиться
-			m_tickStartInvestigation = HAL_GetTick() + 10000;
+			m_investigationTimeout.reset();
 		}
 		else if (state == ChargerState::Error)
 		{
 			m_chargerOffPin.writePin(GPIO_PIN_SET);
-			m_lastEvent = ChargerHandlerEvent::ChargeError;
 		}
 
 		m_state = state;
@@ -177,7 +110,6 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 
 void ChargerHandler::analyzeBMSData(const BatteryData& data)
 {
-	const auto currentTick = HAL_GetTick();
 	/* Handle BMS warn msg
 	Bit 0: low capacity                   (1)
 	Bit 1: MOS tube overtemperature       (2)
@@ -204,8 +136,8 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 	}
 
 	if (!isOvervoltage) {
-		m_overvoltageNoErrorTick = currentTick;
-	} else if (m_overvoltageNoErrorTick < currentTick - kOvervoltageErrorTheshold) {
+		m_overvoltageTimeout.reset();
+	} else if (m_overvoltageTimeout.isReached()) {
 		changeState(ChargerState::Error);
 	}
 }

@@ -11,8 +11,8 @@
 #include <gpio_wrappers/button.h>
 #include <gpio_wrappers/led.h>
 #include <gpio_wrappers/io_tube.h>
-#include <application_utils.h>
 #include <main.h> // GPIO defines & HAL
+#include <utils/timeout.h>
 
 enum class InverterState
 {

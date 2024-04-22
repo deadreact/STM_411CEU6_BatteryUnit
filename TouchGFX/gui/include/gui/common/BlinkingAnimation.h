@@ -8,7 +8,7 @@
 #ifndef GUI_INCLUDE_GUI_COMMON_BLINKINGANIMATION_H_
 #define GUI_INCLUDE_GUI_COMMON_BLINKINGANIMATION_H_
 
-#include <application_utils.h>
+#include <utils/timeout.h>
 
 template <typename Target>
 class BlinkingAnimation {

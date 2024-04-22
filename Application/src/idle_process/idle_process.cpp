@@ -130,18 +130,6 @@ void IdleProcess::Impl::handleEvents()
     	sharedData.errFlags &= ~0x01000000;
     }
 
-//    const auto chargEvent = m_chargerHandler.takeLastEvent();
-//    if (chargEvent != ChargerHandlerEvent::NoEvent)
-//    {
-//    	if (chargEvent == ChargerHandlerEvent::BMSTurnOffNeeded) {
-//    		m_bmsUpdater.setActive(false);
-//    	} else if (chargEvent == ChargerHandlerEvent::BMSTurnOnNeeded) {
-//    		m_bmsUpdater.setActive(true);
-//    	}  else if (chargEvent == ChargerHandlerEvent::ChargeError) {
-//    		sharedData.bmsErrMsg += " charge err";
-//    	}
-//    }
-
     handlePowerState();
 }
 

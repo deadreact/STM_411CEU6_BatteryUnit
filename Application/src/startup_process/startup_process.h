@@ -9,7 +9,7 @@
 #define STARTUP_PROCESS_STARTUP_PROCESS_H_
 
 #include <shared_data.h>
-#include <application_utils.h>
+#include <utils/timeout.h>
 #include "../process.h"
 
 class StartupProcess : public Process

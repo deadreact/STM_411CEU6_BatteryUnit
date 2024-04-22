@@ -4,7 +4,7 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <gui/common/BlinkingAnimation.h>
-#include <application_utils.h>
+#include <utils/revision_data.h>
 
 enum class InverterState;
 

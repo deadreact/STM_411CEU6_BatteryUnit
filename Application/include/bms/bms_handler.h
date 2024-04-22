@@ -10,9 +10,9 @@
 
 #include <bms/bms_data.h>
 #include <gpio_wrappers/interface.h>
-#include <application_utils.h>
 #include <string>
 #include <main.h> // GPIO defines & HAL
+#include <utils/timeout.h>
 
 #define SIMULATE_CHARGING 0
 #define SIMULATE_UNCHARGING 0

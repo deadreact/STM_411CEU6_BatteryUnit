@@ -1,14 +1,14 @@
 /*
- * application_utils.h
+ * timeout.h
  *
- *  Created on: Apr 20, 2024
- *      Author: deadreact
+ *  Created on: Apr 22, 2024
+ *      Author: Dmitriy.Gyr
  */
 
-#ifndef INCLUDE_APPLICATION_UTILS_H_
-#define INCLUDE_APPLICATION_UTILS_H_
+#ifndef INCLUDE_UTILS_TIMEOUT_H_
+#define INCLUDE_UTILS_TIMEOUT_H_
 
-#include <stdint.h>
+
 #include "stm32f4xx_hal.h"
 
 namespace detail
@@ -31,27 +31,6 @@ namespace detail
 		T timeout;
 	};
 } //namespace detail
-
-template <typename T>
-class RevisionData : public T
-{
-public:
-	RevisionData() = default;
-	RevisionData(const T& other)
-		: T(other)
-		, m_revision(1)
-	{}
-
-	RevisionData& operator=(const T& other) {
-		T::operator=(other);
-		++m_revision;
-		return *this;
-	}
-
-	uint32_t getDataRevision() const { return m_revision; }
-private:
-	uint32_t m_revision{0};
-};
 
 class Timeout : public detail::TimeoutBase<uint32_t>
 {
@@ -86,4 +65,4 @@ protected:
 };
 
 
-#endif /* INCLUDE_APPLICATION_UTILS_H_ */
+#endif /* INCLUDE_UTILS_TIMEOUT_H_ */

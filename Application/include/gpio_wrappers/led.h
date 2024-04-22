@@ -9,7 +9,7 @@
 #define LED_H_
 
 #include <gpio_wrappers/interface.h>
-#include <application_utils.h>
+#include <utils/timeout.h>
 
 class Led : public SinglePinElement, public ITickHandler
 {

@@ -8,7 +8,7 @@
 #ifndef PROCESS_H_
 #define PROCESS_H_
 
-#include <application_utils.h>
+#include <utils/timeout.h>
 
 class Process
 {

@@ -1,6 +1,5 @@
 #include <gui/screen2_screen/Screen2View.hpp>
 #include <touchgfx/Color.hpp>
-#include <application_utils.h>
 
 Screen2View::Screen2View()
 {

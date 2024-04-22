@@ -9,7 +9,7 @@
 #define BUTTON_H_
 
 #include <gpio_wrappers/interface.h>
-#include <application_utils.h>
+#include <utils/timeout.h>
 #include <functional>
 
 class Button : public SinglePinElement, public ITickHandler

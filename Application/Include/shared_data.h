@@ -11,8 +11,8 @@
 #include <bms/bms_data.h>
 #include <inverter/inverter_handler.h>
 #include <stdint.h>
+#include <utils/revision_data.h>
 #include <string>
-#include <application_utils.h>
 
 enum class PowerModeState: uint8_t
 {
