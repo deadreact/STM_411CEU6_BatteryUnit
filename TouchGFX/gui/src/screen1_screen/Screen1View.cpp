@@ -81,11 +81,11 @@ void Screen1View::handleTickEvent()
 		icon_usb.invalidate();
 	}
 
-	if (loading.isVisible() && m_loadingAnimTimeout <= HAL_GetTick())
+	if (loading.isVisible() && m_loadingAnimTimeout.isReached())
 	{
 		loading.setZAngle(loading.getZAngle() + PI/6);
 		loading.invalidate();
-		m_loadingAnimTimeout = HAL_GetTick() + 50;
+		m_loadingAnimTimeout.reset();
 	}
 
 	if (m_invState == InverterState::Intermediate)

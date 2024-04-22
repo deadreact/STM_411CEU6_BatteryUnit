@@ -4,6 +4,7 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <gui/common/BlinkingAnimation.h>
+#include <application_utils.h>
 
 enum class InverterState;
 
@@ -28,7 +29,7 @@ protected:
     int m_chargeTimeMins{-1};
     bool m_isBMSError{false};
     bool m_isChargError{false};
-    uint32_t m_loadingAnimTimeout{0};
+    CTimeout m_loadingAnimTimeout{50};
 
     BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};
     BlinkingAnimation<touchgfx::Image> m_warnAnimation{icon_warn, 800};

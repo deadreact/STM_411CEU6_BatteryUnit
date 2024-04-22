@@ -51,10 +51,10 @@ protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
 
-    Timeout m_requestTimeout;
-    Timeout m_responseTimeout;
-    Timeout m_dataUpdateTimeout;
-    Timeout m_bmsOnResetTimeout;
+    CTimeout m_requestTimeout{1000};
+    CTimeout m_responseTimeout{500};
+    CTimeout m_dataInvalidationTimeout{10000};
+    Timeout m_bmsOnResetTimeout{0};
 
     uint8_t rxData[rxDataLen];
     uint8_t txDataBuffer[txDataLen];
@@ -70,7 +70,6 @@ enum class BMSUpdaterEvent : uint8_t
 class BMSUpdater : public BMSHandler
 {
 public:
-	BMSUpdater();
     void update();
     BMSUpdaterEvent takeLastEvent();
 
@@ -82,10 +81,6 @@ private:
 
     StaticTimeout<10000> m_bmsTurnOnTimeout;
     StaticTimeout<10000> m_bmsTurnOffTimeout;
-
-    constexpr static const uint16_t kRequestTimeout{1000};
-    constexpr static const uint16_t kInvalidatePeriodMsec{500};
-    constexpr static const uint16_t kValidResponseTimeout{10000};
 };
 
 

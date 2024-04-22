@@ -166,6 +166,7 @@ void BMSHandler::response(HAL_StatusTypeDef status)
             static int simCurrent = 90;
             data.current -= simCurrent;
 #endif
+            errFlags &= ~BMSErrorFlags::maskErrorDetails;
             updateData(data);
         }
     }
@@ -175,7 +176,7 @@ void BMSHandler::response(HAL_StatusTypeDef status)
 
 void BMSHandler::updateData(const BatteryData& newData)
 {
-    m_dataUpdateTimeout.reset();
+    m_dataInvalidationTimeout.reset();
     errFlags &= ~BMSErrorFlags::maskMajorErrors;
     if (m_data != newData)
     {
@@ -211,14 +212,6 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
     }
 }
 
-BMSUpdater::BMSUpdater()
-{
-	m_requestTimeout = kRequestTimeout;
-	m_responseTimeout = kInvalidatePeriodMsec;
-	m_dataUpdateTimeout = kValidResponseTimeout;
-//	m_bmsOnResetTick.timeout = kRequestTimeout;
-
-}
 
 void BMSUpdater::update()
 {
@@ -242,7 +235,7 @@ void BMSUpdater::update()
 			}
 			else
 			{
-				if (m_dataUpdateTimeout.isReached())
+				if (m_dataInvalidationTimeout.isReached())
 				{
 					errFlags |= BMSErrorFlags::ValidResponseTimeout;
 					debugMsg = "valid response timed out";

@@ -39,7 +39,7 @@ struct IdleProcess::Impl
 
     // Data
     ProcessData<ProcessId::Idle> sharedData;
-    uint32_t m_wakedUpTimeout{0};
+    CTimeout m_wakedUpTimeout{100};
     // Handlers
     BMSUpdater m_bmsUpdater;
     InverterHandler m_invHandler;
@@ -168,7 +168,7 @@ void IdleProcess::Impl::handlePowerState()
 			m_usbHandler.setActive(true);
 			m_chargerHandler.resetState();
 
-			if (m_wakedUpTimeout <= HAL_GetTick() && !btnPwr.isPressed())
+			if (m_wakedUpTimeout.isReached() && !btnPwr.isPressed())
 			{
 				sharedData.powerModeState = PowerModeState::Normal;
 			}
@@ -176,7 +176,7 @@ void IdleProcess::Impl::handlePowerState()
 
 		if (m_bmsUpdater.isPowerOn())
 		{
-			if (m_bmsUpdater.getStatus() != BMSStatus::Error && m_bmsUpdater.getData().isValid())
+			if (m_bmsUpdater.errFlags == 0 && m_bmsUpdater.getData().isValid())
 			{
 				screenLed.setIndicationType(LedIndicationType::On);
 			}
@@ -223,6 +223,8 @@ void IdleProcess::Impl::onPwrHold()
 //static void RequestStopMode() { SharedData:: }
 // -----------------------------------------------------------------
 
+IdleProcess::IdleProcess() : Process(5) {};
+
 IdleProcess::~IdleProcess()
 {
     delete m_pimpl;
@@ -232,8 +234,6 @@ void IdleProcess::init()
 {
     m_pimpl = new IdleProcess::Impl;
     SharedData::get().setProcessId<ProcessId::Idle>(&m_pimpl->sharedData);
-
-    m_tickRate = 5;
     m_pimpl->screen.on();
 }
 
@@ -247,7 +247,7 @@ void IdleProcess::update()
     	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
         EnterStopMode();
         m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
-        m_pimpl->m_wakedUpTimeout = HAL_GetTick() + 100;
+        m_pimpl->m_wakedUpTimeout.reset();
         m_pimpl->screen.on();
     }
 }

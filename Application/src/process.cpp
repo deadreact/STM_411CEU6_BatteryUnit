@@ -19,13 +19,11 @@ void Process::run()
     m_isRunning = true;
     sm_current = this;
 
-    auto updateTick = HAL_GetTick();
-
     while (m_isRunning)
     {
-        if (updateTick <= HAL_GetTick())
+        if (m_tickRate.isReached())
         {
-            updateTick += m_tickRate;
+            m_tickRate.reset();
             update();
         }
     }

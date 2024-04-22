@@ -1,7 +1,6 @@
 #include <gui/screen2_screen/Screen2View.hpp>
 #include <touchgfx/Color.hpp>
-
-uint32_t tickToShowAlarm = 0;
+#include <application_utils.h>
 
 Screen2View::Screen2View()
 {
@@ -56,11 +55,12 @@ void Screen2View::handleTickEvent()
     updateTime();
 }
 
+Timeout showAlarmTimeout;
 extern RTC_HandleTypeDef hrtc;
 
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *phrtc)
 {
-	tickToShowAlarm = HAL_GetTick() + 3300;
+	showAlarmTimeout.reset(3300);
 }
 
 void Screen2View::updateTime()
@@ -86,7 +86,7 @@ void Screen2View::updateTime()
 	dateDay.invalidate();
 	date.invalidate();
 
-	if (tickToShowAlarm > currentTick)
+	if (showAlarmTimeout.isReached())
 	{
 		if (!alarm.isVisible())
 		{
@@ -94,11 +94,11 @@ void Screen2View::updateTime()
 			alarm.invalidate();
 		}
 	}
-	else if (tickToShowAlarm != 0)
+	else if (showAlarmTimeout.isValid())
 	{
 		alarm.setVisible(false);
 		alarm.invalidate();
-		tickToShowAlarm = 0;
+		showAlarmTimeout.invalidate();
 	}
 }
 

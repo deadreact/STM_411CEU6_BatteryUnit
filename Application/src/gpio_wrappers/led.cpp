@@ -13,22 +13,20 @@ Led::Led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 
 void Led::onTick()
 {
-    const auto dt = HAL_GetTick() - m_lastToggleTick;
-    if (dt > m_interval)
+    if (m_timeout.isReached())
     {
-        m_lastToggleTick = HAL_GetTick();
+    	m_timeout.reset();
         toggle();
     }
 }
 
 void Led::reset()
 {
-    m_interval = 0xffffffff;
-    m_lastToggleTick = 0;
+	m_timeout.invalidate();
 }
 
-void Led::setInterval(uint32_t interval) { m_interval = interval; }
-uint32_t Led::getInterval() const { return m_interval; }
+void Led::setInterval(uint32_t interval) { m_timeout = interval; }
+uint32_t Led::getInterval() const { return m_timeout.getTimeout(); }
 
 LedIndicator::LedIndicator(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, LedIndicationType initialState)
     : Led(GPIOx, GPIO_Pin)
@@ -41,11 +39,15 @@ void LedIndicator::onTick()
 {
     Led::onTick();
 
-    if (m_indication == LedIndicationType::ShuffleBlinking && m_lastToggleTick == HAL_GetTick())
+    if (m_indication == LedIndicationType::ShuffleBlinking && m_timeout.getStartTick() == HAL_GetTick())
     {
         if (isOn())
         {
-            m_lastToggleTick -= m_interval / 2;
+            m_timeout = m_timeout.getTimeout() * 2;
+        }
+        else
+        {
+        	m_timeout = m_timeout.getTimeout() / 2;
         }
     }
 }

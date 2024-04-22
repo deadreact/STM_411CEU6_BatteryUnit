@@ -9,6 +9,7 @@
 #define LED_H_
 
 #include <gpio_wrappers/interface.h>
+#include <application_utils.h>
 
 class Led : public SinglePinElement, public ITickHandler
 {
@@ -27,8 +28,7 @@ public:
     void setInterval(uint32_t interval);
     uint32_t getInterval() const;
 protected:
-    uint32_t m_lastToggleTick{0};
-    uint32_t m_interval{0xffffffff};
+    Timeout m_timeout;
 };
 
 enum class LedIndicationType

@@ -25,8 +25,7 @@ namespace
 
 Button::Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
     : SinglePinElement(GPIOx, GPIO_Pin)
-    , m_lastChangeTick(HAL_GetTick())
-    , m_lastStateChangeTick(m_lastChangeTick)
+    , m_lastStateChangeTick(HAL_GetTick())
     , m_lastPinState(readPin())
     , m_state(m_lastPinState)
 {}
@@ -38,11 +37,11 @@ void Button::onTick()
     if (state != m_lastPinState)
     {
         m_lastPinState = state;
-        m_lastChangeTick = HAL_GetTick();
+        m_lastChangeTimeout.reset();
     }
     else if (state != m_state)
     {
-        if (HAL_GetTick() - m_lastChangeTick > kTresholdMs)
+        if (m_lastChangeTimeout.isReached())
         {
             m_state = state;
             m_lastStateChangeTick = HAL_GetTick() - 1;

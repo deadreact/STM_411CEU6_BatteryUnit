@@ -13,6 +13,7 @@
 class IdleProcess : public Process
 {
 public:
+	IdleProcess();
     virtual ~IdleProcess();
 
     virtual void init() override;

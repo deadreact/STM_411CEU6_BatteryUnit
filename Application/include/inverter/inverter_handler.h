@@ -11,6 +11,7 @@
 #include <gpio_wrappers/button.h>
 #include <gpio_wrappers/led.h>
 #include <gpio_wrappers/io_tube.h>
+#include <application_utils.h>
 #include <main.h> // GPIO defines & HAL
 
 enum class InverterState
@@ -40,8 +41,8 @@ private:
 
 	ButtonEventHandler m_btnHandler{&m_btn, [&]{ onBtnClicked(); }};
 	
-	uint32_t m_stableStateCheckTick{0};
-	uint32_t m_forceTurnOffTick{0};
+	CTimeout m_stableStateCheckTimeout{2200};
+	CTimeout m_forceTurnOffTimeout{8000};
 	bool m_isActive{true};
 
 //	bool m_isOn{false};

@@ -22,7 +22,6 @@ void InverterHandler::handleEvents()
 
 	if (m_isActive)
 	{
-		const auto currTick = HAL_GetTick();
 		const auto onState = m_invOn.readPin();
 
 		if (onState != m_invOk.readPin())
@@ -30,18 +29,18 @@ void InverterHandler::handleEvents()
 			m_led.setIndicationType(LedIndicationType::FastBlinking);
 			if (onState)
 			{
-				if (m_forceTurnOffTick < currTick) {
+				if (m_forceTurnOffTimeout.isReached()) {
 					m_invOn.togglePin();
 				} else {
-					m_stableStateCheckTick = currTick + 2200;
+					m_stableStateCheckTimeout.reset();
 				}
 			}
 
 		}
-		else if (m_stableStateCheckTick < currTick)
+		else if (m_stableStateCheckTimeout.isReached())
 		{
 			m_led.setIndicationType(onState ? LedIndicationType::On : LedIndicationType::Off);
-			m_forceTurnOffTick = currTick + 8000;
+			m_forceTurnOffTimeout.reset();
 		}
 	}
 }
@@ -64,7 +63,7 @@ void InverterHandler::onBtnClicked()
 	if (m_isActive)
 	{
 		m_invOn.togglePin();
-		m_forceTurnOffTick = HAL_GetTick() + 8000;
+		m_forceTurnOffTimeout.reset();
 	}
 }
 

@@ -8,6 +8,29 @@
 #ifndef INCLUDE_APPLICATION_UTILS_H_
 #define INCLUDE_APPLICATION_UTILS_H_
 
+#include <stdint.h>
+#include "stm32f4xx_hal.h"
+
+namespace detail
+{
+	template <typename T>
+	class TimeoutBase
+	{
+	public:
+		inline void reset() { startTick = HAL_GetTick(); }
+		inline void inc() { startTick += timeout; }
+
+		inline bool isReached() const { return (HAL_GetTick() - startTick) > timeout; }
+
+		inline T getTimeout() const { return timeout; }
+		inline uint32_t getStartTick() const { return startTick; }
+	protected:
+		TimeoutBase(T timeout): timeout(timeout) {}
+
+		uint32_t startTick{0};
+		T timeout;
+	};
+} //namespace detail
 
 template <typename T>
 class RevisionData : public T
@@ -30,24 +53,25 @@ private:
 	uint32_t m_revision{0};
 };
 
-class Timeout
+class Timeout : public detail::TimeoutBase<uint32_t>
 {
 public:
-	Timeout(uint16_t t = 0): timeout(t) {}
-	Timeout& operator=(uint16_t t) { timeout = t; return *this; }
+	Timeout(uint32_t t = 0xffffffff): TimeoutBase(t) {}
+	Timeout& operator=(uint32_t t) { timeout = t; return *this; }
 
-	inline void reset() { startTick = HAL_GetTick(); }
-	inline void reset(uint16_t t) { timeout = t; reset(); }
-	inline void inc() { startTick += timeout; }
-
-	inline bool isReached() const { return (HAL_GetTick() - startTick) > timeout; }
-	inline uint16_t getTimeout() const { return timeout; }
-protected:
-	uint32_t startTick{0};
-	uint16_t timeout{0};
+	using TimeoutBase::reset;
+	inline void reset(uint32_t t) { timeout = t; reset(); }
+	inline void invalidate() { timeout = 0xffffffff; }
+	inline bool isValid() const { return timeout < 0xffffffff; }
 };
 
-template <uint16_t timeout>
+class CTimeout : public detail::TimeoutBase<const uint32_t>
+{
+public:
+	CTimeout(uint32_t t): TimeoutBase(t) {}
+};
+
+template <uint32_t timeout>
 class StaticTimeout
 {
 	static_assert(timeout > 0);
@@ -56,7 +80,7 @@ public:
 	inline void inc() { startTick += timeout; }
 
 	inline bool isReached() const { return (HAL_GetTick() - startTick) > timeout; }
-	inline constexpr uint16_t getTimeout() const { return timeout; }
+	inline constexpr uint32_t getTimeout() const { return timeout; }
 protected:
 	uint32_t startTick{0};
 };

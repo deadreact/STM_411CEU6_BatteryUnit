@@ -9,6 +9,7 @@
 #define BUTTON_H_
 
 #include <gpio_wrappers/interface.h>
+#include <application_utils.h>
 #include <functional>
 
 class Button : public SinglePinElement, public ITickHandler
@@ -21,7 +22,7 @@ public:
     bool isPressed() const;
     uint32_t getPressedDuration() const;
 private:
-    uint32_t m_lastChangeTick {0};
+    CTimeout m_lastChangeTimeout {kTresholdMs};
     uint32_t m_lastStateChangeTick {0};
     GPIO_PinState m_lastPinState;
     GPIO_PinState m_state;
