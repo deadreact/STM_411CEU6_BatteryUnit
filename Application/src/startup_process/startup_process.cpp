@@ -17,7 +17,7 @@
 void StartupProcess::init()
 {
     SharedData::get().setProcessId<ProcessId::Startup>(&data);
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 }
 
 void StartupProcess::deinit()

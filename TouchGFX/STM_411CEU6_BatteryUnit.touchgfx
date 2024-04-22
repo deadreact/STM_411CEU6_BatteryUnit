@@ -487,7 +487,7 @@
                     "Visible": false,
                     "UseAnimation": true,
                     "RenderingAlgorithm": "Bilinear Interpolation",
-                    "FileNameImage": "icon11.png",
+                    "FileNameImage": "blue_fan.png",
                     "LockBitmapToCenter": true,
                     "Scale": 1.0,
                     "LockOrigoToCenter": true,
@@ -518,11 +518,10 @@
                     "Type": "Image",
                     "Name": "icon_inv",
                     "X": 201,
-                    "Y": 2,
                     "Width": 48,
                     "Height": 48,
                     "Visible": false,
-                    "RelativeFilename": "icon15.png"
+                    "RelativeFilename": "inv220v.png"
                   },
                   {
                     "Type": "Image",
@@ -588,9 +587,9 @@
                     "Height": 3,
                     "Visible": false,
                     "Color": {
-                      "Red": 31,
-                      "Green": 32,
-                      "Blue": 34
+                      "Red": 8,
+                      "Green": 9,
+                      "Blue": 9
                     }
                   },
                   {

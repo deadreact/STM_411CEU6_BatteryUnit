@@ -19,7 +19,7 @@ Screen1ViewBase::Screen1ViewBase()
     iconsContainer.add(icon_chargPlug);
 
     icon_fan.setXY(102, 0);
-    icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
+    icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_FAN_ID));
     icon_fan.setWidth(48);
     icon_fan.setHeight(48);
     icon_fan.setBitmapPosition(0.0f, 0.0f);
@@ -42,8 +42,8 @@ Screen1ViewBase::Screen1ViewBase()
     icon_usb.setVisible(false);
     iconsContainer.add(icon_usb);
 
-    icon_inv.setXY(201, 2);
-    icon_inv.setBitmap(touchgfx::Bitmap(BITMAP_ICON15_ID));
+    icon_inv.setXY(201, 0);
+    icon_inv.setBitmap(touchgfx::Bitmap(BITMAP_INV220V_ID));
     icon_inv.setVisible(false);
     iconsContainer.add(icon_inv);
 
@@ -70,7 +70,7 @@ Screen1ViewBase::Screen1ViewBase()
     capacityContainerSmall.add(footerBox);
 
     headerBox.setPosition(0, 0, 320, 3);
-    headerBox.setColor(touchgfx::Color::getColorFromRGB(31, 32, 34));
+    headerBox.setColor(touchgfx::Color::getColorFromRGB(8, 9, 9));
     headerBox.setVisible(false);
     capacityContainerSmall.add(headerBox);
 

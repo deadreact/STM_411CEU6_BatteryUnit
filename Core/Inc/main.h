@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -68,8 +70,8 @@ void Error_Handler(void);
 #define SCRN_RESET_GPIO_Port GPIOB
 #define SCRN_CS_Pin GPIO_PIN_2
 #define SCRN_CS_GPIO_Port GPIOB
-#define LED_Pin GPIO_PIN_10
-#define LED_GPIO_Port GPIOB
+#define screen_bright_Pin GPIO_PIN_10
+#define screen_bright_GPIO_Port GPIOB
 #define charger_off_Pin GPIO_PIN_15
 #define charger_off_GPIO_Port GPIOB
 #define bms_on_Pin GPIO_PIN_8

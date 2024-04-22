@@ -46,7 +46,9 @@ struct IdleProcess::Impl
     USBHandler m_usbHandler;
     ChargerHandler m_chargerHandler;
 
-    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
+//    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
+
+    Display320x240 screen;
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
     ButtonEventProvider btnScrSwitch{GPIOA, GPIO_PIN_0, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};

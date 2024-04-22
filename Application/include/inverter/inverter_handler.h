@@ -14,11 +14,11 @@
 #include <main.h> // GPIO defines & HAL
 #include <utils/timeout.h>
 
-enum class InverterState
+enum class InverterState: uint8_t
 {
-	Off = int(LedIndicationType::Off),
-	On = int(LedIndicationType::On),
-	Intermediate = int(LedIndicationType::FastBlinking)
+	Off = uint8_t(LedIndicationType::Off),
+	On = uint8_t(LedIndicationType::On),
+	Intermediate = uint8_t(LedIndicationType::FastBlinking)
 };
 
 class InverterHandler

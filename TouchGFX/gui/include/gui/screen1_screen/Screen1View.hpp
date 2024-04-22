@@ -6,7 +6,7 @@
 #include <gui/common/BlinkingAnimation.h>
 #include <utils/revision_data.h>
 
-enum class InverterState;
+enum class InverterState : uint8_t;
 
 class Screen1View : public Screen1ViewBase
 {
