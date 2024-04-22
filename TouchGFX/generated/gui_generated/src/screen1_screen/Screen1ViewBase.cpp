@@ -13,15 +13,10 @@ Screen1ViewBase::Screen1ViewBase()
 
     content.setPosition(0, 0, 320, 240);
     iconsContainer.setPosition(0, 0, 320, 50);
-    icon_chargErr.setXY(52, 2);
-    icon_chargErr.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));
-    icon_chargErr.setVisible(false);
-    iconsContainer.add(icon_chargErr);
-
-    icon5.setXY(250, 0);
-    icon5.setBitmap(touchgfx::Bitmap(BITMAP_ICON5_ID));
-    icon5.setVisible(false);
-    iconsContainer.add(icon5);
+    icon_chargPlug.setXY(52, 0);
+    icon_chargPlug.setBitmap(touchgfx::Bitmap(BITMAP_ICON_CHARG_ID));
+    icon_chargPlug.setVisible(false);
+    iconsContainer.add(icon_chargPlug);
 
     icon_fan.setXY(102, 0);
     icon_fan.setBitmap(touchgfx::Bitmap(BITMAP_ICON11_ID));
@@ -36,6 +31,11 @@ Screen1ViewBase::Screen1ViewBase()
     icon_fan.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     icon_fan.setVisible(false);
     iconsContainer.add(icon_fan);
+
+    icon_chargErr.setXY(52, 0);
+    icon_chargErr.setBitmap(touchgfx::Bitmap(BITMAP_ICON_CHARGBLOCK_ID));
+    icon_chargErr.setVisible(false);
+    iconsContainer.add(icon_chargErr);
 
     icon_usb.setXY(152, 0);
     icon_usb.setBitmap(touchgfx::Bitmap(BITMAP_GRAYSCALE_USB2_ID));

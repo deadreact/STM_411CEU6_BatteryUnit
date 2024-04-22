@@ -129,6 +129,7 @@ void IdleProcess::Impl::handleEvents()
     {
     	sharedData.errFlags &= ~0x01000000;
     }
+    sharedData.chargerPlugged = m_chargerHandler.isDcOk();
 
     handlePowerState();
 }

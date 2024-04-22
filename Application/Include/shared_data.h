@@ -53,6 +53,7 @@ struct ProcessData<ProcessId::Idle>
     PowerModeState powerModeState{PowerModeState::Normal};
     InverterState invState{InverterState::Off};
     bool usbState{false};
+    bool chargerPlugged{false};
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;

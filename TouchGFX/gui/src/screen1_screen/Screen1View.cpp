@@ -81,6 +81,12 @@ void Screen1View::handleTickEvent()
 		icon_usb.invalidate();
 	}
 
+	if (data.chargerPlugged != icon_chargPlug.isVisible())
+	{
+		icon_chargPlug.setVisible(data.chargerPlugged);
+		icon_chargPlug.invalidate();
+	}
+
 	if (loading.isVisible() && m_loadingAnimTimeout.isReached())
 	{
 		loading.setZAngle(loading.getZAngle() + PI/6);

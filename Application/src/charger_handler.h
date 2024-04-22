@@ -32,9 +32,11 @@ public:
 
 	inline ChargerState getState() const { return m_state; }
 	inline void resetState() { changeState(ChargerState::Idle); }
+	bool isDcOk() const { return m_chargerDcOkPin.readPin(); }
 private:
-	template <ChargerState>
-	void updateState();
+	void updateIdle();
+	void updateInvestigation();
+	void updateError();
 
 	void changeState(ChargerState state, uint32_t flags = 0);
 	void analyzeBMSData(const BatteryData& data);

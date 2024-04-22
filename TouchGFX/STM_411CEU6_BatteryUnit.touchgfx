@@ -471,22 +471,12 @@
                 "Components": [
                   {
                     "Type": "Image",
-                    "Name": "icon_chargErr",
+                    "Name": "icon_chargPlug",
                     "X": 52,
-                    "Y": 2,
                     "Width": 48,
                     "Height": 48,
                     "Visible": false,
-                    "RelativeFilename": "icon17.png"
-                  },
-                  {
-                    "Type": "Image",
-                    "Name": "icon5",
-                    "X": 250,
-                    "Width": 48,
-                    "Height": 48,
-                    "Visible": false,
-                    "RelativeFilename": "icon5.png"
+                    "RelativeFilename": "icon_charg.png"
                   },
                   {
                     "Type": "TextureMapper",
@@ -505,6 +495,15 @@
                     "YOrigo": 24.0,
                     "ZOrigo": 1000.0,
                     "CameraDistance": 1000.0
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_chargErr",
+                    "X": 52,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "icon_chargBlock.png"
                   },
                   {
                     "Type": "Image",

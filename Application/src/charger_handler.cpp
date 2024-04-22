@@ -9,10 +9,10 @@
 
 #include <shared_data.h>
 
-template <>
-void ChargerHandler::updateState<ChargerState::Idle>()
+
+void ChargerHandler::updateIdle()
 {
-	if (m_chargerDcOkPin.readPin())
+	if (isDcOk())
 	{
 		if (SharedData::getProcessId() == ProcessId::Idle)
 		{
@@ -34,30 +34,27 @@ void ChargerHandler::updateState<ChargerState::Idle>()
 	}
 }
 
-template <>
-void ChargerHandler::updateState<ChargerState::Investigation>()
+void ChargerHandler::updateInvestigation()
 {
 	const auto& data = SharedData::getData<ProcessId::Idle>();
 	const auto majorErrors = (data.errFlags & BMSErrorFlags::maskMajorErrors);
 
-	if (m_investigationTimeout.isReached()) {
-		if (m_errFlags != majorErrors)
-		{
-			m_errFlags = majorErrors;
-			if (m_errFlags) {
-				m_investigationTimeout.reset();
-			} else {
-				changeState(ChargerState::Idle);
-			}
+	if (m_errFlags != majorErrors)
+	{
+		m_errFlags = majorErrors;
+		if (m_errFlags) {
+			m_investigationTimeout.reset();
+		} else {
+			changeState(ChargerState::Idle);
 		}
-		return;
 	}
-
-	changeState(ChargerState::Error, m_errFlags);
+	else if (m_investigationTimeout.isReached())
+	{
+		changeState(ChargerState::Error, m_errFlags);
+	}
 }
 
-template <>
-void ChargerHandler::updateState<ChargerState::Error>()
+void ChargerHandler::updateError()
 {
 	m_chargerOffPin.writePin(GPIO_PIN_SET);
 }
@@ -72,13 +69,13 @@ void ChargerHandler::update()
 	switch (m_state)
 	{
 	case ChargerState::Idle:
-		updateState<ChargerState::Idle>();
+		updateIdle();
 		break;
 	case ChargerState::Investigation:
-		updateState<ChargerState::Investigation>();
+		updateInvestigation();
 		break;
 	case ChargerState::Error:
-		updateState<ChargerState::Error>();
+		updateError();
 		break;
 	}
 }
@@ -131,8 +128,8 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 //	const auto warnMsg = data.warningMsg;
 
 	bool isOvervoltage{false};
-	for (const auto& voltage: data.cellVoltage) {
-		isOvervoltage |= voltage > kOvervoltageSingleValue;
+	for (uint8_t i = 0; i < data.cellCount; ++i) {
+		isOvervoltage |= data.cellVoltage[i] > kOvervoltageSingleValue;
 	}
 
 	if (!isOvervoltage) {

@@ -10,6 +10,7 @@
 #include <shared_data.h>
 #include <cstring>
 #include "jk_bms.h"
+#include "stm32f4xx_ll_usart.h"
 
 //static const uint8_t TxData[BMSHandler::txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, /**/0x06, 0x03, 0x00, /**/0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
 
@@ -84,6 +85,8 @@ void BMSHandler::request(uint8_t* frameData, uint16_t frameLen)
         if (errCode == HAL_UART_ERROR_ORE)
         {
             status = HAL_UART_Abort(&huart2);
+//            __HAL_UART_CLEAR_IT(&huart2, UART_CLEAR_OREF);
+            LL_USART_ClearFlag_ORE(huart2.Instance);
             status = HAL_UARTEx_ReceiveToIdle_IT(&huart2, rxData, rxDataLen);
         }
     }
@@ -275,6 +278,7 @@ void BMSUpdater::update()
 		if (requestTurnOff())
 		{
 			m_bmsTurnOffTimeout.reset();
+			HAL_UART_Abort(&huart2);
 			m_status = BMSStatus::NoStatus;
 		}
 		else if (m_bmsTurnOffTimeout.isReached())
