@@ -42,7 +42,7 @@ private:
 	ButtonEventHandler m_btnHandler{&m_btn, [&]{ onBtnClicked(); }};
 	
 	CTimeout m_stableStateCheckTimeout{2200};
-	CTimeout m_forceTurnOffTimeout{8000};
+	CTimeout m_forceTurnOffTimeout{10000};
 	bool m_isActive{true};
 
 //	bool m_isOn{false};
