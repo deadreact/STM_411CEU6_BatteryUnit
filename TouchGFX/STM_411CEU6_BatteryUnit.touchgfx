@@ -209,6 +209,7 @@
             "Y": 20,
             "Width": 319,
             "Height": 220,
+            "LockPosition": true,
             "Color": {
               "Red": 39,
               "Green": 68,
@@ -220,6 +221,7 @@
             "Name": "box2",
             "Width": 320,
             "Height": 20,
+            "LockPosition": true,
             "Color": {
               "Red": 80,
               "Green": 119,
@@ -279,7 +281,7 @@
             "X": 10,
             "Y": 26,
             "Width": 300,
-            "Height": 146,
+            "Height": 214,
             "Components": [
               {
                 "Type": "ListLayout",
