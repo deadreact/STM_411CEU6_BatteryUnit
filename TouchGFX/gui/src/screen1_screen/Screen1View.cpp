@@ -112,8 +112,6 @@ void Screen1View::setWatts(int val)
 
 void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCurr)
 {
-
-
 	if (data.soc != m_bmsData.soc)
 	{
 		capacityContainer.setSOC(data.soc);

@@ -90,7 +90,7 @@ Screen1ViewBase::Screen1ViewBase()
 
     loading_bg.setPosition(0, 0, 320, 240);
     loading_bg.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    loading_bg.setAlpha(148);
+    loading_bg.setAlpha(190);
     loading_bg.setVisible(false);
     add(loading_bg);
 

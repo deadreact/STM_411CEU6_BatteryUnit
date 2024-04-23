@@ -67,6 +67,8 @@ struct ProcessData<ProcessId::Idle>
     	bmsData = bmsData ? bmsData : &bms;
     	return bmsData->capacityAh > 0 && bmsData->soc <= 100 && (lastPositiveSOC < 5 || bmsData->soc > 0);
     }
+
+
 };
 
 

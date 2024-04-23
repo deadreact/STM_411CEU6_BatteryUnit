@@ -49,7 +49,7 @@ class Display320x240 : public ITickHandler
 {
 	constexpr static const uint16_t kOff = 0;
 	constexpr static const uint16_t kOnRelaxed = 450;
-	constexpr static const uint16_t kOn = 900;
+	constexpr static const uint16_t kOn = 999;
 public:
 	Display320x240() { TIM2->CCR3 = m_brightness; }
 	virtual void onTick() override;
