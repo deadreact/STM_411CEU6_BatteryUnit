@@ -39,7 +39,7 @@ struct IdleProcess::Impl
 
     // Data
     ProcessData<ProcessId::Idle> sharedData;
-    CTimeout m_wakedUpTimeout{100};
+    Timeout m_wakedUpTimeout;
     // Handlers
     BMSUpdater m_bmsUpdater;
     InverterHandler m_invHandler;
@@ -108,6 +108,12 @@ void IdleProcess::Impl::handleEvents()
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
         	sharedData.updateBatteryData(m_bmsUpdater.getData());
+
+        	if (sharedData.getPowerModeState() == PowerModeState::WakedUp)
+        	{
+        		m_wakedUpTimeout.reset(0);
+        	}
+
 //        	sharedData.bms = m_bmsUpdater.getData();
 //        	if (sharedData.bms.soc > 0) {
 //        		//TODO: find better solution (backup register)
@@ -143,7 +149,7 @@ void IdleProcess::Impl::handleEvents()
 
 void IdleProcess::Impl::handlePowerState()
 {
-	if (sharedData.powerModeState == PowerModeState::StopRequested)
+	if (sharedData.getPowerModeState() == PowerModeState::StopRequested)
 	{
 		m_bmsUpdater.setActive(false);
 		m_invHandler.setActive(false);
@@ -156,14 +162,16 @@ void IdleProcess::Impl::handlePowerState()
 			{
 				screen.off();
 				screenLed.setIndicationType(LedIndicationType::Off);
-				sharedData.powerModeState = PowerModeState::StopReady;
+				sharedData.setPowerModeState(PowerModeState::StopReady);
 			}
 		}
 	}
 	else
 	{
-		if (sharedData.powerModeState == PowerModeState::WakedUp)
+		if (sharedData.getPowerModeState() == PowerModeState::WakedUp)
 		{
+//			sharedData.smoothedCurrent.reset();
+
 			m_bmsUpdater.setActive(true);
 			m_invHandler.setActive(true);
 			m_usbHandler.setActive(true);
@@ -171,7 +179,7 @@ void IdleProcess::Impl::handlePowerState()
 
 			if (m_wakedUpTimeout.isReached() && !btnPwr.isPressed())
 			{
-				sharedData.powerModeState = PowerModeState::Normal;
+				sharedData.setPowerModeState(PowerModeState::Normal);
 			}
 		}
 
@@ -206,15 +214,15 @@ void IdleProcess::Impl::onPwrRelease()
 
 void IdleProcess::Impl::onPwrClick()
 {
-	if (sharedData.powerModeState == PowerModeState::Normal) {
+	if (sharedData.getPowerModeState() == PowerModeState::Normal) {
 		screen.toggle();
 	}
 }
 
 void IdleProcess::Impl::onPwrHold()
 {
-	if (sharedData.powerModeState == PowerModeState::Normal) {
-		sharedData.powerModeState = PowerModeState::StopRequested;
+	if (sharedData.getPowerModeState() == PowerModeState::Normal) {
+		sharedData.setPowerModeState(PowerModeState::StopRequested);
 		screen.off();
 	}
 }
@@ -243,12 +251,12 @@ void IdleProcess::update()
     m_pimpl->onTick();
     m_pimpl->handleEvents();
 
-    if (m_pimpl->sharedData.powerModeState == PowerModeState::StopReady)
+    if (m_pimpl->sharedData.getPowerModeState() == PowerModeState::StopReady)
     {
     	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
         EnterStopMode();
-        m_pimpl->sharedData.powerModeState = PowerModeState::WakedUp;
-        m_pimpl->m_wakedUpTimeout.reset();
+        m_pimpl->sharedData.setPowerModeState(PowerModeState::WakedUp);
+        m_pimpl->m_wakedUpTimeout.reset(5000);
         m_pimpl->screen.on();
     }
 }

@@ -340,7 +340,7 @@ static void MX_RTC_Init(void)
   }
 
   /* USER CODE BEGIN Check_RTC_BKUP */
-#ifndef DEBUG
+#ifdef RELEASE
   // do not set an alarm in Release
   sTime.Hours = 0;
   sTime.Minutes = 0;

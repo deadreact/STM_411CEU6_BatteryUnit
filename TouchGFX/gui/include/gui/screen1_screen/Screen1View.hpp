@@ -7,6 +7,7 @@
 #include <utils/revision_data.h>
 
 enum class InverterState : uint8_t;
+enum class PowerModeState: uint8_t;
 
 class Screen1View : public Screen1ViewBase
 {
@@ -23,12 +24,14 @@ protected:
     void updateInvState();
     void showLoading(bool show);
 protected:
+    PowerModeState m_powerModeState;
     BatteryData m_bmsData;
     InverterState m_invState;
     bool m_usbState{false};
     int m_chargeTimeSec{-1};
     bool m_isBMSError{false};
     bool m_isChargError{false};
+
     CTimeout m_loadingAnimTimeout{50};
 
     BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};

@@ -14,8 +14,10 @@
 #include <main.h> // GPIO defines & HAL
 #include <utils/timeout.h>
 
+#ifndef RELEASE
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 0
+#define SIMULATE_UNCHARGING 1
+#endif //RELEASE
 
 class BMSHandler
 {

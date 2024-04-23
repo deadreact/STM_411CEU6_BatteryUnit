@@ -911,12 +911,12 @@
             "Name": "capacityValue",
             "X": 1,
             "Y": 49,
-            "Width": 100,
+            "Width": 55,
             "Height": 40,
             "Color": {
-              "Red": 147,
-              "Green": 194,
-              "Blue": 52
+              "Red": 77,
+              "Green": 186,
+              "Blue": 191
             },
             "BorderColor": {
               "Red": 26,

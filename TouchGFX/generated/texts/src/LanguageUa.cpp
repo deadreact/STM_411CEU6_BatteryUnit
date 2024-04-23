@@ -26,7 +26,7 @@ KEEP extern const uint32_t indicesUa[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     138, // T___SINGLEUSE_8789: "U: <>v"
     291, // T___SINGLEUSE_RJTF: "0"
     11,  // T_LOADING: "????????????<>"
-    293, // T___SINGLEUSE_Y8I9: "100"
+    311, // T___SINGLEUSE_Y8I9: "50"
     314, // T___SINGLEUSE_4ST7: "99"
     9,   // T___SINGLEUSE_A1VM: "<>"
     68,  // T_REMAINING_TIME: "??? ???????????"

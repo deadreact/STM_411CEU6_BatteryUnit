@@ -42,12 +42,13 @@ void Display320x240::onTick()
 		}
 	}
 
-	if (TIM2->CCR3 > 0) {
+	const auto& data = SharedData::getData<ProcessId::Idle>();
+	if (TIM2->CCR3 > 0)
+	{
 		MX_TouchGFX_Process();
 
-		const auto& data = SharedData::getData<ProcessId::Idle>();
 		DisplaySensitiveData newData{data.screenId, data.invState, data.usbState, data.chargerPlugged};
-		if (data.powerModeState == PowerModeState::Normal && m_sensData != newData)
+		if (data.getPowerModeState() == PowerModeState::Normal && m_sensData != newData)
 		{
 			m_sensData = newData;
 			on();
@@ -62,10 +63,17 @@ void Display320x240::onTick()
 			}
 		}
 	}
+//	else if (data.powerModeState == PowerModeState::StopRequested)
+//	{
+//		MX_TouchGFX_Process();
+//	}
 }
 
 void Display320x240::on()
 {
+	if (isOff()) {
+		MX_TouchGFX_Process();
+	}
 	m_brightness = kOn;
 	m_brightnessTimeout.reset();
 }

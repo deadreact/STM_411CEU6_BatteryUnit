@@ -4,6 +4,7 @@
 
 Screen1View::Screen1View()
 	: Screen1ViewBase()
+	, m_powerModeState(PowerModeState::Normal)
 	, m_invState{InverterState::Off}
 	, textureMapperAnimationEndedCallback(this, &Screen1View::textureMapperAnimationEndedCallbackHandler)
 {
@@ -20,14 +21,17 @@ void Screen1View::setupScreen()
 		return;
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto soc = m_bmsData.soc;
+	m_bmsData = BatteryData();
+	m_bmsData.soc = soc;
     updateBatteryData(data.bms);
-    showLoading(!data.bms.isValid());
+    showLoading(!data.bms.isValid() || m_powerModeState == PowerModeState::WakedUp);
 }
 
 void Screen1View::tearDownScreen()
 {
     Screen1ViewBase::tearDownScreen();
-    m_bmsData = BatteryData();
+//    m_bmsData = BatteryData();
 //    m_chargeTimeMins = -1;
 //    m_isBMSError = false;
 
@@ -36,16 +40,19 @@ void Screen1View::tearDownScreen()
 void Screen1View::handleTickEvent()
 {
 	Screen1ViewBase::handleTickEvent();
-    if (SharedData::getProcessId() == ProcessId::Startup)
-    {
-//        auto value = SharedData::getData<ProcessId::Startup>().timeLeftToStandby/70;
-//        capacityValue.setValue(value);
-    }
+
     if (SharedData::getProcessId() != ProcessId::Idle)
 	{
 		return;
 	}
+
 	const auto& data = SharedData::getData<ProcessId::Idle>();
+
+    if (m_powerModeState != data.getPowerModeState())
+    {
+    	m_powerModeState = data.getPowerModeState();
+    	setupScreen();
+    }
 
 	bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
 	if (m_isBMSError != isMajorError)
@@ -66,6 +73,7 @@ void Screen1View::handleTickEvent()
 	if (data.bms != m_bmsData)
 	{
 		updateBatteryData(data.bms);
+		showLoading(!data.bms.isValid());
 	}
 
 	if (m_invState != data.invState) {
@@ -113,7 +121,9 @@ void Screen1View::updateBatteryData(const BatteryData& data)
 	const int16_t smoothedCurr = m_isBMSError ? 0 : data.current;
 	if (data.soc != m_bmsData.soc)
 	{
-		capacityContainer.setSOC(data.soc);
+		if (data.isValid()) {
+			capacityContainer.setSOC(data.soc);
+		}
 //		capacityContainerLarge.setValue(data.soc);
 	}
 
@@ -137,10 +147,10 @@ void Screen1View::updateBatteryData(const BatteryData& data)
 		chargeTimeContainer.setValue(chargeValue);
 		m_chargeTimeSec = chargeValue;
 	}
-
-	if (m_bmsData.isValid() != data.isValid()) {
-		showLoading(!data.isValid());
-	}
+//
+//	if (m_bmsData.isValid() != data.isValid()) {
+//		showLoading(!data.isValid());
+//	}
 
 	m_bmsData = data;
 	m_bmsData.current = smoothedCurr;
@@ -174,9 +184,12 @@ void Screen1View::updateInvState()
 
 void Screen1View::showLoading(bool show)
 {
-	loading.setVisible(show);
-	loading_bg.setVisible(show);
-	invalidate();
+	if (loading.isVisible() != show)
+	{
+		loading.setVisible(show);
+		loading_bg.setVisible(show);
+		invalidate();
+	}
 }
 
 

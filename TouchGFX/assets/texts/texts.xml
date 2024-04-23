@@ -74,7 +74,7 @@
       </Text>
       <Text Id="__SingleUse_Y8I9" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">100</Translation>
-        <Translation Language="UA">100</Translation>
+        <Translation Language="UA">50</Translation>
       </Text>
       <Text Id="__SingleUse_4ST7" Alignment="Left" TypographyId="ValueLarge">
         <Translation Language="GB">New Text</Translation>

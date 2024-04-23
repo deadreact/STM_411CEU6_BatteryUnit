@@ -50,7 +50,6 @@ struct ProcessData<ProcessId::Idle>
     int analog2{0};
 
     int screenId{1};
-    PowerModeState powerModeState{PowerModeState::Normal};
     InverterState invState{InverterState::Off};
     bool usbState{false};
     bool chargerPlugged{false};
@@ -62,13 +61,12 @@ struct ProcessData<ProcessId::Idle>
     std::string errMsg;
     uint32_t errFlags{0};
 
-    // TODO: find better solution
-//    bool isBMSDataValid(const BatteryData* bmsData = nullptr) const {
-//    	bmsData = bmsData ? bmsData : &bms;
-//    	return bmsData->capacityAh > 0 && bmsData->soc <= 100 && (lastPositiveSOC < 5 || bmsData->soc > 0);
-//    }
-
+    PowerModeState getPowerModeState() const { return powerModeState; }
+    void setPowerModeState(PowerModeState state);
     void updateBatteryData(const BatteryData& batData);
+
+private:
+    PowerModeState powerModeState{PowerModeState::Normal};
 };
 
 

@@ -32,6 +32,19 @@ void ProcessData<ProcessId::Idle>::updateBatteryData(const BatteryData& batData)
 	bms.current = smoothedCurrent.get();
 }
 
+void ProcessData<ProcessId::Idle>::setPowerModeState(PowerModeState state)
+{
+	if (powerModeState != state)
+	{
+		powerModeState = state;
+		if (state == PowerModeState::WakedUp)
+		{
+			smoothedCurrent.reset();
+			bms.current = 0;
+		}
+	}
+}
+
 
 SharedData& SharedData::get()
 {
