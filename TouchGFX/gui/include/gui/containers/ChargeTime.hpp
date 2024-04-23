@@ -25,8 +25,8 @@ protected:
 protected:
     int m_value{0};
     Format m_format{Format::Hours};
-    constexpr static const int kYellowTreshold = 30;
-    constexpr static const int kRedTreshold = 10;
+    constexpr static const int kYellowTreshold = 1800;
+    constexpr static const int kRedTreshold = 360;
 };
 
 #endif // CHARGETIME_HPP

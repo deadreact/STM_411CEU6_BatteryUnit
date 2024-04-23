@@ -135,10 +135,10 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 	}
 
 	int chargeValue = data.calcTimeRemain(smoothedCurr);
-	if (chargeValue != m_chargeTimeMins)
+	if (chargeValue != m_chargeTimeSec)
 	{
 		chargeTimeContainer.setValue(chargeValue);
-		m_chargeTimeMins = chargeValue;
+		m_chargeTimeSec = chargeValue;
 	}
 
 	// TODO: костиль!!

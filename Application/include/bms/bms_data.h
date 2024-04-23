@@ -64,7 +64,7 @@ struct BatteryData
     /* TODO: find better solution
     bool isValid() const { return (isLowCapacity() || soc > 0) && soc <= 100 && capacityAh > 0; }
     */
-    int calcTimeRemain(int16_t curr, bool invertorOn = false) const;
+    int calcTimeRemain(int16_t curr) const;
 
     bool operator==(const BatteryData& other) const;
     inline bool operator!=(const BatteryData& other) const { return !operator==(other); }

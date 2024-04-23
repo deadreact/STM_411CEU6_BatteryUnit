@@ -22,42 +22,27 @@ bool BatteryData::operator==(const BatteryData& other) const
         /*&& energyAh == other.energyAh*/;
 }
 
-int BatteryData::calcTimeRemain(int16_t curr, bool invertorOn) const
+int BatteryData::calcTimeRemain(int16_t curr) const
 {
-     /*
-    Time
-    current < 0: (soc * capacityAh)/current
-    current > 0:
-        inv on:  ((1 - soc) * capacityAh)/current
-        inv off:
-        if (soc <= 0.8)
-        {
-            (capacityAh * (0.8 - soc))/current + (capacityAh * 0.2)/(current * 0.5)
-        }
-        else
-        {
-            ((1 - soc) * capacityAh)/current
-        }
-      */
-
     if (curr < 0)
     {
-        return int(soc * capacityAh * 60) / curr; // minutes
+        return int(soc * capacityAh * 60 * 60) / curr; // seconds
     }
     else if (curr > 0)
     {
-        if (invertorOn)
-        {
-            return int((100 - soc) * capacityAh * 60)/curr;
-        }
-        else if (soc <= 80)
-        {
-            return int(capacityAh * (80 - soc) * 60)/curr + (capacityAh * 20 * 60)/(curr * 0.5f);
-        }
-        else
-        {
-            return int((100 - soc) * capacityAh * 60)/curr;
-        }
+    	return int((100 - soc) * capacityAh * 60 * 60)/curr; // seconds
+//        if (invertorOn)
+//        {
+//            return int((100 - soc) * capacityAh * 60 * 60)/curr;
+//        }
+//        else if (soc <= 80)
+//        {
+//            return int(capacityAh * (80 - soc) * 60 * 60)/curr + (capacityAh * 20 * 60 * 60)/(curr * 0.5f);
+//        }
+//        else
+//        {
+//            return int((100 - soc) * capacityAh * 60 * 60)/curr;
+//        }
     }
     return 0;
 }

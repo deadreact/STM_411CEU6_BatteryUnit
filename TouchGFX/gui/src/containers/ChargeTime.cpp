@@ -24,20 +24,20 @@ void ChargeTime::setValue(int val)
 	if (val != m_value)
 	{
 		const int absVal = val < 0 ? -val : val;
-		int hours = absVal / 60;
-		const int mins = absVal % 60;
+		int hours = absVal / 3600;
+		const int mins = (absVal % 3600) / 60;
 
 		Format format;
-		if (absVal > 9 * 60 + 30) {
+		if (absVal > 9 * 3600 + 1800) {
 			if (hours >= 99) {
 				hours = 99;
 			} else {
-				hours = (absVal + 30)/ 60;
+				hours = (absVal + 1800)/ 3600;
 			}
 			format = Format::Hours;
-		} else if (absVal > 59) {
+		} else if (absVal >= 3600 - 1) {
 			format = Format::Full;
-		} else if (absVal > 1) {
+		} else if (absVal > 60) {
 			format = Format::Minutes;
 		} else if (absVal > 0) {
 			format = Format::Minimum;
@@ -114,7 +114,7 @@ void ChargeTime::setTime(int h, int m)
 	} break;
 	case Format::Minimum:
 	{
-		Unicode::snprintf(valueBuffer, VALUE_SIZE, "< 1");
+		Unicode::snprintf(valueBuffer, VALUE_SIZE, "1");
 		value.invalidate();
 	} break;
 	default:
