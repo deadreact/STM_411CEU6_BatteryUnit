@@ -10,6 +10,6 @@
 
 
 enum class ChargeState { Idle, Charge, Uncharge };
-constexpr static const ChargeState InvalidChargeState = ChargeState{-1};
+constexpr static const ChargeState InvalidChargeState = ChargeState(-1);
 
 #endif /* GUI_INCLUDE_GUI_COMMON_COMMON_H_ */

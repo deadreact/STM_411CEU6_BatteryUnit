@@ -118,40 +118,6 @@ void RestoreAlarm()
 	}
 }
 
-//void SetTime()
-//{
-//	RTC_TimeTypeDef sTime = {0};
-//	RTC_DateTypeDef sDate = {0};
-//
-//	sTime.Hours = 0x0;
-//	sTime.Minutes = 0x0;
-//	sTime.Seconds = 0x0;
-//	sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-//	sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-//	if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//	sDate.WeekDay = RTC_WEEKDAY_MONDAY;
-//	sDate.Month = RTC_MONTH_APRIL;
-//	sDate.Date = 0x22;
-//	sDate.Year = 0x24;
-//
-//	if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//
-//	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32f2);
-//}
-//
-//void Restore_RTC()
-//{
-//	if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) != 0x32f2)
-//	{
-//		SetTime();
-//	}
-//}
 
 /* USER CODE END 0 */
 
