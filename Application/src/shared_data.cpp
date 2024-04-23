@@ -7,9 +7,34 @@
 
 #include <shared_data.h>
 
+void ProcessData<ProcessId::Idle>::updateBatteryData(const BatteryData& batData)
+{
+	auto soc = bms.soc & 0x7f;
+	auto warnMsg = bms.warningMsg;
+
+	bms = batData;
+
+	if (batData.soc == 0) {
+		if (warnMsg & 1) {
+			bms.warningMsg |= 1;
+		} else {
+
+		}
+	} else if (batData.soc < 5) {
+		bms.warningMsg |= 1;
+	}
+
+	if (bms.isValid()) {
+		smoothedCurrent.set(batData.current);
+	} else {
+		smoothedCurrent.reset();
+	}
+	bms.current = smoothedCurrent.get();
+}
+
+
 SharedData& SharedData::get()
 {
     static SharedData data;
     return data;
 }
-

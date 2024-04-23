@@ -25,7 +25,7 @@ Screen1ViewBase::Screen1ViewBase()
     icon_fan.setBitmapPosition(0.0f, 0.0f);
     icon_fan.setScale(1.0f);
     icon_fan.setCameraDistance(1000.0f);
-    icon_fan.setOrigo(24.0f, 24.0f, 1000.0f);
+    icon_fan.setOrigo(23.5f, 23.5f, 1000.0f);
     icon_fan.setCamera(24.0f, 24.0f);
     icon_fan.setAngles(0.0f, 0.0f, 0.0f);
     icon_fan.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);

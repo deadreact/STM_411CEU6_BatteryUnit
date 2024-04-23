@@ -107,16 +107,17 @@ void IdleProcess::Impl::handleEvents()
         sharedData.errFlags = m_bmsUpdater.errFlags;
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
-        	sharedData.bms = m_bmsUpdater.getData();
-        	if (sharedData.bms.soc > 0) {
-        		//TODO: find better solution (backup register)
-        		sharedData.lastPositiveSOC = sharedData.bms.soc;
-        	}
-        	if (sharedData.isBMSDataValid()) {
-        		sharedData.smoothedCurrent.set(sharedData.bms.current);
-        	} else {
-        		sharedData.smoothedCurrent.reset();
-        	}
+        	sharedData.updateBatteryData(m_bmsUpdater.getData());
+//        	sharedData.bms = m_bmsUpdater.getData();
+//        	if (sharedData.bms.soc > 0) {
+//        		//TODO: find better solution (backup register)
+//        		sharedData.lastPositiveSOC = sharedData.bms.soc;
+//        	}
+//        	if (sharedData.isBMSDataValid()) {
+//        		sharedData.smoothedCurrent.set(sharedData.bms.current);
+//        	} else {
+//        		sharedData.smoothedCurrent.reset();
+//        	}
 
         }
     }
@@ -176,7 +177,7 @@ void IdleProcess::Impl::handlePowerState()
 
 		if (m_bmsUpdater.isPowerOn())
 		{
-			if (m_bmsUpdater.errFlags == 0 && sharedData.isBMSDataValid())
+			if (m_bmsUpdater.errFlags == 0 && sharedData.bms.isValid())
 			{
 				screenLed.setIndicationType(LedIndicationType::On);
 			}

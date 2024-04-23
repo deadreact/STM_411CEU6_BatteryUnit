@@ -38,7 +38,7 @@ IdleScreenViewBase::IdleScreenViewBase()
 
     add(debugInfoContainer);
 
-    batteryInfo.setPosition(10, 26, 300, 214);
+    batteryInfo.setPosition(10, 26, 300, 146);
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
     containerCurrent.setWidth(185);

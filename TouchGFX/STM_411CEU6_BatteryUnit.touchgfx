@@ -281,7 +281,7 @@
             "X": 10,
             "Y": 26,
             "Width": 300,
-            "Height": 214,
+            "Height": 146,
             "Components": [
               {
                 "Type": "ListLayout",
@@ -492,9 +492,8 @@
                     "FileNameImage": "blue_fan.png",
                     "LockBitmapToCenter": true,
                     "Scale": 1.0,
-                    "LockOrigoToCenter": true,
-                    "XOrigo": 24.0,
-                    "YOrigo": 24.0,
+                    "XOrigo": 23.5,
+                    "YOrigo": 23.5,
                     "ZOrigo": 1000.0,
                     "CameraDistance": 1000.0
                   },

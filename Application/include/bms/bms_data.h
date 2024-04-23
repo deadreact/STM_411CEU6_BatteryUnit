@@ -61,13 +61,15 @@ struct BatteryData
 
     uint16_t warningMsg{0};
     uint16_t status{0};
-    /* TODO: find better solution
+
     bool isValid() const { return (isLowCapacity() || soc > 0) && soc <= 100 && capacityAh > 0; }
-    */
     int calcTimeRemain(int16_t curr) const;
 
     bool operator==(const BatteryData& other) const;
     inline bool operator!=(const BatteryData& other) const { return !operator==(other); }
+
+    // --------------------- warning -------------------------
+    inline bool isLowCapacity() const { return warningMsg & 1; }
 };
 
 struct SmoothedValue

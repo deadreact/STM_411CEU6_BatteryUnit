@@ -20,9 +20,8 @@ void Screen1View::setupScreen()
 		return;
 	}
 	const auto& data = SharedData::getData<ProcessId::Idle>();
-	auto smoothedCurr = data.smoothedCurrent.get();
-    updateBatteryData(data.bms, data.isBMSDataValid() ? smoothedCurr: 0);
-    showLoading(!data.isBMSDataValid());
+    updateBatteryData(data.bms);
+    showLoading(!data.bms.isValid());
 }
 
 void Screen1View::tearDownScreen()
@@ -64,10 +63,9 @@ void Screen1View::handleTickEvent()
 		m_isChargError = isChargError;
 	}
 
-	auto smoothedCurr = (m_isBMSError || !data.isBMSDataValid()) ? 0 : data.smoothedCurrent.get();
-	if (data.bms != m_bmsData || smoothedCurr != m_bmsData.current)
+	if (data.bms != m_bmsData)
 	{
-		updateBatteryData(data.bms, smoothedCurr);
+		updateBatteryData(data.bms);
 	}
 
 	if (m_invState != data.invState) {
@@ -110,8 +108,9 @@ void Screen1View::setWatts(int val)
 	ioValue.setValue((val + 5000) / 10000);
 }
 
-void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCurr)
+void Screen1View::updateBatteryData(const BatteryData& data)
 {
+	const int16_t smoothedCurr = m_isBMSError ? 0 : data.current;
 	if (data.soc != m_bmsData.soc)
 	{
 		capacityContainer.setSOC(data.soc);
@@ -139,10 +138,8 @@ void Screen1View::updateBatteryData(const BatteryData& data, int16_t smoothedCur
 		m_chargeTimeSec = chargeValue;
 	}
 
-	// TODO: костиль!!
-	const auto& sharedData = SharedData::getData<ProcessId::Idle>();
-	if (sharedData.isBMSDataValid(&m_bmsData) != sharedData.isBMSDataValid(&data)) {
-		showLoading(!sharedData.isBMSDataValid(&data));
+	if (m_bmsData.isValid() != data.isValid()) {
+		showLoading(!data.isValid());
 	}
 
 	m_bmsData = data;
