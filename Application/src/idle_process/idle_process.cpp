@@ -108,7 +108,11 @@ void IdleProcess::Impl::handleEvents()
 
         if (bmsEvent == BMSUpdaterEvent::DataUpdated) {
         	sharedData.bms = m_bmsUpdater.getData();
-        	if (sharedData.bms.isValid()) {
+        	if (sharedData.bms.soc > 0) {
+        		//TODO: find better solution (backup register)
+        		sharedData.lastPositiveSOC = sharedData.bms.soc;
+        	}
+        	if (sharedData.isBMSDataValid()) {
         		sharedData.smoothedCurrent.set(sharedData.bms.current);
         	} else {
         		sharedData.smoothedCurrent.reset();
@@ -172,7 +176,7 @@ void IdleProcess::Impl::handlePowerState()
 
 		if (m_bmsUpdater.isPowerOn())
 		{
-			if (m_bmsUpdater.errFlags == 0 && m_bmsUpdater.getData().isValid())
+			if (m_bmsUpdater.errFlags == 0 && sharedData.isBMSDataValid())
 			{
 				screenLed.setIndicationType(LedIndicationType::On);
 			}

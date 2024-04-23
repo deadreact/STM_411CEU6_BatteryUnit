@@ -57,8 +57,16 @@ struct ProcessData<ProcessId::Idle>
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;
+    // TODO: find better solution (backup register)
+    uint8_t lastPositiveSOC{100};
     std::string errMsg;
     uint32_t errFlags{0};
+
+    // TODO: find better solution
+    bool isBMSDataValid(const BatteryData* bmsData = nullptr) const {
+    	bmsData = bmsData ? bmsData : &bms;
+    	return bmsData->capacityAh > 0 && bmsData->soc <= 100 && (lastPositiveSOC < 5 || bmsData->soc > 0);
+    }
 };
 
 
