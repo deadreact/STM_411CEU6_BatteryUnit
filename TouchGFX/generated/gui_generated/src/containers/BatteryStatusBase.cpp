@@ -19,7 +19,7 @@ BatteryStatusBase::BatteryStatusBase()
     add(capacityTextValue);
 
     capacityValue.setPosition(1, 49, 55, 40);
-    capacityValue.setColor(touchgfx::Color::getColorFromRGB(77, 186, 191));
+    capacityValue.setColor(touchgfx::Color::getColorFromRGB(82, 193, 196));
     capacityValue.setBorderColor(touchgfx::Color::getColorFromRGB(26, 26, 25));
     capacityValue.setBorderSize(5);
     add(capacityValue);

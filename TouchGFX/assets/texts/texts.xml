@@ -172,26 +172,10 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_LX7P" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Sleeping...</Translation>
-        <Translation Language="UA">Сон..</Translation>
-      </Text>
-      <Text Id="__SingleUse_WOQL" Alignment="Center" TypographyId="Default">
-        <Translation Language="GB">&lt;&gt; %</Translation>
-        <Translation Language="UA">&lt;&gt; %</Translation>
-      </Text>
-      <Text Id="__SingleUse_WPN4" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Brightness:</Translation>
-        <Translation Language="UA">Яскравість:</Translation>
-      </Text>
-      <Text Id="__SingleUse_XXXU" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Idle mode</Translation>
-        <Translation Language="UA">Idle mode</Translation>
-      </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="0123456789." />
+    <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />

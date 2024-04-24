@@ -8,12 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
-#include <touchgfx/containers/Container.hpp>
-#include <touchgfx/containers/progress_indicators/TextProgress.hpp>
-#include <touchgfx/containers/progress_indicators/LineProgress.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
 #include <touchgfx/containers/clock/DigitalClock.hpp>
+#include <touchgfx/containers/ListLayout.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
@@ -33,16 +29,8 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::TextArea sleepingLabel;
-    touchgfx::Container container1;
-    touchgfx::TextProgress brightnessValue;
-    touchgfx::TextArea brightnessTitle;
-    touchgfx::TextArea title;
-    touchgfx::LineProgress lineProgress1;
-    touchgfx::PainterRGB565 lineProgress1Painter;
-    touchgfx::LineProgress lineProgress2;
-    touchgfx::PainterRGB565 lineProgress2Painter;
     touchgfx::DigitalClock time;
+    touchgfx::ListLayout listLayout;
     touchgfx::TextAreaWithOneWildcard dateDay;
     touchgfx::TextAreaWithTwoWildcards date;
     touchgfx::Image alarm;
@@ -58,12 +46,6 @@ protected:
     touchgfx::Unicode::UnicodeChar dateBuffer2[DATEBUFFER2_SIZE];
 
 private:
-
-    /*
-     * Canvas Buffer Size
-     */
-    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
-    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
 };
 

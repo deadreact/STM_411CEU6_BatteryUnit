@@ -59,16 +59,15 @@ struct IdleProcess::Impl
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
 };
 
-extern ADC_HandleTypeDef hadc1;
-
-void IdleProcess::Impl::updateAnalog()
-{
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 50);
-    sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
-    HAL_ADC_Stop(&hadc1);
-}
-
+//extern ADC_HandleTypeDef hadc1;
+//
+//void IdleProcess::Impl::updateAnalog()
+//{
+//    HAL_ADC_Start(&hadc1);
+//    HAL_ADC_PollForConversion(&hadc1, 50);
+//    sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
+//    HAL_ADC_Stop(&hadc1);
+//}
 
 
 void IdleProcess::Impl::onTick()
@@ -83,9 +82,9 @@ void IdleProcess::Impl::onTick()
     m_bmsUpdater.update();
     m_chargerHandler.update();
 
-    if (sharedData.screenId == 2) {
-        updateAnalog();
-    }
+//    if (sharedData.screenId == 2) {
+//        updateAnalog();
+//    }
 
     screen.onTick();
 }

@@ -3,130 +3,12 @@
     "Screens": [
       {
         "Name": "Screen2",
-        "CanvasBufferSize": 4800,
         "Components": [
-          {
-            "Type": "TextArea",
-            "Name": "sleepingLabel",
-            "X": 107,
-            "Y": 132,
-            "Width": 37,
-            "Height": 19,
-            "Visible": false,
-            "TextId": "__SingleUse_LX7P",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 187,
-              "Green": 187,
-              "Blue": 187
-            },
-            "AutoSize": true
-          },
-          {
-            "Type": "Container",
-            "Name": "container1",
-            "Width": 320,
-            "Height": 120,
-            "Components": [
-              {
-                "Type": "TextProgress",
-                "Name": "brightnessValue",
-                "X": 145,
-                "Y": 28,
-                "Width": 175,
-                "Height": 50,
-                "TextId": "__SingleUse_WOQL",
-                "Color": {
-                  "Red": 187,
-                  "Green": 187,
-                  "Blue": 187
-                },
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
-                "IndicatorPositionX": 12,
-                "IndicatorPositionY": 10,
-                "IndicatorPositionWidth": 150,
-                "IndicatorPositionHeight": 30,
-                "ProgressRangeMax": 100
-              },
-              {
-                "Type": "TextArea",
-                "Name": "brightnessTitle",
-                "X": 12,
-                "Y": 41,
-                "Width": 88,
-                "Height": 19,
-                "TextId": "__SingleUse_WPN4",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 187,
-                  "Green": 187,
-                  "Blue": 187
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "TextArea",
-                "Name": "title",
-                "X": 12,
-                "Y": 10,
-                "Width": 70,
-                "Height": 19,
-                "TextId": "__SingleUse_XXXU",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 187,
-                  "Green": 187,
-                  "Blue": 187
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "LineProgress",
-                "Name": "lineProgress1",
-                "X": 12,
-                "Y": 92,
-                "Width": 300,
-                "Height": 5,
-                "Color": {
-                  "Red": 222,
-                  "Green": 141
-                },
-                "StartY": 2.0,
-                "EndY": 2.0,
-                "EndX": 300.0,
-                "LineWidth": 5.0,
-                "LineEndingStyle": "Butt",
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
-                "ProgressRangeMax": 4000,
-                "ProgressInitialValue": 2000
-              },
-              {
-                "Type": "LineProgress",
-                "Name": "lineProgress2",
-                "X": 12,
-                "Y": 115,
-                "Width": 300,
-                "Height": 5,
-                "Color": {
-                  "Red": 222,
-                  "Green": 141
-                },
-                "StartY": 2.0,
-                "EndY": 2.0,
-                "EndX": 300.0,
-                "LineWidth": 5.0,
-                "LineEndingStyle": "Butt",
-                "FileNameBackground": "__generated\\alternate_theme_images_widgets_lineprogress_backgrounds_image_plain_thin_medium_0.png",
-                "ProgressRangeMax": 4000,
-                "ProgressInitialValue": 2000
-              }
-            ]
-          },
           {
             "Type": "DigitalClock",
             "Name": "time",
-            "X": 38,
-            "Y": 200,
+            "X": 107,
+            "Y": 144,
             "Width": 107,
             "Height": 31,
             "TextColor": {
@@ -141,61 +23,68 @@
             "InitialMinute": 10
           },
           {
-            "Type": "TextArea",
-            "Name": "dateDay",
-            "X": 40,
-            "Y": 152,
-            "Width": 44,
+            "Type": "ListLayout",
+            "Name": "listLayout",
+            "X": 37,
+            "Y": 96,
+            "Width": 246,
             "Height": 48,
-            "TextId": "__SingleUse_1BLP",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 187,
-              "Green": 187,
-              "Blue": 187
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_Q8T6",
-              "UseBuffer": true,
-              "BufferSize": 3
-            }
-          },
-          {
-            "Type": "TextArea",
-            "Name": "date",
-            "X": 82,
-            "Y": 152,
-            "Width": 154,
-            "Height": 48,
-            "TextId": "__SingleUse_2RNP",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 187,
-              "Green": 187,
-              "Blue": 187
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "TextId": "__SingleUse_7LU3",
-              "UseBuffer": true,
-              "BufferSize": 3
-            },
-            "Wildcard2": {
-              "TextId": "__SingleUse_YKHV",
-              "UseBuffer": true,
-              "BufferSize": 5
-            }
-          },
-          {
-            "Type": "Image",
-            "Name": "alarm",
-            "X": 236,
-            "Y": 152,
-            "Width": 48,
-            "Height": 48,
-            "Visible": false,
-            "RelativeFilename": "icon17.png"
+            "Direction": "East",
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "dateDay",
+                "Width": 44,
+                "Height": 48,
+                "TextId": "__SingleUse_1BLP",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 187,
+                  "Green": 187,
+                  "Blue": 187
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_Q8T6",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "date",
+                "X": 44,
+                "Width": 154,
+                "Height": 48,
+                "TextId": "__SingleUse_2RNP",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 187,
+                  "Green": 187,
+                  "Blue": 187
+                },
+                "AutoSize": true,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_7LU3",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                },
+                "Wildcard2": {
+                  "TextId": "__SingleUse_YKHV",
+                  "UseBuffer": true,
+                  "BufferSize": 5
+                }
+              },
+              {
+                "Type": "Image",
+                "Name": "alarm",
+                "X": 198,
+                "Width": 48,
+                "Height": 48,
+                "Visible": false,
+                "RelativeFilename": "icon17.png"
+              }
+            ]
           }
         ],
         "Interactions": []
@@ -211,9 +100,9 @@
             "Height": 220,
             "LockPosition": true,
             "Color": {
-              "Red": 39,
-              "Green": 68,
-              "Blue": 87
+              "Red": 33,
+              "Green": 58,
+              "Blue": 74
             }
           },
           {
@@ -281,7 +170,7 @@
             "X": 10,
             "Y": 26,
             "Width": 300,
-            "Height": 146,
+            "Height": 208,
             "Components": [
               {
                 "Type": "ListLayout",
@@ -362,12 +251,11 @@
                         "Width": 100,
                         "Height": 18,
                         "Color": {
-                          "Red": 254,
-                          "Green": 189,
-                          "Blue": 23
+                          "Red": 252,
+                          "Green": 150,
+                          "Blue": 25
                         },
                         "Direction": "Right",
-                        "Preset": "alternate_theme\\presets\\boxprogress\\thick\\tiny_action.json",
                         "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
                         "IndicatorPositionWidth": 100,
                         "IndicatorPositionHeight": 18,
@@ -657,9 +545,9 @@
             "Width": 10,
             "Height": 16,
             "Color": {
-              "Red": 254,
-              "Green": 189,
-              "Blue": 23
+              "Red": 252,
+              "Green": 150,
+              "Blue": 25
             }
           },
           {
@@ -914,9 +802,9 @@
             "Width": 55,
             "Height": 40,
             "Color": {
-              "Red": 77,
-              "Green": 186,
-              "Blue": 191
+              "Red": 82,
+              "Green": 193,
+              "Blue": 196
             },
             "BorderColor": {
               "Red": 26,

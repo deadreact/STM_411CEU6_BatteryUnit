@@ -16,10 +16,6 @@ public:
 
     void updateTime();
 protected:
-    int m_screenBrightness{0};
-    int m_analog1{0};
-    int m_analog2{0};
-
     Timeout m_timer{500};
 };
 

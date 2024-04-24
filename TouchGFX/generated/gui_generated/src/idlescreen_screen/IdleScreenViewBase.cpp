@@ -13,7 +13,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     add(__background);
 
     box3.setPosition(0, 20, 319, 220);
-    box3.setColor(touchgfx::Color::getColorFromRGB(39, 68, 87));
+    box3.setColor(touchgfx::Color::getColorFromRGB(33, 58, 74));
     add(box3);
 
     box2.setPosition(0, 0, 320, 20);
@@ -38,7 +38,7 @@ IdleScreenViewBase::IdleScreenViewBase()
 
     add(debugInfoContainer);
 
-    batteryInfo.setPosition(10, 26, 300, 146);
+    batteryInfo.setPosition(10, 26, 300, 208);
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
     containerCurrent.setWidth(185);
@@ -72,7 +72,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     capacityValue.setRange(0, 100);
     capacityValue.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
     capacityValue.setBackground(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BOXPROGRESS_THICK_TINY_ID));
-    capacityValue.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
+    capacityValue.setColor(touchgfx::Color::getColorFromRGB(252, 150, 25));
     capacityValue.setValue(60);
     containerCapacity.add(capacityValue);
 

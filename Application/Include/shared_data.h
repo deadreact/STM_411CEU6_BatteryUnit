@@ -45,10 +45,6 @@ struct ProcessData<ProcessId::Sleep> {};
 template <>
 struct ProcessData<ProcessId::Idle>
 {
-    int screenBrightness {500};
-    int analog1{0};
-    int analog2{0};
-
     int screenId{1};
     InverterState invState{InverterState::Off};
     bool usbState{false};
@@ -56,8 +52,6 @@ struct ProcessData<ProcessId::Idle>
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;
-    // TODO: find better solution (backup register)
-//    uint8_t lastPositiveSOC{100};
     std::string errMsg;
     uint32_t errFlags{0};
 

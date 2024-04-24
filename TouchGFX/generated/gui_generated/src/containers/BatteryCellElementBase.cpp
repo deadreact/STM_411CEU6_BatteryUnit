@@ -11,7 +11,7 @@ BatteryCellElementBase::BatteryCellElementBase()
     setWidth(114);
     setHeight(19);
     box1.setPosition(3, 2, 10, 16);
-    box1.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
+    box1.setColor(touchgfx::Color::getColorFromRGB(252, 150, 25));
     add(box1);
 
     index.setPosition(12, 1, 29, 17);
