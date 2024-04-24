@@ -59,11 +59,11 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define dbg_screen_Pin GPIO_PIN_0
+#define dbg_screen_GPIO_Port GPIOA
 #define charger_dcOk_Pin GPIO_PIN_1
 #define charger_dcOk_GPIO_Port GPIOA
 #define charger_dcOk_EXTI_IRQn EXTI1_IRQn
-#define ADC_thermal_Pin GPIO_PIN_4
-#define ADC_thermal_GPIO_Port GPIOA
 #define SCRN_DC_Pin GPIO_PIN_0
 #define SCRN_DC_GPIO_Port GPIOB
 #define SCRN_RESET_Pin GPIO_PIN_1
