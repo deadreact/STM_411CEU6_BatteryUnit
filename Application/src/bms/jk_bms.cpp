@@ -208,9 +208,9 @@ namespace
         VERIFY(frame, READER_TUBE_TEMPERATURE);
         const int8_t reader_tube_temperature = frame.read_temperature();
         VERIFY(frame, BATTERY_BOX_TEMPERATURE);
-        const int8_t battery_box_temperature = frame.read_temperature();
+        data.battery_box_temperature = frame.read_temperature();
         VERIFY(frame, BATTERY_TEMPERATURE);
-        const int8_t battery_temperature = frame.read_temperature();
+        data.battery_temperature = frame.read_temperature();
 
         VERIFY(frame, TOTAL_BATTERY_VOLTAGE);
         frame >> data.voltage;

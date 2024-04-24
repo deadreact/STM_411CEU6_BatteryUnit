@@ -17,6 +17,8 @@ bool BatteryData::operator==(const BatteryData& other) const
         && current == other.current
         && soc == other.soc
         && capacityAh == other.capacityAh
+        && battery_box_temperature == other.battery_box_temperature
+        && battery_temperature == other.battery_temperature
         && warningMsg == other.warningMsg
         && status == other.status
         /*&& energyAh == other.energyAh*/;

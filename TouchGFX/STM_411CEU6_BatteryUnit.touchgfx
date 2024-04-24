@@ -94,19 +94,6 @@
         "Components": [
           {
             "Type": "Box",
-            "Name": "box3",
-            "Y": 20,
-            "Width": 319,
-            "Height": 220,
-            "LockPosition": true,
-            "Color": {
-              "Red": 33,
-              "Green": 58,
-              "Blue": 74
-            }
-          },
-          {
-            "Type": "Box",
             "Name": "box2",
             "Width": 320,
             "Height": 20,
@@ -175,21 +162,21 @@
               {
                 "Type": "ListLayout",
                 "Name": "batteryMainInfo",
-                "Width": 185,
-                "Height": 69,
+                "Width": 190,
+                "Height": 92,
                 "Direction": "South",
                 "Components": [
                   {
                     "Type": "Container",
                     "Name": "containerCurrent",
-                    "Width": 185,
+                    "Width": 190,
                     "Height": 23,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "currentTitle",
                         "Y": 1,
-                        "Width": 63,
+                        "Width": 45,
                         "Height": 19,
                         "TextId": "__SingleUse_SFML",
                         "TextRotation": "0",
@@ -203,7 +190,7 @@
                       {
                         "Type": "TextArea",
                         "Name": "currentTextValue",
-                        "X": 74,
+                        "X": 90,
                         "Y": 2,
                         "Width": 100,
                         "Height": 18,
@@ -226,7 +213,7 @@
                     "Type": "Container",
                     "Name": "containerCapacity",
                     "Y": 23,
-                    "Width": 185,
+                    "Width": 190,
                     "Height": 23,
                     "Components": [
                       {
@@ -246,7 +233,7 @@
                       {
                         "Type": "BoxProgress",
                         "Name": "capacityValue",
-                        "X": 74,
+                        "X": 90,
                         "Y": 3,
                         "Width": 100,
                         "Height": 18,
@@ -265,7 +252,7 @@
                       {
                         "Type": "TextArea",
                         "Name": "capacityTextValue",
-                        "X": 74,
+                        "X": 90,
                         "Y": 2,
                         "Width": 100,
                         "Height": 18,
@@ -288,7 +275,7 @@
                     "Type": "Container",
                     "Name": "containerVoltage",
                     "Y": 46,
-                    "Width": 185,
+                    "Width": 190,
                     "Height": 23,
                     "Components": [
                       {
@@ -308,10 +295,10 @@
                       {
                         "Type": "TextArea",
                         "Name": "voltageTextValue",
-                        "X": 74,
+                        "X": 90,
                         "Y": 2,
                         "Width": 100,
-                        "Height": 18,
+                        "Height": 17,
                         "TextId": "VoltageVal",
                         "TextRotation": "0",
                         "Color": {
@@ -323,6 +310,54 @@
                           "TextId": "wildcardId3",
                           "UseBuffer": true,
                           "BufferSize": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "temperatureContainer",
+                    "Y": 69,
+                    "Width": 190,
+                    "Height": 23,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureTitle",
+                        "Width": 97,
+                        "Height": 19,
+                        "TextId": "temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureValues",
+                        "X": 99,
+                        "Y": 2,
+                        "Width": 93,
+                        "Height": 17,
+                        "TextId": "__SingleUse_WFR6",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "__SingleUse_Q3TT",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        },
+                        "Wildcard2": {
+                          "TextId": "__SingleUse_JFFR",
+                          "UseBuffer": true,
+                          "BufferSize": 5
                         }
                       }
                     ]

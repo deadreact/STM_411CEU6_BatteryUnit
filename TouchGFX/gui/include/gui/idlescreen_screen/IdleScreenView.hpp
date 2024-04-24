@@ -14,6 +14,8 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
+
+    void colorizeCells();
 protected:
     BatteryData m_bmsData;
 //    int capacity {0};

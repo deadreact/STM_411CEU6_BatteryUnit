@@ -12,10 +12,6 @@ IdleScreenViewBase::IdleScreenViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    box3.setPosition(0, 20, 319, 220);
-    box3.setColor(touchgfx::Color::getColorFromRGB(33, 58, 74));
-    add(box3);
-
     box2.setPosition(0, 0, 320, 20);
     box2.setColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     add(box2);
@@ -41,7 +37,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     batteryInfo.setPosition(10, 26, 300, 208);
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
-    containerCurrent.setWidth(185);
+    containerCurrent.setWidth(190);
     containerCurrent.setHeight(23);
     currentTitle.setXY(0, 1);
     currentTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
@@ -49,7 +45,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     currentTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SFML));
     containerCurrent.add(currentTitle);
 
-    currentTextValue.setPosition(74, 2, 100, 18);
+    currentTextValue.setPosition(90, 2, 100, 18);
     currentTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTextValue.setLinespacing(0);
     Unicode::snprintf(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID1).getText());
@@ -59,7 +55,7 @@ IdleScreenViewBase::IdleScreenViewBase()
 
     batteryMainInfo.add(containerCurrent);
 
-    containerCapacity.setWidth(185);
+    containerCapacity.setWidth(190);
     containerCapacity.setHeight(23);
     capacityTitle.setXY(0, 0);
     capacityTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
@@ -67,7 +63,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     capacityTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6J8M));
     containerCapacity.add(capacityTitle);
 
-    capacityValue.setXY(74, 3);
+    capacityValue.setXY(90, 3);
     capacityValue.setProgressIndicatorPosition(0, 0, 100, 18);
     capacityValue.setRange(0, 100);
     capacityValue.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
@@ -76,7 +72,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     capacityValue.setValue(60);
     containerCapacity.add(capacityValue);
 
-    capacityTextValue.setPosition(74, 2, 100, 18);
+    capacityTextValue.setPosition(90, 2, 100, 18);
     capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTextValue.setLinespacing(0);
     Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_572H).getText());
@@ -86,7 +82,7 @@ IdleScreenViewBase::IdleScreenViewBase()
 
     batteryMainInfo.add(containerCapacity);
 
-    containerVoltage.setWidth(185);
+    containerVoltage.setWidth(190);
     containerVoltage.setHeight(23);
     voltageTitle.setXY(0, 0);
     voltageTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
@@ -94,7 +90,7 @@ IdleScreenViewBase::IdleScreenViewBase()
     voltageTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EFRY));
     containerVoltage.add(voltageTitle);
 
-    voltageTextValue.setPosition(74, 2, 100, 18);
+    voltageTextValue.setPosition(90, 2, 100, 17);
     voltageTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTextValue.setLinespacing(0);
     Unicode::snprintf(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID3).getText());
@@ -103,6 +99,26 @@ IdleScreenViewBase::IdleScreenViewBase()
     containerVoltage.add(voltageTextValue);
 
     batteryMainInfo.add(containerVoltage);
+
+    temperatureContainer.setWidth(190);
+    temperatureContainer.setHeight(23);
+    temperatureTitle.setXY(0, 0);
+    temperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    temperatureTitle.setLinespacing(0);
+    temperatureTitle.setTypedText(touchgfx::TypedText(T_TEMPERATURE));
+    temperatureContainer.add(temperatureTitle);
+
+    temperatureValues.setPosition(99, 2, 93, 17);
+    temperatureValues.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    temperatureValues.setLinespacing(0);
+    touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Q3TT).getText());
+    temperatureValues.setWildcard1(temperatureValuesBuffer1);
+    touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JFFR).getText());
+    temperatureValues.setWildcard2(temperatureValuesBuffer2);
+    temperatureValues.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WFR6));
+    temperatureContainer.add(temperatureValues);
+
+    batteryMainInfo.add(temperatureContainer);
 
     batteryInfo.add(batteryMainInfo);
 

@@ -31,7 +31,6 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box3;
     touchgfx::Box box2;
     touchgfx::Container debugInfoContainer;
     touchgfx::BoxWithBorder boxWithBorder1;
@@ -48,6 +47,9 @@ protected:
     touchgfx::Container containerVoltage;
     touchgfx::TextArea voltageTitle;
     touchgfx::TextAreaWithOneWildcard voltageTextValue;
+    touchgfx::Container temperatureContainer;
+    touchgfx::TextArea temperatureTitle;
+    touchgfx::TextAreaWithTwoWildcards temperatureValues;
     touchgfx::ListLayout batteryCellInfo;
 
     /*
@@ -61,6 +63,10 @@ protected:
     touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
     static const uint16_t VOLTAGETEXTVALUE_SIZE = 6;
     touchgfx::Unicode::UnicodeChar voltageTextValueBuffer[VOLTAGETEXTVALUE_SIZE];
+    static const uint16_t TEMPERATUREVALUESBUFFER1_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar temperatureValuesBuffer1[TEMPERATUREVALUESBUFFER1_SIZE];
+    static const uint16_t TEMPERATUREVALUESBUFFER2_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar temperatureValuesBuffer2[TEMPERATUREVALUESBUFFER2_SIZE];
 
 private:
 

@@ -17,6 +17,8 @@ void IdleScreenView::setupScreen()
     	cell[i].setVisible(false);
     	batteryCellInfo.add(cell[i]);
     }
+
+    __background.setColor(0xff11212a);
 }
 
 void IdleScreenView::tearDownScreen()
@@ -59,6 +61,20 @@ void IdleScreenView::handleTickEvent()
 			voltageTextValue.invalidate();
 		}
 
+		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)
+		{
+			m_bmsData.battery_box_temperature = data.bms.battery_box_temperature;
+			Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%d", data.bms.battery_box_temperature);
+			temperatureValues.invalidate();
+		}
+
+		if (data.bms.battery_temperature != m_bmsData.battery_temperature)
+		{
+			m_bmsData.battery_temperature = data.bms.battery_temperature;
+			Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%d", data.bms.battery_temperature);
+			temperatureValues.invalidate();
+		}
+
 		if (data.bms.cellCount != m_bmsData.cellCount)
 		{
 			m_bmsData.cellCount = data.bms.cellCount;
@@ -71,6 +87,7 @@ void IdleScreenView::handleTickEvent()
 			for (; i < BatteryData::kMaxCellCount; i++) {
 				cell[i].setVisible(false);
 			}
+			colorizeCells();
 			batteryCellInfo.invalidateContent();
 		}
 		else if (memcmp(m_bmsData.cellVoltage, data.bms.cellVoltage, sizeof(uint16_t)*m_bmsData.cellCount) != 0)
@@ -79,6 +96,7 @@ void IdleScreenView::handleTickEvent()
 			for (int i = 0; i < m_bmsData.cellCount; i++) {
 				cell[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
 			}
+			colorizeCells();
 		}
 	}
 
@@ -117,3 +135,29 @@ void IdleScreenView::handleTickEvent()
 		errorLabel.invalidate();
 	}
 }
+
+void IdleScreenView::colorizeCells()
+{
+	if (m_bmsData.cellCount > 0)
+	{
+		uint16_t max = m_bmsData.cellVoltage[0];
+		uint16_t min = m_bmsData.cellVoltage[0];
+		uint8_t maxIndex = 0;
+		uint8_t minIndex = 0;
+
+		for (int i = 1; i < m_bmsData.cellCount; i++) {
+			if (m_bmsData.cellVoltage[i] > max) {
+				max = m_bmsData.cellVoltage[i];
+				maxIndex = i;
+			} else if (m_bmsData.cellVoltage[i] < min) {
+				min = m_bmsData.cellVoltage[i];
+				minIndex = i;
+			}
+		}
+		for (int i = 0; i < m_bmsData.cellCount; i++) {
+			cell[i].setMarker(i == maxIndex ? CellMarker::Max : (i == minIndex ? CellMarker::Min : CellMarker::Average));
+		}
+	}
+}
+
+

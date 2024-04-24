@@ -58,6 +58,8 @@ struct BatteryData
     uint8_t soc{0xff}; // 0 - 100%, invalid
     uint8_t cellCount{0};
     uint32_t capacityAh{0};
+    int8_t battery_box_temperature{0};
+    int8_t battery_temperature{0};
 
     uint16_t warningMsg{0};
     uint16_t status{0};

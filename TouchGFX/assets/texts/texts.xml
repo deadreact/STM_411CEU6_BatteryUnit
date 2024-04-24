@@ -24,6 +24,22 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_JFFR" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_Q3TT" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_WFR6" Alignment="Right" TypographyId="Values">
+        <Translation Language="GB">New Text&lt;value&gt;&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;*C &lt;value&gt;*C</Translation>
+      </Text>
+      <Text Id="temperature" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">Температура</Translation>
+      </Text>
       <Text Id="__SingleUse_YKHV" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">2022</Translation>
@@ -158,7 +174,7 @@
       </Text>
       <Text Id="__SingleUse_SFML" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Current</Translation>
-        <Translation Language="UA">Поточне</Translation>
+        <Translation Language="UA">Струм</Translation>
       </Text>
       <Text Id="__SingleUse_6J8M" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Capacity</Translation>
