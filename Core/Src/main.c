@@ -286,8 +286,12 @@ static void MX_RTC_Init(void)
   /* USER CODE BEGIN Check_RTC_BKUP */
 #ifdef RELEASE
   // do not set an alarm in Release
-  sTime.Hours = 0;
-  sTime.Minutes = 0;
+  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == 0x32f2)
+  {
+    return;
+  }
+  sTime.Hours = 15;
+  sTime.Minutes = 14;
   sTime.Seconds = 0;
   sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
   sTime.StoreOperation = RTC_STOREOPERATION_RESET;
@@ -295,15 +299,16 @@ static void MX_RTC_Init(void)
   {
     Error_Handler();
   }
-  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+  sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY;
   sDate.Month = RTC_MONTH_APRIL;
-  sDate.Date = 22;
+  sDate.Date = 24;
   sDate.Year = 24;
 
   if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
   {
     Error_Handler();
   }
+  HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32f2);
   return;
 #endif
   if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == 0x32f2)
