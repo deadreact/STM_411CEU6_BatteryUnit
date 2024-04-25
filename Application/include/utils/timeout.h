@@ -25,7 +25,7 @@ namespace detail
 		inline uint32_t getDuration() const { return HAL_GetTick() - startTick; }
 		inline bool isReached() const { return getDuration() > timeout; }
 	protected:
-		TimeoutBase(T timeout): timeout(timeout) {}
+		TimeoutBase(T t): timeout(t) {}
 
 		uint32_t startTick{0};
 		T timeout;
@@ -34,14 +34,15 @@ namespace detail
 
 class Timeout : public detail::TimeoutBase<uint32_t>
 {
+	constexpr static const uint32_t kInvalidTimeout = 0xffffffff;
 public:
-	Timeout(uint32_t t = 0xffffffff): TimeoutBase(t) {}
+	Timeout(uint32_t t = kInvalidTimeout): TimeoutBase(t) {}
 	Timeout& operator=(uint32_t t) { timeout = t; return *this; }
 
 	using TimeoutBase::reset;
 	inline void reset(uint32_t t) { timeout = t; reset(); }
-	inline void invalidate() { timeout = 0xffffffff; }
-	inline bool isValid() const { return timeout < 0xffffffff; }
+	inline void invalidate() { timeout = kInvalidTimeout; }
+	inline bool isValid() const { return timeout < kInvalidTimeout; }
 };
 
 class CTimeout : public detail::TimeoutBase<const uint32_t>

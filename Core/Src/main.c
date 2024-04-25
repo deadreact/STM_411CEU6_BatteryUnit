@@ -80,11 +80,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     }
 }
 
+static const int kSecInMin = 60;
+static const int kSecInHour = kSecInMin * 60;
+static const int kSecInDay = kSecInHour * 24;
+
 void BackupAlarm(const RTC_AlarmTypeDef* alarmData)
 {
-	uint32_t data = 86400 * alarmData->AlarmDateWeekDay;
-	data += 3600 * alarmData->AlarmTime.Hours;
-	data += 60 * alarmData->AlarmTime.Minutes;
+	uint32_t data = kSecInDay * alarmData->AlarmDateWeekDay;
+	data += kSecInHour * alarmData->AlarmTime.Hours;
+	data += kSecInMin * alarmData->AlarmTime.Minutes;
 	data += alarmData->AlarmTime.Seconds;
 
 	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR2, data);
@@ -97,16 +101,16 @@ void RestoreAlarm()
 	{
 		RTC_AlarmTypeDef sAlarm = {0};
 
-		sAlarm.AlarmTime.Hours = (alarmVal % 86400) / 3600;
-		sAlarm.AlarmTime.Minutes = (alarmVal % 3600) / 60;
-		sAlarm.AlarmTime.Seconds = alarmVal % 60;
+		sAlarm.AlarmTime.Hours = (alarmVal % kSecInDay) / kSecInHour;
+		sAlarm.AlarmTime.Minutes = (alarmVal % kSecInHour) / kSecInMin;
+		sAlarm.AlarmTime.Seconds = alarmVal % kSecInMin;
 		sAlarm.AlarmTime.SubSeconds = 0;
 		sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
 		sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
 		sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
 		sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
 		sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
-		sAlarm.AlarmDateWeekDay = alarmVal / 86400;
+		sAlarm.AlarmDateWeekDay = alarmVal / kSecInHour;
 		sAlarm.Alarm = RTC_ALARM_A;
 		if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BIN) != HAL_OK)
 		{

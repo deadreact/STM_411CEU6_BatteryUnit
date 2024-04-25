@@ -68,25 +68,19 @@ void LedIndicator::setupIndication()
     {
         case LedIndicationType::Off:
         {
-            setInterval(0xffffffff);
+            m_timeout.invalidate();
             off();
         } break;
         case LedIndicationType::On:
         {
-            setInterval(0xffffffff);
+            m_timeout.invalidate();
             on();
         } break;
         case LedIndicationType::Blinking:
-        {
-            setInterval(1000);
-        } break;
         case LedIndicationType::FastBlinking:
-        {
-            setInterval(200);
-        } break;
         case LedIndicationType::ShuffleBlinking:
         {
-            setInterval(266);
+            setInterval(static_cast<uint32_t>(m_indication));
         } break;
         default:
             break;

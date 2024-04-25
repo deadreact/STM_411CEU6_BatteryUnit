@@ -13,7 +13,6 @@ extern "C" {
 #endif
 
     void Program_Process();
-    void AfterStopMode();
 
 #ifdef __cplusplus
 }

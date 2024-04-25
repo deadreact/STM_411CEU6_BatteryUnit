@@ -3,9 +3,11 @@
 
 #include <gui_generated/containers/BatteryCellElementBase.hpp>
 
-enum class CellMarker
+enum class CellMarker: uint32_t
 {
-	Max, Min, Average
+	Max = 0xff11ed11,
+	Min = 0xffed1111,
+	Average = 0xffe8f6fb
 };
 
 class BatteryCellElement : public BatteryCellElementBase

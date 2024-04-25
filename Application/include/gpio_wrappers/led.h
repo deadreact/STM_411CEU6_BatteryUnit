@@ -31,13 +31,13 @@ protected:
     Timeout m_timeout;
 };
 
-enum class LedIndicationType
+enum class LedIndicationType: uint16_t
 {
     Off = 0,
     On,
-    Blinking,
-    FastBlinking,
-    ShuffleBlinking,
+    Blinking = 1000,
+    FastBlinking = 200,
+    ShuffleBlinking = 266,
 
     Count
 };

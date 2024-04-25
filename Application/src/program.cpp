@@ -30,7 +30,3 @@ void Program_Process()
     p.run();
 }
 
-void AfterStopMode()
-{
-
-}
