@@ -11,27 +11,27 @@
 #include <stdint.h>
 #include <assert.h>
 #include <cstring>
-
+#include <type_traits>
 
 namespace detail
 {
     template <typename T, bool = std::is_integral<T>::value>
     struct helper
     {
-        static bool is_eq(const T* arr1, const T* arr2, uint16_t size) {
+        static bool is_eq(const T* arr1, const T* arr2, uint8_t size) {
             for (const T* end1 = arr1 + size; arr1 != end1; ++arr1, ++arr2) {
                 if (*arr1 != *arr2) return false;
             }
             return true;
         }
 
-        static void assign(T* arr, uint16_t n, const T& value = {}) {
+        static void assign(T* arr, uint8_t n, const T& value = {}) {
             for (const T* end = arr + n; arr != end; ++arr) {
                 *arr = value;
             }
         }
 
-        static void copy(T* target, const T* source, uint16_t size) {
+        static void copy(T* target, const T* source, uint8_t size) {
             for (const T* end = target + size; target != end; ++target, ++source) {
                 *target = *source;
             }
@@ -41,15 +41,15 @@ namespace detail
     template <typename T>
     struct helper<T, true>
     {
-        static bool is_eq(const T* arr1, const T* arr2, uint16_t size) {
+        static bool is_eq(const T* arr1, const T* arr2, uint8_t size) {
             return memcmp(arr1, arr2, size * sizeof(arr1[0])) == 0;
         }
 
-        static void assign(T* arr, uint16_t n, const T& value = 0) {
+        static void assign(T* arr, uint8_t n, const T& value = 0) {
             memset(arr, value, n * sizeof(T));
         }
 
-        static void copy(T* target, const T* source, uint16_t size) {
+        static void copy(T* target, const T* source, uint8_t size) {
             memcpy(target, source, size * sizeof(target[0]));
         }
     };
@@ -58,13 +58,13 @@ namespace detail
 
 namespace utils
 {
-    template <typename T, uint16_t capacity>
+    template <typename T, uint8_t capacity>
     class stack_vector
     {
         using helper_type = detail::helper<T>;
     public:
         using type = stack_vector<T, capacity>;
-        using size_type = uint16_t;
+        using size_type = uint8_t;
         using value_type = T;
         using reference = T&;
         using const_reference = const T&;
@@ -111,34 +111,30 @@ namespace utils
         inline void push_back(const value_type& el) { assert(m_size < capacity); m_data[m_size++] = el; }
         inline void pop_back() { assert(m_size > 0); --m_size; }
 
-        inline void insert(size_type index, const value_type& el) {
-            assert(index < m_size && m_size < capacity);
+        inline pointer insert(const_pointer pos, const value_type& el) {
+            assert(pos <= cend() && m_size < capacity);
 
-            pointer pos = begin() + index;
-            for (pointer it = end(); it != pos; --it) {
+            pointer it = end();
+            for (; it != pos; --it) {
                 *it = *(it - 1);
             }
             ++m_size;
-            *pos = el;
+            *it = el;
+            return it;
         }
 
-        inline void erase(size_type index) {
-            assert(index < m_size && m_size < capacity);
+        inline void insert(size_type index, const value_type& el) { insert(cbegin() + index); }
+
+        inline pointer erase(const_pointer pos) {
+            assert(cbegin() <= pos && pos < cend());
 
             --m_size;
-            for (pointer it = begin() + index; it != end(); ++it) {
+            for (pointer it = const_cast<pointer>(pos); it != end(); ++it) {
                 *it = *(it + 1);
             }
         }
 
-        inline pointer erase(const_pointer pos) {
-			assert(cbegin() <= pos && pos < cend());
-
-			--m_size;
-			for (pointer it = const_cast<pointer>(pos); it != end(); ++it) {
-				*it = *(it + 1);
-			}
-		}
+        inline void erase(size_type index) { erase(cbegin() + index); }
 
         inline void assign(size_type n, const value_type& value) { resize(n > m_size ? n : m_size); helper_type::assign(m_data, n, value); }
         inline void clear() { helper_type::assign(m_data, m_size); resize(0); }
@@ -157,6 +153,8 @@ namespace utils
 
         inline pointer begin() { return m_data; }
         inline pointer end() { return m_data + m_size; }
+        inline const_pointer begin() const { return m_data; }
+        inline const_pointer end() const { return m_data + m_size; }
         inline const_pointer cbegin() const { return m_data; }
         inline const_pointer cend() const { return m_data + m_size; }
 
