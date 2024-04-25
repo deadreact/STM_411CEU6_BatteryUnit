@@ -158,11 +158,11 @@ namespace utils
         inline const_pointer cbegin() const { return m_data; }
         inline const_pointer cend() const { return m_data + m_size; }
 
-        bool operator==(const type& other) const {
-            return m_size == other.m_size &&  helper_type::is_eq(cbegin(), other.cbegin(), m_size);
+        inline bool operator==(const type& other) const {
+            return m_size == other.m_size && helper_type::is_eq(begin(), other.begin(), m_size);
         }
 
-        bool operator!=(const type& other) const { return !operator==(other); }
+        inline bool operator!=(const type& other) const { return !operator==(other); }
 
         inline void resize(size_type size) { assert(size <= capacity); m_size = size; }
         inline size_type size() const { return m_size; }
