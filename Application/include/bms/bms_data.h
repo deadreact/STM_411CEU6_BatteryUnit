@@ -9,6 +9,7 @@
 #define BMS_BMS_DATA_H_
 
 #include <stdint.h>
+#include <utils/stack_vector.h>
 
 enum class BMSStatus
 {
@@ -52,11 +53,13 @@ struct BatteryData
 {
     constexpr static uint8_t kMaxCellCount = 12;
 
-    uint16_t cellVoltage[kMaxCellCount];
+    utils::stack_vector<uint16_t, kMaxCellCount> cellVoltage;
+
+//    uint16_t cellVoltage[kMaxCellCount];
     uint16_t voltage{0};
     int16_t current{0};
     uint8_t soc{0xff}; // 0 - 100%, invalid
-    uint8_t cellCount{0};
+//    uint8_t cellCount{0};
     uint32_t capacityAh{0};
     int8_t battery_box_temperature{0};
     int8_t battery_temperature{0};

@@ -75,12 +75,11 @@ void IdleScreenView::handleTickEvent()
 			temperatureValues.invalidate();
 		}
 
-		if (data.bms.cellCount != m_bmsData.cellCount)
+		if (data.bms.cellVoltage != m_bmsData.cellVoltage)
 		{
-			m_bmsData.cellCount = data.bms.cellCount;
-			memcpy(m_bmsData.cellVoltage, data.bms.cellVoltage, sizeof(uint16_t)*m_bmsData.cellCount);
+			m_bmsData.cellVoltage = data.bms.cellVoltage;
 			int i = 0;
-			for (; i < m_bmsData.cellCount; i++) {
+			for (; i < m_bmsData.cellVoltage.size(); i++) {
 				cell[i].setVisible(true);
 				cell[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
 			}
@@ -89,14 +88,6 @@ void IdleScreenView::handleTickEvent()
 			}
 			colorizeCells();
 			batteryCellInfo.invalidateContent();
-		}
-		else if (memcmp(m_bmsData.cellVoltage, data.bms.cellVoltage, sizeof(uint16_t)*m_bmsData.cellCount) != 0)
-		{
-			memcpy(m_bmsData.cellVoltage, data.bms.cellVoltage, sizeof(uint16_t)*m_bmsData.cellCount);
-			for (int i = 0; i < m_bmsData.cellCount; i++) {
-				cell[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
-			}
-			colorizeCells();
 		}
 	}
 
@@ -121,7 +112,7 @@ void IdleScreenView::handleTickEvent()
 			errorLabelBuffer[i] = *(msgIt++);
 		}
 
-		int bytesCpy = std::min(data.errMsg.size(), sizeof(errMsg) - 1);
+		int bytesCpy = etl::min<int>(data.errMsg.size(), sizeof(errMsg) - 1);
 		memcpy(errMsg, data.errMsg.c_str(), bytesCpy);
 		errMsg[bytesCpy] = '\0';
 
@@ -138,14 +129,14 @@ void IdleScreenView::handleTickEvent()
 
 void IdleScreenView::colorizeCells()
 {
-	if (m_bmsData.cellCount > 0)
+	if (!m_bmsData.cellVoltage.empty())
 	{
 		uint16_t max = m_bmsData.cellVoltage[0];
 		uint16_t min = m_bmsData.cellVoltage[0];
 		uint8_t maxIndex = 0;
 		uint8_t minIndex = 0;
 
-		for (int i = 1; i < m_bmsData.cellCount; i++) {
+		for (int i = 1; i < m_bmsData.cellVoltage.size(); i++) {
 			if (m_bmsData.cellVoltage[i] > max) {
 				max = m_bmsData.cellVoltage[i];
 				maxIndex = i;
@@ -154,7 +145,7 @@ void IdleScreenView::colorizeCells()
 				minIndex = i;
 			}
 		}
-		for (int i = 0; i < m_bmsData.cellCount; i++) {
+		for (int i = 0; i < m_bmsData.cellVoltage.size(); i++) {
 			cell[i].setMarker(i == maxIndex ? CellMarker::Max : (i == minIndex ? CellMarker::Min : CellMarker::Average));
 		}
 	}

@@ -14,7 +14,7 @@ namespace
 
     template <typename F, typename... Args>
     void execute(const F& fn, Args&&... args) {
-        fn(std::forward(args)...);
+        fn(etl::forward(args)...);
     }
 
     template <typename... Args>
@@ -153,61 +153,4 @@ void ButtonEventHandler::setEventProvider(ButtonEventProvider* eventProvider)
         m_eventProvider = eventProvider;
         m_lastEvent = ButtonEvent::NoEvent;
     }
-}
-
-PwrButtonEventHandler::PwrButtonEventHandler(ButtonEventProvider* ep, Fn onClick, Fn onHold, Fn onPress, Fn onRealease)
-    : ButtonEventHandler(ep, onClick, onHold)
-    , m_onPress(onPress)
-    , m_onRelease(onRealease)
-{}
-
-void PwrButtonEventHandler::handleEvent(ButtonEvent event)
-{
-    if (event == ButtonEvent::NoEvent) {
-        return;
-    }
-
-    switch (event)
-	{
-		case ButtonEvent::Release:
-		{
-			if (m_onRelease) execute(m_onRelease);
-			if (m_lastEvent == ButtonEvent::Press) {
-				if (m_onClick) execute(m_onClick);
-			}
-			m_lastEvent = event;
-
-		} break;
-		case ButtonEvent::Press:
-		{
-			if (m_onPress) execute(m_onPress);
-			m_lastEvent = event;
-		} break;
-		case ButtonEvent::Hold:
-		{
-			if (m_onHold) execute(m_onHold);
-			m_lastEvent = event;
-		} break;
-		default:
-			break;
-	}
-
-//    switch (event)
-//    {
-//        case ButtonEvent::Release:
-//        {
-//            if (m_lastEvent == ButtonEvent::Press) {
-//                if (m_onClick) execute(m_onClick);
-//            } else if (m_lastEvent == ButtonEvent::Hold) {
-//            	if (m_onHold) execute(m_onHold);
-//            }
-//        }
-//        [[fallthrough]]
-//        case ButtonEvent::Press:
-//        case ButtonEvent::Hold:
-//        	m_lastEvent = event;
-//        break;
-//        default:
-//            break;
-//    }
 }

@@ -128,8 +128,8 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 //	const auto warnMsg = data.warningMsg;
 
 	bool isOvervoltage{false};
-	for (uint8_t i = 0; i < data.cellCount; ++i) {
-		isOvervoltage |= data.cellVoltage[i] > kOvervoltageSingleValue;
+	for (uint16_t voltage: data.cellVoltage) {
+		isOvervoltage |= voltage > kOvervoltageSingleValue;
 	}
 
 	if (!isOvervoltage) {

@@ -170,9 +170,9 @@ namespace
         {
             case SINGLE_BATTERY_VOLTAGE:
             {
-                data.cellCount = frame.readbyte() / 3;
+                data.cellVoltage.resize(frame.readbyte() / 3);
 
-                for (uint8_t i = 0; i < data.cellCount; i++)
+                for (uint8_t i = 0; i < data.cellVoltage.size(); i++)
                 {
                     VERIFY(frame, (i+1));
                     frame >> data.cellVoltage[i];
@@ -197,9 +197,9 @@ namespace
     uint32_t parseAllProperties(JKFrame& frame, BatteryData& data)
     {
         VERIFY(frame, SINGLE_BATTERY_VOLTAGE);
-        data.cellCount = frame.readbyte() / 3;
+        data.cellVoltage.resize(frame.readbyte() / 3);
 
-        for (uint8_t i = 0; i < data.cellCount; i++)
+        for (uint8_t i = 0; i < data.cellVoltage.size(); i++)
         {
             VERIFY(frame, (i+1));
             frame >> data.cellVoltage[i];
@@ -288,11 +288,11 @@ namespace
 
         VERIFY(frame, TOTAL_VOLTAGE_OVERVOLTAGE_PROTECTION);
 
-        frame.moveto(data.cellCount * 3 + 129);
+        frame.moveto(data.cellVoltage.size() * 3 + 129);
         VERIFY(frame, BATTERY_CAPACITY_SETTINGS);
         frame >> data.capacityAh;
 
-        // frame.moveto(data.cellCount * 3 + 200);
+        // frame.moveto(data.cellVoltage.size() * 3 + 200);
         // VERIFY(frame, ACTUAL_BATTERY_CAPACITY);
         // frame >> data.capacityAh;
 

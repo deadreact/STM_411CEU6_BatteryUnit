@@ -11,11 +11,12 @@
 #include <stdint.h>
 #include <assert.h>
 #include <cstring>
-#include <type_traits>
+#include <etl/type_traits.h>
+
 
 namespace detail
 {
-    template <typename T, bool = std::is_integral<T>::value>
+    template <typename T, bool = etl::is_integral<T>::value>
     struct helper
     {
         static bool is_eq(const T* arr1, const T* arr2, uint8_t size) {
@@ -58,12 +59,14 @@ namespace detail
 
 namespace utils
 {
-    template <typename T, uint8_t capacity>
+    template <typename T, uint8_t Capacity>
     class stack_vector
     {
         using helper_type = detail::helper<T>;
     public:
-        using type = stack_vector<T, capacity>;
+        constexpr static const uint8_t capacity() { return Capacity; }
+
+        using type = stack_vector<T, capacity()>;
         using size_type = uint8_t;
         using value_type = T;
         using reference = T&;
@@ -108,11 +111,11 @@ namespace utils
             helper_type::copy(m_data, _begin, m_size);
         }
 
-        inline void push_back(const value_type& el) { assert(m_size < capacity); m_data[m_size++] = el; }
+        inline void push_back(const value_type& el) { assert(m_size < capacity()); m_data[m_size++] = el; }
         inline void pop_back() { assert(m_size > 0); --m_size; }
 
         inline pointer insert(const_pointer pos, const value_type& el) {
-            assert(pos <= cend() && m_size < capacity);
+            assert(pos <= cend() && m_size < capacity());
 
             pointer it = end();
             for (; it != pos; --it) {
@@ -164,11 +167,14 @@ namespace utils
 
         inline bool operator!=(const type& other) const { return !operator==(other); }
 
-        inline void resize(size_type size) { assert(size <= capacity); m_size = size; }
+        inline void resize(size_type size) { assert(size <= capacity()); m_size = size; }
         inline size_type size() const { return m_size; }
         inline bool empty() const { return m_size == 0; }
-    private:
-        value_type m_data[capacity]{};
+        inline bool full() const { return m_size == capacity(); }
+
+        inline size_type available() const { return capacity() - size(); }
+    protected:
+        value_type m_data[capacity()]{};
         size_type m_size{0};
     };
 } //namespace utils

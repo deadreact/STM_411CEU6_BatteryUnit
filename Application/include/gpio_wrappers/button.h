@@ -10,7 +10,7 @@
 
 #include <gpio_wrappers/interface.h>
 #include <utils/timeout.h>
-#include <functional>
+#include <etl/delegate.h>
 
 class Button : public SinglePinElement, public ITickHandler
 {
@@ -58,9 +58,9 @@ private:
 class ButtonEventHandler
 {
 public:
-    using Fn = std::function<void()>;
+    using Fn = etl::delegate<void()>;
 
-    ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = nullptr, Fn onHold = nullptr);
+    ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = {}, Fn onHold = {});
 
     virtual void handleEvent(ButtonEvent event);
     void handleEvents();
@@ -70,24 +70,10 @@ public:
     void setOnHoldHandler(Fn handler) { m_onHold = handler; }
 protected:
     ButtonEventProvider* m_eventProvider{nullptr};
-    Fn m_onClick{nullptr};
-    Fn m_onHold{nullptr};
+    Fn m_onClick{};
+    Fn m_onHold{};
     ButtonEvent m_lastEvent{ButtonEvent::NoEvent};
 };
 
-
-class PwrButtonEventHandler: public ButtonEventHandler
-{
-public:
-	PwrButtonEventHandler(ButtonEventProvider* ep = nullptr, Fn onClick = nullptr, Fn onHold = nullptr, Fn onPress = nullptr, Fn onRealease = nullptr);
-
-	virtual void handleEvent(ButtonEvent event) override;
-
-	void setOnPressHandler(Fn handler) { m_onPress = handler; }
-	void setOnReleaseHandler(Fn handler) { m_onRelease = handler; }
-protected:
-	Fn m_onPress{nullptr};
-	Fn m_onRelease{nullptr};
-};
 
 #endif /* BUTTON_H_ */

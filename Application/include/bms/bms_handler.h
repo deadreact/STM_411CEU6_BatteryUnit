@@ -10,9 +10,10 @@
 
 #include <bms/bms_data.h>
 #include <gpio_wrappers/interface.h>
-#include <string>
+//#include <string>
 #include <main.h> // GPIO defines & HAL
 #include <utils/timeout.h>
+#include <utils/stack_string.h>
 
 #ifndef RELEASE
 #define SIMULATE_CHARGING 0
@@ -40,7 +41,7 @@ public:
     BMSStatus getStatus() const { return m_status; }
     const BatteryData& getData() const { return m_data; }
 
-    std::string debugMsg;
+    utils::stack_string debugMsg;
     uint32_t errFlags{0};
 
     constexpr static const int rxDataLen = 280; // 279 bytes needed for 12 cells

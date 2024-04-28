@@ -12,7 +12,8 @@
 #include <inverter/inverter_handler.h>
 #include <stdint.h>
 #include <utils/revision_data.h>
-#include <string>
+#include <utils/stack_string.h>
+//#include <string>
 
 enum class PowerModeState: uint8_t
 {
@@ -52,7 +53,7 @@ struct ProcessData<ProcessId::Idle>
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;
-    std::string errMsg;
+    utils::stack_string errMsg;
     uint32_t errFlags{0};
 
     PowerModeState getPowerModeState() const { return powerModeState; }

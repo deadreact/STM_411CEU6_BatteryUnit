@@ -11,6 +11,7 @@
 #include <cstring>
 #include "jk_bms.h"
 #include "stm32f4xx_ll_usart.h"
+#include <stdlib.h>
 
 //static const uint8_t TxData[BMSHandler::txDataLen] = {0x4E, 0x57, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, /**/0x06, 0x03, 0x00, /**/0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x01, 0x29};
 
@@ -157,7 +158,9 @@ void BMSHandler::response(HAL_StatusTypeDef status)
 
             if (errCode & BMSErrorFlags::maskErrorDetails)
             {
-                debugMsg += std::to_string(errCode >> 16);
+				uint8_t errDetail = errCode >> 16;
+				const char buff[] = {'0' + (errDetail >> 4), '0' + (errDetail & 0x7f), '\0'};
+				debugMsg += buff;
             }
 
             m_status = BMSStatus::Error;
