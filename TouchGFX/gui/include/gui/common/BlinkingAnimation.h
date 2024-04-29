@@ -18,16 +18,17 @@ public:
     void handleTickEvent()
     {
         static const int16_t frameRate = 1000/60;
+        static const int8_t maxAlpha = 255;
         int duration = HAL_GetTick() - m_dirChangeTick;
         auto frame = duration / frameRate;
         if (frame != m_lastFrame)
         {
             if (duration >= m_duration) {
                 m_dirChangeTick = HAL_GetTick();
-                m_target.setAlpha(255);
+                m_target.setAlpha(maxAlpha);
             } else {
                 // ((m_duration - duration) * (-255) + duration * 255)/ m_duration
-                auto nAlpha = 510*duration/m_duration - 255;
+                auto nAlpha = 2*maxAlpha*duration/m_duration - maxAlpha;
                 m_target.setAlpha(nAlpha < 0 ? -nAlpha : nAlpha);
                 m_lastFrame = frame;
             }

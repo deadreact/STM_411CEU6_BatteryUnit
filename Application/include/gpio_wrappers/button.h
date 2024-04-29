@@ -62,7 +62,7 @@ public:
 
     ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = {}, Fn onHold = {});
 
-    virtual void handleEvent(ButtonEvent event);
+    void handleEvent(ButtonEvent event);
     void handleEvents();
 
     void setEventProvider(ButtonEventProvider* eventProvider);

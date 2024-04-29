@@ -1,8 +1,6 @@
 #include <gui/containers/IOValue.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
-constexpr static const uint8_t kZeroAlpha = 44;
-
 IOValue::IOValue()
 {
 	setState(ChargeState::Idle);

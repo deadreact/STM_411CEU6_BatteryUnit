@@ -60,6 +60,8 @@ void FrontendApplication::showScreen(int id)
 		case 2:
 			touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
+		default:
+			break;
 		}
 	}
 }

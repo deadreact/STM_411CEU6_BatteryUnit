@@ -6,7 +6,7 @@
 
 class FrontendHeap;
 
-using namespace touchgfx;
+using namespace touchgfx; // @suppress("Using directive in header")
 
 class FrontendApplication : public FrontendApplicationBase
 {

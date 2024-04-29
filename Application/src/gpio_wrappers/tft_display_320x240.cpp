@@ -27,16 +27,18 @@ void TFTDisplay320x240::toggle()
 
 void Display320x240::onTick()
 {
+	constexpr static const uint32_t kStep = 10;
+
 	if (TIM2->CCR3 != m_brightness)
 	{
 		if (TIM2->CCR3 < m_brightness) {
-			TIM2->CCR3 += 10;
+			TIM2->CCR3 += kStep;
 			if (TIM2->CCR3 > m_brightness) {
 				TIM2->CCR3 = m_brightness;
 			}
 		}
-		else if (TIM2->CCR3 - m_brightness > 10) {
-			TIM2->CCR3 -= 10;
+		else if (TIM2->CCR3 - m_brightness > kStep) {
+			TIM2->CCR3 -= kStep;
 		} else {
 			TIM2->CCR3 = m_brightness;
 		}

@@ -95,7 +95,8 @@ void Screen1View::handleTickEvent()
 
 	if (loading.isVisible() && m_loadingAnimTimeout.isReached())
 	{
-		loading.setZAngle(loading.getZAngle() + PI/6);
+		static const float kAngle = PI/6;
+		loading.setZAngle(loading.getZAngle() + kAngle);
 		loading.invalidate();
 		m_loadingAnimTimeout.reset();
 	}
@@ -177,7 +178,7 @@ void Screen1View::updateInvState()
 
 	if (m_invState == InverterState::On)
 	{
-		icon_inv.setAlpha(255);
+		icon_inv.setAlpha(0xff);
 	}
 	icon_inv.invalidate();
 }

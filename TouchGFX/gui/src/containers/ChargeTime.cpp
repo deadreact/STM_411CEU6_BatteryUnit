@@ -2,12 +2,13 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 
-constexpr static const uint8_t kZeroAlpha = 44;
 constexpr static const uint32_t kBlue = 0xFF8FB5EF;
 constexpr static const uint32_t kYellow = 0xFFFC9600;
 constexpr static const uint32_t kRed = 0xFFFC0005;
-
 constexpr static const uint32_t kLabelBlue = 0xFF687FCC;
+
+
+constexpr static const int kMaxHours = 99;
 
 ChargeTime::ChargeTime()
 {
@@ -24,26 +25,26 @@ void ChargeTime::setValue(int val)
 	if (val != m_value)
 	{
 		const int absVal = val < 0 ? -val : val;
-		int hours = absVal / 3600;
-		const int mins = (absVal % 3600) / 60;
+		int hours = absVal / SEC_IN_HOUR;
+		const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
 
 		Format format;
-		if (absVal > 9 * 3600 + 1800) {
-			if (hours >= 99) {
-				hours = 99;
+		if (absVal > 9 * SEC_IN_HOUR + SEC_IN_HOUR/2) {
+			if (hours >= kMaxHours) {
+				hours = kMaxHours;
 			} else {
-				hours = (absVal + 1800)/ 3600;
+				hours = (absVal + SEC_IN_HOUR/2)/ SEC_IN_HOUR;
 			}
 			format = Format::Hours;
-		} else if (absVal >= 3600 - 1) {
+		} else if (absVal >= SEC_IN_HOUR - 1) {
 			format = Format::Full;
-		} else if (absVal > 60) {
+		} else if (absVal > SEC_IN_MIN) {
 			format = Format::Minutes;
 		} else if (absVal > 0) {
 			format = Format::Minimum;
 		} else { // 0
 			format = Format::Hours;
-			hours = 99;
+			hours = kMaxHours;
 		}
 
 		setFormat(format);

@@ -4,8 +4,6 @@
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
-using namespace touchgfx;
-
 class IdleScreenView;
 
 class IdleScreenPresenter : public touchgfx::Presenter, public ModelListener

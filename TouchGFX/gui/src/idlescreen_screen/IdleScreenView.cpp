@@ -40,7 +40,7 @@ void IdleScreenView::handleTickEvent()
 		{
 			m_bmsData.soc = data.bms.soc;
 			capacityValue.setValue(m_bmsData.soc);
-			Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.soc);
+			touchgfx::Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.soc);
 //			capacityTextValue.resizeToCurrentText();
 			capacityTextValue.invalidate();
 		}
@@ -48,7 +48,7 @@ void IdleScreenView::handleTickEvent()
 		if (data.bms.current != m_bmsData.current)
 		{
 			m_bmsData.current = data.bms.current;
-			Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", (float)m_bmsData.current * 0.01f);
+			touchgfx::Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
 //			currentTextValue.resizeToCurrentText();
 			currentTextValue.invalidate();
 		}
@@ -56,7 +56,7 @@ void IdleScreenView::handleTickEvent()
 		if (data.bms.voltage != m_bmsData.voltage)
 		{
 			m_bmsData.voltage = data.bms.voltage;
-			Unicode::snprintfFloat(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%.2f", (float)m_bmsData.voltage * 0.01f);
+			touchgfx::Unicode::snprintfFloat(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
 //			voltageTextValue.resizeToCurrentText();
 			voltageTextValue.invalidate();
 		}
@@ -64,14 +64,14 @@ void IdleScreenView::handleTickEvent()
 		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)
 		{
 			m_bmsData.battery_box_temperature = data.bms.battery_box_temperature;
-			Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%d", data.bms.battery_box_temperature);
+			touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%d", data.bms.battery_box_temperature);
 			temperatureValues.invalidate();
 		}
 
 		if (data.bms.battery_temperature != m_bmsData.battery_temperature)
 		{
 			m_bmsData.battery_temperature = data.bms.battery_temperature;
-			Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%d", data.bms.battery_temperature);
+			touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%d", data.bms.battery_temperature);
 			temperatureValues.invalidate();
 		}
 
@@ -102,7 +102,7 @@ void IdleScreenView::handleTickEvent()
 		batteryInfo.invalidate();
 	}
 
-	if (data.errMsg != (const char*)errMsg)
+	if (data.errMsg != static_cast<const char*>(errMsg))
 	{
 		memset(errorLabelBuffer,0, ERRORLABEL_SIZE * 2);
 

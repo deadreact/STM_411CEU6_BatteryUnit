@@ -46,7 +46,9 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define SEC_IN_MIN 60
+#define SEC_IN_HOUR (SEC_IN_MIN * 60)
+#define SEC_IN_DAY (SEC_IN_HOUR * 24)
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
