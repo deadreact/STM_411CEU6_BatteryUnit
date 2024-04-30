@@ -4,7 +4,7 @@
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
-using namespace touchgfx;
+using namespace touchgfx; // @suppress("Using directive in header")
 
 class Screen1View;
 

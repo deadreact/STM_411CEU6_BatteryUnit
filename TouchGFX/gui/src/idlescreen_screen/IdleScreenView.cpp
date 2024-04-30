@@ -1,5 +1,6 @@
 #include <gui/idlescreen_screen/IdleScreenView.hpp>
 #include <cstring>
+#include <etl/algorithm.h>
 
 IdleScreenView::IdleScreenView()
 {

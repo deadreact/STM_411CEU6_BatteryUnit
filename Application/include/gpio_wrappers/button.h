@@ -10,7 +10,7 @@
 
 #include <gpio_wrappers/interface.h>
 #include <utils/timeout.h>
-#include <etl/delegate.h>
+#include <functional>
 
 class Button : public SinglePinElement, public ITickHandler
 {
@@ -58,7 +58,7 @@ private:
 class ButtonEventHandler
 {
 public:
-    using Fn = etl::delegate<void()>;
+    using Fn = std::function<void()>;
 
     ButtonEventHandler(ButtonEventProvider* eventProvider = nullptr, Fn onClick = {}, Fn onHold = {});
 

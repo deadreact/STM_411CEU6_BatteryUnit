@@ -348,9 +348,9 @@ uint32_t parseFrame(BatteryData& data, uint8_t rxData[], uint16_t rxDataLen)
         return parseProperty(frame, data);
     case 0x06:
         return parseAllProperties(frame, data);
+    default:
+    	return BMSErrorFlags::ParseUnsupportedType;
     }
-
-    return BMSErrorFlags::ParseUnsupportedType;
 }
 
 } //namespace jk

@@ -6,6 +6,7 @@
  */
 
 #include <gpio_wrappers/button.h>
+#include <etl/utility.h>
 
 namespace
 {

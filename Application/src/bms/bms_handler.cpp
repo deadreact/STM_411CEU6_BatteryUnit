@@ -148,7 +148,7 @@ void BMSHandler::response(HAL_StatusTypeDef status)
 
     if (m_status == BMSStatus::Ok)
     {
-        BatteryData data{m_data};
+        BatteryData data(m_data);
 
         if (uint32_t errCode = jk::parseFrame(data, rxData, rxDataLen)) {
             debugMsg = errCode & BMSErrorFlags::ParseControlBytes
