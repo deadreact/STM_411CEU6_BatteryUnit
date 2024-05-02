@@ -4,7 +4,6 @@
 
 IdleScreenView::IdleScreenView()
 {
-	memset(errMsg, 0, sizeof(errMsg));
 }
 
 void IdleScreenView::setupScreen()
@@ -103,23 +102,21 @@ void IdleScreenView::handleTickEvent()
 		batteryInfo.invalidate();
 	}
 
-	if (data.errMsg != static_cast<const char*>(errMsg))
+	if (data.errMsg != errMsg)
 	{
 		memset(errorLabelBuffer,0, ERRORLABEL_SIZE * 2);
 
-		const char* msgIt = errMsg;
+		const char* msgIt = errMsg.cbegin();
 		int i = 0;
 		for (; *msgIt != '\0'; i++) {
 			errorLabelBuffer[i] = *(msgIt++);
 		}
 
-		int bytesCpy = etl::min<int>(data.errMsg.size(), sizeof(errMsg) - 1);
-		memcpy(errMsg, data.errMsg.c_str(), bytesCpy);
-		errMsg[bytesCpy] = '\0';
+		errMsg = data.errMsg;
 
 		errorLabelBuffer[i] = '\n';
 		++i;
-		msgIt = errMsg;
+		msgIt = errMsg.cbegin();
 		for (; *msgIt != '\0'; i++) {
 			errorLabelBuffer[i] = *(msgIt++);
 		}

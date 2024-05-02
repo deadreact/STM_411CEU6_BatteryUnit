@@ -13,7 +13,7 @@
 namespace utils
 {
 
-class stack_string : protected stack_vector<char, 255>
+class stack_string : protected stack_vector<char, 64>
 {
 public:
 	using type::begin;
@@ -22,6 +22,9 @@ public:
 	stack_string(): stack_vector(1, 0) {}
 	stack_string(const char* str) { assert(strlen(str) < capacity()); strcpy(m_data, str); };
 	stack_string& operator=(const char* str) { assert(strlen(str) < capacity()); strcpy(m_data, str); return *this; }
+
+	stack_string(const stack_string& str) { strcpy(m_data, str.m_data); };
+	stack_string& operator=(const stack_string& str) { return *this = str.c_str(); }
 
 	inline pointer end() { return m_data + size(); }
 	inline const_pointer end() const { return m_data + size(); }
@@ -39,6 +42,8 @@ public:
 		return *this;
 	}
 
+	bool operator==(const stack_string& str) const { return strcmp(m_data, str.m_data) == 0; }
+	bool operator!=(const stack_string& str) const { return !operator==(str); }
 	bool operator==(const char* str) const { return strcmp(m_data, str) == 0; }
 	bool operator!=(const char* str) const { return !operator==(str); }
 

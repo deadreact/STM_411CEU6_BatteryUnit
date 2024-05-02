@@ -21,7 +21,7 @@ protected:
 //    int capacity {0};
 //    int voltage {0};
 //    float current {0.f};
-    char errMsg[40];
+    utils::stack_string errMsg;
 
 //    uint8_t cellCount{0};
 //    uint16_t cellVoltage[12];
