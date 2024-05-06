@@ -182,10 +182,10 @@ namespace
                 frame >> data.voltage;
                 break;
             case CURRENT_DATA:
-                frame >> data.voltage;
+                frame >> data.current;
                 break;
             case SOC:
-                frame >> data.voltage;
+                frame >> data.soc;
                 break;
             default:
                 return BMSErrorFlags::ParseUnsupportedType;
