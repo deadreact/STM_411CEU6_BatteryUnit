@@ -18,7 +18,7 @@ public:
     void handleTickEvent()
     {
         static const int16_t frameRate = 1000/60;
-        static const int8_t maxAlpha = 255;
+        static const uint8_t maxAlpha = 255;
         int duration = HAL_GetTick() - m_dirChangeTick;
         auto frame = duration / frameRate;
         if (frame != m_lastFrame)
