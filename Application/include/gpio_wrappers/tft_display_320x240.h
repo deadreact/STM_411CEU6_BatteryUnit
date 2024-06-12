@@ -12,7 +12,7 @@
 #include <utils/timeout.h>
 #include <inverter/inverter_handler.h>
 
-
+// Supports only on/off state
 class TFTDisplay320x240 : protected SinglePinElement, public ITickHandler
 {
 public:
@@ -45,6 +45,7 @@ struct DisplaySensitiveData
 	inline bool operator!=(const DisplaySensitiveData& other) const { return !operator==(other); }
 };
 
+// Supports on/relaxed/off states, changes smoothly, uses PWM
 class Display320x240 : public ITickHandler
 {
 	constexpr static const uint16_t kOff = 0;
