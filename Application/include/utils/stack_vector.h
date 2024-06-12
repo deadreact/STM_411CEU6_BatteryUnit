@@ -11,12 +11,12 @@
 #include <stdint.h>
 #include <assert.h>
 #include <cstring>
-#include <etl/type_traits.h>
+#include <type_traits>
 
 
 namespace detail
 {
-    template <typename T, bool = etl::is_integral<T>::value>
+    template <typename T, bool = std::is_integral<T>::value>
     struct helper
     {
         static bool is_eq(const T* arr1, const T* arr2, uint8_t size) {

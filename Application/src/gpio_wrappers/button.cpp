@@ -6,7 +6,7 @@
  */
 
 #include <gpio_wrappers/button.h>
-#include <etl/utility.h>
+#include <utility>
 
 namespace
 {
@@ -15,7 +15,7 @@ namespace
 
     template <typename F, typename... Args>
     void execute(const F& fn, Args&&... args) {
-        fn(etl::forward(args)...);
+        fn(std::forward(args)...);
     }
 
     template <typename... Args>
