@@ -172,15 +172,6 @@ bool TouchGFXHAL::beginFrame()
 void TouchGFXHAL::endFrame()
 {
     TouchGFXGeneratedHAL::endFrame();
-
-//    if (SharedData::getProcessId() == ProcessId::Idle)
-//    {
-//        const auto& data = SharedData::getData<ProcessId::Idle>();
-//        if (data.sleepingMode == 1)
-//        {
-//            data.sleepingMode = 2;
-//        }
-//    }
 }
 
 /* USER CODE END TouchGFXHAL.cpp */

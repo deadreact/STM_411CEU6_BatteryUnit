@@ -10,7 +10,6 @@
 
 FrontendApplication::FrontendApplication(Model& m, FrontendHeap& heap)
     : FrontendApplicationBase(m, heap)
-    , m_processId(SharedData::getProcessId())
 {
 
 }
@@ -21,27 +20,7 @@ void FrontendApplication::handleTickEvent()
     model.tick();
     FrontendApplicationBase::handleTickEvent();
 
-    if (SharedData::getProcessId() != m_processId)
-    {
-        m_processId = SharedData::getProcessId();
-        switch (m_processId)
-        {
-        case ProcessId::Startup:
-            touchgfx::makeTransition<Screen1View, Screen1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-            break;
-        case ProcessId::Idle:
-        {
-        	showScreen(SharedData::getData<ProcessId::Idle>().screenId);
-        }
-            break;
-        default:
-            break;
-        }
-    }
-    else if (m_processId == ProcessId::Idle)
-    {
-    	showScreen(SharedData::getData<ProcessId::Idle>().screenId);
-    }
+    showScreen(SharedData::getData().screenId);
 }
 
 void FrontendApplication::showScreen(int id)

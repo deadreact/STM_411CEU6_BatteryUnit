@@ -9,7 +9,6 @@
 #include "stm32f4xx_hal.h"
 
 #include "idle_process/idle_process.h"
-#include "startup_process/startup_process.h"
 
 void Program_Process()
 {

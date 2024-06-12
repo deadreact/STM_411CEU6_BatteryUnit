@@ -17,7 +17,6 @@ public:
     virtual void handleTickEvent() override;
     void showScreen(int id);
 private:
-    ProcessId m_processId;
     int m_screenId{2};
 };
 

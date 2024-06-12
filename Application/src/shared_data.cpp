@@ -7,7 +7,7 @@
 
 #include <shared_data.h>
 
-void ProcessData<ProcessId::Idle>::updateBatteryData(const BatteryData& batData)
+void ProcessData::updateBatteryData(const BatteryData& batData)
 {
 	auto soc = bms.soc & 0x7f;
 	auto warnMsg = bms.warningMsg;
@@ -32,7 +32,7 @@ void ProcessData<ProcessId::Idle>::updateBatteryData(const BatteryData& batData)
 	bms.current = smoothedCurrent.get();
 }
 
-void ProcessData<ProcessId::Idle>::setPowerModeState(PowerModeState state)
+void ProcessData::setPowerModeState(PowerModeState state)
 {
 	if (powerModeState != state)
 	{

@@ -14,21 +14,18 @@ void ChargerHandler::updateIdle()
 {
 	if (isDcOk())
 	{
-		if (SharedData::getProcessId() == ProcessId::Idle)
-		{
-			const auto& data = SharedData::getData<ProcessId::Idle>();
+		const auto& data = SharedData::getData();
 
-			uint32_t majorErrors = data.errFlags & BMSErrorFlags::maskMajorErrors;
-			if (majorErrors)
-			{
-				changeState(ChargerState::Investigation, majorErrors);
-			}
-			else
-			{
-				if (m_bmsDataRevision < data.bms.getDataRevision()) {
-					m_bmsDataRevision = data.bms.getDataRevision();
-					analyzeBMSData(data.bms);
-				}
+		uint32_t majorErrors = data.errFlags & BMSErrorFlags::maskMajorErrors;
+		if (majorErrors)
+		{
+			changeState(ChargerState::Investigation, majorErrors);
+		}
+		else
+		{
+			if (m_bmsDataRevision < data.bms.getDataRevision()) {
+				m_bmsDataRevision = data.bms.getDataRevision();
+				analyzeBMSData(data.bms);
 			}
 		}
 	}
@@ -36,7 +33,7 @@ void ChargerHandler::updateIdle()
 
 void ChargerHandler::updateInvestigation()
 {
-	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto& data = SharedData::getData();
 	const auto majorErrors = (data.errFlags & BMSErrorFlags::maskMajorErrors);
 
 	if (m_errFlags != majorErrors)

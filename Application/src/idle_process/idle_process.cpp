@@ -38,7 +38,7 @@ struct IdleProcess::Impl
     void onPwrRelease();
 
     // Data
-    ProcessData<ProcessId::Idle> sharedData;
+    ProcessData sharedData;
     Timeout m_wakedUpTimeout;
     // Handlers
     BMSUpdater m_bmsUpdater;
@@ -228,7 +228,6 @@ void IdleProcess::Impl::onPwrHold()
 
 
 // -----------------------------------------------------------------
-//static void RequestStopMode() { SharedData:: }
 // -----------------------------------------------------------------
 
 IdleProcess::IdleProcess() : Process(5) {};
@@ -241,7 +240,7 @@ IdleProcess::~IdleProcess()
 void IdleProcess::init()
 {
     m_pimpl = new IdleProcess::Impl;
-    SharedData::get().setProcessId<ProcessId::Idle>(&m_pimpl->sharedData);
+    SharedData::shareReadOnly(m_pimpl->sharedData);
     m_pimpl->screen.on();
 }
 

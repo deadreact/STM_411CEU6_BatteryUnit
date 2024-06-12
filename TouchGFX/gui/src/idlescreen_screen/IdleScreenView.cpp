@@ -28,11 +28,7 @@ void IdleScreenView::tearDownScreen()
 
 void IdleScreenView::handleTickEvent()
 {
-    if (SharedData::getProcessId() != ProcessId::Idle)
-    {
-    	return;
-    }
-	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto& data = SharedData::getData();
 
 	if (data.bms != m_bmsData)
 	{

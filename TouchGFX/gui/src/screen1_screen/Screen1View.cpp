@@ -16,11 +16,7 @@ void Screen1View::setupScreen()
 {
     Screen1ViewBase::setupScreen();
 
-    if (SharedData::getProcessId() != ProcessId::Idle)
-	{
-		return;
-	}
-	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto& data = SharedData::getData();
 	const auto soc = m_bmsData.soc;
 	m_bmsData = BatteryData();
 	m_bmsData.soc = soc;
@@ -41,12 +37,7 @@ void Screen1View::handleTickEvent()
 {
 	Screen1ViewBase::handleTickEvent();
 
-    if (SharedData::getProcessId() != ProcessId::Idle)
-	{
-		return;
-	}
-
-	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto& data = SharedData::getData();
 
     if (m_powerModeState != data.getPowerModeState())
     {

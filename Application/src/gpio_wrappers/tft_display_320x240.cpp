@@ -44,7 +44,7 @@ void Display320x240::onTick()
 		}
 	}
 
-	const auto& data = SharedData::getData<ProcessId::Idle>();
+	const auto& data = SharedData::getData();
 
 	DisplaySensitiveData newData{data.screenId, data.invState, data.usbState, data.chargerPlugged};
 	if (data.getPowerModeState() == PowerModeState::Normal && m_sensData != newData)

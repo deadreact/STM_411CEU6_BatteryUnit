@@ -13,7 +13,6 @@
 #include <stdint.h>
 #include <utils/revision_data.h>
 #include <utils/stack_string.h>
-//#include <string>
 
 enum class PowerModeState: uint8_t
 {
@@ -23,28 +22,7 @@ enum class PowerModeState: uint8_t
     WakedUp
 };
 
-enum class ProcessId: uint8_t
-{
-    Invalid,
-    Startup,
-    Sleep,
-    Idle
-};
-
-template <ProcessId id>
-struct ProcessData;
-
-template <>
-struct ProcessData<ProcessId::Startup>
-{
-    int timeLeftToStandby{0};
-};
-
-template <>
-struct ProcessData<ProcessId::Sleep> {};
-
-template <>
-struct ProcessData<ProcessId::Idle>
+struct ProcessData
 {
     int screenId{1};
     InverterState invState{InverterState::Off};
@@ -78,28 +56,10 @@ public:
     SharedData& operator=(SharedData&&) = delete;
 
     static SharedData& get();
-
-    template <ProcessId id>
-    void setProcessId(const ProcessData<id>* data);
-
-    static ProcessId getProcessId() { return get().processId; }
-    template <ProcessId id>
-    static const ProcessData<id>& getData() { return *static_cast<const ProcessData<id>*>(get().processData); }
+    static const ProcessData& getData() { return *get().processData; }
+    static void shareReadOnly(const ProcessData& data) { get().processData = &data; }
 private:
-    ProcessId processId {ProcessId::Invalid};
-    const void* processData { nullptr };
+    const ProcessData* processData { nullptr };
 };
-
-
-// -----------------------------------
-template <ProcessId id>
-void SharedData::setProcessId(const ProcessData<id>* data)
-{
-    if (processId != id)
-    {
-        processId = id;
-        processData = data;
-    }
-}
 
 #endif /* SHARED_DATA_H_ */
