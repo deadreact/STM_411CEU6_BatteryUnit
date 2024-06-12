@@ -12,6 +12,9 @@
 extern "C" {
 #endif
 
+    /**
+     * @brief      Entry point from main
+     */
     void Program_Process();
 
 #ifdef __cplusplus

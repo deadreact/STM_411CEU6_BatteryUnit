@@ -22,6 +22,10 @@ enum class PowerModeState: uint8_t
     WakedUp
 };
 
+
+/**
+ * @brief      Process data/state is readonly available from everywhere
+ */
 struct ProcessData
 {
     int screenId{1};
@@ -43,7 +47,9 @@ private:
 };
 
 
-// --------------------------------------------------------------
+/**
+ * @brief      Wraps ProcessData to avoid writing to it
+ */
 class SharedData
 {
 private:

@@ -10,6 +10,9 @@
 
 #include "stm32f4xx_hal.h"
 
+/**
+ * @brief      Wrapper on GPIO single pin
+ */
 class SinglePinElement
 {
 public:
