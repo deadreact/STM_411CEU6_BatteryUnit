@@ -22,13 +22,31 @@ namespace detail
 
 		inline T getTimeout() const { return timeout; }
 		inline uint32_t getStartTick() const { return startTick; }
-		inline uint32_t getDuration() const { return HAL_GetTick() - startTick; }
+		inline uint32_t getDuration() const { return isPaused() ? pausedDuration : HAL_GetTick() - startTick; }
 		inline bool isReached() const { return getDuration() > timeout; }
+		inline bool isPaused() const { return pausedDuration != 0; }
+
+		inline void setPaused(bool paused)
+		{
+			if (isPaused() != paused)
+			{
+				if (paused)
+				{
+					pausedDuration = HAL_GetTick() - startTick;
+				}
+				else
+				{
+					startTick = HAL_GetTick() - pausedDuration;
+					pausedDuration = 0;
+				}
+			}
+		}
 	protected:
 		TimeoutBase(T t): timeout(t) {}
 
 		uint32_t startTick{0};
 		T timeout;
+		uint32_t pausedDuration{0};
 	};
 } //namespace detail
 

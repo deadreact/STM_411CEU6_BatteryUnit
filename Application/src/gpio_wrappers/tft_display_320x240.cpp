@@ -29,6 +29,10 @@ void Display320x240::onTick()
 {
 	constexpr static const uint32_t kStep = 10;
 
+	if (!m_isActive) {
+		return;
+	}
+
 	if (TIM2->CCR3 != m_brightness)
 	{
 		if (TIM2->CCR3 < m_brightness) {
@@ -80,6 +84,13 @@ void Display320x240::on()
 void Display320x240::off()
 {
 	m_brightness = kOff;
+}
+
+
+void Display320x240::setActive(bool active)
+{
+	m_isActive = active;
+	m_brightnessTimeout.setPaused(!active);
 }
 
 void Display320x240::toggle()

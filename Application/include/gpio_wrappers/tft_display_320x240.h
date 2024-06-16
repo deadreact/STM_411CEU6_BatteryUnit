@@ -61,10 +61,13 @@ public:
 	void toggle();
 	void on();
 	void off();
+
+	void setActive(bool active);
 private:
 	CTimeout m_brightnessTimeout{30000};
 	uint16_t m_brightness{kOn};
 	DisplaySensitiveData m_sensData;
+	bool m_isActive{true};
 };
 
 #endif /* SRC_GPIO_WRAPPERS_TFT_DISPLAY_320X240_H_ */
