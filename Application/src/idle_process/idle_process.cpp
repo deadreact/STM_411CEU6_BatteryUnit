@@ -6,6 +6,7 @@
  */
 
 #include "idle_process.h"
+#include "ili9341.h"
 
 #include "power_modes.h"
 #include <gpio_wrappers/button.h>
@@ -25,6 +26,8 @@
 
 struct IdleProcess::Impl
 {
+	void displayDeepReset();
+
     void onTick();
     void handleEvents();
 
@@ -53,22 +56,21 @@ struct IdleProcess::Impl
     ButtonEventProvider btnScrSwitch{GPIOA, GPIO_PIN_0, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
     ButtonEventHandler btnScrSwitchHandler{&btnScrSwitch
-   	, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
+   	, [&]{ displayDeepReset();/*sharedData.screenId = (sharedData.screenId + 1) % 3;*/ }
     };
 
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
 };
 
-//extern ADC_HandleTypeDef hadc1;
-//
-//void IdleProcess::Impl::updateAnalog()
-//{
-//    HAL_ADC_Start(&hadc1);
-//    HAL_ADC_PollForConversion(&hadc1, 50);
-//    sharedData.analog1 = HAL_ADC_GetValue(&hadc1);
-//    HAL_ADC_Stop(&hadc1);
-//}
 
+void IdleProcess::Impl::displayDeepReset()
+{
+	screen.setActive(false);
+
+	LCD_Reboot();
+
+	screen.setActive(true);
+}
 
 void IdleProcess::Impl::onTick()
 {
