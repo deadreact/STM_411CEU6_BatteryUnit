@@ -5,7 +5,7 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include <gpio_wrappers/usb_handler.h>
+#include <handlers/usb_handler.h>
 
 void USBHandler::onTick()
 {

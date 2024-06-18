@@ -8,7 +8,7 @@
 #include <program.h>
 #include "stm32f4xx_hal.h"
 
-#include "idle_process/idle_process.h"
+#include "process/idle_process.h"
 
 void Program_Process()
 {

@@ -25,7 +25,7 @@ namespace
 }
 
 Button::Button(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
-    : SinglePinElement(GPIOx, GPIO_Pin)
+    : PinWrapper(GPIOx, GPIO_Pin)
     , m_lastStateChangeTick(HAL_GetTick())
     , m_lastPinState(readPin())
     , m_state(m_lastPinState)

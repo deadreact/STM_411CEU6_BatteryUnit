@@ -6,21 +6,22 @@
  */
 
 #include "idle_process.h"
+
 #include "ili9341.h"
 
 #include "power_modes.h"
 #include <gpio_wrappers/button.h>
 #include <gpio_wrappers/led.h>
 #include <gpio_wrappers/io_tube.h>
-#include <gpio_wrappers/usb_handler.h>
-#include <gpio_wrappers/tft_display_320x240.h>
+#include <handlers/usb_handler.h>
 #include "main.h"
 #include <cstring>
 #include <shared_data.h>
 
-#include <bms/bms_handler.h>
-#include <inverter/inverter_handler.h>
-#include "../charger_handler.h"
+#include <handlers/bms_handler.h>
+#include <handlers/display_handler.h>
+#include <handlers/inverter_handler.h>
+#include <handlers/charger_handler.h>
 
 // ---------------------------------------------------------------
 

@@ -5,10 +5,10 @@
  *      Author: deadreact
  */
 
-#ifndef SRC_CHARGER_HANDLER_H_
-#define SRC_CHARGER_HANDLER_H_
+#ifndef INCLUDE_HANDLERS_CHARGER_HANDLER_H_
+#define INCLUDE_HANDLERS_CHARGER_HANDLER_H_
 
-#include <gpio_wrappers/interface.h>
+#include <gpio_wrappers/pin_wrapper.h>
 #include <main.h>
 #include <utils/timeout.h>
 
@@ -41,8 +41,8 @@ private:
 	void changeState(ChargerState state, uint32_t flags = 0);
 	void analyzeBMSData(const BatteryData& data);
 private:
-	SinglePinElement m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
-	const SinglePinElement m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
+	PinWrapper m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
+	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 
 	uint32_t m_errFlags{0};
 	uint32_t m_bmsDataRevision{0};
@@ -53,4 +53,4 @@ private:
 	CTimeout m_overvoltageTimeout{60 * 1000}; // 1 min
 };
 
-#endif /* SRC_CHARGER_HANDLER_H_ */
+#endif /* INCLUDE_HANDLERS_CHARGER_HANDLER_H_ */

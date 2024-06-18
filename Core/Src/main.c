@@ -74,13 +74,6 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    if (GPIO_Pin == GPIO_PIN_0) {
-
-    }
-}
-
-
 void BackupAlarm(const RTC_AlarmTypeDef* alarmData)
 {
 	uint32_t data = SEC_IN_DAY * alarmData->AlarmDateWeekDay;
@@ -286,7 +279,7 @@ static void MX_RTC_Init(void)
 
   /* USER CODE BEGIN Check_RTC_BKUP */
 #ifdef RELEASE
-  // do not set an alarm in Release
+  // do not set an alarm in Release/Retail
   if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == 0x32f2)
   {
     return;

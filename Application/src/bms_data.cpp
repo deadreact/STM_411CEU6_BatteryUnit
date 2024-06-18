@@ -5,7 +5,7 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include <bms/bms_data.h>
+#include <bms_data.h>
 #include <cstdlib>
 #include <cstring>
 

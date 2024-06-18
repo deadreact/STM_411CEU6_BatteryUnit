@@ -8,17 +8,17 @@
 #ifndef SRC_GPIO_WRAPPERS_IO_TUBE_H_
 #define SRC_GPIO_WRAPPERS_IO_TUBE_H_
 
-#include <gpio_wrappers/interface.h>
+#include <gpio_wrappers/pin_wrapper.h>
 
-class IOTube : public ITickHandler
+class IOTube
 {
 public:
-	IOTube(const SinglePinElement& in, const SinglePinElement& out, bool inverted = false);
+	IOTube(const PinWrapper& in, const PinWrapper& out, bool inverted = false);
 
-	virtual void onTick() override;
+	void onTick();
 private:
-	const SinglePinElement m_in;
-	SinglePinElement m_out;
+	const PinWrapper m_in;
+	PinWrapper m_out;
 	uint8_t m_inverted{0};
 };
 

@@ -8,8 +8,8 @@
 #ifndef SHARED_DATA_H_
 #define SHARED_DATA_H_
 
-#include <bms/bms_data.h>
-#include <inverter/inverter_handler.h>
+#include <bms_data.h>
+#include <handlers/inverter_handler.h>
 #include <stdint.h>
 #include <utils/revision_data.h>
 #include <utils/stack_string.h>

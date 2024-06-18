@@ -8,7 +8,7 @@
 #ifndef BMS_JK_BMS_H_
 #define BMS_JK_BMS_H_
 
-#include <bms/bms_data.h>
+#include <bms_data.h>
 
 namespace jk
 {

@@ -5,7 +5,7 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include <inverter/inverter_handler.h>
+#include <handlers/inverter_handler.h>
 
 InverterHandler::InverterHandler()
 {}

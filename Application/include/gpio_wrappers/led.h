@@ -8,10 +8,11 @@
 #ifndef LED_H_
 #define LED_H_
 
-#include <gpio_wrappers/interface.h>
+#include <gpio_wrappers/pin_wrapper.h>
 #include <utils/timeout.h>
+#include <common_interface.h>
 
-class Led : public SinglePinElement, public ITickHandler
+class Led : public PinWrapper, public ITickHandler
 {
 public:
     Led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);

@@ -8,7 +8,7 @@
 #ifndef IDLE_PROCESS_IDLE_PROCESS_H_
 #define IDLE_PROCESS_IDLE_PROCESS_H_
 
-#include "../process.h"
+#include "process.h"
 
 class IdleProcess : public Process
 {

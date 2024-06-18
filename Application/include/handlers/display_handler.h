@@ -5,29 +5,12 @@
  *      Author: Dmitriy.Gyr
  */
 
-#ifndef SRC_GPIO_WRAPPERS_TFT_DISPLAY_320X240_H_
-#define SRC_GPIO_WRAPPERS_TFT_DISPLAY_320X240_H_
+#ifndef INCLUDE_HANDLERS_DISPLAY_HANDLER_H_
+#define INCLUDE_HANDLERS_DISPLAY_HANDLER_H_
 
-#include <gpio_wrappers/interface.h>
+#include <gpio_wrappers/pin_wrapper.h>
+#include <handlers/inverter_handler.h>
 #include <utils/timeout.h>
-#include <inverter/inverter_handler.h>
-
-// Supports only on/off state
-class TFTDisplay320x240 : protected SinglePinElement, public ITickHandler
-{
-public:
-	using SinglePinElement::SinglePinElement;
-
-	virtual void onTick() override;
-
-	inline bool isOn() const { return readPin(); }
-
-	void toggle();
-	void on() { if (!isOn()) toggle(); }
-	void off() { if (isOn()) toggle(); }
-private:
-//	uint32_t m_
-};
 
 struct DisplaySensitiveData
 {
@@ -45,7 +28,7 @@ struct DisplaySensitiveData
 	inline bool operator!=(const DisplaySensitiveData& other) const { return !operator==(other); }
 };
 
-// Supports on/relaxed/off states, changes smoothly, uses PWM
+
 class Display320x240 : public ITickHandler
 {
 	constexpr static const uint16_t kOff = 0;
@@ -70,4 +53,4 @@ private:
 	bool m_isActive{true};
 };
 
-#endif /* SRC_GPIO_WRAPPERS_TFT_DISPLAY_320X240_H_ */
+#endif /* INCLUDE_HANDLERS_DISPLAY_HANDLER_H_ */

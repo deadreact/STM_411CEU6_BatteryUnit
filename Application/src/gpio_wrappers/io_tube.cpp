@@ -7,7 +7,7 @@
 
 #include <gpio_wrappers/io_tube.h>
 
-IOTube::IOTube(const SinglePinElement& in, const SinglePinElement& out, bool inverted)
+IOTube::IOTube(const PinWrapper& in, const PinWrapper& out, bool inverted)
 		: m_in(in)
 		, m_out(out)
 		, m_inverted(inverted ? 1 : 0)

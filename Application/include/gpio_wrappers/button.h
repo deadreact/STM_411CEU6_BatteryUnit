@@ -8,11 +8,12 @@
 #ifndef BUTTON_H_
 #define BUTTON_H_
 
-#include <gpio_wrappers/interface.h>
+#include <gpio_wrappers/pin_wrapper.h>
 #include <utils/timeout.h>
 #include <functional>
+#include <common_interface.h>
 
-class Button : public SinglePinElement, public ITickHandler
+class Button : public PinWrapper, public ITickHandler
 {
     constexpr static const uint32_t kTresholdMs = 50;
 public:

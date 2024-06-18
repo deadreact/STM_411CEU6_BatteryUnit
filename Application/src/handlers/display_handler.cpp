@@ -5,25 +5,11 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include <gpio_wrappers/tft_display_320x240.h>
 #include <ili9341.h>
 #include <app_touchgfx.h>
+#include <handlers/display_handler.h>
 #include <shared_data.h>
 #include <cstring>
-
-void TFTDisplay320x240::onTick()
-{
-	if (isOn()) {
-		MX_TouchGFX_Process();
-	}
-}
-
-void TFTDisplay320x240::toggle()
-{
-//	ILI9341_EnableSleepMode(isOn());
-	togglePin();
-}
-
 
 void Display320x240::onTick()
 {

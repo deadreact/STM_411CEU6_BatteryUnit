@@ -5,11 +5,11 @@
  *      Author: deadreact
  */
 
-#include <bms/bms_handler.h>
+#include <handlers/bms_handler.h>
 
 #include <shared_data.h>
 #include <cstring>
-#include "jk_bms.h"
+#include "detail/jk_bms.h"
 #include "stm32f4xx_ll_usart.h"
 #include <stdlib.h>
 

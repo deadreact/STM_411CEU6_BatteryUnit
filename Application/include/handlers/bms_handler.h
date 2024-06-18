@@ -5,12 +5,11 @@
  *      Author: deadreact
  */
 
-#ifndef BMS_BMS_HANDLER_H_
-#define BMS_BMS_HANDLER_H_
+#ifndef INCLUDE_HANDLERS_BMS_HANDLER_H_
+#define INCLUDE_HANDLERS_BMS_HANDLER_H_
 
-#include <bms/bms_data.h>
-#include <gpio_wrappers/interface.h>
-//#include <string>
+#include <bms_data.h>
+#include <gpio_wrappers/pin_wrapper.h>
 #include <main.h> // GPIO defines & HAL
 #include <utils/timeout.h>
 #include <utils/stack_string.h>
@@ -49,8 +48,8 @@ public:
 protected:
     void updateData(const BatteryData& newData);
 protected:
-    SinglePinElement m_bmsPwrRequest{bms_on_GPIO_Port, bms_on_Pin};
-    const SinglePinElement m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
+    PinWrapper m_bmsPwrRequest{bms_on_GPIO_Port, bms_on_Pin};
+    const PinWrapper m_bmsPwrStatus{bms_ok_GPIO_Port, bms_ok_Pin};
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
 
@@ -87,4 +86,4 @@ private:
 };
 
 
-#endif /* BMS_BMS_HANDLER_H_ */
+#endif /* INCLUDE_HANDLERS_BMS_HANDLER_H_ */
