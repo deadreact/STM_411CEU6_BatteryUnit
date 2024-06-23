@@ -5,10 +5,9 @@
  *      Author: Dmitriy.Gyr
  */
 
+#include <constants.h>
 #include <program.h>
 #include <ili9341.h>
-#include <main.h> // defines
-
 #include "process/idle_process.h"
 
 extern "C" {

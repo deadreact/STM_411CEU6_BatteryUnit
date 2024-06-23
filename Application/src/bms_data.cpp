@@ -6,6 +6,7 @@
  */
 
 #include <bms_data.h>
+#include <constants.h>
 #include <cstdlib>
 #include <cstring>
 
@@ -19,30 +20,29 @@ bool BatteryData::operator==(const BatteryData& other) const
         && battery_box_temperature == other.battery_box_temperature
         && battery_temperature == other.battery_temperature
         && warningMsg == other.warningMsg
-        && status == other.status
-        /*&& energyAh == other.energyAh*/;
+        && status == other.status;
 }
 
 int BatteryData::calcTimeRemain(int16_t curr) const
 {
     if (curr < 0)
     {
-        return int(soc * capacityAh * 60 * 60) / curr; // seconds
+        return int(soc * capacityAh * SEC_IN_HOUR) / curr; // seconds
     }
     else if (curr > 0)
     {
-    	return int((100 - soc) * capacityAh * 60 * 60)/curr; // seconds
+    	return int((100 - soc) * capacityAh * SEC_IN_HOUR)/curr; // seconds
 //        if (invertorOn)
 //        {
-//            return int((100 - soc) * capacityAh * 60 * 60)/curr;
+//            return int((100 - soc) * capacityAh * SEC_IN_HOUR)/curr;
 //        }
 //        else if (soc <= 80)
 //        {
-//            return int(capacityAh * (80 - soc) * 60 * 60)/curr + (capacityAh * 20 * 60 * 60)/(curr * 0.5f);
+//            return int(capacityAh * (80 - soc) * SEC_IN_HOUR)/curr + (capacityAh * 20 * SEC_IN_HOUR)/(curr * 0.5f);
 //        }
 //        else
 //        {
-//            return int((100 - soc) * capacityAh * 60 * 60)/curr;
+//            return int((100 - soc) * capacityAh * SEC_IN_HOUR)/curr;
 //        }
     }
     return 0;
