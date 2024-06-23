@@ -22,7 +22,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <ili9341.h>
 #include <program.h>
 /* USER CODE END Includes */
 
@@ -151,9 +150,6 @@ int main(void)
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 //  Restore_RTC();
-  ILI9341_Init();
-  TIM2->CCR3 = 500; // brightness = 0-999
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
 
   Program_Process();
 
@@ -496,7 +492,6 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM4_Init 2 */
-  HAL_TIM_Base_Start_IT(&htim4);
   /* USER CODE END TIM4_Init 2 */
 
 }
@@ -659,15 +654,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-extern void touchgfxSignalVSync(void);
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM4)
-    {
-        touchgfxSignalVSync();
-    }
-}
 /* USER CODE END 4 */
 
 /**
