@@ -6,7 +6,7 @@
  */
 
 #include <bms_data.h>
-#include <constants.h>
+#include <common_defs.h>
 #include <cstdlib>
 #include <cstring>
 

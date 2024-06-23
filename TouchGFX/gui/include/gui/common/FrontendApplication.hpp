@@ -15,9 +15,9 @@ public:
     virtual ~FrontendApplication() { }
 
     virtual void handleTickEvent() override;
-    void showScreen(int id);
+    void showScreen(ScreenId id);
 private:
-    int m_screenId{2};
+    ScreenId m_screenId{ScreenId::DefaultScreen};
 };
 
 #endif // FRONTENDAPPLICATION_HPP

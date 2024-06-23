@@ -8,13 +8,14 @@
 #ifndef INCLUDE_HANDLERS_DISPLAY_HANDLER_H_
 #define INCLUDE_HANDLERS_DISPLAY_HANDLER_H_
 
+#include <common_defs.h>
 #include <gpio_wrappers/pin_wrapper.h>
 #include <handlers/inverter_handler.h>
 #include <utils/timeout.h>
 
 struct DisplaySensitiveData
 {
-	int screenId{1};
+	ScreenId screenId{ScreenId::DefaultScreen};
 	InverterState invState{InverterState::Off};
 	bool usbState{false};
 	bool chargerPlugged{false};

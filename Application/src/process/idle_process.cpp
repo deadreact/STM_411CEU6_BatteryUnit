@@ -57,7 +57,7 @@ struct IdleProcess::Impl
     ButtonEventProvider btnScrSwitch{GPIOA, GPIO_PIN_0, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
     ButtonEventHandler btnScrSwitchHandler{&btnScrSwitch
-   	, [&]{ sharedData.screenId = (sharedData.screenId + 1) % 3; }
+   	, [&]{ sharedData.screenId = ScreenId(((int)sharedData.screenId + 1) % int(ScreenId::Count)); }
     };
 
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};

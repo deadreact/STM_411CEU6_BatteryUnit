@@ -8,6 +8,7 @@
 #ifndef SHARED_DATA_H_
 #define SHARED_DATA_H_
 
+#include <common_defs.h>
 #include <bms_data.h>
 #include <handlers/inverter_handler.h>
 #include <stdint.h>
@@ -28,7 +29,7 @@ enum class PowerModeState: uint8_t
  */
 struct ProcessData
 {
-    int screenId{1};
+    ScreenId screenId{ScreenId::DefaultScreen};
     InverterState invState{InverterState::Off};
     bool usbState{false};
     bool chargerPlugged{false};

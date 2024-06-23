@@ -23,20 +23,20 @@ void FrontendApplication::handleTickEvent()
     showScreen(SharedData::getData().screenId);
 }
 
-void FrontendApplication::showScreen(int id)
+void FrontendApplication::showScreen(ScreenId id)
 {
 	if (m_screenId != id)
 	{
 		m_screenId = id;
 		switch (id)
 		{
-		case 0:
+		case ScreenId::DebugScreen:
 			touchgfx::makeTransition<IdleScreenView, IdleScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
-		case 1:
+		case ScreenId::MainScreen:
 			touchgfx::makeTransition<Screen1View, Screen1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
-		case 2:
+		case ScreenId::ClockScreen:
 			touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
 		default:

@@ -5,7 +5,7 @@
  *      Author: Dmitriy.Gyr
  */
 
-#include <constants.h>
+#include <common_defs.h>
 #include <program.h>
 #include <ili9341.h>
 #include "process/idle_process.h"
