@@ -63,10 +63,10 @@ namespace utils
     class stack_vector
     {
         using helper_type = detail::helper<T>;
+        using type = stack_vector<T, Capacity>;
     public:
         constexpr static const uint8_t capacity() { return Capacity; }
 
-        using type = stack_vector<T, capacity()>;
         using size_type = uint8_t;
         using value_type = T;
         using reference = T&;
@@ -85,8 +85,11 @@ namespace utils
 
         type& operator=(const type& other)
         {
-            m_size = other.m_size;
-            helper_type::copy(m_data, other.m_data, m_size);
+        	if (this != &other)
+        	{
+        		m_size = other.m_size;
+        		helper_type::copy(m_data, other.m_data, m_size);
+        	}
             return *this;
         }
 
@@ -97,10 +100,14 @@ namespace utils
             other.resize(0);
         }
 
-        type& operator=(type&& other) {
-            m_size = other.m_size;
-            helper_type::copy(m_data, other.m_data, m_size);
-            other.resize(0);
+        type& operator=(type&& other)
+        {
+        	if (this != &other)
+        	{
+				m_size = other.m_size;
+				helper_type::copy(m_data, other.m_data, m_size);
+				other.resize(0);
+        	}
             return *this;
         }
 

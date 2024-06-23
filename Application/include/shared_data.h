@@ -25,7 +25,7 @@ enum class PowerModeState: uint8_t
 
 
 /**
- * @brief      Process data/state is readonly available from everywhere
+ * ProcessData contains data from IdleProcess used in touchGFX
  */
 struct ProcessData
 {
