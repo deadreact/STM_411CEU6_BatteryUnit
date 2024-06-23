@@ -2,9 +2,8 @@
 #define BATTERYSTATUS_HPP
 
 #include <gui_generated/containers/BatteryStatusBase.hpp>
-#include <gui/common/common.h>
 #include <gui/common/BlinkingAnimation.h>
-
+#include <common_defs.h>
 
 class BatteryStatus : public BatteryStatusBase
 {
@@ -20,7 +19,7 @@ public:
 protected:
     int m_soc{0};
     int m_voltage{0};
-    ChargeState m_state{InvalidChargeState};
+    ChargeState m_state{ChargeState::Invalid};
 
     BlinkingAnimation<touchgfx::Box> m_animation{animBox, 1000};
 };

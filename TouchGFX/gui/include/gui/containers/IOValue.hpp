@@ -2,7 +2,7 @@
 #define IOVALUE_HPP
 
 #include <gui_generated/containers/IOValueBase.hpp>
-#include <gui/common/common.h>
+#include <common_defs.h>
 
 class IOValue : public IOValueBase
 {
@@ -16,7 +16,7 @@ protected:
     void setState(ChargeState state);
 protected:
     int m_value{0};
-    ChargeState m_state{InvalidChargeState};
+    ChargeState m_state{ChargeState::Invalid};
 };
 
 #endif // IOVALUE_HPP

@@ -22,4 +22,6 @@ enum class ScreenId
 	DefaultScreen = MainScreen
 };
 
+enum class ChargeState { Invalid = -1, Idle, Charge, Uncharge };
+
 #endif /* INCLUDE_COMMON_DEFS_H_ */
