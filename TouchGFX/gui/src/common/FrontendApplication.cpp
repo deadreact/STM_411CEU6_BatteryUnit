@@ -1,10 +1,10 @@
 #include <gui/common/FrontendApplication.hpp>
-#include <gui/screen1_screen/Screen1View.hpp>
-#include <gui/screen1_screen/Screen1Presenter.hpp>
-#include <gui/screen2_screen/Screen2View.hpp>
-#include <gui/screen2_screen/Screen2Presenter.hpp>
-#include <gui/idlescreen_screen/IdleScreenView.hpp>
-#include <gui/idlescreen_screen/IdleScreenPresenter.hpp>
+#include <gui/mainscreen_screen/MainScreenView.hpp>
+#include <gui/mainscreen_screen/MainScreenPresenter.hpp>
+#include <gui/clockscreen_screen/ClockScreenView.hpp>
+#include <gui/clockscreen_screen/ClockScreenPresenter.hpp>
+#include <gui/debugscreen_screen/DebugScreenView.hpp>
+#include <gui/debugscreen_screen/DebugScreenPresenter.hpp>
 #include <touchgfx/transitions/NoTransition.hpp>
 #include <gui/common/FrontendHeap.hpp>
 
@@ -31,13 +31,13 @@ void FrontendApplication::showScreen(ScreenId id)
 		switch (id)
 		{
 		case ScreenId::DebugScreen:
-			touchgfx::makeTransition<IdleScreenView, IdleScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			touchgfx::makeTransition<DebugScreenView, DebugScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
 		case ScreenId::MainScreen:
-			touchgfx::makeTransition<Screen1View, Screen1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
 		case ScreenId::ClockScreen:
-			touchgfx::makeTransition<Screen2View, Screen2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+			touchgfx::makeTransition<ClockScreenView, ClockScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
 		default:
 			break;

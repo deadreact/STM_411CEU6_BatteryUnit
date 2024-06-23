@@ -1,15 +1,17 @@
-#ifndef IDLESCREENPRESENTER_HPP
-#define IDLESCREENPRESENTER_HPP
+#ifndef CLOCKSCREENPRESENTER_HPP
+#define CLOCKSCREENPRESENTER_HPP
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
-class IdleScreenView;
+using namespace touchgfx;
 
-class IdleScreenPresenter : public touchgfx::Presenter, public ModelListener
+class ClockScreenView;
+
+class ClockScreenPresenter : public touchgfx::Presenter, public ModelListener
 {
 public:
-    IdleScreenPresenter(IdleScreenView& v);
+    ClockScreenPresenter(ClockScreenView& v);
 
     /**
      * The activate function is called automatically when this screen is "switched in"
@@ -23,12 +25,12 @@ public:
      */
     virtual void deactivate();
 
-    virtual ~IdleScreenPresenter() {}
+    virtual ~ClockScreenPresenter() {}
 
 private:
-    IdleScreenPresenter();
+    ClockScreenPresenter();
 
-    IdleScreenView& view;
+    ClockScreenView& view;
 };
 
-#endif // IDLESCREENPRESENTER_HPP
+#endif // CLOCKSCREENPRESENTER_HPP

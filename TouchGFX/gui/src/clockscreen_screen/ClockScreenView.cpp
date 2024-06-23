@@ -1,22 +1,22 @@
-#include <gui/screen2_screen/Screen2View.hpp>
+#include <gui/clockscreen_screen/ClockScreenView.hpp>
 #include <touchgfx/Color.hpp>
 
-Screen2View::Screen2View()
+ClockScreenView::ClockScreenView()
 {
 
 }
 
-void Screen2View::setupScreen()
+void ClockScreenView::setupScreen()
 {
-    Screen2ViewBase::setupScreen();
+    ClockScreenViewBase::setupScreen();
 }
 
-void Screen2View::tearDownScreen()
+void ClockScreenView::tearDownScreen()
 {
-    Screen2ViewBase::tearDownScreen();
+    ClockScreenViewBase::tearDownScreen();
 }
 
-void Screen2View::handleTickEvent()
+void ClockScreenView::handleTickEvent()
 {
     updateTime();
 }
@@ -29,7 +29,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *phrtc)
 	showAlarmTimeout.reset(5500);
 }
 
-void Screen2View::updateTime()
+void ClockScreenView::updateTime()
 {
 	if (m_timer.isReached())
 	{

@@ -2,7 +2,7 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen2",
+        "Name": "ClockScreen",
         "Components": [
           {
             "Type": "DigitalClock",
@@ -90,7 +90,7 @@
         "Interactions": []
       },
       {
-        "Name": "IdleScreen",
+        "Name": "DebugScreen",
         "Components": [
           {
             "Type": "Box",
@@ -380,7 +380,7 @@
         "Interactions": []
       },
       {
-        "Name": "Screen1",
+        "Name": "MainScreen",
         "Components": [
           {
             "Type": "Container",
@@ -901,7 +901,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "MainScreen",
     "SelectedStartupLanguage": "UA",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

@@ -1,19 +1,19 @@
-#ifndef SCREEN1VIEW_HPP
-#define SCREEN1VIEW_HPP
+#ifndef MAINSCREENVIEW_HPP
+#define MAINSCREENVIEW_HPP
 
-#include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
-#include <gui/screen1_screen/Screen1Presenter.hpp>
+#include <gui_generated/mainscreen_screen/MainScreenViewBase.hpp>
+#include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <gui/common/BlinkingAnimation.h>
 #include <utils/revision_data.h>
 
 enum class InverterState : uint8_t;
 enum class PowerModeState: uint8_t;
 
-class Screen1View : public Screen1ViewBase
+class MainScreenView : public MainScreenViewBase
 {
 public:
-    Screen1View();
-    virtual ~Screen1View() {}
+    MainScreenView();
+    virtual ~MainScreenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
@@ -37,9 +37,9 @@ protected:
     BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};
     BlinkingAnimation<touchgfx::Image> m_warnAnimation{icon_warn, 800};
 
-    touchgfx::Callback<Screen1View, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
+    touchgfx::Callback<MainScreenView, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
     void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);
 
 };
 
-#endif // SCREEN1VIEW_HPP
+#endif // MAINSCREENVIEW_HPP

@@ -1,17 +1,17 @@
-#ifndef SCREEN2PRESENTER_HPP
-#define SCREEN2PRESENTER_HPP
+#ifndef MAINSCREENPRESENTER_HPP
+#define MAINSCREENPRESENTER_HPP
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
-using namespace touchgfx; // @suppress("Using directive in header")
+using namespace touchgfx;
 
-class Screen2View;
+class MainScreenView;
 
-class Screen2Presenter : public touchgfx::Presenter, public ModelListener
+class MainScreenPresenter : public touchgfx::Presenter, public ModelListener
 {
 public:
-    Screen2Presenter(Screen2View& v);
+    MainScreenPresenter(MainScreenView& v);
 
     /**
      * The activate function is called automatically when this screen is "switched in"
@@ -25,12 +25,12 @@ public:
      */
     virtual void deactivate();
 
-    virtual ~Screen2Presenter() {}
+    virtual ~MainScreenPresenter() {}
 
 private:
-    Screen2Presenter();
+    MainScreenPresenter();
 
-    Screen2View& view;
+    MainScreenView& view;
 };
 
-#endif // SCREEN2PRESENTER_HPP
+#endif // MAINSCREENPRESENTER_HPP

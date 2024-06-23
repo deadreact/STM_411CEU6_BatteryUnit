@@ -1,14 +1,14 @@
-#include <gui/idlescreen_screen/IdleScreenView.hpp>
+#include <gui/debugscreen_screen/DebugScreenView.hpp>
 #include <cstring>
 #include <algorithm>
 
-IdleScreenView::IdleScreenView()
+DebugScreenView::DebugScreenView()
 {
 }
 
-void IdleScreenView::setupScreen()
+void DebugScreenView::setupScreen()
 {
-    IdleScreenViewBase::setupScreen();
+    DebugScreenViewBase::setupScreen();
 
     for (int i = 0; i < BatteryData::kMaxCellCount; ++i)
     {
@@ -21,12 +21,12 @@ void IdleScreenView::setupScreen()
     __background.setColor(0xff11212a);
 }
 
-void IdleScreenView::tearDownScreen()
+void DebugScreenView::tearDownScreen()
 {
-    IdleScreenViewBase::tearDownScreen();
+    DebugScreenViewBase::tearDownScreen();
 }
 
-void IdleScreenView::handleTickEvent()
+void DebugScreenView::handleTickEvent()
 {
 	const auto& data = SharedData::getData();
 
@@ -121,7 +121,7 @@ void IdleScreenView::handleTickEvent()
 	}
 }
 
-void IdleScreenView::colorizeCells()
+void DebugScreenView::colorizeCells()
 {
 	if (!m_bmsData.cellVoltage.empty())
 	{
