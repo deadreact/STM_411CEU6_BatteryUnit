@@ -12,7 +12,12 @@
 extern "C" {
 #endif
 
-    void Program_Process();
+#include "stm32f4xx_hal.h"
+
+void Program_Process();
+
+void RTC_Backup(RTC_HandleTypeDef* hrtc, const RTC_AlarmTypeDef* alarmData);
+int Check_RTC_Backup(RTC_HandleTypeDef* hrtc);
 
 #ifdef __cplusplus
 }

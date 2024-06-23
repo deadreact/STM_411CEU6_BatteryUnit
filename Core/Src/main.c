@@ -54,6 +54,7 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,42 +73,6 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-void BackupAlarm(const RTC_AlarmTypeDef* alarmData)
-{
-	uint32_t data = SEC_IN_DAY * alarmData->AlarmDateWeekDay;
-	data += SEC_IN_HOUR * alarmData->AlarmTime.Hours;
-	data += SEC_IN_MIN * alarmData->AlarmTime.Minutes;
-	data += alarmData->AlarmTime.Seconds;
-
-	HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR2, data);
-}
-
-void RestoreAlarm()
-{
-	const uint32_t alarmVal = HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR2);
-	if (alarmVal > 0)
-	{
-		RTC_AlarmTypeDef sAlarm = {0};
-
-		sAlarm.AlarmTime.Hours = (alarmVal % SEC_IN_DAY) / SEC_IN_HOUR;
-		sAlarm.AlarmTime.Minutes = (alarmVal % SEC_IN_HOUR) / SEC_IN_MIN;
-		sAlarm.AlarmTime.Seconds = alarmVal % SEC_IN_MIN;
-		sAlarm.AlarmTime.SubSeconds = 0;
-		sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-		sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
-		sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
-		sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
-		sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
-		sAlarm.AlarmDateWeekDay = alarmVal / SEC_IN_HOUR;
-		sAlarm.Alarm = RTC_ALARM_A;
-		if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BIN) != HAL_OK)
-		{
-			Error_Handler();
-		}
-	}
-}
-
 
 /* USER CODE END 0 */
 
@@ -149,10 +114,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-//  Restore_RTC();
-
   Program_Process();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -274,36 +236,7 @@ static void MX_RTC_Init(void)
   }
 
   /* USER CODE BEGIN Check_RTC_BKUP */
-#ifdef RELEASE
-  // do not set an alarm in Release/Retail
-  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == 0x32f2)
-  {
-    return;
-  }
-  sTime.Hours = 15;
-  sTime.Minutes = 14;
-  sTime.Seconds = 0;
-  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY;
-  sDate.Month = RTC_MONTH_APRIL;
-  sDate.Date = 24;
-  sDate.Year = 24;
-
-  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32f2);
-  return;
-#endif
-  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) == 0x32f2)
-  {
-	  RestoreAlarm();
+  if (Check_RTC_Backup(&hrtc)) {
 	  return;
   }
   /* USER CODE END Check_RTC_BKUP */
@@ -347,10 +280,7 @@ static void MX_RTC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN RTC_Init 2 */
-
-  HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32f2);
-  BackupAlarm(&sAlarm);
-
+  RTC_Backup(&hrtc, &sAlarm);
   /* USER CODE END RTC_Init 2 */
 
 }
@@ -492,6 +422,7 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM4_Init 2 */
+
   /* USER CODE END TIM4_Init 2 */
 
 }
@@ -654,6 +585,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 /* USER CODE END 4 */
 
 /**
