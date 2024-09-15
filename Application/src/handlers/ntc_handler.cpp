@@ -16,7 +16,6 @@ const uint8_t linear_temperature_table[] = {32,34,35,37,38,39,40,44,45,46,48,49,
 //const uint8_t linear_power_table[]     = {1,2,5,13,27,42,69,94,100};
 //const uint8_t linear_temperature_table[] = {27,28,29,30,31,32,33, 35, 37};
 
-//constexpr static size_t power_table_count = std::size(linear_power_table);
 
 std::map<uint8_t, uint8_t> make_map()
 {
@@ -37,9 +36,9 @@ NtcHandler::NtcHandler(uint32_t adcChannel)
     m_adcConfig.Channel = adcChannel;
 }
 
-void NtcHandler::update()
+void NtcHandler::onTick()
 {
-	if (shouldReadSensors())
+	if (m_updateTimeout.isReached())
 	{
 		m_updateTimeout.reset();
 	    const int adcValue = readSensor(m_adcConfig.Channel);
@@ -51,22 +50,9 @@ void NtcHandler::update()
 	        if (m_fanValue != fanValue)
 	        {
 	        	m_fanValue = fanValue;
-	        	m_lastEvent = NtcEvent::Updated;
 	        }
 	    }
 	}
-}
-
-NtcEvent NtcHandler::takeLastEvent()
-{
-	auto tmp = m_lastEvent;
-	m_lastEvent = NtcEvent::NoEvent;
-	return tmp;
-}
-
-uint8_t NtcHandler::getFanValue() const
-{
-	return m_fanValue;
 }
 
 int NtcHandler::readSensor(uint32_t adcChannel)
@@ -93,11 +79,6 @@ int NtcHandler::readSensor(uint32_t adcChannel)
 //    HAL_ADC_PollForConversion(&hadc1, 500);
 //    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
 //    HAL_ADC_Stop(&hadc1);
-}
-
-bool NtcHandler::shouldReadSensors() const
-{
-	return m_updateTimeout.isReached();// m_chargerDcOkPin.readPin() || m_invOk.readPin();
 }
 
 uint8_t NtcHandler::calcFanValue() const

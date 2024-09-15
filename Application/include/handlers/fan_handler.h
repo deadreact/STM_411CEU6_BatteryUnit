@@ -18,25 +18,26 @@
 class FanHandler
 {
 public:
+	FanHandler();
+
 	void update();
 
 	uint8_t getTemperature() const { return m_ntcHandler.getTemperature(); }
 	uint8_t getFan() const { return m_currentFanValue; }
 private:
 	void changeValue(bool increase);
-	void updatePot();
-	void X9C_decrease();
-	void X9C_increase();
-	void X9C_store();
-	void setDigipotVal(uint8_t val);
+	void updatePot(uint8_t fanValue);
+
 private:
 	uint8_t m_currentFanValue{100};
-	uint8_t m_fanValue{0};
-	CTimeout m_delay{10};
+	CTimeout m_changeValueDelay{10};
+	Timeout m_fanExtraTime{0};
 
 	NtcHandler m_ntcHandler{ADC_CHANNEL_4};
+
 	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 	const PinWrapper m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
+	const PinWrapper m_usbOn{usb_on_GPIO_Port, usb_on_Pin};
 
 	PinWrapper m_potINC{pot_INC_GPIO_Port, pot_INC_Pin};
 	PinWrapper m_potUD{pot_UD_GPIO_Port, pot_UD_Pin};
