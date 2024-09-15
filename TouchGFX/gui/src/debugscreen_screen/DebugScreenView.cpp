@@ -30,6 +30,15 @@ void DebugScreenView::handleTickEvent()
 {
 	const auto& data = SharedData::getData();
 
+	if (data.temperature != temperature || data.fan != fan)
+	{
+		temperature = data.temperature;
+		fan = data.fan;
+		touchgfx::Unicode::snprintf(temperatureFanBuffer1, TEMPERATUREFANBUFFER1_SIZE, "%d", (int)data.temperature);
+		touchgfx::Unicode::snprintf(temperatureFanBuffer2, TEMPERATUREFANBUFFER2_SIZE, "%d", data.fan);
+		temperatureFan.invalidate();
+	}
+
 	if (data.bms != m_bmsData)
 	{
 		if (data.bms.soc != m_bmsData.soc)

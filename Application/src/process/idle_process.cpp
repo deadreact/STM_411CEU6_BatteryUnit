@@ -22,6 +22,7 @@
 #include <handlers/display_handler.h>
 #include <handlers/inverter_handler.h>
 #include <handlers/charger_handler.h>
+#include <handlers/fan_handler.h>
 
 // ---------------------------------------------------------------
 
@@ -49,6 +50,7 @@ struct IdleProcess::Impl
     InverterHandler m_invHandler;
     USBHandler m_usbHandler;
     ChargerHandler m_chargerHandler;
+    FanHandler m_fanHandler;
 
 //    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
 
@@ -84,6 +86,7 @@ void IdleProcess::Impl::onTick()
 
     m_bmsUpdater.update();
     m_chargerHandler.update();
+    m_fanHandler.update();
 
 //    if (sharedData.screenId == 2) {
 //        updateAnalog();
@@ -101,6 +104,8 @@ void IdleProcess::Impl::handleEvents()
 
     sharedData.invState = m_invHandler.getState();
     sharedData.usbState = m_usbHandler.isOn();
+    sharedData.temperature = m_fanHandler.getTemperature();
+    sharedData.fan = m_fanHandler.getFan();
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)

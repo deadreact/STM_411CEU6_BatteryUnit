@@ -24,6 +24,22 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_YSUO" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">Температура/Fan</Translation>
+      </Text>
+      <Text Id="__SingleUse_O707" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_L40D" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_W2OI" Alignment="Right" TypographyId="Values">
+        <Translation Language="GB">New Text&lt;value&gt;&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;*C/&lt;value&gt;</Translation>
+      </Text>
       <Text Id="__SingleUse_JFFR" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">0</Translation>

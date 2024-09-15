@@ -37,8 +37,27 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryInfo.setPosition(10, 26, 300, 208);
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
+    temperatureFanContainer.setPosition(0, 0, 190, 19);
+    temperatureFanTitle.setXY(0, 0);
+    temperatureFanTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    temperatureFanTitle.setLinespacing(0);
+    temperatureFanTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YSUO));
+    temperatureFanContainer.add(temperatureFanTitle);
+
+    temperatureFan.setPosition(128, 2, 64, 17);
+    temperatureFan.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    temperatureFan.setLinespacing(0);
+    touchgfx::Unicode::snprintf(temperatureFanBuffer1, TEMPERATUREFANBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_L40D).getText());
+    temperatureFan.setWildcard1(temperatureFanBuffer1);
+    touchgfx::Unicode::snprintf(temperatureFanBuffer2, TEMPERATUREFANBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_O707).getText());
+    temperatureFan.setWildcard2(temperatureFanBuffer2);
+    temperatureFan.setTypedText(touchgfx::TypedText(T___SINGLEUSE_W2OI));
+    temperatureFanContainer.add(temperatureFan);
+
+    batteryMainInfo.add(temperatureFanContainer);
+
     containerCurrent.setWidth(190);
-    containerCurrent.setHeight(23);
+    containerCurrent.setHeight(20);
     currentTitle.setXY(0, 1);
     currentTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTitle.setLinespacing(0);
@@ -56,7 +75,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerCurrent);
 
     containerCapacity.setWidth(190);
-    containerCapacity.setHeight(23);
+    containerCapacity.setHeight(19);
     capacityTitle.setXY(0, 0);
     capacityTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTitle.setLinespacing(0);
@@ -83,7 +102,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerCapacity);
 
     containerVoltage.setWidth(190);
-    containerVoltage.setHeight(23);
+    containerVoltage.setHeight(19);
     voltageTitle.setXY(0, 0);
     voltageTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTitle.setLinespacing(0);
@@ -101,7 +120,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerVoltage);
 
     temperatureContainer.setWidth(190);
-    temperatureContainer.setHeight(23);
+    temperatureContainer.setHeight(19);
     temperatureTitle.setXY(0, 0);
     temperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureTitle.setLinespacing(0);

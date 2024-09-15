@@ -1,6 +1,10 @@
-#include "main.h"
+#pragma once
 
+#include "main.h"
 #include "pgmspace.h"
+
+namespace ntc
+{
 
 #define TEMPERATURE_UNDER -550
 #define TEMPERATURE_OVER 1250
@@ -15,3 +19,5 @@ typedef uint16_t temperature_table_index_type;
 extern const temperature_table_entry_type termo_table[] PROGMEM;
 
 int16_t calc_temperature(temperature_table_entry_type adcsum);
+
+} //namespace ntc

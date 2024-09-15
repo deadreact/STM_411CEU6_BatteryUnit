@@ -37,6 +37,9 @@ protected:
     touchgfx::TextAreaWithOneWildcard errorLabel;
     touchgfx::Container batteryInfo;
     touchgfx::ListLayout batteryMainInfo;
+    touchgfx::Container temperatureFanContainer;
+    touchgfx::TextArea temperatureFanTitle;
+    touchgfx::TextAreaWithTwoWildcards temperatureFan;
     touchgfx::Container containerCurrent;
     touchgfx::TextArea currentTitle;
     touchgfx::TextAreaWithOneWildcard currentTextValue;
@@ -57,6 +60,10 @@ protected:
      */
     static const uint16_t ERRORLABEL_SIZE = 40;
     touchgfx::Unicode::UnicodeChar errorLabelBuffer[ERRORLABEL_SIZE];
+    static const uint16_t TEMPERATUREFANBUFFER1_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar temperatureFanBuffer1[TEMPERATUREFANBUFFER1_SIZE];
+    static const uint16_t TEMPERATUREFANBUFFER2_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar temperatureFanBuffer2[TEMPERATUREFANBUFFER2_SIZE];
     static const uint16_t CURRENTTEXTVALUE_SIZE = 5;
     touchgfx::Unicode::UnicodeChar currentTextValueBuffer[CURRENTTEXTVALUE_SIZE];
     static const uint16_t CAPACITYTEXTVALUE_SIZE = 5;

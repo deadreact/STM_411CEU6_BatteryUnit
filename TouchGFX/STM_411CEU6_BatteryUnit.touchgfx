@@ -163,14 +163,62 @@
                 "Type": "ListLayout",
                 "Name": "batteryMainInfo",
                 "Width": 190,
-                "Height": 92,
+                "Height": 96,
                 "Direction": "South",
                 "Components": [
                   {
                     "Type": "Container",
-                    "Name": "containerCurrent",
+                    "Name": "temperatureFanContainer",
                     "Width": 190,
-                    "Height": 23,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureFanTitle",
+                        "Width": 128,
+                        "Height": 19,
+                        "TextId": "__SingleUse_YSUO",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureFan",
+                        "X": 128,
+                        "Y": 2,
+                        "Width": 64,
+                        "Height": 17,
+                        "TextId": "__SingleUse_W2OI",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "__SingleUse_L40D",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        },
+                        "Wildcard2": {
+                          "TextId": "__SingleUse_O707",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "containerCurrent",
+                    "Y": 19,
+                    "Width": 190,
+                    "Height": 20,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -212,9 +260,9 @@
                   {
                     "Type": "Container",
                     "Name": "containerCapacity",
-                    "Y": 23,
+                    "Y": 39,
                     "Width": 190,
-                    "Height": 23,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -274,9 +322,9 @@
                   {
                     "Type": "Container",
                     "Name": "containerVoltage",
-                    "Y": 46,
+                    "Y": 58,
                     "Width": 190,
-                    "Height": 23,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -317,9 +365,9 @@
                   {
                     "Type": "Container",
                     "Name": "temperatureContainer",
-                    "Y": 69,
+                    "Y": 77,
                     "Width": 190,
-                    "Height": 23,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",

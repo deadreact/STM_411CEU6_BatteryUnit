@@ -1,6 +1,8 @@
 #ifndef __PGMSPACE_H_
 #define __PGMSPACE_H_ 1
 
+namespace ntc
+{
 #include <inttypes.h>
 
 #define PROGMEM
@@ -40,5 +42,7 @@ typedef uint32_t prog_uint32_t;
 #define pgm_read_word_far(addr) pgm_read_word(addr)
 #define pgm_read_dword_far(addr) pgm_read_dword(addr)
 #define pgm_read_float_far(addr) pgm_read_float(addr)
+
+} //namespace ntc
 
 #endif

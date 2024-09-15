@@ -1,4 +1,8 @@
-#include "ntc_table.h"
+#include "../include/ntc_table.h"
+
+namespace ntc
+{
+
 
 const temperature_table_entry_type termo_table[] PROGMEM = {
 		4033, 4031, 4028, 4026, 4024, 4021, 4018, 4016,
@@ -92,3 +96,6 @@ int16_t calc_temperature(temperature_table_entry_type adcsum) {
   }
   return res;
 }
+
+} //namespace ntc
+

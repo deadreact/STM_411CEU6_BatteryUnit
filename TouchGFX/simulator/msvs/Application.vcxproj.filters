@@ -142,17 +142,11 @@
     <Filter Include="Source Files\gui\model">
       <UniqueIdentifier>FFDD8166-0294-E458-D17E-4600DF915A44</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui\screen1_screen">
-      <UniqueIdentifier>7EE5D7E9-97E8-02E6-1E5C-CAE1F6DA681E</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\generated\gui_generated">
       <UniqueIdentifier>644D3731-35F1-9AF0-DFD8-84081049B3ED</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\gui\common">
       <UniqueIdentifier>5E727157-636B-A1C2-46DE-9E5A75A22958</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen1_screen">
-      <UniqueIdentifier>AFA221EA-DFC8-BA8C-0F95-9C1DC6145E26</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\generated\gui_generated">
       <UniqueIdentifier>8824065D-4197-61DD-0AB5-3CBB9D305511</UniqueIdentifier>
@@ -177,12 +171,6 @@
     </Filter>
     <Filter Include="Header Files\generated\simulator\include\simulator\video">
       <UniqueIdentifier>E2A16D42-466E-0E31-B27D-CFDDCA2707BE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen2_screen">
-      <UniqueIdentifier>FEF5B707-0742-8B5F-0D41-6A2B2459A51B</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen2_screen">
-      <UniqueIdentifier>67385DDF-5B61-FB05-77AB-4CA9AE188750</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\gui\containers">
       <UniqueIdentifier>49BC7E55-3B38-EE31-6242-4CC66E643506</UniqueIdentifier>
@@ -261,14 +249,8 @@
     <ClCompile Include="..\..\gui\src\model\Model.cpp">
       <Filter>Source Files\gui\model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1View.cpp">
-      <Filter>Source Files\gui\screen1_screen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp">
       <Filter>Source Files\generated\simulator\video</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen2_screen\Screen2View.cpp">
-      <Filter>Source Files\gui\screen2_screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\containers\BatteryCellElement.cpp">
       <Filter>Source Files\gui\containers</Filter>
@@ -757,23 +739,11 @@
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp">
       <Filter>Header Files\gui\model</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1Presenter.hpp">
-      <Filter>Header Files\gui\screen1_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1View.hpp">
-      <Filter>Header Files\gui\screen1_screen</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp">
       <Filter>Header Files\generated\gui_generated\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp">
       <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2Presenter.hpp">
-      <Filter>Header Files\gui\screen2_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2View.hpp">
-      <Filter>Header Files\gui\screen2_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\containers\BatteryCellElement.hpp">
       <Filter>Header Files\gui\containers</Filter>
@@ -798,9 +768,6 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\common\common.h">
-      <Filter>Source Files\gui\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\BlinkingAnimation.h">
       <Filter>Source Files\gui\common</Filter>

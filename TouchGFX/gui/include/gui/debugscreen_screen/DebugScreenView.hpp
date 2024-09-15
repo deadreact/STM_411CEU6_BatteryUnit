@@ -20,6 +20,8 @@ public:
 protected:
 	BatteryData m_bmsData;
 	utils::stack_string errMsg;
+	uint8_t temperature{0};
+	uint8_t fan{0};
 private:
 	BatteryCellElement cell[BatteryData::kMaxCellCount];
 };

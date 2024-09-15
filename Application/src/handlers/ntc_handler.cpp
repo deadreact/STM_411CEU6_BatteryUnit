@@ -5,14 +5,111 @@
  *      Author: Dmitriy.Gyr
  */
 
+#include <ntc_table.h>
 #include <handlers/ntc_handler.h>
 
-void NtcHandler::onTick()
-{
+extern ADC_HandleTypeDef hadc1;
 
+
+const uint8_t linear_power_table[]     = {10,14,18,22,27,33,40,46,57,74,89,92,93,94,95,96,97,98,99,100};
+const uint8_t linear_temperature_table[] = {32,34,35,37,38,39,40,44,45,46,48,49,50,52,53,54,55,56,58,60};
+//const uint8_t linear_power_table[]     = {1,2,5,13,27,42,69,94,100};
+//const uint8_t linear_temperature_table[] = {27,28,29,30,31,32,33, 35, 37};
+
+//constexpr static size_t power_table_count = std::size(linear_power_table);
+
+std::map<uint8_t, uint8_t> make_map()
+{
+	std::map<uint8_t, uint8_t> map;
+
+	for (size_t i = 0; i < std::size(linear_power_table); i++)
+	{
+		map[linear_temperature_table[i]] = linear_power_table[i];
+	}
+	return map;
 }
 
-void NtcHandler::handleEvents()
+NtcHandler::NtcHandler(uint32_t adcChannel)
+	: m_table(make_map())
 {
+    m_adcConfig.Rank = 1;
+    m_adcConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+    m_adcConfig.Channel = adcChannel;
+}
 
+void NtcHandler::update()
+{
+	if (shouldReadSensors())
+	{
+		m_updateTimeout.reset();
+	    const int adcValue = readSensor(m_adcConfig.Channel);
+	    if (adcValue >= 0)
+	    {
+	        m_temperature = ntc::calc_temperature(adcValue) / 10;
+	        auto fanValue = calcFanValue();
+
+	        if (m_fanValue != fanValue)
+	        {
+	        	m_fanValue = fanValue;
+	        	m_lastEvent = NtcEvent::Updated;
+	        }
+	    }
+	}
+}
+
+NtcEvent NtcHandler::takeLastEvent()
+{
+	auto tmp = m_lastEvent;
+	m_lastEvent = NtcEvent::NoEvent;
+	return tmp;
+}
+
+uint8_t NtcHandler::getFanValue() const
+{
+	return m_fanValue;
+}
+
+int NtcHandler::readSensor(uint32_t adcChannel)
+{
+    if (m_adcConfig.Channel != adcChannel)
+    {
+        m_adcConfig.Channel = adcChannel;
+        if (HAL_ADC_ConfigChannel(&hadc1, &m_adcConfig) != HAL_OK)
+        {
+            return -1;
+        }
+    }
+
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+
+    const int value = HAL_ADC_GetValue(&hadc1);
+    HAL_ADC_Stop(&hadc1);
+
+    return value;
+//    sConfig.Channel = ADC_CHANNEL_6;
+//    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
+//    HAL_ADC_Start(&hadc1);
+//    HAL_ADC_PollForConversion(&hadc1, 500);
+//    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
+//    HAL_ADC_Stop(&hadc1);
+}
+
+bool NtcHandler::shouldReadSensors() const
+{
+	return m_updateTimeout.isReached();// m_chargerDcOkPin.readPin() || m_invOk.readPin();
+}
+
+uint8_t NtcHandler::calcFanValue() const
+{
+	auto it = m_table.upper_bound(m_temperature);
+	if (it == m_table.end())
+	{
+		return m_table.rbegin()->second;
+	}
+	else if (it == m_table.begin())
+	{
+		return 0;
+	}
+	return std::prev(it)->second;
 }

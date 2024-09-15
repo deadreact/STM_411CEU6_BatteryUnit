@@ -20,9 +20,7 @@
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1View.cpp"/>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen2_screen\Screen2View.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\BatteryCellElement.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellElementBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\IOValue.cpp"/>
@@ -188,12 +186,8 @@
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1Presenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1View.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp"/>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2Presenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2View.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\BatteryCellElement.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellElementBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\IOValue.hpp"/>
@@ -202,7 +196,6 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ChargeTimeBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\BatteryStatus.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\common\common.h"/>
     <ClInclude Include="..\..\gui\include\gui\common\BlinkingAnimation.h"/>
     <ClInclude Include="..\..\gui\include\gui\debugscreen_screen\DebugScreenPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\debugscreen_screen\DebugScreenView.hpp"/>
