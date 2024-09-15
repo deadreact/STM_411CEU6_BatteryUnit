@@ -59,11 +59,21 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define pot_UD_Pin GPIO_PIN_13
+#define pot_UD_GPIO_Port GPIOC
+#define pot_INC_Pin GPIO_PIN_14
+#define pot_INC_GPIO_Port GPIOC
+#define pot_CS1_Pin GPIO_PIN_15
+#define pot_CS1_GPIO_Port GPIOC
 #define dbg_screen_Pin GPIO_PIN_0
 #define dbg_screen_GPIO_Port GPIOA
 #define charger_dcOk_Pin GPIO_PIN_1
 #define charger_dcOk_GPIO_Port GPIOA
 #define charger_dcOk_EXTI_IRQn EXTI1_IRQn
+#define adc_ntc_1_Pin GPIO_PIN_4
+#define adc_ntc_1_GPIO_Port GPIOA
+#define adc_ntc_2_Pin GPIO_PIN_6
+#define adc_ntc_2_GPIO_Port GPIOA
 #define SCRN_DC_Pin GPIO_PIN_0
 #define SCRN_DC_GPIO_Port GPIOB
 #define SCRN_RESET_Pin GPIO_PIN_1
@@ -72,15 +82,21 @@ void Error_Handler(void);
 #define SCRN_CS_GPIO_Port GPIOB
 #define screen_bright_Pin GPIO_PIN_10
 #define screen_bright_GPIO_Port GPIOB
+#define bttn_screen_on_Pin GPIO_PIN_12
+#define bttn_screen_on_GPIO_Port GPIOB
+#define bttn_screen_on_EXTI_IRQn EXTI15_10_IRQn
+#define bttn_screen_led_Pin GPIO_PIN_13
+#define bttn_screen_led_GPIO_Port GPIOB
+#define fan_n_power_on_Pin GPIO_PIN_14
+#define fan_n_power_on_GPIO_Port GPIOB
 #define charger_off_Pin GPIO_PIN_15
 #define charger_off_GPIO_Port GPIOB
 #define bms_on_Pin GPIO_PIN_8
 #define bms_on_GPIO_Port GPIOA
-#define bttn_screen_led_Pin GPIO_PIN_11
-#define bttn_screen_led_GPIO_Port GPIOA
-#define bttn_screen_on_Pin GPIO_PIN_12
-#define bttn_screen_on_GPIO_Port GPIOA
-#define bttn_screen_on_EXTI_IRQn EXTI15_10_IRQn
+#define extr_bat_on_Pin GPIO_PIN_9
+#define extr_bat_on_GPIO_Port GPIOA
+#define pot_CS2_Pin GPIO_PIN_10
+#define pot_CS2_GPIO_Port GPIOA
 #define bttn_usb_led_Pin GPIO_PIN_15
 #define bttn_usb_led_GPIO_Port GPIOA
 #define bttn_usb_on_Pin GPIO_PIN_3
