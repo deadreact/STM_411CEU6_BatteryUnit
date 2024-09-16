@@ -9,10 +9,11 @@ DebugScreenPresenter::DebugScreenPresenter(DebugScreenView& v)
 
 void DebugScreenPresenter::activate()
 {
-
+	view.giveSettings(model->settingsPopUp);
+	model->settingsPopUp = nullptr;
 }
 
 void DebugScreenPresenter::deactivate()
 {
-
+	model->settingsPopUp = view.takeSettings();
 }

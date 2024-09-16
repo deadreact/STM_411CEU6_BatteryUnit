@@ -27,6 +27,7 @@ public:
 
     virtual ~DebugScreenPresenter() {}
 
+//    DebugScreenView& getView() { return view; }
 private:
     DebugScreenPresenter();
 

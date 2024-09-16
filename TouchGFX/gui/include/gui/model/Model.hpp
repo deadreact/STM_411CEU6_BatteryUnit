@@ -1,6 +1,8 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+class Settings;
+
 class ModelListener;
 
 class Model
@@ -14,8 +16,11 @@ public:
     }
 
     void tick();
+
+    Settings* settingsPopUp{nullptr};
 protected:
     ModelListener* modelListener;
+
 };
 
 #endif // MODEL_HPP

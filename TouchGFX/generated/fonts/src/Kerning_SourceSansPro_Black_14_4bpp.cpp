@@ -14,9 +14,11 @@ KEEP extern const touchgfx::KerningNode kerning_SourceSansPro_Black_14_4bpp[] FO
     { 0x0043, -1 },  // (First char = [0x0043, C], Second char = [0x0043, C], Kerning dist = -1)
     { 0x002D, -1 },  // (First char = [0x002D, hyphen], Second char = [0x0054, T], Kerning dist = -1)
     { 0x002E, -1 },  // (First char = [0x002E, period], Second char = [0x0054, T], Kerning dist = -1)
+    { 0x0054, -1 },  // (First char = [0x0054, T], Second char = [0x0061, a], Kerning dist = -1)
     { 0x0054, -1 },  // (First char = [0x0054, T], Second char = [0x0065, e], Kerning dist = -1)
     { 0x002E, -1 },  // (First char = [0x002E, period], Second char = [0x0074, t], Kerning dist = -1)
     { 0x0043, -1 },  // (First char = [0x0043, C], Second char = [0x0074, t], Kerning dist = -1)
+    { 0x0054, -1 },  // (First char = [0x0054, T], Second char = [0x0075, u], Kerning dist = -1)
     { 0x002E, -1 },  // (First char = [0x002E, period], Second char = [0x0076, v], Kerning dist = -1)
     { 0x002E, -1 },  // (First char = [0x002E, period], Second char = [0x0077, w], Kerning dist = -1)
 };

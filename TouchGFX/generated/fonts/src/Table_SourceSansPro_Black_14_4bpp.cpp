@@ -25,12 +25,15 @@ KEEP extern const touchgfx::GlyphNode glyphs_SourceSansPro_Black_14_4bpp[] FONT_
     {   554, 0x0043,   8,   9,   9,   0,   8,   9,   1, 0x00 }, // C
     {   590, 0x004E,   8,   9,   9,   1,   9,   0,   0, 0x00 }, // N
     {   626, 0x0054,   8,   9,   9,   0,   8,  10,   2, 0x00 }, // T
-    {   662, 0x0065,   7,   7,   7,   0,   7,  12,   1, 0x00 }, // e
-    {   690, 0x0074,   6,   9,   9,   0,   6,  13,   2, 0x00 }, // t
-    {   717, 0x0076,   8,   7,   7,   0,   8,  15,   1, 0x00 }, // v
-    {   745, 0x0077,  11,   7,   7,   0,  11,  16,   1, 0x00 }, // w
-    {   787, 0x0078,   8,   7,   7,   0,   8,   0,   0, 0x00 }, // x
-    {   815, 0x0432,   7,   7,   7,   0,   8,   0,   0, 0x00 }  // uni0432
+    {   662, 0x0061,   7,   7,   7,   0,   8,  12,   1, 0x00 }, // a
+    {   690, 0x0065,   7,   7,   7,   0,   7,  13,   1, 0x00 }, // e
+    {   718, 0x006C,   5,  10,  10,   0,   4,   0,   0, 0x00 }, // l
+    {   748, 0x0074,   6,   9,   9,   0,   6,  14,   2, 0x00 }, // t
+    {   775, 0x0075,   8,   7,   7,   0,   8,  16,   1, 0x00 }, // u
+    {   803, 0x0076,   8,   7,   7,   0,   8,  17,   1, 0x00 }, // v
+    {   831, 0x0077,  11,   7,   7,   0,  11,  18,   1, 0x00 }, // w
+    {   873, 0x0078,   8,   7,   7,   0,   8,   0,   0, 0x00 }, // x
+    {   901, 0x0432,   7,   7,   7,   0,   8,   0,   0, 0x00 }  // uni0432
 };
 
 // SourceSansPro_Black_14_4bpp
@@ -48,6 +51,6 @@ touchgfx::GeneratedFont& getFont_SourceSansPro_Black_14_4bpp();
 
 touchgfx::GeneratedFont& getFont_SourceSansPro_Black_14_4bpp()
 {
-    static touchgfx::GeneratedFont SourceSansPro_Black_14_4bpp(glyphs_SourceSansPro_Black_14_4bpp, 27, 16, 14, 0, 0, 4, 1, 0, 0, unicodes_SourceSansPro_Black_14_4bpp, kerning_SourceSansPro_Black_14_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SourceSansPro_Black_14_4bpp(glyphs_SourceSansPro_Black_14_4bpp, 30, 16, 14, 0, 0, 4, 1, 0, 1, unicodes_SourceSansPro_Black_14_4bpp, kerning_SourceSansPro_Black_14_4bpp, 63, 0, 0, 0);
     return SourceSansPro_Black_14_4bpp;
 }

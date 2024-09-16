@@ -941,6 +941,177 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "Settings",
+        "X": 38,
+        "Y": 40,
+        "Width": 244,
+        "Height": 160,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1",
+            "Width": 244,
+            "Height": 160,
+            "Color": {
+              "Red": 82,
+              "Green": 193,
+              "Blue": 196
+            },
+            "BorderColor": {
+              "Red": 20,
+              "Green": 75,
+              "Blue": 224
+            },
+            "BorderSize": 2,
+            "Alpha": 222
+          },
+          {
+            "Type": "ListLayout",
+            "Name": "titllesContainer",
+            "X": 3,
+            "Y": 3,
+            "Width": 145,
+            "Height": 38,
+            "Direction": "South",
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "chargePowerTitle",
+                "Width": 145,
+                "Height": 19,
+                "TextId": "__SingleUse_GPWK",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 232,
+                  "Green": 246,
+                  "Blue": 251
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "screenTypeTitle",
+                "Y": 19,
+                "Width": 53,
+                "Height": 19,
+                "TextId": "__SingleUse_PCTZ",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 232,
+                  "Green": 246,
+                  "Blue": 251
+                },
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "ScrollList",
+            "Name": "scrollList1",
+            "X": 2,
+            "Y": 44,
+            "Width": 240,
+            "Height": 116,
+            "PaddingBefore": 2,
+            "ItemTemplateName": "SettingEntry",
+            "NumberofItems": 3,
+            "ItemMargin": 2,
+            "Easing": "Back",
+            "EasingOption": "Out",
+            "SwipeAcceleration": 1.0,
+            "DragAcceleration": 1.0,
+            "OverShootPercentage": 75
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "SettingEntry",
+        "Width": 240,
+        "Height": 24,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "selection",
+            "X": 120,
+            "Width": 60,
+            "Height": 24,
+            "Color": {
+              "Red": 252,
+              "Green": 150,
+              "Blue": 25
+            },
+            "BorderColor": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            },
+            "BorderSize": 5,
+            "Alpha": 200
+          },
+          {
+            "Type": "TextArea",
+            "Name": "nextValue",
+            "X": 180,
+            "Y": 3,
+            "Width": 60,
+            "Height": 18,
+            "TextId": "__SingleUse_Q0QB",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            },
+            "Alpha": 200,
+            "Wildcard1": {
+              "TextId": "__SingleUse_R14D",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "title",
+            "Width": 100,
+            "Height": 24,
+            "TextId": "__SingleUse_G2S8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_YG7M",
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "selectedValue",
+            "X": 120,
+            "Y": 3,
+            "Width": 60,
+            "Height": 18,
+            "TextId": "__SingleUse_CC17",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_J3ZE",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          }
+        ],
+        "Interactions": []
       }
     ],
     "Name": "MyApplication",

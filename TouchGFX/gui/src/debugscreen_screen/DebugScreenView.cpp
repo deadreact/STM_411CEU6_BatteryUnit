@@ -21,9 +21,37 @@ void DebugScreenView::setupScreen()
     __background.setColor(0xff11212a);
 }
 
+DebugScreenView::~DebugScreenView()
+{
+	delete m_settingsPopUp;
+}
+
 void DebugScreenView::tearDownScreen()
 {
     DebugScreenViewBase::tearDownScreen();
+}
+
+Settings* DebugScreenView::takeSettings()
+{
+	if (m_settingsPopUp)
+	{
+		remove(*m_settingsPopUp);
+		auto tmp = m_settingsPopUp;
+		m_settingsPopUp = nullptr;
+		return tmp;
+	}
+	return nullptr;
+}
+
+
+void DebugScreenView::giveSettings(Settings* settings)
+{
+	if (settings)
+	{
+		m_settingsPopUp = settings;
+		settings->setXY(40,  40);
+		add(*settings);
+	}
 }
 
 void DebugScreenView::handleTickEvent()

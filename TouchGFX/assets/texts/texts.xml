@@ -24,6 +24,38 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_R14D" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">value&#10;</Translation>
+      </Text>
+      <Text Id="__SingleUse_Q0QB" Alignment="Center" TypographyId="Values">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_J3ZE" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">value&#10;</Translation>
+      </Text>
+      <Text Id="__SingleUse_CC17" Alignment="Center" TypographyId="Values">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_YG7M" Alignment="Left" TypographyId="MainText">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">title</Translation>
+      </Text>
+      <Text Id="__SingleUse_G2S8" Alignment="Center" TypographyId="MainText">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_PCTZ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">Вигляд</Translation>
+      </Text>
+      <Text Id="__SingleUse_GPWK" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">Потужність заряду</Translation>
+      </Text>
       <Text Id="__SingleUse_YSUO" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">Температура/Fan</Translation>

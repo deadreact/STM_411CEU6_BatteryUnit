@@ -27,6 +27,7 @@ public:
 
     virtual ~MainScreenPresenter() {}
 
+//    MainScreenView& getView() { return view; }
 private:
     MainScreenPresenter();
 
