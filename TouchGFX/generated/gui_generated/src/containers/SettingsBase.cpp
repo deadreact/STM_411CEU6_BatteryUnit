@@ -14,7 +14,7 @@ SettingsBase::SettingsBase() :
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(82, 193, 196));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(20, 75, 224));
     boxWithBorder1.setBorderSize(2);
-    boxWithBorder1.setAlpha(222);
+    boxWithBorder1.setAlpha(240);
     add(boxWithBorder1);
 
     titllesContainer.setXY(3, 3);

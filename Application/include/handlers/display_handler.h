@@ -19,12 +19,14 @@ struct DisplaySensitiveData
 	InverterState invState{InverterState::Off};
 	bool usbState{false};
 	bool chargerPlugged{false};
+	int brightnessSetting{100};
 
 	inline bool operator==(const DisplaySensitiveData& other) const {
 		return screenId == other.screenId
 			&& invState == other.invState
 			&& usbState == other.usbState
-			&& chargerPlugged == other.chargerPlugged; }
+			&& chargerPlugged == other.chargerPlugged
+			&& brightnessSetting == other.brightnessSetting; }
 
 	inline bool operator!=(const DisplaySensitiveData& other) const { return !operator==(other); }
 };

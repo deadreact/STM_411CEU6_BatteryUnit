@@ -580,11 +580,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(bms_on_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : dbg_screen_Pin */
-  GPIO_InitStruct.Pin = dbg_screen_Pin;
+  /*Configure GPIO pins : dbg_screen_Pin bttn_settings_1_Pin bttn_settings_2_Pin */
+  GPIO_InitStruct.Pin = dbg_screen_Pin|bttn_settings_1_Pin|bttn_settings_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(dbg_screen_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SCRN_DC_Pin SCRN_RESET_Pin SCRN_CS_Pin */
   GPIO_InitStruct.Pin = SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin;

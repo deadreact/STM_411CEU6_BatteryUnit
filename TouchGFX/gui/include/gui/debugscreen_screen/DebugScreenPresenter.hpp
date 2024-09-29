@@ -27,7 +27,8 @@ public:
 
     virtual ~DebugScreenPresenter() {}
 
-//    DebugScreenView& getView() { return view; }
+    virtual void onSettingsCreated(Settings* settings) override;
+    virtual void onSettingsWillBeDestroyed() override;
 private:
     DebugScreenPresenter();
 

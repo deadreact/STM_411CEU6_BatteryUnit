@@ -9,11 +9,20 @@ MainScreenPresenter::MainScreenPresenter(MainScreenView& v)
 
 void MainScreenPresenter::activate()
 {
-	view.giveSettings(model->settingsPopUp);
-	model->settingsPopUp = nullptr;
+	view.setSettings(model->settingsPopUp);
 }
 
 void MainScreenPresenter::deactivate()
 {
-	model->settingsPopUp = view.takeSettings();
+	view.takeSettings();
+}
+
+void MainScreenPresenter::onSettingsCreated(Settings* settings)
+{
+	view.setSettings(settings);
+}
+
+void MainScreenPresenter::onSettingsWillBeDestroyed()
+{
+	view.takeSettings();
 }

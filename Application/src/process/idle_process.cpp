@@ -23,6 +23,7 @@
 #include <handlers/inverter_handler.h>
 #include <handlers/charger_handler.h>
 #include <handlers/fan_handler.h>
+#include <handlers/settings_handler.h>
 
 // ---------------------------------------------------------------
 
@@ -52,15 +53,17 @@ struct IdleProcess::Impl
     ChargerHandler m_chargerHandler;
     FanHandler m_fanHandler;
 
+    SettingsHandler m_settingsHandler;
+
 //    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
 
     Display320x240 screen;
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
     ButtonEventProvider btnScrSwitch{GPIOA, GPIO_PIN_0, 800, 800};
     ButtonEventProvider btnPwr{bttn_screen_on_GPIO_Port, bttn_screen_on_Pin};
-    ButtonEventHandler btnScrSwitchHandler{&btnScrSwitch
-   	, [&]{ sharedData.screenId = ScreenId(((int)sharedData.screenId + 1) % int(ScreenId::Count)); }
-    };
+//    ButtonEventHandler btnScrSwitchHandler{&btnScrSwitch
+//   	, [&]{ sharedData.screenId = ScreenId(((int)sharedData.screenId + 1) % int(ScreenId::Count)); }
+//    };
 
     ButtonEventHandler btnPwrHandler{&btnPwr, [&]{ onPwrClick();}, [&]{ onPwrHold();}};
 };
@@ -79,6 +82,7 @@ void IdleProcess::Impl::onTick()
 {
 	m_invHandler.onTick();
 	m_usbHandler.onTick();
+    m_settingsHandler.onTick();
 
 	screenLed.onTick();
     btnScrSwitch.onTick();
@@ -97,15 +101,22 @@ void IdleProcess::Impl::onTick()
 
 void IdleProcess::Impl::handleEvents()
 {
-    btnScrSwitchHandler.handleEvents();
+//    btnScrSwitchHandler.handleEvents();
     btnPwrHandler.handleEvents();
     m_usbHandler.handleEvents();
     m_invHandler.handleEvents();
+    m_settingsHandler.handleEvents();
 
     sharedData.invState = m_invHandler.getState();
     sharedData.usbState = m_usbHandler.isOn();
     sharedData.temperature = m_fanHandler.getTemperature();
     sharedData.fan = m_fanHandler.getFan();
+
+    sharedData.settings = m_settingsHandler.getData();
+    sharedData.screenId = ScreenId(sharedData.settings.getValue(1));
+//    sharedData.settings.chargePower = m_settingsHandler.getValue(SettingsHandler::Index::ChargerPower);
+//    sharedData.settings.screen = ProcessData::Settings::ScreenIndex(m_settingsHandler.getValue(SettingsHandler::Index::ScreenType));
+//    sharedData.settings.brightnessPercent = m_settingsHandler.getValue(SettingsHandler::Index::Brightness);
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)

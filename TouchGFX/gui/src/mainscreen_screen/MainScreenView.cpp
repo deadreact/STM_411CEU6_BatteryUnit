@@ -16,7 +16,7 @@ MainScreenView::MainScreenView()
 
 MainScreenView::~MainScreenView()
 {
-	delete m_settingsPopUp;
+//	delete m_settingsPopUp;
 }
 
 void MainScreenView::setupScreen()
@@ -120,18 +120,19 @@ Settings* MainScreenView::takeSettings()
 		remove(*m_settingsPopUp);
 		auto tmp = m_settingsPopUp;
 		m_settingsPopUp = nullptr;
+		invalidate();
 		return tmp;
 	}
 	return nullptr;
 }
 
-void MainScreenView::giveSettings(Settings* settings)
+void MainScreenView::setSettings(Settings* settings)
 {
 	if (settings)
 	{
 		m_settingsPopUp = settings;
-		settings->setXY(40,  40);
 		add(*settings);
+		invalidate();
 	}
 }
 

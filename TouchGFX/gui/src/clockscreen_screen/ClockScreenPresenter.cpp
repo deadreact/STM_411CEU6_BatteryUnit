@@ -9,10 +9,20 @@ ClockScreenPresenter::ClockScreenPresenter(ClockScreenView& v)
 
 void ClockScreenPresenter::activate()
 {
-
+	view.setSettings(model->settingsPopUp);
 }
 
 void ClockScreenPresenter::deactivate()
 {
+	view.takeSettings();
+}
 
+void ClockScreenPresenter::onSettingsCreated(Settings* settings)
+{
+	view.setSettings(settings);
+}
+
+void ClockScreenPresenter::onSettingsWillBeDestroyed()
+{
+	view.takeSettings();
 }

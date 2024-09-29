@@ -1,5 +1,6 @@
 #include <gui/clockscreen_screen/ClockScreenView.hpp>
 #include <touchgfx/Color.hpp>
+#include <gui/containers/Settings.hpp>
 
 ClockScreenView::ClockScreenView()
 {
@@ -19,6 +20,28 @@ void ClockScreenView::tearDownScreen()
 void ClockScreenView::handleTickEvent()
 {
     updateTime();
+}
+
+Settings* ClockScreenView::takeSettings()
+{
+	if (m_settingsPopUp)
+	{
+		remove(*m_settingsPopUp);
+		auto tmp = m_settingsPopUp;
+		m_settingsPopUp = nullptr;
+		invalidate();
+		return tmp;
+	}
+	return nullptr;
+}
+void ClockScreenView::setSettings(Settings* settings)
+{
+	if (settings)
+	{
+		m_settingsPopUp = settings;
+		add(*settings);
+		invalidate();
+	}
 }
 
 Timeout showAlarmTimeout;

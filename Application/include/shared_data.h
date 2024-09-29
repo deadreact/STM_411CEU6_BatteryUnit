@@ -14,6 +14,7 @@
 #include <stdint.h>
 #include <utils/revision_data.h>
 #include <utils/stack_string.h>
+#include <settings_data.h>
 
 enum class PowerModeState: uint8_t
 {
@@ -29,6 +30,32 @@ enum class PowerModeState: uint8_t
  */
 struct ProcessData
 {
+//	struct Settings
+//	{
+//		enum class ScreenIndex
+//		{
+//			Main = 0,
+//			Debug
+//		};
+//
+//		bool active{false};
+//		int chargePower{500};
+//		ScreenIndex screen;
+//		int brightnessPercent{100};
+//
+//		bool operator==(const Settings& other) const
+//		{
+//			return active == other.active
+//				&& chargePower == other.chargePower
+//				&& screen == other.screen
+//				&& brightnessPercent == other.brightnessPercent;
+//		}
+//		bool operator!=(const Settings& other) const
+//		{
+//			return !operator==(other);
+//		}
+//	};
+
     ScreenId screenId{ScreenId::DefaultScreen};
     InverterState invState{InverterState::Off};
     bool usbState{false};
@@ -41,6 +68,8 @@ struct ProcessData
     SmoothedValue smoothedCurrent;
     utils::stack_string errMsg;
     uint32_t errFlags{0};
+
+    SettingsData settings;
 
     PowerModeState getPowerModeState() const { return powerModeState; }
     void setPowerModeState(PowerModeState state);

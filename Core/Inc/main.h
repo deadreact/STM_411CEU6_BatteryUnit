@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define bms_on_GPIO_Port GPIOC
 #define dbg_screen_Pin GPIO_PIN_0
 #define dbg_screen_GPIO_Port GPIOA
+#define bttn_settings_1_Pin GPIO_PIN_1
+#define bttn_settings_1_GPIO_Port GPIOA
 #define adc_ntc_1_Pin GPIO_PIN_4
 #define adc_ntc_1_GPIO_Port GPIOA
 #define SCRN_SCK_Pin GPIO_PIN_5
@@ -105,6 +107,8 @@ void Error_Handler(void);
 #define pot_CS1_GPIO_Port GPIOA
 #define fan_n_power_on_Pin GPIO_PIN_12
 #define fan_n_power_on_GPIO_Port GPIOA
+#define bttn_settings_2_Pin GPIO_PIN_15
+#define bttn_settings_2_GPIO_Port GPIOA
 #define bttn_usb_led_Pin GPIO_PIN_3
 #define bttn_usb_led_GPIO_Port GPIOB
 #define bttn_usb_on_Pin GPIO_PIN_4

@@ -3,6 +3,8 @@
 
 #include <gui/model/Model.hpp>
 
+class Settings;
+
 class ModelListener
 {
 public:
@@ -14,6 +16,9 @@ public:
     {
         model = m;
     }
+
+    virtual void onSettingsCreated(Settings* settings) {}
+    virtual void onSettingsWillBeDestroyed() {}
 protected:
     Model* model;
 };

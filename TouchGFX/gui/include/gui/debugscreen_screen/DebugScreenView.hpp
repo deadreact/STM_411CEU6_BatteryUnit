@@ -19,7 +19,7 @@ public:
 
 	void colorizeCells();
 	Settings* takeSettings();
-	void giveSettings(Settings* settings);
+	void setSettings(Settings* settings);
 protected:
 	BatteryData m_bmsData;
 	utils::stack_string errMsg;

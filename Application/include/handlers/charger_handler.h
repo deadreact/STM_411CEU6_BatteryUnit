@@ -32,7 +32,7 @@ public:
 
 	inline ChargerState getState() const { return m_state; }
 	inline void resetState() { changeState(ChargerState::Idle); }
-	bool isDcOk() const { return m_chargerDcOkPin.readPin(); }
+	bool isDcOk() const { return m_chargerDcOkPin.readPin() == GPIO_PIN_RESET; }
 private:
 	void updateIdle();
 	void updateInvestigation();

@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <cstring>
 #include <type_traits>
+#include <initializer_list>
 
 
 namespace detail
@@ -83,6 +84,12 @@ namespace utils
             helper_type::copy(m_data, other.m_data, m_size);
         }
 
+        stack_vector(const std::initializer_list<T>& inilst)
+			: m_size(inilst.size())
+		{
+			helper_type::copy(m_data, inilst.begin(), m_size);
+		}
+
         type& operator=(const type& other)
         {
         	if (this != &other)
@@ -111,7 +118,7 @@ namespace utils
             return *this;
         }
 
-        stack_vector(size_type n, const value_type& value) { assign(n, value); }
+        stack_vector(size_type n, const value_type& value = {}) { assign(n, value); }
         stack_vector(const T* _begin, const T* _end)
             : m_size(_end - _begin)
         {
@@ -181,7 +188,7 @@ namespace utils
 
         inline size_type available() const { return capacity() - size(); }
     protected:
-        value_type m_data[capacity()]{};
+        value_type m_data[Capacity]{};
         size_type m_size{0};
     };
 } //namespace utils

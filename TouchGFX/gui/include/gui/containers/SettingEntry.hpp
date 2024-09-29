@@ -10,6 +10,12 @@ public:
     virtual ~SettingEntry() {}
 
     virtual void initialize();
+
+    void setIndex(int index);
+    void setValue(int value);
+    void setValueTextId(TypedTextId id);
+
+    void setSelected(bool selected);
 protected:
 };
 

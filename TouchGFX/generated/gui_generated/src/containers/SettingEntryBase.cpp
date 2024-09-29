@@ -9,37 +9,25 @@ SettingEntryBase::SettingEntryBase()
 {
     setWidth(240);
     setHeight(24);
-    selection.setPosition(120, 0, 60, 24);
+    selection.setPosition(0, 0, 240, 24);
     selection.setColor(touchgfx::Color::getColorFromRGB(252, 150, 25));
-    selection.setBorderColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
-    selection.setBorderSize(5);
-    selection.setAlpha(200);
+    selection.setAlpha(224);
+    selection.setVisible(false);
     add(selection);
 
-    nextValue.setPosition(180, 3, 60, 18);
-    nextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
-    nextValue.setLinespacing(0);
-    Unicode::snprintf(nextValueBuffer, NEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_R14D).getText());
-    nextValue.setWildcard(nextValueBuffer);
-    nextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Q0QB));
-    nextValue.setAlpha(200);
-    add(nextValue);
-
-    title.setPosition(0, 0, 100, 24);
-    title.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
-    title.setLinespacing(0);
-    Unicode::snprintf(titleBuffer, TITLE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_YG7M).getText());
-    title.setWildcard(titleBuffer);
-    title.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G2S8));
-    add(title);
-
-    selectedValue.setPosition(120, 3, 60, 18);
+    selectedValue.setPosition(150, 4, 90, 20);
     selectedValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     selectedValue.setLinespacing(0);
-    Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_J3ZE).getText());
+    Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T_SETTING_SCREEN_VALUE_0).getText());
     selectedValue.setWildcard(selectedValueBuffer);
-    selectedValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CC17));
+    selectedValue.setTypedText(touchgfx::TypedText(T_SETTING_VALUE_WILDCARD));
     add(selectedValue);
+
+    title.setPosition(0, 0, 150, 24);
+    title.setColor(touchgfx::Color::getColorFromRGB(30, 76, 230));
+    title.setLinespacing(0);
+    title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));
+    add(title);
 }
 
 SettingEntryBase::~SettingEntryBase()

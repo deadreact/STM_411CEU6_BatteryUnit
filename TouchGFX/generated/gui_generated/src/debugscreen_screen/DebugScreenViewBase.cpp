@@ -37,7 +37,8 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryInfo.setPosition(10, 26, 300, 208);
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
-    temperatureFanContainer.setPosition(0, 0, 190, 19);
+    temperatureFanContainer.setWidth(190);
+    temperatureFanContainer.setHeight(19);
     temperatureFanTitle.setXY(0, 0);
     temperatureFanTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureFanTitle.setLinespacing(0);

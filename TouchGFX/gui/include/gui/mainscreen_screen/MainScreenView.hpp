@@ -26,7 +26,7 @@ public:
     void setWatts(int val);
 
     Settings* takeSettings();
-	void giveSettings(Settings* settings);
+	void setSettings(Settings* settings);
 protected:
     void updateBatteryData(const BatteryData& data);
     void setIconFanVisible(bool visible);

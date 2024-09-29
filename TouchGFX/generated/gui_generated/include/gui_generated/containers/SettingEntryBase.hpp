@@ -6,8 +6,9 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 
 class SettingEntryBase : public touchgfx::Container
 {
@@ -24,18 +25,13 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::BoxWithBorder selection;
-    touchgfx::TextAreaWithOneWildcard nextValue;
-    touchgfx::TextAreaWithOneWildcard title;
+    touchgfx::Box selection;
     touchgfx::TextAreaWithOneWildcard selectedValue;
+    touchgfx::TextArea title;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t NEXTVALUE_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar nextValueBuffer[NEXTVALUE_SIZE];
-    static const uint16_t TITLE_SIZE = 20;
-    touchgfx::Unicode::UnicodeChar titleBuffer[TITLE_SIZE];
     static const uint16_t SELECTEDVALUE_SIZE = 10;
     touchgfx::Unicode::UnicodeChar selectedValueBuffer[SELECTEDVALUE_SIZE];
 

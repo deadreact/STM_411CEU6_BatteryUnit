@@ -5,6 +5,32 @@
     <Language Id="UA" />
   </Languages>
   <Texts>
+    <TextGroup Id="Settings">
+      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">Basic</Translation>
+        <Translation Language="UA">Простий</Translation>
+      </Text>
+      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">Clock</Translation>
+        <Translation Language="UA">Годинник</Translation>
+      </Text>
+      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Left" TypographyId="Values">
+        <Translation Language="GB">Extended</Translation>
+        <Translation Language="UA">Розширений</Translation>
+      </Text>
+      <Text Id="SETTING_BRIGHTNESS" Alignment="Center" TypographyId="MainText">
+        <Translation Language="GB">Brightness</Translation>
+        <Translation Language="UA">Яскравість</Translation>
+      </Text>
+      <Text Id="SETTING_SCREEN" Alignment="Center" TypographyId="MainText">
+        <Translation Language="GB">Screen</Translation>
+        <Translation Language="UA">Екран</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER" Alignment="Center" TypographyId="MainText">
+        <Translation Language="GB">Charger pow</Translation>
+        <Translation Language="UA">Потужність зар.</Translation>
+      </Text>
+    </TextGroup>
     <TextGroup Id="IOValueGroup">
       <Text Id="IOWildcard" Alignment="Right" TypographyId="ValueMedium">
         <Translation Language="GB">&lt;value&gt;</Translation>
@@ -24,27 +50,7 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_R14D" Alignment="Left" TypographyId="Values">
-        <Translation Language="GB">New Text</Translation>
-        <Translation Language="UA">value&#10;</Translation>
-      </Text>
-      <Text Id="__SingleUse_Q0QB" Alignment="Center" TypographyId="Values">
-        <Translation Language="GB">New Text&lt;value&gt;</Translation>
-        <Translation Language="UA">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_J3ZE" Alignment="Left" TypographyId="Values">
-        <Translation Language="GB">New Text</Translation>
-        <Translation Language="UA">value&#10;</Translation>
-      </Text>
-      <Text Id="__SingleUse_CC17" Alignment="Center" TypographyId="Values">
-        <Translation Language="GB">New Text&lt;value&gt;</Translation>
-        <Translation Language="UA">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="__SingleUse_YG7M" Alignment="Left" TypographyId="MainText">
-        <Translation Language="GB">New Text</Translation>
-        <Translation Language="UA">title</Translation>
-      </Text>
-      <Text Id="__SingleUse_G2S8" Alignment="Center" TypographyId="MainText">
+      <Text Id="SETTING_VALUE_WILDCARD" Alignment="Center" TypographyId="Values">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>

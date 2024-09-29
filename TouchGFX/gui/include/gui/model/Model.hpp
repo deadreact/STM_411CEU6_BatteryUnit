@@ -1,8 +1,9 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
-class Settings;
+#include <settings_data.h>
 
+class Settings;
 class ModelListener;
 
 class Model
@@ -20,6 +21,7 @@ public:
     Settings* settingsPopUp{nullptr};
 protected:
     ModelListener* modelListener;
+    SettingsData m_settingsData;
 
 };
 

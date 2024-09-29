@@ -36,8 +36,9 @@ void Display320x240::onTick()
 
 	const auto& data = SharedData::getData();
 
-	DisplaySensitiveData newData{data.screenId, data.invState, data.usbState, data.chargerPlugged};
-	if (data.getPowerModeState() == PowerModeState::Normal && m_sensData != newData)
+	int brightnessSetting = data.settings.active ? data.settings.getValue(2) : m_sensData.brightnessSetting;
+	DisplaySensitiveData newData{data.screenId, data.invState, data.usbState, data.chargerPlugged, brightnessSetting};
+	if (data.getPowerModeState() == PowerModeState::Normal && (m_sensData != newData || data.settings.active))
 	{
 		m_sensData = newData;
 		on();
@@ -45,7 +46,7 @@ void Display320x240::onTick()
 	else if (m_brightnessTimeout.isReached())
 	{
 		if (isOn()) {
-			m_brightness = kOnRelaxed;
+			m_brightness = (kOnRelaxed * m_sensData.brightnessSetting) / 100;
 			m_brightnessTimeout.reset();
 		} else {
 			off();
@@ -63,13 +64,13 @@ void Display320x240::on()
 	if (isOff()) {
 		MX_TouchGFX_Process();
 	}
-	m_brightness = kOn;
+	m_brightness = (kOn * m_sensData.brightnessSetting) / 100;
 	m_brightnessTimeout.reset();
 }
 
 void Display320x240::off()
 {
-	m_brightness = kOff;
+	m_brightness = (kOff * m_sensData.brightnessSetting) / 100;
 }
 
 

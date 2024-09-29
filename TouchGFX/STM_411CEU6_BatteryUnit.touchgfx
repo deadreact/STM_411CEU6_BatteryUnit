@@ -753,7 +753,7 @@
             "X": 2,
             "Y": 4,
             "Width": 166,
-            "Height": 21,
+            "Height": 22,
             "TextId": "REMAINING_TIME",
             "TextRotation": "0",
             "Color": {
@@ -965,7 +965,7 @@
               "Blue": 224
             },
             "BorderSize": 2,
-            "Alpha": 222
+            "Alpha": 240
           },
           {
             "Type": "ListLayout",
@@ -1033,41 +1033,34 @@
         "Height": 24,
         "Components": [
           {
-            "Type": "BoxWithBorder",
+            "Type": "Box",
             "Name": "selection",
-            "X": 120,
-            "Width": 60,
+            "Width": 240,
             "Height": 24,
+            "Visible": false,
             "Color": {
               "Red": 252,
               "Green": 150,
               "Blue": 25
             },
-            "BorderColor": {
-              "Red": 232,
-              "Green": 246,
-              "Blue": 251
-            },
-            "BorderSize": 5,
-            "Alpha": 200
+            "Alpha": 224
           },
           {
             "Type": "TextArea",
-            "Name": "nextValue",
-            "X": 180,
-            "Y": 3,
-            "Width": 60,
-            "Height": 18,
-            "TextId": "__SingleUse_Q0QB",
+            "Name": "selectedValue",
+            "X": 150,
+            "Y": 4,
+            "Width": 90,
+            "Height": 20,
+            "TextId": "SETTING_VALUE_WILDCARD",
             "TextRotation": "0",
             "Color": {
               "Red": 232,
               "Green": 246,
               "Blue": 251
             },
-            "Alpha": 200,
             "Wildcard1": {
-              "TextId": "__SingleUse_R14D",
+              "TextId": "SETTING_SCREEN_VALUE_0",
               "UseBuffer": true,
               "BufferSize": 10
             }
@@ -1075,39 +1068,14 @@
           {
             "Type": "TextArea",
             "Name": "title",
-            "Width": 100,
+            "Width": 150,
             "Height": 24,
-            "TextId": "__SingleUse_G2S8",
+            "TextId": "SETTING_CHARGER_POWER",
             "TextRotation": "0",
             "Color": {
-              "Red": 104,
-              "Green": 127,
-              "Blue": 204
-            },
-            "Wildcard1": {
-              "TextId": "__SingleUse_YG7M",
-              "UseBuffer": true,
-              "BufferSize": 20
-            }
-          },
-          {
-            "Type": "TextArea",
-            "Name": "selectedValue",
-            "X": 120,
-            "Y": 3,
-            "Width": 60,
-            "Height": 18,
-            "TextId": "__SingleUse_CC17",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 232,
-              "Green": 246,
-              "Blue": 251
-            },
-            "Wildcard1": {
-              "TextId": "__SingleUse_J3ZE",
-              "UseBuffer": true,
-              "BufferSize": 10
+              "Red": 30,
+              "Green": 76,
+              "Blue": 230
             }
           }
         ],
