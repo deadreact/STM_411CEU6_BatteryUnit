@@ -31,30 +31,6 @@ void DebugScreenView::tearDownScreen()
     DebugScreenViewBase::tearDownScreen();
 }
 
-Settings* DebugScreenView::takeSettings()
-{
-	if (m_settingsPopUp)
-	{
-		remove(*m_settingsPopUp);
-		auto tmp = m_settingsPopUp;
-		m_settingsPopUp = nullptr;
-		invalidate();
-		return tmp;
-	}
-	return nullptr;
-}
-
-
-void DebugScreenView::setSettings(Settings* settings)
-{
-	if (settings)
-	{
-		m_settingsPopUp = settings;
-		add(*settings);
-		invalidate();
-	}
-}
-
 void DebugScreenView::handleTickEvent()
 {
 	const auto& data = SharedData::getData();

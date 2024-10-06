@@ -27,7 +27,7 @@ public:
 
     virtual ~MainScreenPresenter() {}
 
-    virtual void onSettingsCreated(Settings* settings) override;
+    virtual void onSettingsCreated() override;
     virtual void onSettingsWillBeDestroyed() override;
 private:
     MainScreenPresenter();

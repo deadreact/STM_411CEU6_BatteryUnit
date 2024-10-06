@@ -6,11 +6,12 @@
 #include <gui/common/BlinkingAnimation.h>
 #include <utils/revision_data.h>
 #include <gui/containers/Settings.hpp>
+#include <gui/common/CommonScreenView.h>
 
 enum class InverterState : uint8_t;
 enum class PowerModeState: uint8_t;
 
-class MainScreenView : public MainScreenViewBase
+class MainScreenView : public CommonScreenView<MainScreenViewBase>
 {
 public:
     MainScreenView();
@@ -19,22 +20,18 @@ public:
     MainScreenView(MainScreenView&&) = default;
     MainScreenView& operator=(MainScreenView&&) = default;
 
-    virtual ~MainScreenView();
+    virtual ~MainScreenView() {}
+
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
     void setWatts(int val);
-
-    Settings* takeSettings();
-	void setSettings(Settings* settings);
 protected:
     void updateBatteryData(const BatteryData& data);
     void setIconFanVisible(bool visible);
     void updateInvState();
     void showLoading(bool show);
 protected:
-    Settings* m_settingsPopUp{nullptr};
-
     PowerModeState m_powerModeState;
     BatteryData m_bmsData;
     InverterState m_invState;

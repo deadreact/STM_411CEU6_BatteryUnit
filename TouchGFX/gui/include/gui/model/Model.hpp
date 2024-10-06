@@ -9,8 +9,6 @@ class ModelListener;
 class Model
 {
 public:
-    Model();
-
     void bind(ModelListener* listener)
     {
         modelListener = listener;
@@ -20,7 +18,8 @@ public:
 
     Settings* settingsPopUp{nullptr};
 protected:
-    ModelListener* modelListener;
+    ModelListener* modelListener{nullptr};
+private:
     SettingsData m_settingsData;
 
 };

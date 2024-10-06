@@ -4,10 +4,6 @@
 #include <gui/containers/Settings.hpp>
 #include <shared_data.h>
 
-Model::Model() : modelListener(0)
-{
-
-}
 
 void Model::tick()
 {
@@ -24,7 +20,7 @@ void Model::tick()
 				settingsPopUp = new Settings;
 				settingsPopUp->initialize();
 				settingsPopUp->setXY(40,  40);
-				modelListener->onSettingsCreated(settingsPopUp);
+				modelListener->onSettingsCreated();
 			}
 
 			settingsPopUp->setData(m_settingsData);

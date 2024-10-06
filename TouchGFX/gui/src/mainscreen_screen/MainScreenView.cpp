@@ -2,21 +2,11 @@
 #include <shared_data.h>
 
 MainScreenView::MainScreenView()
-    : MainScreenViewBase()
-    , m_powerModeState(PowerModeState::Normal)
+    : m_powerModeState(PowerModeState::Normal)
     , m_invState{InverterState::Off}
     , textureMapperAnimationEndedCallback(this, &MainScreenView::textureMapperAnimationEndedCallbackHandler)
 {
     icon_fan.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
-
-//    m_settingsPopUp = new Settings;
-//    m_settingsPopUp->setXY(40, 40);
-//    add(*m_settingsPopUp);
-}
-
-MainScreenView::~MainScreenView()
-{
-//	delete m_settingsPopUp;
 }
 
 void MainScreenView::setupScreen()
@@ -29,8 +19,6 @@ void MainScreenView::setupScreen()
     m_bmsData.soc = soc;
     updateBatteryData(data.bms);
     showLoading(!data.bms.isValid() || m_powerModeState == PowerModeState::WakedUp);
-
-//    m_settingsPopUp->initialize();
 }
 
 void MainScreenView::tearDownScreen()
@@ -111,29 +99,6 @@ void MainScreenView::handleTickEvent()
 void MainScreenView::setWatts(int val)
 {
     ioValue.setValue((val + 5000) / 10000);
-}
-
-Settings* MainScreenView::takeSettings()
-{
-	if (m_settingsPopUp)
-	{
-		remove(*m_settingsPopUp);
-		auto tmp = m_settingsPopUp;
-		m_settingsPopUp = nullptr;
-		invalidate();
-		return tmp;
-	}
-	return nullptr;
-}
-
-void MainScreenView::setSettings(Settings* settings)
-{
-	if (settings)
-	{
-		m_settingsPopUp = settings;
-		add(*settings);
-		invalidate();
-	}
 }
 
 void MainScreenView::updateBatteryData(const BatteryData& data)
