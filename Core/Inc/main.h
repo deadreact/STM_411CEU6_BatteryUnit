@@ -92,8 +92,8 @@ void Error_Handler(void);
 #define bttn_screen_on_EXTI_IRQn EXTI15_10_IRQn
 #define bttn_screen_led_Pin GPIO_PIN_13
 #define bttn_screen_led_GPIO_Port GPIOB
-#define charger_off_Pin GPIO_PIN_14
-#define charger_off_GPIO_Port GPIOB
+#define charger_on_Pin GPIO_PIN_14
+#define charger_on_GPIO_Port GPIOB
 #define charger_dcOk_Pin GPIO_PIN_15
 #define charger_dcOk_GPIO_Port GPIOB
 #define charger_dcOk_EXTI_IRQn EXTI15_10_IRQn

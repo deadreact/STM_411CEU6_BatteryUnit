@@ -26,13 +26,11 @@ enum class ChargerState { Idle, Investigation, Error };
 class ChargerHandler
 {
 public:
-	ChargerHandler();
-
-	void update();
-
 	inline ChargerState getState() const { return m_state; }
 	inline void resetState() { changeState(ChargerState::Idle); }
 	bool isDcOk() const { return m_chargerDcOkPin.readPin() == GPIO_PIN_RESET; }
+
+	void update();
 private:
 	void updateIdle();
 	void updateInvestigation();
@@ -41,7 +39,7 @@ private:
 	void changeState(ChargerState state, uint32_t flags = 0);
 	void analyzeBMSData(const BatteryData& data);
 private:
-	PinWrapper m_chargerOffPin{charger_off_GPIO_Port, charger_off_Pin};
+	PinWrapper m_chargerOnPin{charger_on_GPIO_Port, charger_on_Pin};
 	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 
 	uint32_t m_errFlags{0};

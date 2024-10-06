@@ -6,9 +6,23 @@
  */
 
 #include <handlers/charger_handler.h>
-
 #include <shared_data.h>
 
+void ChargerHandler::update()
+{
+	switch (m_state)
+	{
+	case ChargerState::Idle:
+		updateIdle();
+		break;
+	case ChargerState::Investigation:
+		updateInvestigation();
+		break;
+	case ChargerState::Error:
+		updateError();
+		break;
+	}
+}
 
 void ChargerHandler::updateIdle()
 {
@@ -53,30 +67,8 @@ void ChargerHandler::updateInvestigation()
 
 void ChargerHandler::updateError()
 {
-	m_chargerOffPin.writePin(GPIO_PIN_SET);
+	m_chargerOnPin.writePin(GPIO_PIN_RESET);
 }
-
-
-ChargerHandler::ChargerHandler()
-{}
-
-
-void ChargerHandler::update()
-{
-	switch (m_state)
-	{
-	case ChargerState::Idle:
-		updateIdle();
-		break;
-	case ChargerState::Investigation:
-		updateInvestigation();
-		break;
-	case ChargerState::Error:
-		updateError();
-		break;
-	}
-}
-
 
 void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 {
@@ -84,7 +76,7 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 	{
 		if (state == ChargerState::Idle)
 		{
-			m_chargerOffPin.writePin(GPIO_PIN_RESET);
+			m_chargerOnPin.writePin(GPIO_PIN_SET);
 		}
 		else if (state == ChargerState::Investigation)
 		{
@@ -93,7 +85,7 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 		}
 		else if (state == ChargerState::Error)
 		{
-			m_chargerOffPin.writePin(GPIO_PIN_SET);
+			m_chargerOnPin.writePin(GPIO_PIN_RESET);
 		}
 
 		m_state = state;
