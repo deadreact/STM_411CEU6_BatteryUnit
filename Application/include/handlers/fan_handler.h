@@ -10,32 +10,9 @@
 
 
 #include <main.h> // GPIO defines & HAL
-#include <gpio_wrappers/pin_wrapper.h>
+#include <gpio_wrappers/digital_potentiometer.h>
 #include <handlers/ntc_handler.h>
-#include <utils/timeout.h>
 
-class DigitalPotentiometer
-{
-public:
-	DigitalPotentiometer(GPIO_TypeDef* chipSelect_GPIOx, uint16_t chipSelect_GPIO_Pin)
-		: m_potCS(chipSelect_GPIOx, chipSelect_GPIO_Pin)
-	{
-		m_changeValueDelay.setPaused(true);
-	}
-
-	void setValue(uint8_t value);
-	uint8_t getValue() const { return m_currentValue; }
-
-private:
-	void changeValue(bool increase);	
-
-	PinWrapper m_potCS;
-	PinWrapper m_potINC{pot_INC_GPIO_Port, pot_INC_Pin};
-	PinWrapper m_potUD{pot_UD_GPIO_Port, pot_UD_Pin};
-
-	uint8_t m_currentValue{100};
-	CTimeout m_changeValueDelay{10};
-};
 
 //TODO: multiple channels
 class FanHandler
@@ -51,7 +28,6 @@ private:
 	void updatePot(uint8_t fanValue);
 	bool isEnabled() const;
 private:
-	// CTimeout m_changeValueDelay{10};
 	Timeout m_fanExtraTime{0};
 
 	NtcHandler m_ntcHandler{ADC_CHANNEL_4};
