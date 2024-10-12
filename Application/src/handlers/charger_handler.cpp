@@ -8,8 +8,28 @@
 #include <handlers/charger_handler.h>
 #include <shared_data.h>
 
+/*
+
+ 21 - 250Вт
+42 - 500Вт
+62 - 750Вт
+84 - 1000Вт
+100 - 1200Вт
+
+ */
+
 void ChargerHandler::update()
 {
+	const auto& data = SharedData::getData();
+
+	if (data.settings.active)
+	{
+		int chargePower = data.settings.getValue(0);
+		int value = (chargePower + 6) / 12;
+//		m_potCS2.setValue(value);
+	}
+
+
 	switch (m_state)
 	{
 	case ChargerState::Idle:
