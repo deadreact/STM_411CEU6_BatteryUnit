@@ -187,7 +187,7 @@ void ILI9341_Init(void)
 
     LCD_direction(ROTATE_90);
     // Invert colors
-    LCD_WR_REG(invert ? 0x21 /* INVON */ : 0x20 /* INVOFF */);
+    LCD_WR_REG(0x21 /* INVON; 0x20 INVOFF */);
 }
 
 void ILI9341_EnableSleepMode(int sleepMode)
