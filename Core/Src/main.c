@@ -554,14 +554,16 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin|bttn_screen_led_Pin
-                          |charger_on_Pin|bttn_usb_led_Pin|usb_on_Pin|bttn_inv_led_Pin
-                          |inv_on_Pin, GPIO_PIN_RESET);
+                          |bttn_usb_led_Pin|usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, pot_CS2_Pin|pot_UD_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(charger_on_GPIO_Port, charger_on_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, pot_INC_Pin|pot_CS1_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, pot_CS2_Pin|pot_INC_Pin|pot_CS1_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, pot_UD_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : extr_bat_on_Pin bms_ok_Pin */
   GPIO_InitStruct.Pin = extr_bat_on_Pin|bms_ok_Pin;
