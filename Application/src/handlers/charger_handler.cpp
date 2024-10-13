@@ -29,6 +29,8 @@ void ChargerHandler::update()
 		m_potCS2.setValue(value);
 	}
 
+	m_potCS2.onTick();
+
 	switch (m_state)
 	{
 	case ChargerState::Idle:
