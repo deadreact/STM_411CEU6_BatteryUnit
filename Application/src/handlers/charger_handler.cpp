@@ -25,10 +25,9 @@ void ChargerHandler::update()
 	if (data.settings.active)
 	{
 		int chargePower = data.settings.getValue(0);
-		int value = (chargePower + 6) / 12;
-//		m_potCS2.setValue(value);
+		int value = (chargePower + 6) / 12; // 1200 Вт - 100
+		m_potCS2.setValue(value);
 	}
-
 
 	switch (m_state)
 	{

@@ -25,9 +25,7 @@ public:
 	DigitalPotentiometer(GPIO_TypeDef* chipSelect_GPIOx, uint16_t chipSelect_GPIO_Pin)
 		: m_potCS(chipSelect_GPIOx, chipSelect_GPIO_Pin)
 		, m_csState(m_potCS.readPin() ? CSState::Unselected : CSState::Selected)
-	{
-
-	}
+	{}
 
 	void onTick();
 

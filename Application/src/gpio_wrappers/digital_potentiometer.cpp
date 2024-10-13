@@ -8,10 +8,44 @@
 #include <gpio_wrappers/digital_potentiometer.h>
 
 
+class Lock
+{
+public:
+	static Lock& get()
+	{
+		static Lock lock;
+		return lock;
+	}
+
+	bool tryLock(const DigitalPotentiometer* locker)
+	{
+		if (m_locker == nullptr)
+		{
+			m_locker = locker;
+		}
+		return m_locker == locker;
+	}
+
+	bool tryUnlock(const DigitalPotentiometer* locker)
+	{
+		if (m_locker == locker)
+		{
+			m_locker = nullptr;
+		}
+		return m_locker == nullptr;
+	}
+private:
+	Lock() = default;
+
+	const DigitalPotentiometer* m_locker{nullptr};
+};
+
+
 void DigitalPotentiometer::onTick()
 {
 	if (m_csState == CSState::Deselection && m_deselectionTimeout.isReached())
 	{
+		Lock::get().tryUnlock(this);
 		m_csState = CSState::Unselected;
 	}
 
@@ -19,7 +53,7 @@ void DigitalPotentiometer::onTick()
 	{
 		changeValue(m_goalValue > m_currentValue);
 	}
-	else if (m_csState == CSState::Selected)
+	else
 	{
 		deselect();
 	}
@@ -44,8 +78,11 @@ bool DigitalPotentiometer::select()
 {
 	if (m_csState == CSState::Unselected)
 	{
-		m_potCS.writePin(GPIO_PIN_RESET);
-		m_csState = CSState::Selected;
+		if (Lock::get().tryLock(this))
+		{
+			m_potCS.writePin(GPIO_PIN_RESET);
+			m_csState = CSState::Selected;
+		}
 	}
 	return m_csState == CSState::Selected;
 }
