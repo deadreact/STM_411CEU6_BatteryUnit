@@ -22,9 +22,10 @@ public:
 		Unselected
 	};
 
-	DigitalPotentiometer(GPIO_TypeDef* chipSelect_GPIOx, uint16_t chipSelect_GPIO_Pin)
+	DigitalPotentiometer(GPIO_TypeDef* chipSelect_GPIOx, uint16_t chipSelect_GPIO_Pin, bool inversedUD = false)
 		: m_potCS(chipSelect_GPIOx, chipSelect_GPIO_Pin)
 		, m_csState(m_potCS.readPin() ? CSState::Unselected : CSState::Selected)
+		, m_inversedUD(inversedUD)
 	{}
 
 	void onTick();
@@ -46,6 +47,8 @@ private:
 	CTimeout m_deselectionTimeout{20};
 
 	CSState m_csState;
+
+	const bool m_inversedUD;
 };
 
 #endif /* INCLUDE_GPIO_WRAPPERS_DIGITAL_POTENTIOMETER_H_ */

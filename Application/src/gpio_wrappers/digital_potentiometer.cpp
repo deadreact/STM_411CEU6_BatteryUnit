@@ -63,7 +63,7 @@ void DigitalPotentiometer::changeValue(bool increase)
 {
 	if (select() && m_incTimeout.isReached())
 	{
-		m_potUD.writePin(increase ? GPIO_PIN_SET : GPIO_PIN_RESET);
+		m_potUD.writePin((increase ^ m_inversedUD) ? GPIO_PIN_RESET : GPIO_PIN_SET);
 		m_potINC.togglePin();
 		m_incTimeout.reset();
 
