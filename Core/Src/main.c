@@ -558,8 +558,10 @@ static void MX_GPIO_Init(void)
                           |inv_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, pot_CS2_Pin|pot_UD_Pin|pot_INC_Pin|pot_CS1_Pin
-                          |fan_n_power_on_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, pot_CS2_Pin|pot_UD_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, pot_INC_Pin|pot_CS1_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : extr_bat_on_Pin bms_ok_Pin */
   GPIO_InitStruct.Pin = extr_bat_on_Pin|bms_ok_Pin;
@@ -615,10 +617,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(charger_dcOk_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : pot_CS2_Pin pot_UD_Pin pot_INC_Pin pot_CS1_Pin
-                           fan_n_power_on_Pin */
-  GPIO_InitStruct.Pin = pot_CS2_Pin|pot_UD_Pin|pot_INC_Pin|pot_CS1_Pin
-                          |fan_n_power_on_Pin;
+  /*Configure GPIO pins : pot_CS2_Pin pot_UD_Pin pot_CS1_Pin */
+  GPIO_InitStruct.Pin = pot_CS2_Pin|pot_UD_Pin|pot_CS1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : pot_INC_Pin fan_n_power_on_Pin */
+  GPIO_InitStruct.Pin = pot_INC_Pin|fan_n_power_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

@@ -21,6 +21,7 @@ void FanHandler::update()
 		updatePot(m_ntcHandler.getFanValue());
 		m_fanOn.writePin(m_potCS1.getValue() > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 	}
+	m_potCS1.onTick();
 }
 
 void FanHandler::updatePot(uint8_t fanValue)

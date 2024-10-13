@@ -8,43 +8,64 @@
 #include <gpio_wrappers/digital_potentiometer.h>
 
 
+void DigitalPotentiometer::onTick()
+{
+	if (m_csState == CSState::Deselection && m_deselectionTimeout.isReached())
+	{
+		m_csState = CSState::Unselected;
+	}
+
+	if (m_goalValue != m_currentValue)
+	{
+		changeValue(m_goalValue > m_currentValue);
+	}
+	else if (m_csState == CSState::Selected)
+	{
+		deselect();
+	}
+}
+
 void DigitalPotentiometer::changeValue(bool increase)
 {
-	m_potINC.writePin(GPIO_PIN_SET);
-	m_potCS.writePin(GPIO_PIN_RESET);
-	m_potUD.writePin(increase ? GPIO_PIN_SET : GPIO_PIN_RESET);
-	m_changeValueDelay.reset();
-	m_currentValue += increase ? 1 : -1;
+	if (select() && m_incTimeout.isReached())
+	{
+		m_potUD.writePin(increase ? GPIO_PIN_SET : GPIO_PIN_RESET);
+		m_potINC.togglePin();
+		m_incTimeout.reset();
+
+		if (m_potINC.readPin() == GPIO_PIN_RESET)
+		{
+			m_currentValue += increase ? 1 : -1;
+		}
+	}
+}
+
+bool DigitalPotentiometer::select()
+{
+	if (m_csState == CSState::Unselected)
+	{
+		m_potCS.writePin(GPIO_PIN_RESET);
+		m_csState = CSState::Selected;
+	}
+	return m_csState == CSState::Selected;
+}
+
+void DigitalPotentiometer::deselect(bool store)
+{
+	if (m_csState == CSState::Selected)
+	{
+		m_potINC.writePin(store ? GPIO_PIN_SET : GPIO_PIN_RESET);
+		m_potCS.writePin(GPIO_PIN_SET);
+		m_csState = CSState::Deselection;
+		m_deselectionTimeout.reset();
+	}
 }
 
 void DigitalPotentiometer::setValue(uint8_t value)
 {
-	if (m_changeValueDelay.isPaused())
+	if (m_goalValue != value)
 	{
-		if (value != m_currentValue)
-		{
-			m_changeValueDelay.setPaused(false);
-			changeValue(value > m_currentValue);
-		}
-	}
-	else if (m_changeValueDelay.isReached())
-	{
-		m_potINC.writePin(GPIO_PIN_RESET);
-		m_potCS.writePin(GPIO_PIN_SET);
-
-		if (value != m_currentValue)
-		{
-			changeValue(value > m_currentValue);
-		}
-		else
-		{
-			//store
-			m_potINC.writePin(GPIO_PIN_SET);
-			m_potCS.writePin(GPIO_PIN_RESET);
-			HAL_Delay(10);
-			m_potCS.writePin(GPIO_PIN_SET);
-			m_changeValueDelay.setPaused(true);
-		}
+		m_goalValue = value;
 	}
 }
 
