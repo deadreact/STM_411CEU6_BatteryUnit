@@ -35,13 +35,20 @@ void DebugScreenView::handleTickEvent()
 {
 	const auto& data = SharedData::getData();
 
-	if (data.temperatureCharg != temperatureCharg || data.temperatureInv != temperatureInv)
+	if (data.fan != fan || data.temperatureInv != temperatureInv)
+	{
+		temperatureInv = data.temperatureInv;
+		fan = data.fan;
+		touchgfx::Unicode::snprintf(invTemperatureValueBuffer1, INVTEMPERATUREVALUEBUFFER1_SIZE, "%d", (int)data.temperatureInv);
+		touchgfx::Unicode::snprintf(invTemperatureValueBuffer2, INVTEMPERATUREVALUEBUFFER2_SIZE, "%d", data.fan);
+		invTemperatureValue.invalidate();
+	}
+
+	if (data.temperatureCharg != temperatureCharg)
 	{
 		temperatureCharg = data.temperatureCharg;
-		temperatureInv = data.temperatureInv;
-		touchgfx::Unicode::snprintf(invChargerTemperatureValueBuffer1, INVCHARGERTEMPERATUREVALUEBUFFER1_SIZE, "%d", (int)data.temperatureInv);
-		touchgfx::Unicode::snprintf(invChargerTemperatureValueBuffer2, INVCHARGERTEMPERATUREVALUEBUFFER2_SIZE, "%d", (int)data.temperatureCharg);
-		invChargerTemperatureValue.invalidate();
+		touchgfx::Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%d", (int)data.temperatureCharg);
+		chargerTemperatureValue.invalidate();
 	}
 
 	if (data.bms != m_bmsData)

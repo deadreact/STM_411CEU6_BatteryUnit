@@ -107,16 +107,15 @@
           {
             "Type": "Container",
             "Name": "debugInfoContainer",
-            "Y": 127,
+            "Y": 190,
             "Width": 195,
-            "Height": 113,
+            "Height": 50,
             "Components": [
               {
                 "Type": "BoxWithBorder",
                 "Name": "boxWithBorder1",
-                "Y": 41,
                 "Width": 195,
-                "Height": 72,
+                "Height": 50,
                 "Color": {
                   "Red": 12,
                   "Green": 27,
@@ -133,9 +132,8 @@
                 "Type": "TextArea",
                 "Name": "errorLabel",
                 "X": 4,
-                "Y": 45,
                 "Width": 188,
-                "Height": 66,
+                "Height": 50,
                 "TextId": "__SingleUse_268O",
                 "TextRotation": "0",
                 "Color": {
@@ -164,7 +162,7 @@
                 "Type": "ListLayout",
                 "Name": "batteryMainInfo",
                 "Width": 190,
-                "Height": 120,
+                "Height": 140,
                 "Direction": "South",
                 "Components": [
                   {
@@ -412,17 +410,17 @@
                   },
                   {
                     "Type": "Container",
-                    "Name": "temperatureFanContainer",
+                    "Name": "chargerTemperatureContainer",
                     "Y": 100,
                     "Width": 190,
                     "Height": 20,
                     "Components": [
                       {
                         "Type": "TextArea",
-                        "Name": "invChargerTemperatureTitle",
-                        "Width": 134,
+                        "Name": "chargerTemperatureTitle",
+                        "Width": 63,
                         "Height": 19,
-                        "TextId": "inv_charger_temperature_title",
+                        "TextId": "charger_temperature_title",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -433,7 +431,50 @@
                       },
                       {
                         "Type": "TextArea",
-                        "Name": "invChargerTemperatureValue",
+                        "Name": "chargerTemperatureValue",
+                        "X": 128,
+                        "Y": 2,
+                        "Width": 64,
+                        "Height": 17,
+                        "TextId": "temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "invTemperatureContainer",
+                    "Y": 120,
+                    "Width": 190,
+                    "Height": 20,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "invTemperatureTitle",
+                        "Width": 97,
+                        "Height": 19,
+                        "TextId": "inv_temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "invTemperatureValue",
                         "X": 128,
                         "Y": 2,
                         "Width": 64,

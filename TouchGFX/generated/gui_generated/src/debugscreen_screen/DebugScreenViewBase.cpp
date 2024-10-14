@@ -16,14 +16,14 @@ DebugScreenViewBase::DebugScreenViewBase()
     box2.setColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     add(box2);
 
-    debugInfoContainer.setPosition(0, 127, 195, 113);
-    boxWithBorder1.setPosition(0, 41, 195, 72);
+    debugInfoContainer.setPosition(0, 190, 195, 50);
+    boxWithBorder1.setPosition(0, 0, 195, 50);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(12, 27, 55));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     boxWithBorder1.setBorderSize(3);
     debugInfoContainer.add(boxWithBorder1);
 
-    errorLabel.setPosition(4, 45, 188, 66);
+    errorLabel.setPosition(4, 0, 188, 50);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
     errorLabel.setLinespacing(0);
     errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
@@ -140,25 +140,42 @@ DebugScreenViewBase::DebugScreenViewBase()
 
     batteryMainInfo.add(temperatureContainer);
 
-    temperatureFanContainer.setWidth(190);
-    temperatureFanContainer.setHeight(20);
-    invChargerTemperatureTitle.setXY(0, 0);
-    invChargerTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
-    invChargerTemperatureTitle.setLinespacing(0);
-    invChargerTemperatureTitle.setTypedText(touchgfx::TypedText(T_INV_CHARGER_TEMPERATURE_TITLE));
-    temperatureFanContainer.add(invChargerTemperatureTitle);
+    chargerTemperatureContainer.setWidth(190);
+    chargerTemperatureContainer.setHeight(20);
+    chargerTemperatureTitle.setXY(0, 0);
+    chargerTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    chargerTemperatureTitle.setLinespacing(0);
+    chargerTemperatureTitle.setTypedText(touchgfx::TypedText(T_CHARGER_TEMPERATURE_TITLE));
+    chargerTemperatureContainer.add(chargerTemperatureTitle);
 
-    invChargerTemperatureValue.setPosition(128, 2, 64, 17);
-    invChargerTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
-    invChargerTemperatureValue.setLinespacing(0);
-    touchgfx::Unicode::snprintf(invChargerTemperatureValueBuffer1, INVCHARGERTEMPERATUREVALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
-    invChargerTemperatureValue.setWildcard1(invChargerTemperatureValueBuffer1);
-    touchgfx::Unicode::snprintf(invChargerTemperatureValueBuffer2, INVCHARGERTEMPERATUREVALUEBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
-    invChargerTemperatureValue.setWildcard2(invChargerTemperatureValueBuffer2);
-    invChargerTemperatureValue.setTypedText(touchgfx::TypedText(T_TEMPERATURE_TEMPERATURE));
-    temperatureFanContainer.add(invChargerTemperatureValue);
+    chargerTemperatureValue.setPosition(128, 2, 64, 17);
+    chargerTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    chargerTemperatureValue.setLinespacing(0);
+    Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
+    chargerTemperatureValue.setWildcard(chargerTemperatureValueBuffer);
+    chargerTemperatureValue.setTypedText(touchgfx::TypedText(T_TEMPERATURE));
+    chargerTemperatureContainer.add(chargerTemperatureValue);
 
-    batteryMainInfo.add(temperatureFanContainer);
+    batteryMainInfo.add(chargerTemperatureContainer);
+
+    invTemperatureContainer.setPosition(0, 120, 190, 20);
+    invTemperatureTitle.setXY(0, 0);
+    invTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    invTemperatureTitle.setLinespacing(0);
+    invTemperatureTitle.setTypedText(touchgfx::TypedText(T_INV_TEMPERATURE));
+    invTemperatureContainer.add(invTemperatureTitle);
+
+    invTemperatureValue.setPosition(128, 2, 64, 17);
+    invTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    invTemperatureValue.setLinespacing(0);
+    touchgfx::Unicode::snprintf(invTemperatureValueBuffer1, INVTEMPERATUREVALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
+    invTemperatureValue.setWildcard1(invTemperatureValueBuffer1);
+    touchgfx::Unicode::snprintf(invTemperatureValueBuffer2, INVTEMPERATUREVALUEBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
+    invTemperatureValue.setWildcard2(invTemperatureValueBuffer2);
+    invTemperatureValue.setTypedText(touchgfx::TypedText(T_TEMPERATURE_TEMPERATURE));
+    invTemperatureContainer.add(invTemperatureValue);
+
+    batteryMainInfo.add(invTemperatureContainer);
 
     batteryInfo.add(batteryMainInfo);
 

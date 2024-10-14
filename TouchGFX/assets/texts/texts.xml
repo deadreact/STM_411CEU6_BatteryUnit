@@ -58,6 +58,14 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="inv_temperature" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Inverter/Charger</Translation>
+        <Translation Language="UA">Інвертор/Fan</Translation>
+      </Text>
+      <Text Id="temperature" Alignment="Right" TypographyId="Values">
+        <Translation Language="GB">/°C&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;°C</Translation>
+      </Text>
       <Text Id="TIME_H_M" Alignment="Right" TypographyId="Values">
         <Translation Language="GB">&lt;hours&gt;h &lt;minutes&gt;m</Translation>
         <Translation Language="UA">&lt;hours&gt;г &lt;minutes&gt;хв</Translation>
@@ -66,17 +74,17 @@
         <Translation Language="GB">(Un)Charge time</Translation>
         <Translation Language="UA">Час зар/розряду</Translation>
       </Text>
-      <Text Id="inv_charger_temperature_title" Alignment="Left" TypographyId="Default">
+      <Text Id="charger_temperature_title" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Inverter/Charger</Translation>
-        <Translation Language="UA">Інвертор/Зарядне</Translation>
+        <Translation Language="UA">Зарядне</Translation>
       </Text>
       <Text Id="Values_0" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="temperature_temperature" Alignment="Right" TypographyId="Values">
-        <Translation Language="GB">&lt;value&gt;°C/&lt;value&gt;°C</Translation>
-        <Translation Language="UA">&lt;value&gt;°C/&lt;value&gt;°C</Translation>
+        <Translation Language="GB">&lt;value&gt;/&lt;value&gt;°C</Translation>
+        <Translation Language="UA">&lt;value&gt;/&lt;value&gt;°C</Translation>
       </Text>
       <Text Id="bms_temperature" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">BMS t1/t2</Translation>

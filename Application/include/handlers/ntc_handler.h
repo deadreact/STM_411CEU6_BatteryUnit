@@ -12,7 +12,6 @@
 #include <utils/timeout.h>
 #include <map>
 
-//TODO: multiple channels
 class NtcHandler
 {
 public:
