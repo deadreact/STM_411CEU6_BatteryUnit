@@ -225,15 +225,15 @@
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="seguisb.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Values" Font="seguisb.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
     <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="MainText" Font="seguisb.ttf" Size="17" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="LargeText" Font="SourceSansPro-Black.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" WidgetWildcardCharacters="0123456789 :APM" />
+    <Typography Id="LargeText" Font="seguisb.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" WidgetWildcardCharacters="0123456789 :APM" />
     <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
   </Typographies>
 </TextDatabase>

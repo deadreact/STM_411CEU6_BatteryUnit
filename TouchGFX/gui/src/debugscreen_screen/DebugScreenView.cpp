@@ -115,6 +115,7 @@ void DebugScreenView::handleTickEvent()
 			touchgfx::Unicode::snprintf(capacityTimeValueBuffer1, CAPACITYTIMEVALUEBUFFER1_SIZE, "%d", hours);
 			touchgfx::Unicode::snprintf(capacityTimeValueBuffer2, CAPACITYTIMEVALUEBUFFER2_SIZE, "%d", mins);
 			m_chargeTimeSec = chargeValue;
+			capacityTimeValue.invalidate();
 		}
 
 		m_bmsData = data.bms;

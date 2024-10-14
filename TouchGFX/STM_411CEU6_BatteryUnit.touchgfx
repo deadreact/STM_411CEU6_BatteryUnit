@@ -107,7 +107,7 @@
           {
             "Type": "Container",
             "Name": "debugInfoContainer",
-            "Y": 169,
+            "Y": 170,
             "Width": 195,
             "Height": 70,
             "Components": [
@@ -174,8 +174,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "capacityTitle",
-                        "Width": 46,
-                        "Height": 19,
+                        "Width": 45,
+                        "Height": 20,
                         "TextId": "battery",
                         "TextRotation": "0",
                         "Color": {
@@ -261,8 +261,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "capacityTimeTitle",
-                        "Width": 124,
-                        "Height": 19,
+                        "Width": 126,
+                        "Height": 20,
                         "TextId": "capacity_time_title",
                         "TextRotation": "0",
                         "Color": {
@@ -284,8 +284,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "currentTitle",
-                        "Width": 45,
-                        "Height": 19,
+                        "Width": 47,
+                        "Height": 20,
                         "TextId": "current",
                         "TextRotation": "0",
                         "Color": {
@@ -327,8 +327,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "voltageTitle",
-                        "Width": 62,
-                        "Height": 19,
+                        "Width": 61,
+                        "Height": 20,
                         "TextId": "VOLTAGE_TITLE",
                         "TextRotation": "0",
                         "Color": {
@@ -370,8 +370,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "temperatureTitle",
-                        "Width": 69,
-                        "Height": 19,
+                        "Width": 72,
+                        "Height": 20,
                         "TextId": "bms_temperature",
                         "TextRotation": "0",
                         "Color": {
@@ -384,9 +384,9 @@
                       {
                         "Type": "TextArea",
                         "Name": "temperatureValues",
-                        "X": 99,
+                        "X": 90,
                         "Y": 2,
-                        "Width": 93,
+                        "Width": 100,
                         "Height": 17,
                         "TextId": "temperature_temperature",
                         "TextRotation": "0",
@@ -419,7 +419,7 @@
                         "Type": "TextArea",
                         "Name": "chargerTemperatureTitle",
                         "Width": 63,
-                        "Height": 19,
+                        "Height": 20,
                         "TextId": "charger_temperature_title",
                         "TextRotation": "0",
                         "Color": {
@@ -432,9 +432,9 @@
                       {
                         "Type": "TextArea",
                         "Name": "chargerTemperatureValue",
-                        "X": 128,
+                        "X": 90,
                         "Y": 2,
-                        "Width": 64,
+                        "Width": 100,
                         "Height": 17,
                         "TextId": "temperature",
                         "TextRotation": "0",
@@ -461,8 +461,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "invTemperatureTitle",
-                        "Width": 66,
-                        "Height": 19,
+                        "Width": 69,
+                        "Height": 20,
                         "TextId": "inv_temperature",
                         "TextRotation": "0",
                         "Color": {
@@ -475,9 +475,9 @@
                       {
                         "Type": "TextArea",
                         "Name": "invTemperatureValue",
-                        "X": 128,
+                        "X": 90,
                         "Y": 2,
-                        "Width": 64,
+                        "Width": 100,
                         "Height": 17,
                         "TextId": "temperature",
                         "TextRotation": "0",
@@ -1054,27 +1054,25 @@
             "Name": "chargePowerTitle",
             "X": 3,
             "Y": 3,
-            "Width": 241,
-            "Height": 41,
+            "Width": 239,
+            "Height": 31,
             "TextId": "SETTINGS_SCREEN_TITLE",
             "TextRotation": "0",
             "Color": {
-              "Red": 232,
-              "Green": 246,
-              "Blue": 251
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
             }
           },
           {
             "Type": "ScrollList",
             "Name": "scrollList1",
             "X": 2,
-            "Y": 44,
+            "Y": 34,
             "Width": 240,
-            "Height": 116,
-            "PaddingBefore": 2,
+            "Height": 125,
             "ItemTemplateName": "SettingEntry",
             "NumberofItems": 3,
-            "ItemMargin": 2,
             "Easing": "Back",
             "EasingOption": "Out",
             "SwipeAcceleration": 1.0,
@@ -1130,9 +1128,9 @@
             "TextId": "SETTING_CHARGER_POWER",
             "TextRotation": "0",
             "Color": {
-              "Red": 30,
-              "Green": 76,
-              "Blue": 230
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
             }
           }
         ],

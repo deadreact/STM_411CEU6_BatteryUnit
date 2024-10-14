@@ -24,7 +24,7 @@ SettingEntryBase::SettingEntryBase()
     add(selectedValue);
 
     title.setPosition(0, 0, 150, 24);
-    title.setColor(touchgfx::Color::getColorFromRGB(30, 76, 230));
+    title.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     title.setLinespacing(0);
     title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));
     add(title);

@@ -16,24 +16,24 @@ SettingsBase::SettingsBase() :
     boxWithBorder1.setBorderSize(2);
     add(boxWithBorder1);
 
-    chargePowerTitle.setWidth(241);
-    chargePowerTitle.setHeight(41);
-    chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
+    chargePowerTitle.setWidth(239);
+    chargePowerTitle.setHeight(31);
+    chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     chargePowerTitle.setLinespacing(0);
     chargePowerTitle.setTypedText(touchgfx::TypedText(T_SETTINGS_SCREEN_TITLE));
     add(chargePowerTitle);
 
-    scrollList1.setPosition(2, 44, 240, 116);
+    scrollList1.setPosition(2, 34, 240, 125);
     scrollList1.setHorizontal(false);
     scrollList1.setCircular(false);
     scrollList1.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
     scrollList1.setSwipeAcceleration(10);
     scrollList1.setDragAcceleration(10);
     scrollList1.setNumberOfItems(3);
-    scrollList1.setPadding(2, 0);
+    scrollList1.setPadding(0, 0);
     scrollList1.setSnapping(false);
     scrollList1.setOvershootPercentage(75);
-    scrollList1.setDrawableSize(24, 2);
+    scrollList1.setDrawableSize(24, 0);
     scrollList1.setDrawables(scrollList1ListItems, updateItemCallback);
     add(scrollList1);
 }

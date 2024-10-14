@@ -10,13 +10,13 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     switch (typography)
     {
     case Typography::DEFAULT:
-        // SourceSansPro_Black_16_4bpp
+        // seguisb_16_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
     case Typography::SMALL:
         // verdana_12_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::VALUES:
-        // SourceSansPro_Black_14_4bpp
+        // seguisb_14_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     case Typography::ERRORS:
         // SourceSansPro_Regular_16_4bpp
@@ -28,13 +28,13 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // arial_40_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::MAINTEXT:
-        // SourceSansPro_Black_18_4bpp
+        // seguisb_17_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
     case Typography::VALUELARGE2:
         // arial_70_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
     case Typography::LARGETEXT:
-        // SourceSansPro_Black_25_4bpp
+        // seguisb_25_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
     case Typography::VALUENORMAL:
         // arial_20_4bpp

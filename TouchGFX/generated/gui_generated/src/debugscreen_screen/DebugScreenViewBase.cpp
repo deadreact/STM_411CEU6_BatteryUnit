@@ -16,7 +16,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     box2.setColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     add(box2);
 
-    debugInfoContainer.setPosition(0, 169, 195, 70);
+    debugInfoContainer.setPosition(0, 170, 195, 70);
     boxWithBorder1.setPosition(0, 0, 195, 70);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(12, 27, 55));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
@@ -128,7 +128,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     temperatureTitle.setTypedText(touchgfx::TypedText(T_BMS_TEMPERATURE));
     temperatureContainer.add(temperatureTitle);
 
-    temperatureValues.setPosition(99, 2, 93, 17);
+    temperatureValues.setPosition(90, 2, 100, 17);
     temperatureValues.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureValues.setLinespacing(0);
     touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
@@ -148,7 +148,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     chargerTemperatureTitle.setTypedText(touchgfx::TypedText(T_CHARGER_TEMPERATURE_TITLE));
     chargerTemperatureContainer.add(chargerTemperatureTitle);
 
-    chargerTemperatureValue.setPosition(128, 2, 64, 17);
+    chargerTemperatureValue.setPosition(90, 2, 100, 17);
     chargerTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     chargerTemperatureValue.setLinespacing(0);
     Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
@@ -165,7 +165,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     invTemperatureTitle.setTypedText(touchgfx::TypedText(T_INV_TEMPERATURE));
     invTemperatureContainer.add(invTemperatureTitle);
 
-    invTemperatureValue.setPosition(128, 2, 64, 17);
+    invTemperatureValue.setPosition(90, 2, 100, 17);
     invTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     invTemperatureValue.setLinespacing(0);
     Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
