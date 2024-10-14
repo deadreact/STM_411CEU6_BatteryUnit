@@ -55,7 +55,7 @@ void NtcHandler::onTick()
 			m_temperature2 = ntc::calc_temperature(adcValue) / 10;
 		}
 
-	    const int temperature = std::max(m_temperature1, m_temperature2);
+	    auto temperature = std::max(m_temperature1, m_temperature2);
 
 	    auto fanValue = calcFanValue(temperature);
 		if (m_fanValue != fanValue)
