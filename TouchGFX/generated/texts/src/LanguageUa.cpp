@@ -61,7 +61,7 @@ KEEP extern const uint32_t indicesUa[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     412, // T___SINGLEUSE_572H: "0"
     241, // T___SINGLEUSE_X3W7: "<>%"
     412, // T_WILDCARDID3: "0"
-    307, // T___SINGLEUSE_EFRY: "???????"
+    307, // T_VOLTAGE_TITLE: "???????"
     9,   // T___SINGLEUSE_268O: "<>"
     412, // T_WILDCARDID1: "0"
     399, // T___SINGLEUSE_SFML: "?????"

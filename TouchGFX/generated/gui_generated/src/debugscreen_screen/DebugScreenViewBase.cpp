@@ -107,7 +107,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     voltageTitle.setXY(0, 0);
     voltageTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTitle.setLinespacing(0);
-    voltageTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EFRY));
+    voltageTitle.setTypedText(touchgfx::TypedText(T_VOLTAGE_TITLE));
     containerVoltage.add(voltageTitle);
 
     voltageTextValue.setPosition(90, 2, 100, 17);

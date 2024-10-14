@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.23.2">
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.24.1">
   <Languages>
     <Language Id="GB" />
     <Language Id="UA" />
@@ -214,9 +214,9 @@
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
-      <Text Id="__SingleUse_EFRY" Alignment="Left" TypographyId="Default">
+      <Text Id="VOLTAGE_TITLE" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Voltage</Translation>
-        <Translation Language="UA">Вольтаж</Translation>
+        <Translation Language="UA">Напруга</Translation>
       </Text>
       <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>

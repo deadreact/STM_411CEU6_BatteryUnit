@@ -329,9 +329,9 @@
                       {
                         "Type": "TextArea",
                         "Name": "voltageTitle",
-                        "Width": 65,
+                        "Width": 62,
                         "Height": 19,
-                        "TextId": "__SingleUse_EFRY",
+                        "TextId": "VOLTAGE_TITLE",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -1134,5 +1134,5 @@
     "OptionalComponents": [],
     "AdditionalFeatures": []
   },
-  "Version": "4.23.2"
+  "Version": "4.24.1"
 }
