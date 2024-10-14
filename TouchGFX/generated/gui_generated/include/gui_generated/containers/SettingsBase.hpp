@@ -7,7 +7,6 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
-#include <touchgfx/containers/ListLayout.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/scrollers/ScrollList.hpp>
 #include <gui/containers/SettingEntry.hpp>
@@ -33,9 +32,7 @@ protected:
      * Member Declarations
      */
     touchgfx::BoxWithBorder boxWithBorder1;
-    touchgfx::ListLayout titllesContainer;
     touchgfx::TextArea chargePowerTitle;
-    touchgfx::TextArea screenTypeTitle;
     touchgfx::ScrollList scrollList1;
     touchgfx::DrawableListItems<SettingEntry, 6> scrollList1ListItems;
 

@@ -36,7 +36,7 @@
                 "Name": "dateDay",
                 "Width": 44,
                 "Height": 48,
-                "TextId": "__SingleUse_1BLP",
+                "TextId": "ValueMedium_wildcard_1",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 187,
@@ -45,7 +45,7 @@
                 },
                 "AutoSize": true,
                 "Wildcard1": {
-                  "TextId": "__SingleUse_Q8T6",
+                  "TextId": "ValueMedium_01",
                   "UseBuffer": true,
                   "BufferSize": 3
                 }
@@ -56,7 +56,7 @@
                 "X": 44,
                 "Width": 154,
                 "Height": 48,
-                "TextId": "__SingleUse_2RNP",
+                "TextId": "ValueMedium_wildcard_2",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 187,
@@ -65,12 +65,12 @@
                 },
                 "AutoSize": true,
                 "Wildcard1": {
-                  "TextId": "__SingleUse_7LU3",
+                  "TextId": "ValueMedium_01",
                   "UseBuffer": true,
                   "BufferSize": 3
                 },
                 "Wildcard2": {
-                  "TextId": "__SingleUse_YKHV",
+                  "TextId": "ValueMedium_2022",
                   "UseBuffer": true,
                   "BufferSize": 5
                 }
@@ -177,7 +177,7 @@
                         "Name": "temperatureFanTitle",
                         "Width": 128,
                         "Height": 19,
-                        "TextId": "__SingleUse_YSUO",
+                        "TextId": "temperature_fan_title",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -193,7 +193,7 @@
                         "Y": 2,
                         "Width": 64,
                         "Height": 17,
-                        "TextId": "__SingleUse_W2OI",
+                        "TextId": "temperature_fan",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -201,12 +201,12 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "__SingleUse_L40D",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         },
                         "Wildcard2": {
-                          "TextId": "__SingleUse_O707",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         }
@@ -226,7 +226,7 @@
                         "Y": 1,
                         "Width": 45,
                         "Height": 19,
-                        "TextId": "__SingleUse_SFML",
+                        "TextId": "current",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -250,7 +250,7 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "wildcardId1",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         }
@@ -269,7 +269,7 @@
                         "Name": "capacityTitle",
                         "Width": 46,
                         "Height": 19,
-                        "TextId": "__SingleUse_6J8M",
+                        "TextId": "battery",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -304,7 +304,7 @@
                         "Y": 2,
                         "Width": 100,
                         "Height": 18,
-                        "TextId": "__SingleUse_X3W7",
+                        "TextId": "wildcard_persent",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -312,7 +312,7 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "__SingleUse_572H",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         }
@@ -355,7 +355,7 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "wildcardId3",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 6
                         }
@@ -390,7 +390,7 @@
                         "Y": 2,
                         "Width": 93,
                         "Height": 17,
-                        "TextId": "__SingleUse_WFR6",
+                        "TextId": "temperature_temperature",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -398,12 +398,12 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "__SingleUse_Q3TT",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         },
                         "Wildcard2": {
-                          "TextId": "__SingleUse_JFFR",
+                          "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
                         }
@@ -648,7 +648,7 @@
               "Blue": 251
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_IKNA",
+              "TextId": "Values_1",
               "UseBuffer": true,
               "BufferSize": 2
             }
@@ -668,7 +668,7 @@
               "Blue": 251
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_82HO",
+              "TextId": "Values_0dot0",
               "UseBuffer": true,
               "BufferSize": 10
             }
@@ -706,7 +706,7 @@
               "Blue": 239
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_SX70",
+              "TextId": "ValueMedium_0",
               "UseBuffer": true,
               "BufferSize": 5
             }
@@ -753,7 +753,7 @@
             "X": 2,
             "Y": 4,
             "Width": 166,
-            "Height": 22,
+            "Height": 21,
             "TextId": "REMAINING_TIME",
             "TextRotation": "0",
             "Color": {
@@ -811,7 +811,7 @@
               "Blue": 239
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_4ST7",
+              "TextId": "ValueLarge_99",
               "UseBuffer": true,
               "BufferSize": 4
             }
@@ -831,7 +831,7 @@
               "Blue": 239
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_5DW8",
+              "TextId": "ValueMedium_30",
               "UseBuffer": true,
               "BufferSize": 3
             }
@@ -872,7 +872,7 @@
               "Blue": 239
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_Y8I9",
+              "TextId": "ValueMedium_50",
               "UseBuffer": true,
               "BufferSize": 4
             }
@@ -934,7 +934,7 @@
               "Blue": 204
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_RJTF",
+              "TextId": "ValueNormal_0",
               "UseBuffer": true,
               "BufferSize": 6
             }
@@ -955,57 +955,32 @@
             "Width": 244,
             "Height": 160,
             "Color": {
-              "Red": 82,
-              "Green": 193,
-              "Blue": 196
+              "Red": 5,
+              "Green": 10,
+              "Blue": 10
             },
             "BorderColor": {
-              "Red": 20,
-              "Green": 75,
-              "Blue": 224
+              "Red": 215,
+              "Green": 216,
+              "Blue": 219
             },
             "BorderSize": 2,
             "Alpha": 240
           },
           {
-            "Type": "ListLayout",
-            "Name": "titllesContainer",
+            "Type": "TextArea",
+            "Name": "chargePowerTitle",
             "X": 3,
             "Y": 3,
-            "Width": 145,
-            "Height": 38,
-            "Direction": "South",
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "chargePowerTitle",
-                "Width": 145,
-                "Height": 19,
-                "TextId": "__SingleUse_GPWK",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 232,
-                  "Green": 246,
-                  "Blue": 251
-                },
-                "AutoSize": true
-              },
-              {
-                "Type": "TextArea",
-                "Name": "screenTypeTitle",
-                "Y": 19,
-                "Width": 53,
-                "Height": 19,
-                "TextId": "__SingleUse_PCTZ",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 232,
-                  "Green": 246,
-                  "Blue": 251
-                },
-                "AutoSize": true
-              }
-            ]
+            "Width": 241,
+            "Height": 41,
+            "TextId": "SETTINGS_SCREEN_TITLE",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            }
           },
           {
             "Type": "ScrollList",

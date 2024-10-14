@@ -11,29 +11,18 @@ SettingsBase::SettingsBase() :
     setWidth(244);
     setHeight(160);
     boxWithBorder1.setPosition(0, 0, 244, 160);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(82, 193, 196));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(20, 75, 224));
+    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(5, 10, 10));
+    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(215, 216, 219));
     boxWithBorder1.setBorderSize(2);
     boxWithBorder1.setAlpha(240);
     add(boxWithBorder1);
 
-    titllesContainer.setXY(3, 3);
-    titllesContainer.setDirection(touchgfx::SOUTH);
-    chargePowerTitle.setWidth(145);
-    chargePowerTitle.setHeight(19);
+    chargePowerTitle.setWidth(241);
+    chargePowerTitle.setHeight(41);
     chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     chargePowerTitle.setLinespacing(0);
-    chargePowerTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GPWK));
-    titllesContainer.add(chargePowerTitle);
-
-    screenTypeTitle.setWidth(53);
-    screenTypeTitle.setHeight(19);
-    screenTypeTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
-    screenTypeTitle.setLinespacing(0);
-    screenTypeTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_PCTZ));
-    titllesContainer.add(screenTypeTitle);
-
-    add(titllesContainer);
+    chargePowerTitle.setTypedText(touchgfx::TypedText(T_SETTINGS_SCREEN_TITLE));
+    add(chargePowerTitle);
 
     scrollList1.setPosition(2, 44, 240, 116);
     scrollList1.setHorizontal(false);

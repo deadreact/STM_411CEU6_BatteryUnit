@@ -35,7 +35,7 @@ ChargeTimeBase::ChargeTimeBase()
     value.setPosition(0, 12, 106, 98);
     value.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4ST7).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_VALUELARGE_99).getText());
     value.setWildcard(valueBuffer);
     value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_A1VM));
     add(value);
@@ -43,7 +43,7 @@ ChargeTimeBase::ChargeTimeBase()
     valueAdditional.setPosition(116, 53, 44, 48);
     valueAdditional.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     valueAdditional.setLinespacing(0);
-    Unicode::snprintf(valueAdditionalBuffer, VALUEADDITIONAL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5DW8).getText());
+    Unicode::snprintf(valueAdditionalBuffer, VALUEADDITIONAL_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_30).getText());
     valueAdditional.setWildcard(valueAdditionalBuffer);
     valueAdditional.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7F9D));
     add(valueAdditional);

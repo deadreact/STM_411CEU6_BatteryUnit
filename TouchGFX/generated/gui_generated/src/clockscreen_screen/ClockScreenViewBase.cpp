@@ -26,22 +26,22 @@ ClockScreenViewBase::ClockScreenViewBase()
     dateDay.setHeight(48);
     dateDay.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
     dateDay.setLinespacing(0);
-    Unicode::snprintf(dateDayBuffer, DATEDAY_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Q8T6).getText());
+    Unicode::snprintf(dateDayBuffer, DATEDAY_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_01).getText());
     dateDay.setWildcard(dateDayBuffer);
     dateDay.resizeToCurrentText();
-    dateDay.setTypedText(touchgfx::TypedText(T___SINGLEUSE_1BLP));
+    dateDay.setTypedText(touchgfx::TypedText(T_VALUEMEDIUM_WILDCARD_1));
     listLayout.add(dateDay);
 
     date.setWidth(154);
     date.setHeight(48);
     date.setColor(touchgfx::Color::getColorFromRGB(187, 187, 187));
     date.setLinespacing(0);
-    touchgfx::Unicode::snprintf(dateBuffer1, DATEBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_7LU3).getText());
+    touchgfx::Unicode::snprintf(dateBuffer1, DATEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_01).getText());
     date.setWildcard1(dateBuffer1);
-    touchgfx::Unicode::snprintf(dateBuffer2, DATEBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_YKHV).getText());
+    touchgfx::Unicode::snprintf(dateBuffer2, DATEBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_2022).getText());
     date.setWildcard2(dateBuffer2);
     date.resizeToCurrentText();
-    date.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2RNP));
+    date.setTypedText(touchgfx::TypedText(T_VALUEMEDIUM_WILDCARD_2));
     listLayout.add(date);
 
     alarm.setBitmap(touchgfx::Bitmap(BITMAP_ICON17_ID));

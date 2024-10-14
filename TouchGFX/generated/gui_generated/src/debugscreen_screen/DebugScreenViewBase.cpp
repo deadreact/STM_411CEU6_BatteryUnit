@@ -42,17 +42,17 @@ DebugScreenViewBase::DebugScreenViewBase()
     temperatureFanTitle.setXY(0, 0);
     temperatureFanTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureFanTitle.setLinespacing(0);
-    temperatureFanTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YSUO));
+    temperatureFanTitle.setTypedText(touchgfx::TypedText(T_TEMPERATURE_FAN_TITLE));
     temperatureFanContainer.add(temperatureFanTitle);
 
     temperatureFan.setPosition(128, 2, 64, 17);
     temperatureFan.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureFan.setLinespacing(0);
-    touchgfx::Unicode::snprintf(temperatureFanBuffer1, TEMPERATUREFANBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_L40D).getText());
+    touchgfx::Unicode::snprintf(temperatureFanBuffer1, TEMPERATUREFANBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     temperatureFan.setWildcard1(temperatureFanBuffer1);
-    touchgfx::Unicode::snprintf(temperatureFanBuffer2, TEMPERATUREFANBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_O707).getText());
+    touchgfx::Unicode::snprintf(temperatureFanBuffer2, TEMPERATUREFANBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     temperatureFan.setWildcard2(temperatureFanBuffer2);
-    temperatureFan.setTypedText(touchgfx::TypedText(T___SINGLEUSE_W2OI));
+    temperatureFan.setTypedText(touchgfx::TypedText(T_TEMPERATURE_FAN));
     temperatureFanContainer.add(temperatureFan);
 
     batteryMainInfo.add(temperatureFanContainer);
@@ -62,13 +62,13 @@ DebugScreenViewBase::DebugScreenViewBase()
     currentTitle.setXY(0, 1);
     currentTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTitle.setLinespacing(0);
-    currentTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SFML));
+    currentTitle.setTypedText(touchgfx::TypedText(T_CURRENT));
     containerCurrent.add(currentTitle);
 
     currentTextValue.setPosition(90, 2, 100, 18);
     currentTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTextValue.setLinespacing(0);
-    Unicode::snprintf(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID1).getText());
+    Unicode::snprintf(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     currentTextValue.setWildcard(currentTextValueBuffer);
     currentTextValue.setTypedText(touchgfx::TypedText(T_BATCAPACITY));
     containerCurrent.add(currentTextValue);
@@ -80,7 +80,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     capacityTitle.setXY(0, 0);
     capacityTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTitle.setLinespacing(0);
-    capacityTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6J8M));
+    capacityTitle.setTypedText(touchgfx::TypedText(T_BATTERY));
     containerCapacity.add(capacityTitle);
 
     capacityValue.setXY(90, 3);
@@ -95,9 +95,9 @@ DebugScreenViewBase::DebugScreenViewBase()
     capacityTextValue.setPosition(90, 2, 100, 18);
     capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTextValue.setLinespacing(0);
-    Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_572H).getText());
+    Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     capacityTextValue.setWildcard(capacityTextValueBuffer);
-    capacityTextValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_X3W7));
+    capacityTextValue.setTypedText(touchgfx::TypedText(T_WILDCARD_PERSENT));
     containerCapacity.add(capacityTextValue);
 
     batteryMainInfo.add(containerCapacity);
@@ -113,7 +113,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     voltageTextValue.setPosition(90, 2, 100, 17);
     voltageTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTextValue.setLinespacing(0);
-    Unicode::snprintf(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_WILDCARDID3).getText());
+    Unicode::snprintf(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     voltageTextValue.setWildcard(voltageTextValueBuffer);
     voltageTextValue.setTypedText(touchgfx::TypedText(T_VOLTAGEVAL));
     containerVoltage.add(voltageTextValue);
@@ -131,11 +131,11 @@ DebugScreenViewBase::DebugScreenViewBase()
     temperatureValues.setPosition(99, 2, 93, 17);
     temperatureValues.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureValues.setLinespacing(0);
-    touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Q3TT).getText());
+    touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     temperatureValues.setWildcard1(temperatureValuesBuffer1);
-    touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JFFR).getText());
+    touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
     temperatureValues.setWildcard2(temperatureValuesBuffer2);
-    temperatureValues.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WFR6));
+    temperatureValues.setTypedText(touchgfx::TypedText(T_TEMPERATURE_TEMPERATURE));
     temperatureContainer.add(temperatureValues);
 
     batteryMainInfo.add(temperatureContainer);

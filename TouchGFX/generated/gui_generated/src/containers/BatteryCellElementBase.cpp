@@ -17,7 +17,7 @@ BatteryCellElementBase::BatteryCellElementBase()
     index.setPosition(12, 1, 29, 17);
     index.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     index.setLinespacing(0);
-    Unicode::snprintf(indexBuffer, INDEX_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_IKNA).getText());
+    Unicode::snprintf(indexBuffer, INDEX_SIZE, "%s", touchgfx::TypedText(T_VALUES_1).getText());
     index.setWildcard(indexBuffer);
     index.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GCQW));
     add(index);
@@ -25,7 +25,7 @@ BatteryCellElementBase::BatteryCellElementBase()
     value.setPosition(41, 1, 73, 16);
     value.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_82HO).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0DOT0).getText());
     value.setWildcard(valueBuffer);
     value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7FIN));
     add(value);

@@ -13,7 +13,7 @@ BatteryStatusBase::BatteryStatusBase()
     capacityTextValue.setPosition(0, 0, 110, 51);
     capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     capacityTextValue.setLinespacing(0);
-    Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y8I9).getText());
+    Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_50).getText());
     capacityTextValue.setWildcard(capacityTextValueBuffer);
     capacityTextValue.setTypedText(touchgfx::TypedText(T_SOC));
     add(capacityTextValue);
@@ -37,7 +37,7 @@ BatteryStatusBase::BatteryStatusBase()
     voltageValue.setPosition(0, 89, 110, 25);
     voltageValue.setColor(touchgfx::Color::getColorFromRGB(104, 127, 204));
     voltageValue.setLinespacing(0);
-    Unicode::snprintf(voltageValueBuffer, VOLTAGEVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJTF).getText());
+    Unicode::snprintf(voltageValueBuffer, VOLTAGEVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUENORMAL_0).getText());
     voltageValue.setWildcard(voltageValueBuffer);
     voltageValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8789));
     add(voltageValue);

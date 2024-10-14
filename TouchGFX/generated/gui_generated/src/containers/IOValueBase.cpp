@@ -12,7 +12,7 @@ IOValueBase::IOValueBase()
     value.setPosition(160, 0, 117, 50);
     value.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_SX70).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_VALUEMEDIUM_0).getText());
     value.setWildcard(valueBuffer);
     value.setTypedText(touchgfx::TypedText(T_IOWILDCARD));
     add(value);
