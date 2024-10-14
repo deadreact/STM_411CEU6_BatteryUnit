@@ -15,8 +15,8 @@
 enum class ScreenId
 {
 	DebugScreen = 0,
-	ClockScreen,
 	MainScreen,
+//	ClockScreen,
 
 	Count,
 	DefaultScreen = MainScreen

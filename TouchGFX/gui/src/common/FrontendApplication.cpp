@@ -36,9 +36,9 @@ void FrontendApplication::showScreen(ScreenId id)
 		case ScreenId::MainScreen:
 			touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
-		case ScreenId::ClockScreen:
-			touchgfx::makeTransition<ClockScreenView, ClockScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-			break;
+//		case ScreenId::ClockScreen:
+//			touchgfx::makeTransition<ClockScreenView, ClockScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+//			break;
 		default:
 			break;
 		}
