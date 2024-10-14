@@ -30,7 +30,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId DEFAULT = 0;     // SourceSansPro_Black_16_4bpp
     static const touchgfx::FontId SMALL = 1;       // verdana_12_4bpp
     static const touchgfx::FontId VALUES = 2;      // SourceSansPro_Black_14_4bpp
-    static const touchgfx::FontId ERRORS = 3;      // SourceSansPro_Regular_20_4bpp
+    static const touchgfx::FontId ERRORS = 3;      // SourceSansPro_Regular_16_4bpp
     static const touchgfx::FontId VALUELARGE = 4;  // arial_90_4bpp
     static const touchgfx::FontId VALUEMEDIUM = 5; // arial_40_4bpp
     static const touchgfx::FontId MAINTEXT = 6;    // SourceSansPro_Black_18_4bpp

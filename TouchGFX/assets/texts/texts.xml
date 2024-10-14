@@ -60,10 +60,10 @@
     <TextGroup Id="Unsorted">
       <Text Id="inv_temperature" Alignment="Left" TypographyId="Default">
         <Translation Language="GB">Inverter/Charger</Translation>
-        <Translation Language="UA">Інвертор/Fan</Translation>
+        <Translation Language="UA">Інвертор</Translation>
       </Text>
       <Text Id="temperature" Alignment="Right" TypographyId="Values">
-        <Translation Language="GB">/°C&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;°C</Translation>
         <Translation Language="UA">&lt;value&gt;°C</Translation>
       </Text>
       <Text Id="TIME_H_M" Alignment="Right" TypographyId="Values">
@@ -228,7 +228,7 @@
     <Typography Id="Default" Font="SourceSansPro-Black.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="SourceSansPro-Black.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
+    <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
     <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="MainText" Font="SourceSansPro-Black.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />

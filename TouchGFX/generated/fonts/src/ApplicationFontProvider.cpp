@@ -19,7 +19,7 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // SourceSansPro_Black_14_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     case Typography::ERRORS:
-        // SourceSansPro_Regular_20_4bpp
+        // SourceSansPro_Regular_16_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::VALUELARGE:
         // arial_90_4bpp

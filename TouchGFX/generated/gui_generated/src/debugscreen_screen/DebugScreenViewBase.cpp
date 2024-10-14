@@ -16,14 +16,14 @@ DebugScreenViewBase::DebugScreenViewBase()
     box2.setColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     add(box2);
 
-    debugInfoContainer.setPosition(0, 190, 195, 50);
-    boxWithBorder1.setPosition(0, 0, 195, 50);
+    debugInfoContainer.setPosition(0, 169, 195, 70);
+    boxWithBorder1.setPosition(0, 0, 195, 70);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(12, 27, 55));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(80, 119, 140));
     boxWithBorder1.setBorderSize(3);
     debugInfoContainer.add(boxWithBorder1);
 
-    errorLabel.setPosition(4, 0, 188, 50);
+    errorLabel.setPosition(4, 0, 188, 70);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
     errorLabel.setLinespacing(0);
     errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
@@ -38,14 +38,14 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.setXY(0, 0);
     batteryMainInfo.setDirection(touchgfx::SOUTH);
     containerCapacity.setWidth(190);
-    containerCapacity.setHeight(20);
+    containerCapacity.setHeight(19);
     capacityTitle.setXY(0, 0);
     capacityTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTitle.setLinespacing(0);
     capacityTitle.setTypedText(touchgfx::TypedText(T_BATTERY));
     containerCapacity.add(capacityTitle);
 
-    capacityValue.setXY(90, 3);
+    capacityValue.setXY(90, 1);
     capacityValue.setProgressIndicatorPosition(0, 0, 100, 18);
     capacityValue.setRange(0, 100);
     capacityValue.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
@@ -54,7 +54,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     capacityValue.setValue(60);
     containerCapacity.add(capacityValue);
 
-    capacityTextValue.setPosition(90, 2, 100, 18);
+    capacityTextValue.setPosition(90, 1, 100, 18);
     capacityTextValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTextValue.setLinespacing(0);
     Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
@@ -65,7 +65,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerCapacity);
 
     capacityTimeContainer.setWidth(190);
-    capacityTimeContainer.setHeight(20);
+    capacityTimeContainer.setHeight(19);
     capacityTimeValue.setPosition(128, 2, 64, 17);
     capacityTimeValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     capacityTimeValue.setLinespacing(0);
@@ -85,7 +85,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(capacityTimeContainer);
 
     containerCurrent.setWidth(190);
-    containerCurrent.setHeight(20);
+    containerCurrent.setHeight(19);
     currentTitle.setXY(0, 0);
     currentTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     currentTitle.setLinespacing(0);
@@ -103,7 +103,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerCurrent);
 
     containerVoltage.setWidth(190);
-    containerVoltage.setHeight(20);
+    containerVoltage.setHeight(19);
     voltageTitle.setXY(0, 0);
     voltageTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     voltageTitle.setLinespacing(0);
@@ -121,7 +121,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(containerVoltage);
 
     temperatureContainer.setWidth(190);
-    temperatureContainer.setHeight(20);
+    temperatureContainer.setHeight(19);
     temperatureTitle.setXY(0, 0);
     temperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     temperatureTitle.setLinespacing(0);
@@ -141,7 +141,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     batteryMainInfo.add(temperatureContainer);
 
     chargerTemperatureContainer.setWidth(190);
-    chargerTemperatureContainer.setHeight(20);
+    chargerTemperatureContainer.setHeight(19);
     chargerTemperatureTitle.setXY(0, 0);
     chargerTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     chargerTemperatureTitle.setLinespacing(0);
@@ -158,7 +158,7 @@ DebugScreenViewBase::DebugScreenViewBase()
 
     batteryMainInfo.add(chargerTemperatureContainer);
 
-    invTemperatureContainer.setPosition(0, 120, 190, 20);
+    invTemperatureContainer.setPosition(0, 114, 190, 19);
     invTemperatureTitle.setXY(0, 0);
     invTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     invTemperatureTitle.setLinespacing(0);
@@ -168,11 +168,9 @@ DebugScreenViewBase::DebugScreenViewBase()
     invTemperatureValue.setPosition(128, 2, 64, 17);
     invTemperatureValue.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     invTemperatureValue.setLinespacing(0);
-    touchgfx::Unicode::snprintf(invTemperatureValueBuffer1, INVTEMPERATUREVALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
-    invTemperatureValue.setWildcard1(invTemperatureValueBuffer1);
-    touchgfx::Unicode::snprintf(invTemperatureValueBuffer2, INVTEMPERATUREVALUEBUFFER2_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
-    invTemperatureValue.setWildcard2(invTemperatureValueBuffer2);
-    invTemperatureValue.setTypedText(touchgfx::TypedText(T_TEMPERATURE_TEMPERATURE));
+    Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%s", touchgfx::TypedText(T_VALUES_0).getText());
+    invTemperatureValue.setWildcard(invTemperatureValueBuffer);
+    invTemperatureValue.setTypedText(touchgfx::TypedText(T_TEMPERATURE));
     invTemperatureContainer.add(invTemperatureValue);
 
     batteryMainInfo.add(invTemperatureContainer);

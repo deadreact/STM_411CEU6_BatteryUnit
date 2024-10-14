@@ -14,7 +14,6 @@ SettingsBase::SettingsBase() :
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(5, 10, 10));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(215, 216, 219));
     boxWithBorder1.setBorderSize(2);
-    boxWithBorder1.setAlpha(240);
     add(boxWithBorder1);
 
     chargePowerTitle.setWidth(241);

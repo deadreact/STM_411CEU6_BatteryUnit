@@ -107,15 +107,15 @@
           {
             "Type": "Container",
             "Name": "debugInfoContainer",
-            "Y": 190,
+            "Y": 169,
             "Width": 195,
-            "Height": 50,
+            "Height": 70,
             "Components": [
               {
                 "Type": "BoxWithBorder",
                 "Name": "boxWithBorder1",
                 "Width": 195,
-                "Height": 50,
+                "Height": 70,
                 "Color": {
                   "Red": 12,
                   "Green": 27,
@@ -133,7 +133,7 @@
                 "Name": "errorLabel",
                 "X": 4,
                 "Width": 188,
-                "Height": 50,
+                "Height": 70,
                 "TextId": "__SingleUse_268O",
                 "TextRotation": "0",
                 "Color": {
@@ -162,14 +162,14 @@
                 "Type": "ListLayout",
                 "Name": "batteryMainInfo",
                 "Width": 190,
-                "Height": 140,
+                "Height": 133,
                 "Direction": "South",
                 "Components": [
                   {
                     "Type": "Container",
                     "Name": "containerCapacity",
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -189,7 +189,7 @@
                         "Type": "BoxProgress",
                         "Name": "capacityValue",
                         "X": 90,
-                        "Y": 3,
+                        "Y": 1,
                         "Width": 100,
                         "Height": 18,
                         "Color": {
@@ -208,7 +208,7 @@
                         "Type": "TextArea",
                         "Name": "capacityTextValue",
                         "X": 90,
-                        "Y": 2,
+                        "Y": 1,
                         "Width": 100,
                         "Height": 18,
                         "TextId": "wildcard_persent",
@@ -229,9 +229,9 @@
                   {
                     "Type": "Container",
                     "Name": "capacityTimeContainer",
-                    "Y": 20,
+                    "Y": 19,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -277,9 +277,9 @@
                   {
                     "Type": "Container",
                     "Name": "containerCurrent",
-                    "Y": 40,
+                    "Y": 38,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -320,9 +320,9 @@
                   {
                     "Type": "Container",
                     "Name": "containerVoltage",
-                    "Y": 60,
+                    "Y": 57,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -363,9 +363,9 @@
                   {
                     "Type": "Container",
                     "Name": "temperatureContainer",
-                    "Y": 80,
+                    "Y": 76,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -411,9 +411,9 @@
                   {
                     "Type": "Container",
                     "Name": "chargerTemperatureContainer",
-                    "Y": 100,
+                    "Y": 95,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -454,14 +454,14 @@
                   {
                     "Type": "Container",
                     "Name": "invTemperatureContainer",
-                    "Y": 120,
+                    "Y": 114,
                     "Width": 190,
-                    "Height": 20,
+                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "invTemperatureTitle",
-                        "Width": 97,
+                        "Width": 66,
                         "Height": 19,
                         "TextId": "inv_temperature",
                         "TextRotation": "0",
@@ -479,7 +479,7 @@
                         "Y": 2,
                         "Width": 64,
                         "Height": 17,
-                        "TextId": "temperature_temperature",
+                        "TextId": "temperature",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -487,11 +487,6 @@
                           "Blue": 251
                         },
                         "Wildcard1": {
-                          "TextId": "Values_0",
-                          "UseBuffer": true,
-                          "BufferSize": 5
-                        },
-                        "Wildcard2": {
                           "TextId": "Values_0",
                           "UseBuffer": true,
                           "BufferSize": 5
@@ -1052,8 +1047,7 @@
               "Green": 216,
               "Blue": 219
             },
-            "BorderSize": 2,
-            "Alpha": 240
+            "BorderSize": 2
           },
           {
             "Type": "TextArea",

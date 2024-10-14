@@ -58,7 +58,7 @@ protected:
     touchgfx::TextAreaWithOneWildcard chargerTemperatureValue;
     touchgfx::Container invTemperatureContainer;
     touchgfx::TextArea invTemperatureTitle;
-    touchgfx::TextAreaWithTwoWildcards invTemperatureValue;
+    touchgfx::TextAreaWithOneWildcard invTemperatureValue;
     touchgfx::ListLayout batteryCellInfo;
 
     /*
@@ -82,10 +82,8 @@ protected:
     touchgfx::Unicode::UnicodeChar temperatureValuesBuffer2[TEMPERATUREVALUESBUFFER2_SIZE];
     static const uint16_t CHARGERTEMPERATUREVALUE_SIZE = 5;
     touchgfx::Unicode::UnicodeChar chargerTemperatureValueBuffer[CHARGERTEMPERATUREVALUE_SIZE];
-    static const uint16_t INVTEMPERATUREVALUEBUFFER1_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar invTemperatureValueBuffer1[INVTEMPERATUREVALUEBUFFER1_SIZE];
-    static const uint16_t INVTEMPERATUREVALUEBUFFER2_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar invTemperatureValueBuffer2[INVTEMPERATUREVALUEBUFFER2_SIZE];
+    static const uint16_t INVTEMPERATUREVALUE_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar invTemperatureValueBuffer[INVTEMPERATUREVALUE_SIZE];
 
 private:
 

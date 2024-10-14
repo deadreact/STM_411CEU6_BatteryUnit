@@ -35,12 +35,11 @@ void DebugScreenView::handleTickEvent()
 {
 	const auto& data = SharedData::getData();
 
-	if (data.fan != fan || data.temperatureInv != temperatureInv)
+	if (data.temperatureInv != temperatureInv)
 	{
 		temperatureInv = data.temperatureInv;
-		fan = data.fan;
-		touchgfx::Unicode::snprintf(invTemperatureValueBuffer1, INVTEMPERATUREVALUEBUFFER1_SIZE, "%d", (int)data.temperatureInv);
-		touchgfx::Unicode::snprintf(invTemperatureValueBuffer2, INVTEMPERATUREVALUEBUFFER2_SIZE, "%d", data.fan);
+//		fan = data.fan;
+		touchgfx::Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%d", (int)data.temperatureInv);
 		invTemperatureValue.invalidate();
 	}
 
@@ -106,6 +105,19 @@ void DebugScreenView::handleTickEvent()
 			colorizeCells();
 			batteryCellInfo.invalidateContent();
 		}
+
+		int chargeValue = data.bms.calcTimeRemain(data.bms.current);
+		if (chargeValue != m_chargeTimeSec)
+		{
+			const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
+			const int hours = absVal / SEC_IN_HOUR;
+			const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
+			touchgfx::Unicode::snprintf(capacityTimeValueBuffer1, CAPACITYTIMEVALUEBUFFER1_SIZE, "%d", hours);
+			touchgfx::Unicode::snprintf(capacityTimeValueBuffer2, CAPACITYTIMEVALUEBUFFER2_SIZE, "%d", mins);
+			m_chargeTimeSec = chargeValue;
+		}
+
+		m_bmsData = data.bms;
 	}
 
 	bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
