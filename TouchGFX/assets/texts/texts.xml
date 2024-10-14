@@ -58,25 +58,29 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
-      <Text Id="temperature_fan_title" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Temperature/Fan</Translation>
-        <Translation Language="UA">Температура/Fan</Translation>
+      <Text Id="TIME_H_M" Alignment="Right" TypographyId="Values">
+        <Translation Language="GB">&lt;hours&gt;h &lt;minutes&gt;m</Translation>
+        <Translation Language="UA">&lt;hours&gt;г &lt;minutes&gt;хв</Translation>
       </Text>
-      <Text Id="temperature_fan" Alignment="Right" TypographyId="Values">
-        <Translation Language="GB">&lt;value&gt;*C/&lt;value&gt;</Translation>
-        <Translation Language="UA">&lt;value&gt;*C/&lt;value&gt;</Translation>
+      <Text Id="capacity_time_title" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">(Un)Charge time</Translation>
+        <Translation Language="UA">Час зар/розряду</Translation>
+      </Text>
+      <Text Id="inv_charger_temperature_title" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Inverter/Charger</Translation>
+        <Translation Language="UA">Інвертор/Зарядне</Translation>
       </Text>
       <Text Id="Values_0" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="temperature_temperature" Alignment="Right" TypographyId="Values">
-        <Translation Language="GB">&lt;value&gt;*C &lt;value&gt;*C</Translation>
-        <Translation Language="UA">&lt;value&gt;*C &lt;value&gt;*C</Translation>
+        <Translation Language="GB">&lt;value&gt;°C/&lt;value&gt;°C</Translation>
+        <Translation Language="UA">&lt;value&gt;°C/&lt;value&gt;°C</Translation>
       </Text>
-      <Text Id="temperature" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Temperature</Translation>
-        <Translation Language="UA">Температура</Translation>
+      <Text Id="bms_temperature" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">BMS t1/t2</Translation>
+        <Translation Language="UA">BMS t1/t2</Translation>
       </Text>
       <Text Id="ValueMedium_2022" Alignment="Left" TypographyId="ValueMedium">
         <Translation Language="GB">2022</Translation>
@@ -206,9 +210,9 @@
         <Translation Language="GB">50</Translation>
         <Translation Language="UA">50</Translation>
       </Text>
-      <Text Id="batCapacity" Alignment="Center" TypographyId="Values">
+      <Text Id="batCapacity" Alignment="Right" TypographyId="Values">
         <Translation Language="GB">&lt;value&gt;</Translation>
-        <Translation Language="UA">&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;A</Translation>
       </Text>
     </TextGroup>
   </Texts>

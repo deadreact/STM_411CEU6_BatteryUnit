@@ -114,8 +114,9 @@
               {
                 "Type": "BoxWithBorder",
                 "Name": "boxWithBorder1",
+                "Y": 41,
                 "Width": 195,
-                "Height": 113,
+                "Height": 72,
                 "Color": {
                   "Red": 12,
                   "Green": 27,
@@ -126,15 +127,15 @@
                   "Green": 119,
                   "Blue": 140
                 },
-                "BorderSize": 5
+                "BorderSize": 3
               },
               {
                 "Type": "TextArea",
                 "Name": "errorLabel",
-                "X": 10,
-                "Y": 27,
-                "Width": 174,
-                "Height": 74,
+                "X": 4,
+                "Y": 45,
+                "Width": 188,
+                "Height": 66,
                 "TextId": "__SingleUse_268O",
                 "TextRotation": "0",
                 "Color": {
@@ -154,115 +155,23 @@
           {
             "Type": "Container",
             "Name": "batteryInfo",
-            "X": 10,
-            "Y": 26,
-            "Width": 300,
-            "Height": 208,
+            "X": 4,
+            "Y": 22,
+            "Width": 312,
+            "Height": 215,
             "Components": [
               {
                 "Type": "ListLayout",
                 "Name": "batteryMainInfo",
                 "Width": 190,
-                "Height": 96,
+                "Height": 120,
                 "Direction": "South",
                 "Components": [
                   {
                     "Type": "Container",
-                    "Name": "temperatureFanContainer",
-                    "Width": 190,
-                    "Height": 19,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "temperatureFanTitle",
-                        "Width": 128,
-                        "Height": 19,
-                        "TextId": "temperature_fan_title",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 232,
-                          "Green": 246,
-                          "Blue": 251
-                        },
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "temperatureFan",
-                        "X": 128,
-                        "Y": 2,
-                        "Width": 64,
-                        "Height": 17,
-                        "TextId": "temperature_fan",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 232,
-                          "Green": 246,
-                          "Blue": 251
-                        },
-                        "Wildcard1": {
-                          "TextId": "Values_0",
-                          "UseBuffer": true,
-                          "BufferSize": 5
-                        },
-                        "Wildcard2": {
-                          "TextId": "Values_0",
-                          "UseBuffer": true,
-                          "BufferSize": 5
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "Type": "Container",
-                    "Name": "containerCurrent",
-                    "Y": 19,
+                    "Name": "containerCapacity",
                     "Width": 190,
                     "Height": 20,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "currentTitle",
-                        "Y": 1,
-                        "Width": 45,
-                        "Height": 19,
-                        "TextId": "current",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 232,
-                          "Green": 246,
-                          "Blue": 251
-                        },
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "currentTextValue",
-                        "X": 90,
-                        "Y": 2,
-                        "Width": 100,
-                        "Height": 18,
-                        "TextId": "batCapacity",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 232,
-                          "Green": 246,
-                          "Blue": 251
-                        },
-                        "Wildcard1": {
-                          "TextId": "Values_0",
-                          "UseBuffer": true,
-                          "BufferSize": 5
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "Type": "Container",
-                    "Name": "containerCapacity",
-                    "Y": 39,
-                    "Width": 190,
-                    "Height": 19,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -321,10 +230,101 @@
                   },
                   {
                     "Type": "Container",
-                    "Name": "containerVoltage",
-                    "Y": 58,
+                    "Name": "capacityTimeContainer",
+                    "Y": 20,
                     "Width": 190,
-                    "Height": 19,
+                    "Height": 20,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTimeValue",
+                        "X": 128,
+                        "Y": 2,
+                        "Width": 64,
+                        "Height": 17,
+                        "TextId": "TIME_H_M",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 2
+                        },
+                        "Wildcard2": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 2
+                        }
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTimeTitle",
+                        "Width": 124,
+                        "Height": 19,
+                        "TextId": "capacity_time_title",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "containerCurrent",
+                    "Y": 40,
+                    "Width": 190,
+                    "Height": 20,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "currentTitle",
+                        "Width": 45,
+                        "Height": 19,
+                        "TextId": "current",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "currentTextValue",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "batCapacity",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "containerVoltage",
+                    "Y": 60,
+                    "Width": 190,
+                    "Height": 20,
                     "Components": [
                       {
                         "Type": "TextArea",
@@ -365,16 +365,16 @@
                   {
                     "Type": "Container",
                     "Name": "temperatureContainer",
-                    "Y": 77,
+                    "Y": 80,
                     "Width": 190,
-                    "Height": 19,
+                    "Height": 20,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "temperatureTitle",
-                        "Width": 97,
+                        "Width": 69,
                         "Height": 19,
-                        "TextId": "temperature",
+                        "TextId": "bms_temperature",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 232,
@@ -409,6 +409,54 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "temperatureFanContainer",
+                    "Y": 100,
+                    "Width": 190,
+                    "Height": 20,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "invChargerTemperatureTitle",
+                        "Width": 134,
+                        "Height": 19,
+                        "TextId": "inv_charger_temperature_title",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "invChargerTemperatureValue",
+                        "X": 128,
+                        "Y": 2,
+                        "Width": 64,
+                        "Height": 17,
+                        "TextId": "temperature_temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        },
+                        "Wildcard2": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
                   }
                 ]
               },
@@ -416,7 +464,6 @@
                 "Type": "ListLayout",
                 "Name": "batteryCellInfo",
                 "X": 192,
-                "Y": 3,
                 "Width": 117,
                 "Height": 25,
                 "Direction": "South",

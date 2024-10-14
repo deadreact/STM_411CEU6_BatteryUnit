@@ -109,8 +109,9 @@ void IdleProcess::Impl::handleEvents()
 
     sharedData.invState = m_invHandler.getState();
     sharedData.usbState = m_usbHandler.isOn();
-    sharedData.temperature = m_fanHandler.getTemperature();
-    sharedData.fan = m_fanHandler.getFan();
+    sharedData.temperatureInv = m_fanHandler.getTemperature1();
+    sharedData.temperatureCharg = m_fanHandler.getTemperature2();
+//    sharedData.fan = m_fanHandler.getFan();
 
     sharedData.settings = m_settingsHandler.getData();
     sharedData.screenId = ScreenId(sharedData.settings.getValue(1));

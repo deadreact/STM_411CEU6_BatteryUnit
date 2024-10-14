@@ -37,22 +37,25 @@ protected:
     touchgfx::TextAreaWithOneWildcard errorLabel;
     touchgfx::Container batteryInfo;
     touchgfx::ListLayout batteryMainInfo;
-    touchgfx::Container temperatureFanContainer;
-    touchgfx::TextArea temperatureFanTitle;
-    touchgfx::TextAreaWithTwoWildcards temperatureFan;
-    touchgfx::Container containerCurrent;
-    touchgfx::TextArea currentTitle;
-    touchgfx::TextAreaWithOneWildcard currentTextValue;
     touchgfx::Container containerCapacity;
     touchgfx::TextArea capacityTitle;
     touchgfx::BoxProgress capacityValue;
     touchgfx::TextAreaWithOneWildcard capacityTextValue;
+    touchgfx::Container capacityTimeContainer;
+    touchgfx::TextAreaWithTwoWildcards capacityTimeValue;
+    touchgfx::TextArea capacityTimeTitle;
+    touchgfx::Container containerCurrent;
+    touchgfx::TextArea currentTitle;
+    touchgfx::TextAreaWithOneWildcard currentTextValue;
     touchgfx::Container containerVoltage;
     touchgfx::TextArea voltageTitle;
     touchgfx::TextAreaWithOneWildcard voltageTextValue;
     touchgfx::Container temperatureContainer;
     touchgfx::TextArea temperatureTitle;
     touchgfx::TextAreaWithTwoWildcards temperatureValues;
+    touchgfx::Container temperatureFanContainer;
+    touchgfx::TextArea invChargerTemperatureTitle;
+    touchgfx::TextAreaWithTwoWildcards invChargerTemperatureValue;
     touchgfx::ListLayout batteryCellInfo;
 
     /*
@@ -60,20 +63,24 @@ protected:
      */
     static const uint16_t ERRORLABEL_SIZE = 40;
     touchgfx::Unicode::UnicodeChar errorLabelBuffer[ERRORLABEL_SIZE];
-    static const uint16_t TEMPERATUREFANBUFFER1_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar temperatureFanBuffer1[TEMPERATUREFANBUFFER1_SIZE];
-    static const uint16_t TEMPERATUREFANBUFFER2_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar temperatureFanBuffer2[TEMPERATUREFANBUFFER2_SIZE];
-    static const uint16_t CURRENTTEXTVALUE_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar currentTextValueBuffer[CURRENTTEXTVALUE_SIZE];
     static const uint16_t CAPACITYTEXTVALUE_SIZE = 5;
     touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
+    static const uint16_t CAPACITYTIMEVALUEBUFFER1_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar capacityTimeValueBuffer1[CAPACITYTIMEVALUEBUFFER1_SIZE];
+    static const uint16_t CAPACITYTIMEVALUEBUFFER2_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar capacityTimeValueBuffer2[CAPACITYTIMEVALUEBUFFER2_SIZE];
+    static const uint16_t CURRENTTEXTVALUE_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar currentTextValueBuffer[CURRENTTEXTVALUE_SIZE];
     static const uint16_t VOLTAGETEXTVALUE_SIZE = 6;
     touchgfx::Unicode::UnicodeChar voltageTextValueBuffer[VOLTAGETEXTVALUE_SIZE];
     static const uint16_t TEMPERATUREVALUESBUFFER1_SIZE = 5;
     touchgfx::Unicode::UnicodeChar temperatureValuesBuffer1[TEMPERATUREVALUESBUFFER1_SIZE];
     static const uint16_t TEMPERATUREVALUESBUFFER2_SIZE = 5;
     touchgfx::Unicode::UnicodeChar temperatureValuesBuffer2[TEMPERATUREVALUESBUFFER2_SIZE];
+    static const uint16_t INVCHARGERTEMPERATUREVALUEBUFFER1_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar invChargerTemperatureValueBuffer1[INVCHARGERTEMPERATUREVALUEBUFFER1_SIZE];
+    static const uint16_t INVCHARGERTEMPERATUREVALUEBUFFER2_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar invChargerTemperatureValueBuffer2[INVCHARGERTEMPERATUREVALUEBUFFER2_SIZE];
 
 private:
 

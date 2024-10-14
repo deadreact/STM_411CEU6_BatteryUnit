@@ -22,7 +22,8 @@ public:
 
 	void update();
 
-	uint8_t getTemperature() const { return m_ntcHandler.getTemperature(); }
+	uint8_t getTemperature1() const { return m_ntcHandler.getTemperature1(); }
+	uint8_t getTemperature2() const { return m_ntcHandler.getTemperature2(); }
 	uint8_t getFan() const { return m_potCS1.getValue(); }
 private:
 	void updatePot(uint8_t fanValue);
@@ -30,7 +31,7 @@ private:
 private:
 	Timeout m_fanExtraTime{0};
 
-	NtcHandler m_ntcHandler{ADC_CHANNEL_4};
+	NtcHandler m_ntcHandler{ADC_CHANNEL_4, ADC_CHANNEL_6};
 
 	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 	const PinWrapper m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};

@@ -61,8 +61,9 @@ struct ProcessData
     bool usbState{false};
     bool chargerPlugged{false};
 
-    float temperature{0.f};
-    int fan{0};
+    float temperatureInv{0.f};
+    float temperatureCharg{0.f};
+//    int fan{0};
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;

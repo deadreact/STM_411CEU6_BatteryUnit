@@ -28,12 +28,14 @@ std::map<uint8_t, uint8_t> make_map()
 	return map;
 }
 
-NtcHandler::NtcHandler(uint32_t adcChannel)
-	: m_table(make_map())
+NtcHandler::NtcHandler(uint32_t adcChannel1, uint32_t adcChannel2)
+	: m_adcChannel1(adcChannel1)
+	, m_adcChannel2(adcChannel2)
+	, m_table(make_map())
 {
     m_adcConfig.Rank = 1;
     m_adcConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-    m_adcConfig.Channel = adcChannel;
+    m_adcConfig.Channel = adcChannel1;
 }
 
 void NtcHandler::onTick()
@@ -41,17 +43,25 @@ void NtcHandler::onTick()
 	if (m_updateTimeout.isReached())
 	{
 		m_updateTimeout.reset();
-	    const int adcValue = readSensor(m_adcConfig.Channel);
+	    int adcValue = readSensor(m_adcChannel1);
 	    if (adcValue >= 0)
-	    {
-	        m_temperature = ntc::calc_temperature(adcValue) / 10;
-	        auto fanValue = calcFanValue();
+		{
+			m_temperature1 = ntc::calc_temperature(adcValue) / 10;
+		}
 
-	        if (m_fanValue != fanValue)
-	        {
-	        	m_fanValue = fanValue;
-	        }
-	    }
+	    adcValue = readSensor(m_adcChannel2);
+	    if (adcValue >= 0)
+		{
+			m_temperature2 = ntc::calc_temperature(adcValue) / 10;
+		}
+
+	    const int temperature = std::max(m_temperature1, m_temperature2);
+
+	    auto fanValue = calcFanValue(temperature);
+		if (m_fanValue != fanValue)
+		{
+			m_fanValue = fanValue;
+		}
 	}
 }
 
@@ -81,9 +91,9 @@ int NtcHandler::readSensor(uint32_t adcChannel)
 //    HAL_ADC_Stop(&hadc1);
 }
 
-uint8_t NtcHandler::calcFanValue() const
+uint8_t NtcHandler::calcFanValue(uint8_t temperature) const
 {
-	auto it = m_table.upper_bound(m_temperature);
+	auto it = m_table.upper_bound(temperature);
 	if (it == m_table.end())
 	{
 		return m_table.rbegin()->second;
