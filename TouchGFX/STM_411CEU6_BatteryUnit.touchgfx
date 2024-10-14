@@ -1038,14 +1038,14 @@
             "Width": 244,
             "Height": 160,
             "Color": {
-              "Red": 5,
-              "Green": 10,
-              "Blue": 10
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
             },
             "BorderColor": {
-              "Red": 215,
-              "Green": 216,
-              "Blue": 219
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
             },
             "BorderSize": 2
           },
@@ -1059,18 +1059,18 @@
             "TextId": "SETTINGS_SCREEN_TITLE",
             "TextRotation": "0",
             "Color": {
-              "Red": 143,
-              "Green": 181,
-              "Blue": 239
+              "Red": 201,
+              "Green": 202,
+              "Blue": 202
             }
           },
           {
             "Type": "ScrollList",
             "Name": "scrollList1",
             "X": 2,
-            "Y": 34,
+            "Y": 37,
             "Width": 240,
-            "Height": 125,
+            "Height": 121,
             "ItemTemplateName": "SettingEntry",
             "NumberofItems": 3,
             "Easing": "Back",
@@ -1088,15 +1088,22 @@
         "Height": 24,
         "Components": [
           {
+            "Type": "Image",
+            "Name": "bg",
+            "Width": 240,
+            "Height": 24,
+            "LockPosition": true,
+            "RelativeFilename": "list_element_background.png"
+          },
+          {
             "Type": "Box",
             "Name": "selection",
             "Width": 240,
             "Height": 24,
             "Visible": false,
             "Color": {
-              "Red": 252,
-              "Green": 150,
-              "Blue": 25
+              "Red": 235,
+              "Green": 122
             },
             "Alpha": 224
           },
@@ -1106,13 +1113,13 @@
             "X": 150,
             "Y": 4,
             "Width": 90,
-            "Height": 20,
+            "Height": 16,
             "TextId": "SETTING_VALUE_WILDCARD",
             "TextRotation": "0",
             "Color": {
-              "Red": 232,
-              "Green": 246,
-              "Blue": 251
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
             },
             "Wildcard1": {
               "TextId": "SETTING_SCREEN_VALUE_0",
@@ -1123,14 +1130,15 @@
           {
             "Type": "TextArea",
             "Name": "title",
+            "Y": 4,
             "Width": 150,
-            "Height": 24,
+            "Height": 16,
             "TextId": "SETTING_CHARGER_POWER",
             "TextRotation": "0",
             "Color": {
-              "Red": 104,
-              "Green": 127,
-              "Blue": 204
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
             }
           }
         ],

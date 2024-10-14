@@ -34,7 +34,7 @@ protected:
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextArea chargePowerTitle;
     touchgfx::ScrollList scrollList1;
-    touchgfx::DrawableListItems<SettingEntry, 7> scrollList1ListItems;
+    touchgfx::DrawableListItems<SettingEntry, 6> scrollList1ListItems;
 
 private:
 

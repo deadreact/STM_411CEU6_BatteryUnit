@@ -11,19 +11,18 @@ SettingsBase::SettingsBase() :
     setWidth(244);
     setHeight(160);
     boxWithBorder1.setPosition(0, 0, 244, 160);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(5, 10, 10));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(215, 216, 219));
+    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
+    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder1.setBorderSize(2);
     add(boxWithBorder1);
 
-    chargePowerTitle.setWidth(239);
-    chargePowerTitle.setHeight(31);
-    chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(143, 181, 239));
+    chargePowerTitle.setPosition(3, 3, 239, 31);
+    chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(201, 202, 202));
     chargePowerTitle.setLinespacing(0);
     chargePowerTitle.setTypedText(touchgfx::TypedText(T_SETTINGS_SCREEN_TITLE));
     add(chargePowerTitle);
 
-    scrollList1.setPosition(2, 34, 240, 125);
+    scrollList1.setPosition(2, 37, 240, 121);
     scrollList1.setHorizontal(false);
     scrollList1.setCircular(false);
     scrollList1.setEasingEquation(touchgfx::EasingEquations::backEaseOut);

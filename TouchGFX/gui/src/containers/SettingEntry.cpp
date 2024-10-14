@@ -51,7 +51,14 @@ void SettingEntry::setValueTextId(TypedTextId textId)
 
 void SettingEntry::setSelected(bool selected)
 {
-	selection.setVisible(selected);
-	selection.invalidate();
+	if (selected != selection.isVisible())
+	{
+		//#5B5B5B
+		auto color = selected ? 0xFFFFFFFF : 0xFF5B5B5B;
+		title.setColor(color);
+		selectedValue.setColor(color);
+		selection.setVisible(selected);
+		invalidate();
+	}
 }
 

@@ -17,9 +17,10 @@ const uint16_t BITMAP_ICON17_ID = 7;
 const uint16_t BITMAP_ICON_CHARG_ID = 8;
 const uint16_t BITMAP_ICON_CHARGBLOCK_ID = 9;
 const uint16_t BITMAP_INV220V_ID = 10;
-const uint16_t BITMAP_LOADING_2_ID = 11;
-const uint16_t BITMAP_WARN_RED_ID = 12;
-const uint16_t BITMAP_WARN_YELLOW_ID = 13;
+const uint16_t BITMAP_LIST_ELEMENT_BACKGROUND_ID = 11;
+const uint16_t BITMAP_LOADING_2_ID = 12;
+const uint16_t BITMAP_WARN_RED_ID = 13;
+const uint16_t BITMAP_WARN_YELLOW_ID = 14;
 
 namespace BitmapDatabase
 {

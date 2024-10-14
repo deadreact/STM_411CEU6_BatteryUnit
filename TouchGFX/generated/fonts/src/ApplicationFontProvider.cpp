@@ -39,6 +39,9 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::VALUENORMAL:
         // arial_20_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[9]);
+    case Typography::SETTINGSENTRIES:
+        // Asap_Regular_13_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[10]);
     default:
         return 0;
     }

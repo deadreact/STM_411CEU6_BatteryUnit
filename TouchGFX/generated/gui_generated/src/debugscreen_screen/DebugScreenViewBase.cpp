@@ -158,7 +158,8 @@ DebugScreenViewBase::DebugScreenViewBase()
 
     batteryMainInfo.add(chargerTemperatureContainer);
 
-    invTemperatureContainer.setPosition(0, 114, 190, 19);
+    invTemperatureContainer.setWidth(190);
+    invTemperatureContainer.setHeight(19);
     invTemperatureTitle.setXY(0, 0);
     invTemperatureTitle.setColor(touchgfx::Color::getColorFromRGB(232, 246, 251));
     invTemperatureTitle.setLinespacing(0);

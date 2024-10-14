@@ -6,37 +6,37 @@
   </Languages>
   <Texts>
     <TextGroup Id="Settings">
-      <Text Id="SETTING_VALUE_WILDCARD" Alignment="Center" TypographyId="Values">
+      <Text Id="SETTING_VALUE_WILDCARD" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
       <Text Id="SETTINGS_SCREEN_TITLE" Alignment="Center" TypographyId="LargeText">
-        <Translation Language="GB">New Text</Translation>
+        <Translation Language="GB">Settings</Translation>
         <Translation Language="UA">Налаштування</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="Values">
+      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Basic</Translation>
-        <Translation Language="UA">Простий</Translation>
+        <Translation Language="UA">Basic</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="Values">
+      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Clock</Translation>
         <Translation Language="UA">Годинник</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Left" TypographyId="Values">
+      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Extended</Translation>
-        <Translation Language="UA">Розширений</Translation>
+        <Translation Language="UA">Extended</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS" Alignment="Center" TypographyId="MainText">
+      <Text Id="SETTING_BRIGHTNESS" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Brightness</Translation>
-        <Translation Language="UA">Яскравість</Translation>
+        <Translation Language="UA">Brightness</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN" Alignment="Center" TypographyId="MainText">
+      <Text Id="SETTING_SCREEN" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Screen</Translation>
-        <Translation Language="UA">Екран</Translation>
+        <Translation Language="UA">Screen</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER" Alignment="Center" TypographyId="MainText">
-        <Translation Language="GB">Charger pow</Translation>
-        <Translation Language="UA">Потужність зар.</Translation>
+      <Text Id="SETTING_CHARGER_POWER" Alignment="Center" TypographyId="SettingsEntries">
+        <Translation Language="GB">Charger power</Translation>
+        <Translation Language="UA">Charger power</Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="IOValueGroup">
@@ -235,5 +235,6 @@
     <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="LargeText" Font="seguisb.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" WidgetWildcardCharacters="0123456789 :APM" />
     <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="SettingsEntries" Font="Asap-Regular.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>
