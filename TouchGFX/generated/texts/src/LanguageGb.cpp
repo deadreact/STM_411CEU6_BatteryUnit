@@ -10,8 +10,8 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    351, // T_SETTING_SCREEN_VALUE_2: "Basic"
-    357, // T_SETTING_SCREEN_VALUE_1: "Clock"
+    351, // T_SETTING_SCREEN_VALUE_1: "Basic"
+    357, // T_SETTING_SCREEN_VALUE_2: "Clock"
     256, // T_SETTING_SCREEN_VALUE_0: "Extended"
     208, // T_SETTING_BRIGHTNESS: "Brightness"
     330, // T_SETTING_SCREEN: "Screen"

@@ -2,7 +2,7 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 static const TEXTS titles[] = {T_SETTING_CHARGER_POWER, T_SETTING_SCREEN, T_SETTING_BRIGHTNESS};
-static const TEXTS screen_values[] = {T_SETTING_SCREEN_VALUE_0, T_SETTING_SCREEN_VALUE_1, T_SETTING_SCREEN_VALUE_2};
+static const TEXTS screen_values[] = {T_SETTING_SCREEN_VALUE_0, T_SETTING_SCREEN_VALUE_1};
 
 SettingEntry::SettingEntry()
 {

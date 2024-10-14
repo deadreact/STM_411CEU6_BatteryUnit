@@ -6,11 +6,11 @@
   </Languages>
   <Texts>
     <TextGroup Id="Settings">
-      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="Values">
+      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">Basic</Translation>
         <Translation Language="UA">Простий</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="Values">
+      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="Values">
         <Translation Language="GB">Clock</Translation>
         <Translation Language="UA">Годинник</Translation>
       </Text>
