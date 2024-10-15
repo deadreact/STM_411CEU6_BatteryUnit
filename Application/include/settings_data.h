@@ -50,7 +50,7 @@ struct SettingsData
     {
     	settings.push_back({"Charge power", {250, 500, 750, 1000, 1200}, 4});
 		settings.push_back({"Screen type", {0, 1}, 1});
-		settings.push_back({"Brightness", {25, 50, 75, 100}, 3});
+		settings.push_back({"Brightness", {10, 30, 70, 100}, 3});
 		selectedIndex = 0;
     }
 
