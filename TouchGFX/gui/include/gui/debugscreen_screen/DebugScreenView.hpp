@@ -22,8 +22,8 @@ public:
 protected:
 	BatteryData m_bmsData;
 	utils::stack_string errMsg;
-	uint8_t temperatureInv{0};
-	uint8_t temperatureCharg{0};
+	int16_t temperatureInv{0};
+	int16_t temperatureCharg{0};
 //	uint8_t fan{0};
 
 	int m_chargeTimeSec{-1};

@@ -12,14 +12,14 @@ extern ADC_HandleTypeDef hadc1;
 
 
 const uint8_t linear_power_table[]     = {10,14,18,22,27,33,40,46,57,74,89,92,93,94,95,96,97,98,99,100};
-const uint8_t linear_temperature_table[] = {32,34,35,37,38,39,40,44,45,46,48,49,50,52,53,54,55,56,58,60};
+const int16_t linear_temperature_table[] = {32,34,35,37,38,39,40,44,45,46,48,49,50,52,53,54,55,56,58,60};
 //const uint8_t linear_power_table[]     = {1,2,5,13,27,42,69,94,100};
 //const uint8_t linear_temperature_table[] = {27,28,29,30,31,32,33, 35, 37};
 
 
-std::map<uint8_t, uint8_t> make_map()
+std::map<int16_t, uint8_t> make_map()
 {
-	std::map<uint8_t, uint8_t> map;
+	std::map<int16_t, uint8_t> map;
 
 	for (size_t i = 0; i < std::size(linear_power_table); i++)
 	{
@@ -91,7 +91,7 @@ int NtcHandler::readSensor(uint32_t adcChannel)
 //    HAL_ADC_Stop(&hadc1);
 }
 
-uint8_t NtcHandler::calcFanValue(uint8_t temperature) const
+uint8_t NtcHandler::calcFanValue(int16_t temperature) const
 {
 	auto it = m_table.upper_bound(temperature);
 	if (it == m_table.end())

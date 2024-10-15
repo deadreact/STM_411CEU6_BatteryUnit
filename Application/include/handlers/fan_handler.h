@@ -14,7 +14,6 @@
 #include <handlers/ntc_handler.h>
 
 
-//TODO: multiple channels
 class FanHandler
 {
 public:
@@ -22,8 +21,8 @@ public:
 
 	void update();
 
-	uint8_t getTemperature1() const { return m_ntcHandler.getTemperature1(); }
-	uint8_t getTemperature2() const { return m_ntcHandler.getTemperature2(); }
+	int16_t getTemperature1() const { return m_ntcHandler.getTemperature1(); }
+	int16_t getTemperature2() const { return m_ntcHandler.getTemperature2(); }
 	uint8_t getFan() const { return m_potCS1.getValue(); }
 private:
 	void updatePot(uint8_t fanValue);

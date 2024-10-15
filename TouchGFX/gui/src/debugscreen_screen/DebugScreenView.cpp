@@ -39,14 +39,14 @@ void DebugScreenView::handleTickEvent()
 	{
 		temperatureInv = data.temperatureInv;
 //		fan = data.fan;
-		touchgfx::Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%d", (int)data.temperatureInv);
+		touchgfx::Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%d", data.temperatureInv);
 		invTemperatureValue.invalidate();
 	}
 
 	if (data.temperatureCharg != temperatureCharg)
 	{
 		temperatureCharg = data.temperatureCharg;
-		touchgfx::Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%d", (int)data.temperatureCharg);
+		touchgfx::Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%d", data.temperatureCharg);
 		chargerTemperatureValue.invalidate();
 	}
 
