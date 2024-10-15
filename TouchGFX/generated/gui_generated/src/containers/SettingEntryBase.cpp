@@ -20,7 +20,7 @@ SettingEntryBase::SettingEntryBase()
     selection.setVisible(false);
     add(selection);
 
-    selectedValue.setPosition(150, 4, 90, 16);
+    selectedValue.setPosition(140, 4, 96, 16);
     selectedValue.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
     selectedValue.setLinespacing(0);
     Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T_SETTING_SCREEN_VALUE_0).getText());
@@ -28,7 +28,7 @@ SettingEntryBase::SettingEntryBase()
     selectedValue.setTypedText(touchgfx::TypedText(T_SETTING_VALUE_WILDCARD));
     add(selectedValue);
 
-    title.setPosition(0, 4, 150, 16);
+    title.setPosition(4, 4, 140, 16);
     title.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
     title.setLinespacing(0);
     title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));

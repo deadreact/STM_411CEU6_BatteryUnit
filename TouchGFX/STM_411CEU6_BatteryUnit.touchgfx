@@ -1110,9 +1110,9 @@
           {
             "Type": "TextArea",
             "Name": "selectedValue",
-            "X": 150,
+            "X": 140,
             "Y": 4,
-            "Width": 90,
+            "Width": 96,
             "Height": 16,
             "TextId": "SETTING_VALUE_WILDCARD",
             "TextRotation": "0",
@@ -1130,8 +1130,9 @@
           {
             "Type": "TextArea",
             "Name": "title",
+            "X": 4,
             "Y": 4,
-            "Width": 150,
+            "Width": 140,
             "Height": 16,
             "TextId": "SETTING_CHARGER_POWER",
             "TextRotation": "0",

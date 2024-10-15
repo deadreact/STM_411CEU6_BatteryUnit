@@ -6,7 +6,7 @@
   </Languages>
   <Texts>
     <TextGroup Id="Settings">
-      <Text Id="SETTING_VALUE_WILDCARD" Alignment="Center" TypographyId="SettingsEntries">
+      <Text Id="SETTING_VALUE_WILDCARD" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
@@ -14,27 +14,27 @@
         <Translation Language="GB">Settings</Translation>
         <Translation Language="UA">Налаштування</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">Basic</Translation>
         <Translation Language="UA">Простий</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">Clock</Translation>
         <Translation Language="UA">Годинник</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Left" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">Extended</Translation>
         <Translation Language="UA">Розширений</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS" Alignment="Center" TypographyId="SettingsEntries">
+      <Text Id="SETTING_BRIGHTNESS" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Brightness</Translation>
         <Translation Language="UA">Яскравість</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN" Alignment="Center" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Screen</Translation>
         <Translation Language="UA">Екран</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER" Alignment="Center" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Charger power</Translation>
         <Translation Language="UA">Потужність зарядки</Translation>
       </Text>
