@@ -61,8 +61,8 @@ struct ProcessData
     bool usbState{false};
     bool chargerPlugged{false};
 
-    int16_t temperatureInv{0.f};
-    int16_t temperatureCharg{0.f};
+    int16_t temperatureInv{0};
+    int16_t temperatureCharg{0};
 //    int fan{0};
 
     RevisionData<BatteryData> bms;
