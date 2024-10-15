@@ -16,7 +16,7 @@
       </Text>
       <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Basic</Translation>
-        <Translation Language="UA">Basic</Translation>
+        <Translation Language="UA">Простий</Translation>
       </Text>
       <Text Id="SETTING_SCREEN_VALUE_2" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Clock</Translation>
@@ -24,19 +24,19 @@
       </Text>
       <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Extended</Translation>
-        <Translation Language="UA">Extended</Translation>
+        <Translation Language="UA">Розширений</Translation>
       </Text>
       <Text Id="SETTING_BRIGHTNESS" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Brightness</Translation>
-        <Translation Language="UA">Brightness</Translation>
+        <Translation Language="UA">Яскравість</Translation>
       </Text>
       <Text Id="SETTING_SCREEN" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Screen</Translation>
-        <Translation Language="UA">Screen</Translation>
+        <Translation Language="UA">Екран</Translation>
       </Text>
       <Text Id="SETTING_CHARGER_POWER" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Charger power</Translation>
-        <Translation Language="UA">Charger power</Translation>
+        <Translation Language="UA">Потужність зарядки</Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="IOValueGroup">
@@ -235,6 +235,6 @@
     <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="LargeText" Font="seguisb.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" WidgetWildcardCharacters="0123456789 :APM" />
     <Typography Id="ValueNormal" Font="arial.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="SettingsEntries" Font="Asap-Regular.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="SettingsEntries" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
   </Typographies>
 </TextDatabase>

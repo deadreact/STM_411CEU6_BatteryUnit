@@ -15,7 +15,7 @@ extern touchgfx::GeneratedFont& getFont_seguisb_17_4bpp();
 extern touchgfx::GeneratedFont& getFont_arial_70_4bpp();
 extern touchgfx::GeneratedFont& getFont_seguisb_25_4bpp();
 extern touchgfx::GeneratedFont& getFont_arial_20_4bpp();
-extern touchgfx::GeneratedFont& getFont_Asap_Regular_13_4bpp();
+extern touchgfx::GeneratedFont& getFont_bahnschrift_13_4bpp();
 
 const touchgfx::Font* touchgfx_fonts[] = {
     &(getFont_seguisb_16_4bpp()),
@@ -28,7 +28,7 @@ const touchgfx::Font* touchgfx_fonts[] = {
     &(getFont_arial_70_4bpp()),
     &(getFont_seguisb_25_4bpp()),
     &(getFont_arial_20_4bpp()),
-    &(getFont_Asap_Regular_13_4bpp())
+    &(getFont_bahnschrift_13_4bpp())
 };
 
 extern const touchgfx::TypedText::TypedTextData typedText_database_DEFAULT[];
@@ -156,7 +156,7 @@ void resetFont(touchgfx::FontId fontId)
         touchgfx_fonts[9] = &(getFont_arial_20_4bpp());
         break;
     case 10:
-        touchgfx_fonts[10] = &(getFont_Asap_Regular_13_4bpp());
+        touchgfx_fonts[10] = &(getFont_bahnschrift_13_4bpp());
         break;
     }
 }
