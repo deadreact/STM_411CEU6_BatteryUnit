@@ -146,7 +146,7 @@
                   "UseBuffer": true,
                   "BufferSize": 40
                 },
-                "WideTextAction": 1
+                "WideTextAction": 2
               }
             ]
           },

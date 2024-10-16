@@ -198,7 +198,7 @@
         <Translation Language="GB">Voltage</Translation>
         <Translation Language="UA">Напруга</Translation>
       </Text>
-      <Text Id="__SingleUse_268O" Alignment="Center" TypographyId="Errors">
+      <Text Id="__SingleUse_268O" Alignment="Left" TypographyId="Errors">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
@@ -228,7 +228,7 @@
     <Typography Id="Default" Font="seguisb.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="seguisb.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="Errors" Font="SourceSansPro-Regular.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
+    <Typography Id="Errors" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
     <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="MainText" Font="seguisb.ttf" Size="17" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
