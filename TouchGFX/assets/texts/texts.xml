@@ -6,13 +6,45 @@
   </Languages>
   <Texts>
     <TextGroup Id="Settings">
+      <Text Id="SETTINGS_SCREEN_TITLE" Alignment="Center" TypographyId="LargeText">
+        <Translation Language="GB">Settings</Translation>
+        <Translation Language="UA">Налаштування</Translation>
+      </Text>
       <Text Id="SETTING_VALUE_WILDCARD" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="SETTINGS_SCREEN_TITLE" Alignment="Center" TypographyId="LargeText">
-        <Translation Language="GB">Settings</Translation>
-        <Translation Language="UA">Налаштування</Translation>
+      <Text Id="SETTING_CHARGER_POWER" Alignment="Left" TypographyId="SettingsEntries">
+        <Translation Language="GB">Charger power</Translation>
+        <Translation Language="UA">Потужність зарядки</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER_VALUE_4" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">250W</Translation>
+        <Translation Language="UA">250W</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER_VALUE_3" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">500W</Translation>
+        <Translation Language="UA">500W</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER_VALUE_2" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">750W</Translation>
+        <Translation Language="UA">750W</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">1000W</Translation>
+        <Translation Language="UA">1000W</Translation>
+      </Text>
+      <Text Id="SETTING_CHARGER_POWER_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">1200W</Translation>
+        <Translation Language="UA">1200W</Translation>
+      </Text>
+      <Text Id="SETTING_SCREEN" Alignment="Left" TypographyId="SettingsEntries">
+        <Translation Language="GB">Screen</Translation>
+        <Translation Language="UA">Екран</Translation>
+      </Text>
+      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">Extended</Translation>
+        <Translation Language="UA">Розширений</Translation>
       </Text>
       <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
         <Translation Language="GB">Basic</Translation>
@@ -22,21 +54,25 @@
         <Translation Language="GB">Clock</Translation>
         <Translation Language="UA">Годинник</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
-        <Translation Language="GB">Extended</Translation>
-        <Translation Language="UA">Розширений</Translation>
-      </Text>
       <Text Id="SETTING_BRIGHTNESS" Alignment="Left" TypographyId="SettingsEntries">
         <Translation Language="GB">Brightness</Translation>
         <Translation Language="UA">Яскравість</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN" Alignment="Left" TypographyId="SettingsEntries">
-        <Translation Language="GB">Screen</Translation>
-        <Translation Language="UA">Екран</Translation>
+      <Text Id="SETTING_BRIGHTNESS_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">100%</Translation>
+        <Translation Language="UA">100%</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER" Alignment="Left" TypographyId="SettingsEntries">
-        <Translation Language="GB">Charger power</Translation>
-        <Translation Language="UA">Потужність зарядки</Translation>
+      <Text Id="SETTING_BRIGHTNESS_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">70%</Translation>
+        <Translation Language="UA">70%</Translation>
+      </Text>
+      <Text Id="SETTING_BRIGHTNESS_VALUE_2" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">30%</Translation>
+        <Translation Language="UA">30%</Translation>
+      </Text>
+      <Text Id="SETTING_BRIGHTNESS_VALUE_3" Alignment="Right" TypographyId="SettingsEntries">
+        <Translation Language="GB">10%</Translation>
+        <Translation Language="UA">10%</Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="IOValueGroup">
@@ -226,7 +262,6 @@
   </Texts>
   <Typographies>
     <Typography Id="Default" Font="seguisb.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Small" Font="verdana.ttf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Values" Font="seguisb.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Errors" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
     <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />

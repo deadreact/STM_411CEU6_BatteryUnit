@@ -12,36 +12,33 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::DEFAULT:
         // seguisb_16_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
-    case Typography::SMALL:
-        // verdana_12_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::VALUES:
         // seguisb_14_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::ERRORS:
-        // SourceSansPro_Regular_16_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
+        // bahnschrift_13_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     case Typography::VALUELARGE:
         // arial_90_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::VALUEMEDIUM:
         // arial_40_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::MAINTEXT:
         // seguisb_17_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::VALUELARGE2:
         // arial_70_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
     case Typography::LARGETEXT:
         // seguisb_25_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
     case Typography::VALUENORMAL:
         // arial_20_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[9]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
     case Typography::SETTINGSENTRIES:
         // bahnschrift_13_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[10]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     default:
         return 0;
     }

@@ -18,7 +18,7 @@ public:
     virtual ~SettingsBase();
     virtual void initialize();
 
-    virtual void scrollList1UpdateItem(SettingEntry& item, int16_t itemIndex)
+    virtual void entriesUpdateItem(SettingEntry& item, int16_t itemIndex)
     {
         // Override and implement this function in Settings
     }
@@ -33,8 +33,8 @@ protected:
      */
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextArea chargePowerTitle;
-    touchgfx::ScrollList scrollList1;
-    touchgfx::DrawableListItems<SettingEntry, 6> scrollList1ListItems;
+    touchgfx::ScrollList entries;
+    touchgfx::DrawableListItems<SettingEntry, 6> entriesListItems;
 
 private:
 

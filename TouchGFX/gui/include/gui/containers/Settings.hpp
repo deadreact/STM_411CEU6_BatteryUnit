@@ -14,7 +14,9 @@ public:
 
     void setData(const SettingsData& data);
 protected:
-    SettingsData m_data{nullptr};
+    int m_selectedEntry{-1};
+    utils::stack_vector<uint16_t, 3> m_selectedSettings = {0, 0, 0};
+//    SettingsData m_data{nullptr};
 };
 
 #endif // SETTINGS_HPP

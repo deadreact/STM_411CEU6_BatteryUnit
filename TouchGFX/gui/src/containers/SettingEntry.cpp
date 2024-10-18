@@ -1,8 +1,4 @@
 #include <gui/containers/SettingEntry.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
-
-static const TEXTS titles[] = {T_SETTING_CHARGER_POWER, T_SETTING_SCREEN, T_SETTING_BRIGHTNESS};
-static const TEXTS screen_values[] = {T_SETTING_SCREEN_VALUE_0, T_SETTING_SCREEN_VALUE_1};
 
 SettingEntry::SettingEntry()
 {
@@ -14,10 +10,8 @@ void SettingEntry::initialize()
     SettingEntryBase::initialize();
 }
 
-
-void SettingEntry::setIndex(int index)
+void SettingEntry::setTitle(TypedTextId textId)
 {
-	TypedTextId textId = titles[index];
 	if (title.getTypedText().getId() != textId)
 	{
 		title.setTypedText(touchgfx::TypedText(textId));
@@ -25,24 +19,18 @@ void SettingEntry::setIndex(int index)
 	}
 }
 
-void SettingEntry::setValue(int value)
+void SettingEntry::setValues(const utils::stack_vector<TypedTextId, 5>& values)
 {
-	if (title.getTypedText().getId() == T_SETTING_SCREEN)
-	{
-		setValueTextId(screen_values[value]);
-	}
-	else
-	{
-		setValueTextId(T_SETTING_VALUE_WILDCARD);
+	m_values = values;
 
-		Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%d", value);
-		selectedValue.invalidate();
-	}
+	selectedValue.setTypedText(touchgfx::TypedText(values.front()));
+	selectedValue.invalidate();
 }
 
-void SettingEntry::setValueTextId(TypedTextId textId)
+void SettingEntry::selectValue(uint16_t index)
 {
-	if (selectedValue.getTypedText().getId() != textId)
+	TypedTextId textId = m_values.at(index);
+	if (title.getTypedText().getId() != textId)
 	{
 		selectedValue.setTypedText(touchgfx::TypedText(textId));
 		selectedValue.invalidate();

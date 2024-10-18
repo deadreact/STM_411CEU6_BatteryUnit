@@ -1066,7 +1066,7 @@
           },
           {
             "Type": "ScrollList",
-            "Name": "scrollList1",
+            "Name": "entries",
             "X": 2,
             "Y": 37,
             "Width": 240,

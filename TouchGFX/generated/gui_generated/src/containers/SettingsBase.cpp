@@ -22,19 +22,19 @@ SettingsBase::SettingsBase() :
     chargePowerTitle.setTypedText(touchgfx::TypedText(T_SETTINGS_SCREEN_TITLE));
     add(chargePowerTitle);
 
-    scrollList1.setPosition(2, 37, 240, 121);
-    scrollList1.setHorizontal(false);
-    scrollList1.setCircular(false);
-    scrollList1.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
-    scrollList1.setSwipeAcceleration(10);
-    scrollList1.setDragAcceleration(10);
-    scrollList1.setNumberOfItems(3);
-    scrollList1.setPadding(0, 0);
-    scrollList1.setSnapping(false);
-    scrollList1.setOvershootPercentage(75);
-    scrollList1.setDrawableSize(24, 0);
-    scrollList1.setDrawables(scrollList1ListItems, updateItemCallback);
-    add(scrollList1);
+    entries.setPosition(2, 37, 240, 121);
+    entries.setHorizontal(false);
+    entries.setCircular(false);
+    entries.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
+    entries.setSwipeAcceleration(10);
+    entries.setDragAcceleration(10);
+    entries.setNumberOfItems(3);
+    entries.setPadding(0, 0);
+    entries.setSnapping(false);
+    entries.setOvershootPercentage(75);
+    entries.setDrawableSize(24, 0);
+    entries.setDrawables(entriesListItems, updateItemCallback);
+    add(entries);
 }
 
 SettingsBase::~SettingsBase()
@@ -44,17 +44,17 @@ SettingsBase::~SettingsBase()
 
 void SettingsBase::initialize()
 {
-    scrollList1.initialize();
-    for (int i = 0; i < scrollList1ListItems.getNumberOfDrawables(); i++)
+    entries.initialize();
+    for (int i = 0; i < entriesListItems.getNumberOfDrawables(); i++)
     {
-        scrollList1ListItems[i].initialize();
+        entriesListItems[i].initialize();
     }
 }
 
 void SettingsBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
 {
-    if (items == &scrollList1ListItems)
+    if (items == &entriesListItems)
     {
-        scrollList1UpdateItem(scrollList1ListItems[containerIndex], itemIndex);
+        entriesUpdateItem(entriesListItems[containerIndex], itemIndex);
     }
 }

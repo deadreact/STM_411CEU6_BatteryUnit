@@ -26,7 +26,7 @@ DebugScreenViewBase::DebugScreenViewBase()
     errorLabel.setPosition(4, 0, 188, 70);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
     errorLabel.setLinespacing(0);
-    errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP);
+    errorLabel.setWideTextAction(WIDE_TEXT_WORDWRAP_ELLIPSIS);
     Unicode::snprintf(errorLabelBuffer, ERRORLABEL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RJG5).getText());
     errorLabel.setWildcard(errorLabelBuffer);
     errorLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_268O));

@@ -14,32 +14,30 @@ class FlashDataReader;
 struct Typography
 {
     static const touchgfx::FontId DEFAULT = 0;
-    static const touchgfx::FontId SMALL = 1;
-    static const touchgfx::FontId VALUES = 2;
-    static const touchgfx::FontId ERRORS = 3;
-    static const touchgfx::FontId VALUELARGE = 4;
-    static const touchgfx::FontId VALUEMEDIUM = 5;
-    static const touchgfx::FontId MAINTEXT = 6;
-    static const touchgfx::FontId VALUELARGE2 = 7;
-    static const touchgfx::FontId LARGETEXT = 8;
-    static const touchgfx::FontId VALUENORMAL = 9;
-    static const touchgfx::FontId SETTINGSENTRIES = 10;
+    static const touchgfx::FontId VALUES = 1;
+    static const touchgfx::FontId ERRORS = 2;
+    static const touchgfx::FontId VALUELARGE = 3;
+    static const touchgfx::FontId VALUEMEDIUM = 4;
+    static const touchgfx::FontId MAINTEXT = 5;
+    static const touchgfx::FontId VALUELARGE2 = 6;
+    static const touchgfx::FontId LARGETEXT = 7;
+    static const touchgfx::FontId VALUENORMAL = 8;
+    static const touchgfx::FontId SETTINGSENTRIES = 9;
 };
 
 struct TypographyFontIndex
 {
     static const touchgfx::FontId DEFAULT = 0;         // seguisb_16_4bpp
-    static const touchgfx::FontId SMALL = 1;           // verdana_12_4bpp
-    static const touchgfx::FontId VALUES = 2;          // seguisb_14_4bpp
-    static const touchgfx::FontId ERRORS = 3;          // SourceSansPro_Regular_16_4bpp
-    static const touchgfx::FontId VALUELARGE = 4;      // arial_90_4bpp
-    static const touchgfx::FontId VALUEMEDIUM = 5;     // arial_40_4bpp
-    static const touchgfx::FontId MAINTEXT = 6;        // seguisb_17_4bpp
-    static const touchgfx::FontId VALUELARGE2 = 7;     // arial_70_4bpp
-    static const touchgfx::FontId LARGETEXT = 8;       // seguisb_25_4bpp
-    static const touchgfx::FontId VALUENORMAL = 9;     // arial_20_4bpp
-    static const touchgfx::FontId SETTINGSENTRIES = 10; // bahnschrift_13_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 11;
+    static const touchgfx::FontId VALUES = 1;          // seguisb_14_4bpp
+    static const touchgfx::FontId ERRORS = 2;          // bahnschrift_13_4bpp
+    static const touchgfx::FontId VALUELARGE = 3;      // arial_90_4bpp
+    static const touchgfx::FontId VALUEMEDIUM = 4;     // arial_40_4bpp
+    static const touchgfx::FontId MAINTEXT = 5;        // seguisb_17_4bpp
+    static const touchgfx::FontId VALUELARGE2 = 6;     // arial_70_4bpp
+    static const touchgfx::FontId LARGETEXT = 7;       // seguisb_25_4bpp
+    static const touchgfx::FontId VALUENORMAL = 8;     // arial_20_4bpp
+    static const touchgfx::FontId SETTINGSENTRIES = 2; // bahnschrift_13_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 9;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider
