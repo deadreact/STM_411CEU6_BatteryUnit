@@ -30,32 +30,6 @@ enum class PowerModeState: uint8_t
  */
 struct ProcessData
 {
-//	struct Settings
-//	{
-//		enum class ScreenIndex
-//		{
-//			Main = 0,
-//			Debug
-//		};
-//
-//		bool active{false};
-//		int chargePower{500};
-//		ScreenIndex screen;
-//		int brightnessPercent{100};
-//
-//		bool operator==(const Settings& other) const
-//		{
-//			return active == other.active
-//				&& chargePower == other.chargePower
-//				&& screen == other.screen
-//				&& brightnessPercent == other.brightnessPercent;
-//		}
-//		bool operator!=(const Settings& other) const
-//		{
-//			return !operator==(other);
-//		}
-//	};
-
     ScreenId screenId{ScreenId::DefaultScreen};
     InverterState invState{InverterState::Off};
     bool usbState{false};

@@ -26,7 +26,7 @@ public:
     void onTick();
     void handleEvents();
 
-    int getValue(Index setting) const { return m_data.getValue(static_cast<uint8_t>(setting)); }
+    int getValue(SettingsData::SettingIndex setting) const { return m_data.getValue(setting); }
     bool isSettingsActive() const { return m_data.active; }
     const SettingsData& getData() const { return m_data; }
 private:

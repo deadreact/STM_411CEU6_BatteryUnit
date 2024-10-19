@@ -18,15 +18,19 @@
 
  */
 
+ChargerHandler::ChargerHandler()
+{
+	const auto& data = SharedData::getData();
+	setChargePower(data.settings.getValue(SettingsData::ChargePower));
+}
+
 void ChargerHandler::update()
 {
 	const auto& data = SharedData::getData();
 
 	if (data.settings.active)
 	{
-		int chargePower = data.settings.getValue(0);
-		int value = (chargePower + 6) / 12; // 1200 Вт - 100
-		m_potCS2.setValue(value);
+		setChargePower(data.settings.getValue(SettingsData::ChargePower));
 	}
 
 	m_potCS2.onTick();
@@ -147,5 +151,11 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 	} else if (m_overvoltageTimeout.isReached()) {
 		changeState(ChargerState::Error);
 	}
+}
+
+void ChargerHandler::setChargePower(uint16_t watts)
+{
+	uint16_t value = (watts + 6) / 12; // 1200 Вт - 100
+	m_potCS2.setValue(value);
 }
 

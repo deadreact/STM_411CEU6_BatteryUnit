@@ -114,10 +114,7 @@ void IdleProcess::Impl::handleEvents()
 //    sharedData.fan = m_fanHandler.getFan();
 
     sharedData.settings = m_settingsHandler.getData();
-    sharedData.screenId = ScreenId(sharedData.settings.getValue(1));
-//    sharedData.settings.chargePower = m_settingsHandler.getValue(SettingsHandler::Index::ChargerPower);
-//    sharedData.settings.screen = ProcessData::Settings::ScreenIndex(m_settingsHandler.getValue(SettingsHandler::Index::ScreenType));
-//    sharedData.settings.brightnessPercent = m_settingsHandler.getValue(SettingsHandler::Index::Brightness);
+    sharedData.screenId = ScreenId(sharedData.settings.getValue(SettingsData::ScreenType));
 
     BMSUpdaterEvent bmsEvent = m_bmsUpdater.takeLastEvent();
     if (bmsEvent != BMSUpdaterEvent::NoEvent)

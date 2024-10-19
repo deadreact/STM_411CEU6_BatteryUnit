@@ -44,7 +44,16 @@ struct SettingsEntryData
 
 struct SettingsData
 {
-    using vector = utils::stack_vector<SettingsEntryData, 3>;
+	enum SettingIndex : uint8_t
+	{
+		ChargePower = 0,
+		ScreenType,
+		Brightness,
+
+		Count
+	};
+
+    using vector = utils::stack_vector<SettingsEntryData, Count>;
 
     SettingsData()
     {
@@ -61,7 +70,7 @@ struct SettingsData
     vector settings;
     int selectedIndex{-1};
 
-    int getValue(vector::size_type index) const
+    int getValue(SettingIndex index) const
     {
         return settings.at(index).getValue();
     }
