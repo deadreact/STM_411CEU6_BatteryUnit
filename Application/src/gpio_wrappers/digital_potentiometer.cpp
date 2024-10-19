@@ -103,6 +103,14 @@ void DigitalPotentiometer::setValue(uint8_t value)
 	if (m_goalValue != value)
 	{
 		m_goalValue = value;
+		if (value == 100)
+		{
+			m_currentValue = 0;
+		}
+		else if (value == 0)
+		{
+			m_currentValue = 100;
+		}
 	}
 }
 
