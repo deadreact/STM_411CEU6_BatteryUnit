@@ -114,9 +114,7 @@ void Program_Process()
     __HAL_PWR_CLEAR_FLAG(PWR_FLAG_SB);
 //    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
 #endif
-    ILI9341_Init();
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
-    HAL_TIM_Base_Start_IT(&htim4);
+
 
     IdleProcess p;
     p.init();
@@ -124,11 +122,10 @@ void Program_Process()
 }
 
 
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM4)
-    {
-        touchgfxSignalVSync();
-    }
-}
+// void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+// {
+//     if (htim->Instance == TIM4)
+//     {
+//         touchgfxSignalVSync();
+//     }
+// }

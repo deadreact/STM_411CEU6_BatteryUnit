@@ -2,94 +2,6 @@
   "Application": {
     "Screens": [
       {
-        "Name": "ClockScreen",
-        "Components": [
-          {
-            "Type": "DigitalClock",
-            "Name": "time",
-            "X": 107,
-            "Y": 144,
-            "Width": 107,
-            "Height": 31,
-            "TextColor": {
-              "Red": 187,
-              "Green": 187,
-              "Blue": 187
-            },
-            "TextId": "__SingleUse_2S3V",
-            "DisplaySeconds": true,
-            "DisplayLeadingZeroForHourIndicator": true,
-            "InitialHour": 10,
-            "InitialMinute": 10
-          },
-          {
-            "Type": "ListLayout",
-            "Name": "listLayout",
-            "X": 37,
-            "Y": 96,
-            "Width": 246,
-            "Height": 48,
-            "Direction": "East",
-            "Components": [
-              {
-                "Type": "TextArea",
-                "Name": "dateDay",
-                "Width": 44,
-                "Height": 48,
-                "TextId": "ValueMedium_wildcard_1",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 187,
-                  "Green": 187,
-                  "Blue": 187
-                },
-                "AutoSize": true,
-                "Wildcard1": {
-                  "TextId": "ValueMedium_01",
-                  "UseBuffer": true,
-                  "BufferSize": 3
-                }
-              },
-              {
-                "Type": "TextArea",
-                "Name": "date",
-                "X": 44,
-                "Width": 154,
-                "Height": 48,
-                "TextId": "ValueMedium_wildcard_2",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 187,
-                  "Green": 187,
-                  "Blue": 187
-                },
-                "AutoSize": true,
-                "Wildcard1": {
-                  "TextId": "ValueMedium_01",
-                  "UseBuffer": true,
-                  "BufferSize": 3
-                },
-                "Wildcard2": {
-                  "TextId": "ValueMedium_2022",
-                  "UseBuffer": true,
-                  "BufferSize": 5
-                }
-              },
-              {
-                "Type": "Image",
-                "Name": "alarm",
-                "X": 198,
-                "Width": 48,
-                "Height": 48,
-                "Visible": false,
-                "RelativeFilename": "icon17.png"
-              }
-            ]
-          }
-        ],
-        "Interactions": []
-      },
-      {
         "Name": "DebugScreen",
         "Components": [
           {
@@ -652,7 +564,7 @@
                     "Name": "scalableImage1",
                     "Width": 320,
                     "Height": 2,
-                    "Filename": "gradient_x.png",
+                    "Filename": "list_element_background.png",
                     "ScalingAlgorithm": "Nearest-neighbor"
                   },
                   {
@@ -661,7 +573,7 @@
                     "Y": 144,
                     "Width": 320,
                     "Height": 2,
-                    "Filename": "gradient_left.png",
+                    "Filename": "list_element_background.png",
                     "ScalingAlgorithm": "Bilinear Interpolation"
                   }
                 ]

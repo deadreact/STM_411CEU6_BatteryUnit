@@ -74,12 +74,12 @@ MainScreenViewBase::MainScreenViewBase()
     headerBox.setVisible(false);
     capacityContainerSmall.add(headerBox);
 
-    scalableImage1.setBitmap(touchgfx::Bitmap(BITMAP_GRADIENT_X_ID));
+    scalableImage1.setBitmap(touchgfx::Bitmap(BITMAP_LIST_ELEMENT_BACKGROUND_ID));
     scalableImage1.setPosition(0, 0, 320, 2);
     scalableImage1.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     capacityContainerSmall.add(scalableImage1);
 
-    scalableImage1_1.setBitmap(touchgfx::Bitmap(BITMAP_GRADIENT_LEFT_ID));
+    scalableImage1_1.setBitmap(touchgfx::Bitmap(BITMAP_LIST_ELEMENT_BACKGROUND_ID));
     scalableImage1_1.setPosition(0, 144, 320, 2);
     scalableImage1_1.setScalingAlgorithm(touchgfx::ScalableImage::BILINEAR_INTERPOLATION);
     capacityContainerSmall.add(scalableImage1_1);

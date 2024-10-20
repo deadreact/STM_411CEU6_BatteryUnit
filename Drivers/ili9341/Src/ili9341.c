@@ -51,7 +51,7 @@ extern TIM_HandleTypeDef htim4;
 static __IO uint8_t spiDmaTransferComplete = 1;
 extern void DisplayDriver_TransferCompleteCallback();
 
-//static uint8_t isTransmittingData = 0;
+static uint8_t isTransmittingData = 0;
 
 void ILI9341_Reset(void);
 void ILI9341_SoftReset(void);
@@ -179,7 +179,7 @@ void ILI9341_Init(void)
     //EXIT SLEEP
     LCD_WR_REG(0x11);
 
-    HAL_Delay(120);
+    osDelay(120);
 
     //TURN ON DISPLAY
     LCD_WR_REG(0x29);
@@ -289,7 +289,7 @@ void ILI9341_SoftReset(void)
     if (HAL_SPI_Transmit(&hspi1, &cmd, 1, 5000) != HAL_OK) {
         Error_Handler();
     }
-    HAL_Delay(50);
+    osDelay(50);
 }
 
 
@@ -374,44 +374,44 @@ static void DC_H(void)
 //{
 //    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 //}
-
-void LCD_Reboot()
-{
-	HAL_TIM_Base_Stop_IT(&htim4);
-	if (HAL_SPI_Abort(&hspi1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-
-	HAL_SPI_DMAStop(&hspi1);
-	__HAL_RCC_SPI1_FORCE_RESET();
-	__HAL_RCC_SPI1_RELEASE_RESET();
-	__HAL_RCC_DMA2_FORCE_RESET();
-	__HAL_RCC_DMA2_RELEASE_RESET();
-	__HAL_RCC_DMA2_CLK_ENABLE();
-	HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
-	  HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
-
-	if (HAL_SPI_Init(&hspi1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	spiDmaTransferComplete = 1;
-	ILI9341_Init();
-
-	HAL_TIM_Base_Start_IT(&htim4);
-//	DisplayDriver_TransferCompleteCallback();
-}
-
+//
+//void LCD_Reboot()
+//{
+//	HAL_TIM_Base_Stop_IT(&htim4);
+//	if (HAL_SPI_Abort(&hspi1) != HAL_OK)
+//	{
+//		Error_Handler();
+//	}
+//
+//	HAL_SPI_DMAStop(&hspi1);
+//	__HAL_RCC_SPI1_FORCE_RESET();
+//	__HAL_RCC_SPI1_RELEASE_RESET();
+//	__HAL_RCC_DMA2_FORCE_RESET();
+//	__HAL_RCC_DMA2_RELEASE_RESET();
+//	__HAL_RCC_DMA2_CLK_ENABLE();
+//	HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+//	  HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
+//
+//	if (HAL_SPI_Init(&hspi1) != HAL_OK)
+//	{
+//		Error_Handler();
+//	}
+//	spiDmaTransferComplete = 1;
+//	ILI9341_Init();
+//
+//	HAL_TIM_Base_Start_IT(&htim4);
+////	DisplayDriver_TransferCompleteCallback();
+//}
+//
 
 uint32_t touchgfxDisplayDriverTransmitActive(void)
 {
-    return spiDmaTransferComplete == 0;
+	return isTransmittingData;
 }
 
 void touchgfxDisplayDriverTransmitBlock(uint8_t* pixels, uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-	spiDmaTransferComplete = 0;
+	isTransmittingData = 1;
     ILI9341_SetWindow(x, y, x+w-1, y+h-1);
     ILI9341_DrawBitmap(w, h, pixels);
 }
@@ -424,7 +424,7 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 //        HAL_SPI_StateTypeDef state = HAL_SPI_GetState(hspi);
 
         ILI9341_EndOfDrawBitmap();
-        spiDmaTransferComplete = 1;
+        isTransmittingData = 0;
         DisplayDriver_TransferCompleteCallback();
     }
 }

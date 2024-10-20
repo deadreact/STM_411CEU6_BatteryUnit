@@ -43,7 +43,6 @@ KEEP extern const uint32_t indicesUa[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     504, // T_VALUEMEDIUM_01: "01"
     64,  // T_VALUEMEDIUM_WILDCARD_2: ".<>.<>"
     25,  // T_VALUEMEDIUM_WILDCARD_1: "<>"
-    25,  // T___SINGLEUSE_2S3V: "<>"
     507, // T_VALUEMEDIUM_30: "30"
     25,  // T___SINGLEUSE_7F9D: "<>"
     217, // T___SINGLEUSE_8789: "U: <>v"

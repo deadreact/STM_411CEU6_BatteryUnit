@@ -44,7 +44,7 @@ extern "C" void touchgfxDisplayDriverTransmitBlock(const uint8_t* pixels, uint16
 extern "C" void touchgfxSignalVSync(void);
 
 // Block Allocator for Partial Framebuffer strategy
-static ManyBlockAllocator<2048, /* block size */
+static ManyBlockAllocator<1920, /* block size */
        3, /* number of blocks */
        2 /* bytes per pixel */
        > blockAllocator;
@@ -53,8 +53,6 @@ void TouchGFXGeneratedHAL::initialize()
 {
     HAL::initialize();
     registerEventListener(*(Application::getInstance()));
-    enableLCDControllerInterrupt();
-    enableInterrupts();
     // Partial framebuffer strategy
     setFrameBufferAllocator(&blockAllocator);
     setFrameRefreshStrategy(HAL::REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER);
@@ -89,7 +87,6 @@ void TouchGFXGeneratedHAL::endFrame()
     while (touchgfxDisplayDriverTransmitActive()){}
 
     HAL::endFrame();
-    touchgfx::OSWrappers::signalRenderingDone();
 }
 
 inline uint8_t* TouchGFXGeneratedHAL::advanceFrameBufferToRect(uint8_t* fbPtr, const touchgfx::Rect& rect) const

@@ -6,10 +6,14 @@
  */
 
 #include <ili9341.h>
-#include <app_touchgfx.h>
+#include <cmsis_os.h>
 #include <handlers/display_handler.h>
 #include <shared_data.h>
 #include <cstring>
+
+extern "C" {
+extern osThreadId_t GUI_TaskHandle;
+}
 
 void Display320x240::onTick()
 {
@@ -53,16 +57,30 @@ void Display320x240::onTick()
 		}
 	}
 
+	if (isOff())
+	{
+		if (m_guiActive)
+		{
+			m_guiActive = false;
+			osThreadSuspend(GUI_TaskHandle);
+		}
+	}
+	else if (!m_guiActive)
+	{
+		m_guiActive = true;
+		osThreadResume(GUI_TaskHandle);
+	}
+
 	if (!isOff())
 	{
-		MX_TouchGFX_Process();
+//		MX_TouchGFX_Process();
 	}
 }
 
 void Display320x240::on()
 {
 	if (isOff()) {
-		MX_TouchGFX_Process();
+//		MX_TouchGFX_Process();
 	}
 	m_brightness = (kOn * m_sensData.brightnessSetting) / 100;
 	m_brightnessTimeout.reset();

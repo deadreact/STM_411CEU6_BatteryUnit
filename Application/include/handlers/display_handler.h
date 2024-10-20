@@ -54,6 +54,7 @@ private:
 	uint16_t m_brightness{kOn};
 	DisplaySensitiveData m_sensData;
 	bool m_isActive{true};
+	bool m_guiActive{true};
 };
 
 #endif /* INCLUDE_HANDLERS_DISPLAY_HANDLER_H_ */

@@ -29,7 +29,7 @@
 
 struct IdleProcess::Impl
 {
-	void displayDeepReset();
+//	void displayDeepReset();
 
     void onTick();
     void handleEvents();
@@ -69,14 +69,14 @@ struct IdleProcess::Impl
 };
 
 
-void IdleProcess::Impl::displayDeepReset()
-{
-	screen.setActive(false);
-
-	LCD_Reboot();
-
-	screen.setActive(true);
-}
+//void IdleProcess::Impl::displayDeepReset()
+//{
+//	screen.setActive(false);
+//
+////	LCD_Reboot();
+//
+//	screen.setActive(true);
+//}
 
 void IdleProcess::Impl::onTick()
 {

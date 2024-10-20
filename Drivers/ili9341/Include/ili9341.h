@@ -51,7 +51,7 @@ void ILI9341_EndOfDrawBitmap(void);
 void LCD_WR_REG(uint8_t data);
 void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size);
 
-void LCD_Reboot();
+//void LCD_Reboot();
 
 #ifdef __cplusplus
 }

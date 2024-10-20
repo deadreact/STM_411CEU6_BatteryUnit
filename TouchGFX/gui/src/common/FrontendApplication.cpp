@@ -1,8 +1,6 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
-#include <gui/clockscreen_screen/ClockScreenView.hpp>
-#include <gui/clockscreen_screen/ClockScreenPresenter.hpp>
 #include <gui/debugscreen_screen/DebugScreenView.hpp>
 #include <gui/debugscreen_screen/DebugScreenPresenter.hpp>
 #include <touchgfx/transitions/NoTransition.hpp>
@@ -36,9 +34,6 @@ void FrontendApplication::showScreen(ScreenId id)
 		case ScreenId::MainScreen:
 			touchgfx::makeTransition<MainScreenView, MainScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 			break;
-//		case ScreenId::ClockScreen:
-//			touchgfx::makeTransition<ClockScreenView, ClockScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-//			break;
 		default:
 			break;
 		}

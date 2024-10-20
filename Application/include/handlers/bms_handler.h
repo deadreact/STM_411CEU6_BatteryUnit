@@ -53,8 +53,8 @@ protected:
     BMSStatus m_status { BMSStatus::NoStatus };
     BatteryData m_data;
 
-    CTimeout m_requestTimeout{1000};
-    CTimeout m_responseTimeout{500};
+    CTimeout m_requestTimeout{1400};
+    CTimeout m_responseTimeout{700};
     CTimeout m_dataInvalidationTimeout{10000};
     Timeout m_bmsOnResetTimeout{0};
 

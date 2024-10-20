@@ -7,6 +7,8 @@
 
 #include <ntc_table.h>
 #include <handlers/ntc_handler.h>
+#include <cmath>
+#include <array>
 
 extern ADC_HandleTypeDef hadc1;
 
@@ -17,21 +19,21 @@ const int16_t linear_temperature_table[] = {32,34,35,37,38,39,40,44,45,46,48,49,
 //const uint8_t linear_temperature_table[] = {27,28,29,30,31,32,33, 35, 37};
 
 
-std::map<int16_t, uint8_t> make_map()
-{
-	std::map<int16_t, uint8_t> map;
+ std::map<int16_t, uint8_t> make_map()
+ {
+ 	std::map<int16_t, uint8_t> map;
 
-	for (size_t i = 0; i < std::size(linear_power_table); i++)
-	{
-		map[linear_temperature_table[i]] = linear_power_table[i];
-	}
-	return map;
-}
+ 	for (size_t i = 0; i < std::size(linear_power_table); i++)
+ 	{
+ 		map[linear_temperature_table[i]] = linear_power_table[i];
+ 	}
+ 	return map;
+ }
 
 NtcHandler::NtcHandler(uint32_t adcChannel1, uint32_t adcChannel2)
 	: m_adcChannel1(adcChannel1)
 	, m_adcChannel2(adcChannel2)
-	, m_table(make_map())
+	 , m_table(make_map())
 {
     m_adcConfig.Rank = 1;
     m_adcConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
@@ -83,24 +85,30 @@ int NtcHandler::readSensor(uint32_t adcChannel)
     HAL_ADC_Stop(&hadc1);
 
     return value;
-//    sConfig.Channel = ADC_CHANNEL_6;
-//    HAL_ADC_ConfigChannel(&hadc1, &sConfig);
-//    HAL_ADC_Start(&hadc1);
-//    HAL_ADC_PollForConversion(&hadc1, 500);
-//    sharedData.analog2 = HAL_ADC_GetValue(&hadc1);
-//    HAL_ADC_Stop(&hadc1);
 }
 
 uint8_t NtcHandler::calcFanValue(int16_t temperature) const
 {
-	auto it = m_table.upper_bound(temperature);
-	if (it == m_table.end())
-	{
-		return m_table.rbegin()->second;
-	}
-	else if (it == m_table.begin())
-	{
-		return 0;
-	}
-	return std::prev(it)->second;
+	 auto it = m_table.upper_bound(temperature);
+	 if (it == m_table.end())
+	 {
+	 	return m_table.rbegin()->second;
+	 }
+	 else if (it == m_table.begin())
+	 {
+	 	return 0;
+	 }
+	 return std::prev(it)->second;
+//
+//	 if (temperature < linear_temperature_table[0]) {
+//	 	return 0;
+//	 }
+//	for (int i = std::ssize(linear_temperature_table) - 1; i >= 0; i--)
+//	{
+//		if (temperature >= linear_temperature_table[i])
+//		{
+//			return linear_power_table[i];
+//		}
+//	}
+//	return 0;
 }

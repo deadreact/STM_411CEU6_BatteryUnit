@@ -12,8 +12,6 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
-#include <gui/clockscreen_screen/ClockScreenView.hpp>
-#include <gui/clockscreen_screen/ClockScreenPresenter.hpp>
 #include <gui/debugscreen_screen/DebugScreenView.hpp>
 #include <gui/debugscreen_screen/DebugScreenPresenter.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
@@ -40,10 +38,9 @@ public:
      * A list of all view types. Must end with meta::Nil.
      * @note All view types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< ClockScreenView,
-            touchgfx::meta::TypeList< DebugScreenView,
+    typedef touchgfx::meta::TypeList< DebugScreenView,
             touchgfx::meta::TypeList< MainScreenView,
-            touchgfx::meta::Nil > >
+            touchgfx::meta::Nil >
             > GeneratedViewTypes;
 
     /**
@@ -55,10 +52,9 @@ public:
      * A list of all presenter types. Must end with meta::Nil.
      * @note All presenter types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< ClockScreenPresenter,
-            touchgfx::meta::TypeList< DebugScreenPresenter,
+    typedef touchgfx::meta::TypeList< DebugScreenPresenter,
             touchgfx::meta::TypeList< MainScreenPresenter,
-            touchgfx::meta::Nil > >
+            touchgfx::meta::Nil >
             > GeneratedPresenterTypes;
 
     /**

@@ -208,14 +208,8 @@
     <Filter Include="Source Files\gui\clockscreen_screen">
       <UniqueIdentifier>F4A97EA4-D363-C339-A505-A362A3DF601D</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\generated\gui_generated\clockscreen_screen">
-      <UniqueIdentifier>EF02BF84-7731-46FC-BAD2-1D24698C6EE3</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\generated\gui_generated\mainscreen_screen">
       <UniqueIdentifier>B5B23DBD-81B9-CCA6-E0C2-8A2B5458457F</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\clockscreen_screen">
-      <UniqueIdentifier>B5E2BAD2-9CD5-2EBD-A888-D0BBC6726D2B</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\generated\gui_generated\mainscreen_screen">
       <UniqueIdentifier>87892FF2-591A-0839-2A8E-23B073DB287E</UniqueIdentifier>
@@ -290,9 +284,6 @@
     </ClCompile>
     <ClCompile Include="..\..\gui\src\clockscreen_screen\ClockScreenView.cpp">
       <Filter>Source Files\gui\clockscreen_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\clockscreen_screen\ClockScreenViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\clockscreen_screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenPresenter.cpp">
       <Filter>Source Files\gui\mainscreen_screen</Filter>
@@ -798,9 +789,6 @@
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\clockscreen_screen\ClockScreenView.hpp">
       <Filter>Header Files\gui\clockscreen_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\clockscreen_screen\ClockScreenViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\clockscreen_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenPresenter.hpp">
       <Filter>Header Files\gui\mainscreen_screen</Filter>

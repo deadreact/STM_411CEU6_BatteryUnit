@@ -9,8 +9,6 @@
 #include <touchgfx/Texts.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #include <platform/driver/lcd/LCD16bpp.hpp>
-#include <gui/clockscreen_screen/ClockScreenView.hpp>
-#include <gui/clockscreen_screen/ClockScreenPresenter.hpp>
 #include <gui/debugscreen_screen/DebugScreenView.hpp>
 #include <gui/debugscreen_screen/DebugScreenPresenter.hpp>
 #include <gui/mainscreen_screen/MainScreenView.hpp>
