@@ -7,11 +7,24 @@
           {
             "Type": "Image",
             "Name": "image1",
-            "X": 56,
-            "Y": 20,
+            "X": 6,
+            "Y": 39,
             "Width": 208,
             "Height": 201,
             "RelativeFilename": "grid.png"
+          },
+          {
+            "Type": "DigitalClock",
+            "Name": "digitalClock1",
+            "X": 69,
+            "Y": 108,
+            "Width": 119,
+            "Height": 53,
+            "TextId": "__SingleUse_YBUO",
+            "DisplaySeconds": true,
+            "DisplayLeadingZeroForHourIndicator": true,
+            "InitialHour": 10,
+            "InitialMinute": 10
           }
         ],
         "Interactions": []
@@ -70,5 +83,5 @@
     "OptionalComponents": [],
     "AdditionalFeatures": []
   },
-  "Version": "4.23.2"
+  "Version": "4.24.1"
 }

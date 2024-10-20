@@ -4,6 +4,7 @@
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen1ViewBase::Screen1ViewBase()
 {
@@ -11,9 +12,17 @@ Screen1ViewBase::Screen1ViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    image1.setXY(56, 20);
+    image1.setXY(6, 39);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_GRID_ID));
     add(image1);
+
+    digitalClock1.setPosition(69, 108, 119, 53);
+    digitalClock1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    digitalClock1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YBUO));
+    digitalClock1.displayLeadingZeroForHourIndicator(true);
+    digitalClock1.setDisplayMode(touchgfx::DigitalClock::DISPLAY_24_HOUR);
+    digitalClock1.setTime24Hour(10, 10, 0);
+    add(digitalClock1);
 }
 
 Screen1ViewBase::~Screen1ViewBase()

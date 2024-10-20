@@ -7,6 +7,11 @@ Screen1Presenter::Screen1Presenter(Screen1View& v)
 
 }
 
+void Screen1Presenter::OnTimeChanged()
+{
+	view.setTime(model->m_time);
+}
+
 void Screen1Presenter::activate()
 {
 

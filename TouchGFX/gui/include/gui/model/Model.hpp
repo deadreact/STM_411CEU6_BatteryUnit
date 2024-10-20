@@ -1,6 +1,8 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+#include <cinttypes>
+
 class ModelListener;
 
 class Model
@@ -14,6 +16,8 @@ public:
     }
 
     void tick();
+
+    int64_t m_time{0};
 protected:
     ModelListener* modelListener;
 };

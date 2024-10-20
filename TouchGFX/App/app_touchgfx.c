@@ -132,7 +132,6 @@ void MX_TouchGFX_Process(void)
  */
 void TouchGFX_Task(void* argument)
 {
-
     // Calling forward to touchgfx_taskEntry in C++ domain
     touchgfx_taskEntry();
 }

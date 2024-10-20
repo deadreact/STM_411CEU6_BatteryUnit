@@ -11,6 +11,8 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+
+    void setTime(int64_t time);
 protected:
 };
 

@@ -79,7 +79,7 @@ static void MX_CRC_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 void StartDefaultTask(void *argument);
-extern void TouchGFX_Task(void *argument);
+void StartGUITask(void *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -161,7 +161,7 @@ int main(void)
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* creation of GUI_Task */
-  GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
+  GUI_TaskHandle = osThreadNew(StartGUITask, NULL, &GUI_Task_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -508,6 +508,25 @@ void StartDefaultTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_StartGUITask */
+/**
+* @brief Function implementing the GUI_Task thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartGUITask */
+void StartGUITask(void *argument)
+{
+  /* USER CODE BEGIN StartGUITask */
+  /* Infinite loop */
+  for(;;)
+  {
+	TouchGFX_Task(argument);
+    osDelay(1);
+  }
+  /* USER CODE END StartGUITask */
 }
 
 /**

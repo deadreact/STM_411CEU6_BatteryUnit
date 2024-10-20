@@ -27,6 +27,8 @@ public:
 
     virtual ~Screen1Presenter() {}
 
+    virtual void OnTimeChanged() override;
+
 private:
     Screen1Presenter();
 
