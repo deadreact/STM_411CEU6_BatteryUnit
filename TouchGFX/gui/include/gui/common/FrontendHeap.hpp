@@ -27,7 +27,7 @@ public:
     typedef touchgfx::meta::select_type_maxsize< UserDefinedViewTypes >::type MaxUserViewType;
 
     typedef touchgfx::meta::TypeList< MaxGeneratedViewType,
-	        touchgfx::meta::TypeList< MaxUserViewType,
+            touchgfx::meta::TypeList< MaxUserViewType,
                             touchgfx::meta::Nil
                             > > CombinedViewTypes;
 
@@ -67,7 +67,7 @@ private:
     FrontendHeap() : FrontendHeapBase(presenters, views, transitions, app),
                      app(model, *this)
     {
-        gotoStartScreen(app);
+        gotoStartScreen(app); // @suppress("Virtual method call in constructor/destructor")
     }
 };
 

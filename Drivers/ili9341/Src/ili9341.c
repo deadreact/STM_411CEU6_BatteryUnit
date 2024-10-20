@@ -175,7 +175,7 @@ void ILI9341_Init(void)
 	//EXIT SLEEP
 	LCD_WR_REG(0x11);
 
-	HAL_Delay(120);
+	osDelay(120);
 
 	//TURN ON DISPLAY
 	LCD_WR_REG(0x29);

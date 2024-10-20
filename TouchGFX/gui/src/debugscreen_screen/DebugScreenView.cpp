@@ -1,0 +1,182 @@
+#include <gui/debugscreen_screen/DebugScreenView.hpp>
+#include <cstring>
+#include <algorithm>
+
+DebugScreenView::DebugScreenView()
+{
+}
+
+void DebugScreenView::setupScreen()
+{
+    DebugScreenViewBase::setupScreen();
+
+    for (int i = 0; i < 4; ++i)
+    {
+    	cell[i].initialize();
+    	cell[i].setIndex(i+1);
+    	cell[i].setVisible(false);
+    	batteryCellInfo.add(cell[i]);
+    }
+
+    __background.setColor(0xff11212a);
+}
+
+DebugScreenView::~DebugScreenView()
+{
+//	delete m_settingsPopUp;
+}
+
+void DebugScreenView::tearDownScreen()
+{
+    DebugScreenViewBase::tearDownScreen();
+}
+
+void DebugScreenView::handleTickEvent()
+{
+//	const auto& data = SharedData::getData();
+//
+//	if (data.temperatureInv != temperatureInv)
+//	{
+//		temperatureInv = data.temperatureInv;
+////		fan = data.fan;
+//		touchgfx::Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%d", data.temperatureInv);
+//		invTemperatureValue.invalidate();
+//	}
+//
+//	if (data.temperatureCharg != temperatureCharg)
+//	{
+//		temperatureCharg = data.temperatureCharg;
+//		touchgfx::Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%d", data.temperatureCharg);
+//		chargerTemperatureValue.invalidate();
+//	}
+//
+//	if (data.bms != m_bmsData)
+//	{
+//		if (data.bms.soc != m_bmsData.soc)
+//		{
+//			m_bmsData.soc = data.bms.soc;
+//			capacityValue.setValue(m_bmsData.soc);
+//			touchgfx::Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.soc);
+////			capacityTextValue.resizeToCurrentText();
+//			capacityTextValue.invalidate();
+//		}
+//
+//		if (data.bms.current != m_bmsData.current)
+//		{
+//			m_bmsData.current = data.bms.current;
+//			touchgfx::Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
+////			currentTextValue.resizeToCurrentText();
+//			currentTextValue.invalidate();
+//		}
+//
+//		if (data.bms.voltage != m_bmsData.voltage)
+//		{
+//			m_bmsData.voltage = data.bms.voltage;
+//			touchgfx::Unicode::snprintfFloat(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
+////			voltageTextValue.resizeToCurrentText();
+//			voltageTextValue.invalidate();
+//		}
+//
+//		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)
+//		{
+//			m_bmsData.battery_box_temperature = data.bms.battery_box_temperature;
+//			touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%d", data.bms.battery_box_temperature);
+//			temperatureValues.invalidate();
+//		}
+//
+//		if (data.bms.battery_temperature != m_bmsData.battery_temperature)
+//		{
+//			m_bmsData.battery_temperature = data.bms.battery_temperature;
+//			touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%d", data.bms.battery_temperature);
+//			temperatureValues.invalidate();
+//		}
+//
+//		if (data.bms.cellVoltage != m_bmsData.cellVoltage)
+//		{
+//			m_bmsData.cellVoltage = data.bms.cellVoltage;
+//			int i = 0;
+//			for (; i < m_bmsData.cellVoltage.size(); i++) {
+//				cell[i].setVisible(true);
+//				cell[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
+//			}
+//			for (; i < BatteryData::kMaxCellCount; i++) {
+//				cell[i].setVisible(false);
+//			}
+//			colorizeCells();
+//			batteryCellInfo.invalidateContent();
+//		}
+//
+//		int chargeValue = data.bms.calcTimeRemain(data.bms.current);
+//		if (chargeValue != m_chargeTimeSec)
+//		{
+//			const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
+//			const int hours = absVal / SEC_IN_HOUR;
+//			const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
+//			touchgfx::Unicode::snprintf(capacityTimeValueBuffer1, CAPACITYTIMEVALUEBUFFER1_SIZE, "%d", hours);
+//			touchgfx::Unicode::snprintf(capacityTimeValueBuffer2, CAPACITYTIMEVALUEBUFFER2_SIZE, "%d", mins);
+//			m_chargeTimeSec = chargeValue;
+//			capacityTimeValue.invalidate();
+//		}
+//
+//		m_bmsData = data.bms;
+//	}
+//
+//	bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
+//	if (isMajorError == batteryInfo.isVisible())
+//	{
+//		if (isMajorError)
+//		{
+//			m_bmsData = BatteryData();
+//		}
+//		batteryInfo.setVisible(!isMajorError);
+//		batteryInfo.invalidate();
+//	}
+//
+//	if (data.errMsg != errMsg)
+//	{
+//		memset(errorLabelBuffer,0, ERRORLABEL_SIZE * 2);
+//
+//		const char* msgIt = errMsg.cbegin();
+//		int i = 0;
+//		for (; *msgIt != '\0'; i++) {
+//			errorLabelBuffer[i] = *(msgIt++);
+//		}
+//
+//		errMsg = data.errMsg;
+//
+//		errorLabelBuffer[i] = '\n';
+//		++i;
+//		msgIt = errMsg.cbegin();
+//		for (; *msgIt != '\0'; i++) {
+//			errorLabelBuffer[i] = *(msgIt++);
+//		}
+//
+//		errorLabel.invalidate();
+//	}
+}
+
+void DebugScreenView::colorizeCells()
+{
+//	if (!m_bmsData.cellVoltage.empty())
+//	{
+//		uint16_t max = m_bmsData.cellVoltage[0];
+//		uint16_t min = m_bmsData.cellVoltage[0];
+//		uint8_t maxIndex = 0;
+//		uint8_t minIndex = 0;
+//
+//		for (int i = 1; i < m_bmsData.cellVoltage.size(); i++) {
+//			if (m_bmsData.cellVoltage[i] > max) {
+//				max = m_bmsData.cellVoltage[i];
+//				maxIndex = i;
+//			} else if (m_bmsData.cellVoltage[i] < min) {
+//				min = m_bmsData.cellVoltage[i];
+//				minIndex = i;
+//			}
+//		}
+//		for (int i = 0; i < m_bmsData.cellVoltage.size(); i++) {
+//			cell[i].setMarker(i == maxIndex ? CellMarker::Max : (i == minIndex ? CellMarker::Min : CellMarker::Average));
+//		}
+//	}
+}
+
+

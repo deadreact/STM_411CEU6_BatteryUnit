@@ -1,15 +1,14 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
-#include <cinttypes>
+#include <settings_data.h>
 
+class Settings;
 class ModelListener;
 
 class Model
 {
 public:
-    Model();
-
     void bind(ModelListener* listener)
     {
         modelListener = listener;
@@ -17,9 +16,12 @@ public:
 
     void tick();
 
-    int64_t m_time{0};
+    Settings* settingsPopUp{nullptr};
 protected:
-    ModelListener* modelListener;
+    ModelListener* modelListener{nullptr};
+private:
+    SettingsData m_settingsData;
+
 };
 
 #endif // MODEL_HPP

@@ -3,21 +3,22 @@
 
 #include <gui/model/Model.hpp>
 
+class Settings;
+
 class ModelListener
 {
 public:
-    ModelListener() : model(0) {}
-    
     virtual ~ModelListener() {}
-
-    virtual void OnTimeChanged() = 0;
 
     void bind(Model* m)
     {
         model = m;
     }
+
+    virtual void onSettingsCreated() {}
+    virtual void onSettingsWillBeDestroyed() {}
 protected:
-    Model* model;
+    Model* model{nullptr};
 };
 
 #endif // MODELLISTENER_HPP

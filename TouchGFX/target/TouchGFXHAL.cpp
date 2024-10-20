@@ -23,7 +23,7 @@
 #include <TouchGFXHAL.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
-#include "ili9341.h"
+
 
 using namespace touchgfx;
 
@@ -51,12 +51,6 @@ void TouchGFXHAL::initialize()
     // Please note, HAL::initialize() must be called to initialize the framework.
 
     TouchGFXGeneratedHAL::initialize();
-}
-
-void TouchGFXHAL::taskEntry()
-{
-	ILI9341_Init();
-	TouchGFXGeneratedHAL::taskEntry();
 }
 
 /**

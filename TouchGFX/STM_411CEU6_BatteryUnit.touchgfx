@@ -2,43 +2,1070 @@
   "Application": {
     "Screens": [
       {
-        "Name": "Screen1",
+        "Name": "DebugScreen",
         "Components": [
           {
-            "Type": "Image",
-            "Name": "image1",
-            "X": 6,
-            "Y": 39,
-            "Width": 208,
-            "Height": 201,
-            "RelativeFilename": "grid.png"
+            "Type": "Box",
+            "Name": "box2",
+            "Width": 320,
+            "Height": 20,
+            "LockPosition": true,
+            "Color": {
+              "Red": 80,
+              "Green": 119,
+              "Blue": 140
+            }
           },
           {
-            "Type": "DigitalClock",
-            "Name": "digitalClock1",
-            "X": 69,
-            "Y": 108,
-            "Width": 119,
-            "Height": 53,
-            "TextId": "__SingleUse_YBUO",
-            "DisplaySeconds": true,
-            "DisplayLeadingZeroForHourIndicator": true,
-            "InitialHour": 10,
-            "InitialMinute": 10
+            "Type": "Container",
+            "Name": "debugInfoContainer",
+            "Y": 170,
+            "Width": 195,
+            "Height": 70,
+            "Components": [
+              {
+                "Type": "BoxWithBorder",
+                "Name": "boxWithBorder1",
+                "Width": 195,
+                "Height": 70,
+                "Color": {
+                  "Red": 12,
+                  "Green": 27,
+                  "Blue": 55
+                },
+                "BorderColor": {
+                  "Red": 80,
+                  "Green": 119,
+                  "Blue": 140
+                },
+                "BorderSize": 3
+              },
+              {
+                "Type": "TextArea",
+                "Name": "errorLabel",
+                "X": 4,
+                "Width": 188,
+                "Height": 70,
+                "TextId": "__SingleUse_268O",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 254,
+                  "Green": 189,
+                  "Blue": 23
+                },
+                "Wildcard1": {
+                  "TextId": "__SingleUse_RJG5",
+                  "UseBuffer": true,
+                  "BufferSize": 40
+                },
+                "WideTextAction": 2
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "batteryInfo",
+            "X": 4,
+            "Y": 22,
+            "Width": 312,
+            "Height": 215,
+            "Components": [
+              {
+                "Type": "ListLayout",
+                "Name": "batteryMainInfo",
+                "Width": 190,
+                "Height": 133,
+                "Direction": "South",
+                "Components": [
+                  {
+                    "Type": "Container",
+                    "Name": "containerCapacity",
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTitle",
+                        "Width": 45,
+                        "Height": 20,
+                        "TextId": "battery",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "BoxProgress",
+                        "Name": "capacityValue",
+                        "X": 90,
+                        "Y": 1,
+                        "Width": 100,
+                        "Height": 18,
+                        "Color": {
+                          "Red": 252,
+                          "Green": 150,
+                          "Blue": 25
+                        },
+                        "Direction": "Right",
+                        "FileNameBackground": "__generated\\alternate_theme_images_widgets_boxprogress_thick_tiny.png",
+                        "IndicatorPositionWidth": 100,
+                        "IndicatorPositionHeight": 18,
+                        "ProgressRangeMax": 100,
+                        "ProgressInitialValue": 60
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTextValue",
+                        "X": 90,
+                        "Y": 1,
+                        "Width": 100,
+                        "Height": 18,
+                        "TextId": "wildcard_persent",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "capacityTimeContainer",
+                    "Y": 19,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTimeValue",
+                        "X": 128,
+                        "Y": 2,
+                        "Width": 64,
+                        "Height": 17,
+                        "TextId": "TIME_H_M",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 2
+                        },
+                        "Wildcard2": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 2
+                        }
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "capacityTimeTitle",
+                        "Width": 126,
+                        "Height": 20,
+                        "TextId": "capacity_time_title",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "containerCurrent",
+                    "Y": 38,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "currentTitle",
+                        "Width": 47,
+                        "Height": 20,
+                        "TextId": "current",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "currentTextValue",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "batCapacity",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "containerVoltage",
+                    "Y": 57,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "voltageTitle",
+                        "Width": 61,
+                        "Height": 20,
+                        "TextId": "VOLTAGE_TITLE",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "voltageTextValue",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "VoltageVal",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "temperatureContainer",
+                    "Y": 76,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureTitle",
+                        "Width": 72,
+                        "Height": 20,
+                        "TextId": "bms_temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temperatureValues",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "temperature_temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        },
+                        "Wildcard2": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "chargerTemperatureContainer",
+                    "Y": 95,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "chargerTemperatureTitle",
+                        "Width": 63,
+                        "Height": 20,
+                        "TextId": "charger_temperature_title",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "chargerTemperatureValue",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "invTemperatureContainer",
+                    "Y": 114,
+                    "Width": 190,
+                    "Height": 19,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "invTemperatureTitle",
+                        "Width": 69,
+                        "Height": 20,
+                        "TextId": "inv_temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "invTemperatureValue",
+                        "X": 90,
+                        "Y": 2,
+                        "Width": 100,
+                        "Height": 17,
+                        "TextId": "temperature",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 232,
+                          "Green": 246,
+                          "Blue": 251
+                        },
+                        "Wildcard1": {
+                          "TextId": "Values_0",
+                          "UseBuffer": true,
+                          "BufferSize": 5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "ListLayout",
+                "Name": "batteryCellInfo",
+                "X": 192,
+                "Width": 117,
+                "Height": 25,
+                "Direction": "South",
+                "Components": []
+              }
+            ]
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "MainScreen",
+        "Components": [
+          {
+            "Type": "Container",
+            "Name": "content",
+            "Width": 320,
+            "Height": 240,
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "iconsContainer",
+                "Width": 320,
+                "Height": 50,
+                "Components": [
+                  {
+                    "Type": "Image",
+                    "Name": "icon_chargPlug",
+                    "X": 52,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "icon_charg.png"
+                  },
+                  {
+                    "Type": "TextureMapper",
+                    "Name": "icon_fan",
+                    "X": 102,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "UseAnimation": true,
+                    "RenderingAlgorithm": "Bilinear Interpolation",
+                    "FileNameImage": "blue_fan.png",
+                    "LockBitmapToCenter": true,
+                    "Scale": 1.0,
+                    "XOrigo": 23.5,
+                    "YOrigo": 23.5,
+                    "ZOrigo": 1000.0,
+                    "CameraDistance": 1000.0
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_chargErr",
+                    "X": 52,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "icon_chargBlock.png"
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_usb",
+                    "X": 152,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "grayscale_usb2.png"
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_inv",
+                    "X": 201,
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "inv220v.png"
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "icon_warn",
+                    "Width": 48,
+                    "Height": 48,
+                    "Visible": false,
+                    "RelativeFilename": "warn_yellow.png"
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "capacityContainerSmall",
+                "Y": 47,
+                "Width": 320,
+                "Height": 193,
+                "Moveable": true,
+                "Components": [
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "ioValue",
+                    "Y": 143,
+                    "Width": 320,
+                    "Height": 50,
+                    "CustomContainerDefinitionName": "IOValue"
+                  },
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "chargeTimeContainer",
+                    "X": 6,
+                    "Y": 16,
+                    "Width": 170,
+                    "Height": 127,
+                    "CustomContainerDefinitionName": "ChargeTime"
+                  },
+                  {
+                    "Type": "CustomContainerInstance",
+                    "Name": "capacityContainer",
+                    "X": 185,
+                    "Y": 28,
+                    "Width": 110,
+                    "Height": 114,
+                    "CustomContainerDefinitionName": "BatteryStatus"
+                  },
+                  {
+                    "Type": "Box",
+                    "Name": "footerBox",
+                    "Y": 143,
+                    "Width": 320,
+                    "Height": 3,
+                    "Visible": false,
+                    "Color": {
+                      "Red": 15,
+                      "Green": 18,
+                      "Blue": 23
+                    }
+                  },
+                  {
+                    "Type": "Box",
+                    "Name": "headerBox",
+                    "Width": 320,
+                    "Height": 3,
+                    "Visible": false,
+                    "Color": {
+                      "Red": 8,
+                      "Green": 9,
+                      "Blue": 9
+                    }
+                  },
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage1",
+                    "Width": 320,
+                    "Height": 2,
+                    "Filename": "gradient_x.png",
+                    "ScalingAlgorithm": "Nearest-neighbor"
+                  },
+                  {
+                    "Type": "ScalableImage",
+                    "Name": "scalableImage1_1",
+                    "Y": 144,
+                    "Width": 320,
+                    "Height": 2,
+                    "Filename": "gradient_left.png",
+                    "ScalingAlgorithm": "Bilinear Interpolation"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Box",
+            "Name": "loading_bg",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "Alpha": 190
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "loading",
+            "X": 124,
+            "Y": 84,
+            "Width": 72,
+            "Height": 72,
+            "Visible": false,
+            "RenderingAlgorithm": "Bilinear Interpolation",
+            "FileNameImage": "loading_2.png",
+            "LockBitmapToCenter": true,
+            "Scale": 1.0,
+            "XOrigo": 35.5,
+            "YOrigo": 35.5,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
           }
         ],
         "Interactions": []
       }
     ],
-    "CustomContainerDefinitions": [],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "BatteryCellElement",
+        "Width": 114,
+        "Height": 19,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "X": 3,
+            "Y": 2,
+            "Width": 10,
+            "Height": 16,
+            "Color": {
+              "Red": 252,
+              "Green": 150,
+              "Blue": 25
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "index",
+            "X": 12,
+            "Y": 1,
+            "Width": 29,
+            "Height": 17,
+            "TextId": "__SingleUse_GCQW",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            },
+            "Wildcard1": {
+              "TextId": "Values_1",
+              "UseBuffer": true,
+              "BufferSize": 2
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "X": 41,
+            "Y": 1,
+            "Width": 73,
+            "Height": 16,
+            "TextId": "__SingleUse_7FIN",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 232,
+              "Green": 246,
+              "Blue": 251
+            },
+            "Wildcard1": {
+              "TextId": "Values_0dot0",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "scalableImage1",
+            "X": 2,
+            "Y": 1,
+            "Width": 39,
+            "Height": 18,
+            "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_small.png",
+            "ScalingAlgorithm": "Bilinear Interpolation"
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "IOValue",
+        "Y": 190,
+        "Width": 320,
+        "Height": 50,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "X": 160,
+            "Width": 117,
+            "Height": 50,
+            "TextId": "IOWildcard",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "ValueMedium_0",
+              "UseBuffer": true,
+              "BufferSize": 5
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Watts",
+            "X": 285,
+            "Y": 22,
+            "Width": 30,
+            "Height": 21,
+            "TextId": "Watts",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ioLabel",
+            "Width": 160,
+            "Height": 50,
+            "TextId": "OUTPUT",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 237,
+              "Green": 17,
+              "Blue": 17
+            }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "ChargeTime",
+        "Width": 170,
+        "Height": 127,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "chargeTimeLabel",
+            "X": 2,
+            "Y": 4,
+            "Width": 166,
+            "Height": 21,
+            "TextId": "REMAINING_TIME",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "minsLabel",
+            "X": 66,
+            "Y": 101,
+            "Width": 94,
+            "Height": 19,
+            "TextId": "Mins",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "warningYellow",
+            "Y": 37,
+            "Width": 48,
+            "Height": 48,
+            "Visible": false,
+            "RelativeFilename": "warn_yellow.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "warningRed",
+            "X": 20,
+            "Y": 33,
+            "Width": 64,
+            "Height": 64,
+            "Visible": false,
+            "RelativeFilename": "warn_red.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "Y": 12,
+            "Width": 106,
+            "Height": 98,
+            "TextId": "__SingleUse_A1VM",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "ValueLarge_99",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "valueAdditional",
+            "X": 116,
+            "Y": 53,
+            "Width": 44,
+            "Height": 48,
+            "TextId": "__SingleUse_7F9D",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "ValueMedium_30",
+              "UseBuffer": true,
+              "BufferSize": 3
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "hoursLabel",
+            "X": 56,
+            "Y": 101,
+            "Width": 50,
+            "Height": 19,
+            "TextId": "Hours",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "BatteryStatus",
+        "Width": 110,
+        "Height": 114,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "capacityTextValue",
+            "Width": 110,
+            "Height": 51,
+            "TextId": "SOC",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 143,
+              "Green": 181,
+              "Blue": 239
+            },
+            "Wildcard1": {
+              "TextId": "ValueMedium_50",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "BoxWithBorder",
+            "Name": "capacityValue",
+            "X": 1,
+            "Y": 49,
+            "Width": 55,
+            "Height": 40,
+            "Color": {
+              "Red": 82,
+              "Green": 193,
+              "Blue": 196
+            },
+            "BorderColor": {
+              "Red": 26,
+              "Green": 26,
+              "Blue": 25
+            },
+            "BorderSize": 5
+          },
+          {
+            "Type": "Box",
+            "Name": "animBox",
+            "X": 92,
+            "Y": 54,
+            "Width": 4,
+            "Height": 30,
+            "Visible": false,
+            "Color": {
+              "Red": 17,
+              "Green": 234,
+              "Blue": 17
+            }
+          },
+          {
+            "Type": "ScalableImage",
+            "Name": "capacityImage",
+            "Y": 49,
+            "Width": 110,
+            "Height": 40,
+            "LockPosition": true,
+            "Filename": "__generated\\alternate_theme_images_widgets_imageprogress_styled_batteries_battery_large.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "voltageValue",
+            "Y": 89,
+            "Width": 110,
+            "Height": 25,
+            "TextId": "__SingleUse_8789",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 104,
+              "Green": 127,
+              "Blue": 204
+            },
+            "Wildcard1": {
+              "TextId": "ValueNormal_0",
+              "UseBuffer": true,
+              "BufferSize": 6
+            }
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "Settings",
+        "X": 38,
+        "Y": 40,
+        "Width": 244,
+        "Height": 160,
+        "Components": [
+          {
+            "Type": "BoxWithBorder",
+            "Name": "boxWithBorder1",
+            "Width": 244,
+            "Height": 160,
+            "Color": {
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
+            },
+            "BorderColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "BorderSize": 2
+          },
+          {
+            "Type": "TextArea",
+            "Name": "chargePowerTitle",
+            "X": 3,
+            "Y": 3,
+            "Width": 239,
+            "Height": 31,
+            "TextId": "SETTINGS_SCREEN_TITLE",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 201,
+              "Green": 202,
+              "Blue": 202
+            }
+          },
+          {
+            "Type": "ScrollList",
+            "Name": "entries",
+            "X": 2,
+            "Y": 37,
+            "Width": 240,
+            "Height": 121,
+            "ItemTemplateName": "SettingEntry",
+            "NumberofItems": 3,
+            "Easing": "Back",
+            "EasingOption": "Out",
+            "SwipeAcceleration": 1.0,
+            "DragAcceleration": 1.0,
+            "OverShootPercentage": 75
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "SettingEntry",
+        "Width": 240,
+        "Height": 24,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "bg",
+            "Width": 240,
+            "Height": 24,
+            "LockPosition": true,
+            "RelativeFilename": "list_element_background.png"
+          },
+          {
+            "Type": "Box",
+            "Name": "selection",
+            "Width": 240,
+            "Height": 24,
+            "Visible": false,
+            "Color": {
+              "Red": 235,
+              "Green": 122
+            },
+            "Alpha": 224
+          },
+          {
+            "Type": "TextArea",
+            "Name": "selectedValue",
+            "X": 140,
+            "Y": 4,
+            "Width": 96,
+            "Height": 16,
+            "TextId": "SETTING_VALUE_WILDCARD",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
+            },
+            "Wildcard1": {
+              "TextId": "SETTING_SCREEN_VALUE_0",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "title",
+            "X": 4,
+            "Y": 4,
+            "Width": 140,
+            "Height": 16,
+            "TextId": "SETTING_CHARGER_POWER",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 91,
+              "Green": 91,
+              "Blue": 91
+            }
+          }
+        ],
+        "Interactions": []
+      }
+    ],
     "Name": "MyApplication",
     "Resolution": {
       "Width": 320,
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
-    "SelectedStartupLanguage": "GB",
+    "StartupScreenName": "MainScreen",
+    "SelectedStartupLanguage": "UA",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
     "AvailableColorDepths": [
