@@ -319,7 +319,10 @@ void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size)
     spiDmaTransferComplete = 0;
     auto status = HAL_SPI_Transmit_DMA(&hspi1, pData, Size*2 );
     //HAL_SPI_Transmit_DMA(&hspi1, (uint8_t*)pData, Size );
-    while(spiDmaTransferComplete == 0);
+    while(spiDmaTransferComplete == 0)
+    {
+    	osThreadYield();
+    }
 }
 
 

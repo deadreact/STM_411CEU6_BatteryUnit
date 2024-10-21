@@ -38,10 +38,12 @@ void EnterSleepMode(void) {
 
 void EnterStopMode(void)
 {
-    HAL_SuspendTick();
+
+    vTaskSuspendAll();
     HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
     SYSCLKConfig_FromSTOP();
     HAL_ResumeTick();
+    xTaskResumeAll();
 }
 
 /**
