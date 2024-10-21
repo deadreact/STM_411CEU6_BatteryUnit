@@ -21,6 +21,7 @@
 /* USER CODE END Header */
 
 #include <TouchGFXHAL.hpp>
+#include <touchgfx/hal/OSWrappers.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
 
@@ -41,6 +42,8 @@ using namespace touchgfx;
  */
 #warning "A user must call touchgfx::startNewTransfer(); once touchgfxDisplayDriverTransmitBlock() has succesfully sent a block."
 #warning "A user must implement C-methods touchgfxDisplayDriverTransmitActive() and touchgfxDisplayDriverTransmitBlock() used by the Partial Framebuffer Strategy."
+
+extern "C" int touchgfxDisplayDriverTransmitActive();
 
 void TouchGFXHAL::initialize()
 {
@@ -171,7 +174,12 @@ bool TouchGFXHAL::beginFrame()
 
 void TouchGFXHAL::endFrame()
 {
-    TouchGFXGeneratedHAL::endFrame();
+    while (touchgfxDisplayDriverTransmitActive())
+    {
+        touchgfx::OSWrappers::taskYield();
+    }
+
+    HAL::endFrame();
 }
 
 /* USER CODE END TouchGFXHAL.cpp */
