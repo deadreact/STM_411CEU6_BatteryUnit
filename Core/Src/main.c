@@ -623,11 +623,17 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, pot_UD_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : extr_bat_on_Pin bms_ok_Pin */
-  GPIO_InitStruct.Pin = extr_bat_on_Pin|bms_ok_Pin;
+  /*Configure GPIO pin : extr_bat_on_Pin */
+  GPIO_InitStruct.Pin = extr_bat_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(extr_bat_on_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : bms_ok_Pin */
+  GPIO_InitStruct.Pin = bms_ok_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(bms_ok_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : bms_on_Pin */
   GPIO_InitStruct.Pin = bms_on_Pin;
