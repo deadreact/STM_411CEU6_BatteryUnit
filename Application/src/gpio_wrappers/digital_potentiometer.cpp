@@ -106,7 +106,7 @@ void DigitalPotentiometer::setValue(uint8_t value)
 			m_currentValue = 100;
 		}
 	}
-	changeValue(value);
+	changeValue(m_goalValue > m_currentValue);
 }
 
 //----------------------------------------------------------------
