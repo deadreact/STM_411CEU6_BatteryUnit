@@ -50,11 +50,10 @@ void DigitalPotentiometer::onTick()
 	}
 }
 
-void DigitalPotentiometer::changeValue(uint8_t value)
+void DigitalPotentiometer::changeValue(bool increase)
 {
 	if (select())
 	{
-		const bool increase = m_goalValue > m_currentValue;
 		m_potUD.writePin((increase ^ m_inversedUD) ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
 		while (m_currentValue != m_goalValue)

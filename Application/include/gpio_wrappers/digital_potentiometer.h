@@ -27,7 +27,7 @@ public:
 private:
 	bool select();
 	void deselect(bool store = false);
-	void changeValue(uint8_t value);
+	void changeValue(bool increase);
 
 	PinWrapper m_potCS;
 	PinWrapper m_potINC{pot_INC_GPIO_Port, pot_INC_Pin};
