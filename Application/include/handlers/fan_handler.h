@@ -36,7 +36,7 @@ private:
 	const PinWrapper m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
 	const PinWrapper m_usbOn{usb_on_GPIO_Port, usb_on_Pin};
 
-	DigitalPotentiometer m_potCS1{pot_CS1_GPIO_Port, pot_CS1_Pin, true};
+	AsyncDigitalPotentiometer m_potCS1{pot_CS1_GPIO_Port, pot_CS1_Pin, true};
 
 	PinWrapper m_fanOn{fan_n_power_on_GPIO_Port, fan_n_power_on_Pin};
 };
