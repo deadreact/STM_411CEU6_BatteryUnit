@@ -7,28 +7,11 @@
 
 #include "power_modes.h"
 #include "stm32f4xx_hal.h"
-#include "stm32f4xx_ll_rcc.h"
+#include "main.h"
 
-static void SYSCLKConfig_FromSTOP(void)
-{
-  /* Customize process using LL interface to improve the performance
-     (wake-up time from STOP quicker in LL than HAL)*/
-  /* HSE configuration and activation */
-  LL_RCC_HSE_Enable();
-  while(LL_RCC_HSE_IsReady() != 1) {};
-
-  /* Main PLL activation */
-  LL_RCC_PLL_Enable();
-  while(LL_RCC_PLL_IsReady() != 1)
-  {
-  };
-
-  /* SYSCLK activation on the main PLL */
-  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
-  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
-  {
-  };
-}
+extern void SystemClock_Config(void);
+extern void vTaskSuspendAll(void);
+extern long xTaskResumeAll(void);
 
 void EnterSleepMode(void) {
     HAL_SuspendTick();
@@ -40,8 +23,10 @@ void EnterStopMode(void)
 {
 	HAL_SuspendTick();
     vTaskSuspendAll();
+    HAL_GPIO_WritePin(extr_bat_on_GPIO_Port, extr_bat_on_Pin, GPIO_PIN_RESET);
     HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
-    SYSCLKConfig_FromSTOP();
+    HAL_GPIO_WritePin(extr_bat_on_GPIO_Port, extr_bat_on_Pin, GPIO_PIN_SET);
+    SystemClock_Config();
     HAL_ResumeTick();
     xTaskResumeAll();
 }

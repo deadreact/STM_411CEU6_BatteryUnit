@@ -61,7 +61,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define extr_bat_on_Pin GPIO_PIN_13
 #define extr_bat_on_GPIO_Port GPIOC
-#define extr_bat_on_EXTI_IRQn EXTI15_10_IRQn
 #define bms_ok_Pin GPIO_PIN_14
 #define bms_ok_GPIO_Port GPIOC
 #define bms_ok_EXTI_IRQn EXTI15_10_IRQn
