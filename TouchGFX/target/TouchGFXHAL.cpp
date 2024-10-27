@@ -21,10 +21,10 @@
 /* USER CODE END Header */
 
 #include <TouchGFXHAL.hpp>
-#include <touchgfx/hal/OSWrappers.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
 
+#include <touchgfx/hal/OSWrappers.hpp>
 
 using namespace touchgfx;
 
