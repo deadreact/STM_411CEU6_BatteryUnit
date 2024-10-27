@@ -67,7 +67,7 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t GUI_TaskHandle;
 const osThreadAttr_t GUI_Task_attributes = {
   .name = "GUI_Task",
-  .stack_size = 2304 * 4,
+  .stack_size = 2560 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */

@@ -202,12 +202,6 @@
     <Filter Include="Header Files\gui\mainscreen_screen">
       <UniqueIdentifier>598C82DD-EC01-E2D3-44A9-D3FB481E1622</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\clockscreen_screen">
-      <UniqueIdentifier>E361F32A-C43A-937E-214D-52EFAE8762E6</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\clockscreen_screen">
-      <UniqueIdentifier>F4A97EA4-D363-C339-A505-A362A3DF601D</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\generated\gui_generated\mainscreen_screen">
       <UniqueIdentifier>B5B23DBD-81B9-CCA6-E0C2-8A2B5458457F</UniqueIdentifier>
     </Filter>
@@ -246,30 +240,6 @@
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp">
       <Filter>Source Files\generated\simulator\video</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\BatteryCellElement.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellElementBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\IOValue.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\IOValueBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\ChargeTime.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\ChargeTimeBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\BatteryStatus.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryStatusBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gui\src\debugscreen_screen\DebugScreenPresenter.cpp">
       <Filter>Source Files\gui\debugscreen_screen</Filter>
     </ClCompile>
@@ -278,12 +248,6 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\debugscreen_screen\DebugScreenViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\debugscreen_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\clockscreen_screen\ClockScreenPresenter.cpp">
-      <Filter>Source Files\gui\clockscreen_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\clockscreen_screen\ClockScreenView.cpp">
-      <Filter>Source Files\gui\clockscreen_screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\mainscreen_screen\MainScreenPresenter.cpp">
       <Filter>Source Files\gui\mainscreen_screen</Filter>
@@ -304,6 +268,18 @@
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\SettingsBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\BatteryCell.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryCellBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\BatteryProgressBar.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryProgressBarBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -748,30 +724,6 @@
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp">
       <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\BatteryCellElement.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellElementBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\IOValue.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\IOValueBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\ChargeTime.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\ChargeTimeBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\BatteryStatus.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryStatusBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\BlinkingAnimation.h">
       <Filter>Source Files\gui\common</Filter>
     </ClInclude>
@@ -783,12 +735,6 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\debugscreen_screen\DebugScreenViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\debugscreen_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\clockscreen_screen\ClockScreenPresenter.hpp">
-      <Filter>Header Files\gui\clockscreen_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\clockscreen_screen\ClockScreenView.hpp">
-      <Filter>Header Files\gui\clockscreen_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\mainscreen_screen\MainScreenPresenter.hpp">
       <Filter>Header Files\gui\mainscreen_screen</Filter>
@@ -813,6 +759,18 @@
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\CommonScreenView.h">
       <Filter>Source Files\gui\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryCell.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryCellBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\BatteryProgressBar.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryProgressBarBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

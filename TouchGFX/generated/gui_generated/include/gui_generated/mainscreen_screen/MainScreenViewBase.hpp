@@ -8,16 +8,6 @@
 #include <mvp/View.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/AnimationTextureMapper.hpp>
-#include <touchgfx/EasingEquations.hpp>
-#include <touchgfx/mixins/MoveAnimator.hpp>
-#include <gui/containers/IOValue.hpp>
-#include <gui/containers/ChargeTime.hpp>
-#include <gui/containers/BatteryStatus.hpp>
-#include <touchgfx/widgets/ScalableImage.hpp>
-#include <touchgfx/widgets/TextureMapper.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -35,24 +25,6 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Container content;
-    touchgfx::Container iconsContainer;
-    touchgfx::Image icon_chargPlug;
-    touchgfx::AnimationTextureMapper icon_fan;
-    touchgfx::Image icon_chargErr;
-    touchgfx::Image icon_usb;
-    touchgfx::Image icon_inv;
-    touchgfx::Image icon_warn;
-    touchgfx::MoveAnimator< touchgfx::Container > capacityContainerSmall;
-    IOValue ioValue;
-    ChargeTime chargeTimeContainer;
-    BatteryStatus capacityContainer;
-    touchgfx::Box footerBox;
-    touchgfx::Box headerBox;
-    touchgfx::ScalableImage scalableImage1;
-    touchgfx::ScalableImage scalableImage1_1;
-    touchgfx::Box loading_bg;
-    touchgfx::TextureMapper loading;
 
 private:
 

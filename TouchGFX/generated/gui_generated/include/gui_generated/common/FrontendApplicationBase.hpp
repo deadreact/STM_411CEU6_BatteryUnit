@@ -17,19 +17,19 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoMainScreenScreenNoTransition();
+        gotoDebugScreenScreenNoTransition();
     }
 
-    // MainScreen
-    void gotoMainScreenScreenNoTransition();
+    // DebugScreen
+    void gotoDebugScreenScreenNoTransition();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
     Model& model;
 
-    // MainScreen
-    void gotoMainScreenScreenNoTransitionImpl();
+    // DebugScreen
+    void gotoDebugScreenScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

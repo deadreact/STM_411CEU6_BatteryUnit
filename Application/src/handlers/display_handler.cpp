@@ -38,7 +38,7 @@ void Display320x240::onTick()
 		}
 	}
 
-	const auto& data = SharedData::getData();
+	const auto& data = *SharedData::getData();
 
 	int brightnessSetting = data.settings.active ? data.settings.getValue(SettingsData::Brightness) : m_sensData.brightnessSetting;
 	DisplaySensitiveData newData{data.screenId, data.invState, data.usbState, data.chargerPlugged, brightnessSetting};

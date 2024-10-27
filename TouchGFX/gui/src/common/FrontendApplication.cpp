@@ -18,7 +18,11 @@ void FrontendApplication::handleTickEvent()
     model.tick();
     FrontendApplicationBase::handleTickEvent();
 
-    showScreen(SharedData::getData().screenId);
+    if (const auto* pData = SharedData::getData())
+	{
+		showScreen(pData->screenId);
+	}
+
 }
 
 void FrontendApplication::showScreen(ScreenId id)

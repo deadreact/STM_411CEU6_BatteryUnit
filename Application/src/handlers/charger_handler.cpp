@@ -20,13 +20,13 @@
 
 ChargerHandler::ChargerHandler()
 {
-	const auto& data = SharedData::getData();
+	const auto& data = *SharedData::getData();
 	setChargePower(data.settings.getValue(SettingsData::ChargePower));
 }
 
 void ChargerHandler::update()
 {
-	const auto& data = SharedData::getData();
+	const auto& data = *SharedData::getData();
 
 	if (data.settings.active)
 	{
@@ -53,7 +53,7 @@ void ChargerHandler::updateIdle()
 {
 	if (isDcOk())
 	{
-		const auto& data = SharedData::getData();
+		const auto& data = *SharedData::getData();
 
 		uint32_t majorErrors = data.errFlags & BMSErrorFlags::maskMajorErrors;
 		if (majorErrors)
@@ -72,7 +72,7 @@ void ChargerHandler::updateIdle()
 
 void ChargerHandler::updateInvestigation()
 {
-	const auto& data = SharedData::getData();
+	const auto& data = *SharedData::getData();
 	const auto majorErrors = (data.errFlags & BMSErrorFlags::maskMajorErrors);
 
 	if (m_errFlags != majorErrors)

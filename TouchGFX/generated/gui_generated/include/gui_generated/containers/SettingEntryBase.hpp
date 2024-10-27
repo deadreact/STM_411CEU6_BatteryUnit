@@ -7,7 +7,6 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 
@@ -26,8 +25,7 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::Image bg;
-    touchgfx::Box selection;
+    touchgfx::Image selection;
     touchgfx::TextAreaWithOneWildcard selectedValue;
     touchgfx::TextArea title;
 

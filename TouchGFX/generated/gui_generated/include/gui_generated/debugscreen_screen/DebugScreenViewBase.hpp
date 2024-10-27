@@ -9,11 +9,14 @@
 #include <gui/debugscreen_screen/DebugScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/widgets/canvas/Line.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/containers/ListLayout.hpp>
+#include <touchgfx/containers/scrollers/ScrollList.hpp>
+#include <gui/containers/BatteryCell.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <touchgfx/containers/progress_indicators/BoxProgress.hpp>
+#include <gui/containers/BatteryProgressBar.hpp>
 
 class DebugScreenViewBase : public touchgfx::View<DebugScreenPresenter>
 {
@@ -21,6 +24,11 @@ public:
     DebugScreenViewBase();
     virtual ~DebugScreenViewBase();
     virtual void setupScreen();
+
+    virtual void battery_cellsUpdateItem(BatteryCell& item, int16_t itemIndex)
+    {
+        // Override and implement this function in DebugScreen
+    }
 
 protected:
     FrontendApplication& application() {
@@ -31,61 +39,109 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box2;
-    touchgfx::Container debugInfoContainer;
-    touchgfx::BoxWithBorder boxWithBorder1;
+    touchgfx::Container grid;
+    touchgfx::Line line1_3;
+    touchgfx::PainterRGB565 line1_3Painter;
+    touchgfx::Line line1_3_1;
+    touchgfx::PainterRGB565 line1_3_1Painter;
+    touchgfx::Line line1_3_1_1;
+    touchgfx::PainterRGB565 line1_3_1_1Painter;
+    touchgfx::Line line1_2;
+    touchgfx::PainterRGB565 line1_2Painter;
+    touchgfx::Line line1;
+    touchgfx::PainterRGB565 line1Painter;
+    touchgfx::Line line1_1;
+    touchgfx::PainterRGB565 line1_1Painter;
+    touchgfx::Container container_icons;
+    touchgfx::Image icon_charge_back;
+    touchgfx::Image icon_charge;
+    touchgfx::Image icon_fan;
+    touchgfx::Image icon_inv;
+    touchgfx::Image icon_inv_back;
+    touchgfx::Image icon_usb;
     touchgfx::TextAreaWithOneWildcard errorLabel;
     touchgfx::Container batteryInfo;
-    touchgfx::ListLayout batteryMainInfo;
-    touchgfx::Container containerCapacity;
-    touchgfx::TextArea capacityTitle;
-    touchgfx::BoxProgress capacityValue;
-    touchgfx::TextAreaWithOneWildcard capacityTextValue;
-    touchgfx::Container capacityTimeContainer;
-    touchgfx::TextAreaWithTwoWildcards capacityTimeValue;
-    touchgfx::TextArea capacityTimeTitle;
-    touchgfx::Container containerCurrent;
-    touchgfx::TextArea currentTitle;
-    touchgfx::TextAreaWithOneWildcard currentTextValue;
-    touchgfx::Container containerVoltage;
-    touchgfx::TextArea voltageTitle;
-    touchgfx::TextAreaWithOneWildcard voltageTextValue;
-    touchgfx::Container temperatureContainer;
-    touchgfx::TextArea temperatureTitle;
-    touchgfx::TextAreaWithTwoWildcards temperatureValues;
-    touchgfx::Container chargerTemperatureContainer;
-    touchgfx::TextArea chargerTemperatureTitle;
-    touchgfx::TextAreaWithOneWildcard chargerTemperatureValue;
-    touchgfx::Container invTemperatureContainer;
-    touchgfx::TextArea invTemperatureTitle;
-    touchgfx::TextAreaWithOneWildcard invTemperatureValue;
-    touchgfx::ListLayout batteryCellInfo;
+    touchgfx::ScrollList battery_cells;
+    touchgfx::DrawableListItems<BatteryCell, 13> battery_cellsListItems;
+    touchgfx::Container container_power;
+    touchgfx::TextAreaWithOneWildcard power_value;
+    touchgfx::TextArea power_units;
+    touchgfx::TextArea power_name;
+    touchgfx::Container container_current;
+    touchgfx::TextAreaWithOneWildcard current_value;
+    touchgfx::TextArea current_units;
+    touchgfx::TextArea current_name;
+    touchgfx::Container container_voltage;
+    touchgfx::TextAreaWithOneWildcard voltage_value;
+    touchgfx::TextArea voltage_units;
+    touchgfx::TextArea voltage_name;
+    touchgfx::Container container_2x1;
+    BatteryProgressBar batteryProgressBar;
+    touchgfx::TextArea label_charging;
+    touchgfx::TextArea label_discharging;
+    touchgfx::Container container_time;
+    touchgfx::TextAreaWithTwoWildcards time_value;
+    touchgfx::TextArea time_units;
+    touchgfx::TextArea time_left_name;
+    touchgfx::Container container_temperatures;
+    touchgfx::Container container_bmst1;
+    touchgfx::TextAreaWithOneWildcard t_value_bmst1;
+    touchgfx::TextArea t_value_units_bmst1;
+    touchgfx::TextArea t_title_bmst1;
+    touchgfx::Container container_bmst2;
+    touchgfx::TextAreaWithOneWildcard t_value_bmst2;
+    touchgfx::TextArea t_value_units_bmst2;
+    touchgfx::TextArea t_title_bmst2;
+    touchgfx::Container container_invt;
+    touchgfx::TextAreaWithOneWildcard t_value_invt;
+    touchgfx::TextArea t_value_units_invt;
+    touchgfx::TextArea t_title_invt;
+    touchgfx::Container container_chargt;
+    touchgfx::TextAreaWithOneWildcard t_value_chargt;
+    touchgfx::TextArea t_value_units_chargt;
+    touchgfx::TextArea t_title_chargt;
 
     /*
      * Wildcard Buffers
      */
     static const uint16_t ERRORLABEL_SIZE = 40;
     touchgfx::Unicode::UnicodeChar errorLabelBuffer[ERRORLABEL_SIZE];
-    static const uint16_t CAPACITYTEXTVALUE_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar capacityTextValueBuffer[CAPACITYTEXTVALUE_SIZE];
-    static const uint16_t CAPACITYTIMEVALUEBUFFER1_SIZE = 2;
-    touchgfx::Unicode::UnicodeChar capacityTimeValueBuffer1[CAPACITYTIMEVALUEBUFFER1_SIZE];
-    static const uint16_t CAPACITYTIMEVALUEBUFFER2_SIZE = 2;
-    touchgfx::Unicode::UnicodeChar capacityTimeValueBuffer2[CAPACITYTIMEVALUEBUFFER2_SIZE];
-    static const uint16_t CURRENTTEXTVALUE_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar currentTextValueBuffer[CURRENTTEXTVALUE_SIZE];
-    static const uint16_t VOLTAGETEXTVALUE_SIZE = 6;
-    touchgfx::Unicode::UnicodeChar voltageTextValueBuffer[VOLTAGETEXTVALUE_SIZE];
-    static const uint16_t TEMPERATUREVALUESBUFFER1_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar temperatureValuesBuffer1[TEMPERATUREVALUESBUFFER1_SIZE];
-    static const uint16_t TEMPERATUREVALUESBUFFER2_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar temperatureValuesBuffer2[TEMPERATUREVALUESBUFFER2_SIZE];
-    static const uint16_t CHARGERTEMPERATUREVALUE_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar chargerTemperatureValueBuffer[CHARGERTEMPERATUREVALUE_SIZE];
-    static const uint16_t INVTEMPERATUREVALUE_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar invTemperatureValueBuffer[INVTEMPERATUREVALUE_SIZE];
+    static const uint16_t POWER_VALUE_SIZE = 7;
+    touchgfx::Unicode::UnicodeChar power_valueBuffer[POWER_VALUE_SIZE];
+    static const uint16_t CURRENT_VALUE_SIZE = 7;
+    touchgfx::Unicode::UnicodeChar current_valueBuffer[CURRENT_VALUE_SIZE];
+    static const uint16_t VOLTAGE_VALUE_SIZE = 7;
+    touchgfx::Unicode::UnicodeChar voltage_valueBuffer[VOLTAGE_VALUE_SIZE];
+    static const uint16_t TIME_VALUEBUFFER1_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar time_valueBuffer1[TIME_VALUEBUFFER1_SIZE];
+    static const uint16_t TIME_VALUEBUFFER2_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar time_valueBuffer2[TIME_VALUEBUFFER2_SIZE];
+    static const uint16_t T_VALUE_BMST1_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar t_value_bmst1Buffer[T_VALUE_BMST1_SIZE];
+    static const uint16_t T_VALUE_BMST2_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar t_value_bmst2Buffer[T_VALUE_BMST2_SIZE];
+    static const uint16_t T_VALUE_INVT_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar t_value_invtBuffer[T_VALUE_INVT_SIZE];
+    static const uint16_t T_VALUE_CHARGT_SIZE = 4;
+    touchgfx::Unicode::UnicodeChar t_value_chargtBuffer[T_VALUE_CHARGT_SIZE];
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<DebugScreenViewBase, touchgfx::DrawableListItemsInterface*, int16_t, int16_t> updateItemCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex);
 
 };
 

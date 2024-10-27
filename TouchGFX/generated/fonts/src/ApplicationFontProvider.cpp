@@ -13,8 +13,11 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // seguisb_16_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
     case Typography::VALUES:
-        // seguisb_14_4bpp
+        // bahnschrift_14_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
+    case Typography::BAHN12:
+        // bahnschrift_13_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     case Typography::ERRORS:
         // bahnschrift_13_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
@@ -33,12 +36,9 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::LARGETEXT:
         // seguisb_25_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
-    case Typography::VALUENORMAL:
-        // arial_20_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
     case Typography::SETTINGSENTRIES:
-        // bahnschrift_13_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
+        // bahnschrift_15_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
     default:
         return 0;
     }

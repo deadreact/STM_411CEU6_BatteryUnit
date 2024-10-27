@@ -39,14 +39,14 @@ protected:
     int m_chargeTimeSec{-1};
     bool m_isBMSError{false};
     bool m_isChargError{false};
-
+//
     CTimeout m_loadingAnimTimeout{50};
-
-    BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};
-    BlinkingAnimation<touchgfx::Image> m_warnAnimation{icon_warn, 800};
-
-    touchgfx::Callback<MainScreenView, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
-    void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);
+//
+//    BlinkingAnimation<touchgfx::Image> m_invAnimation{icon_inv, 800};
+//    BlinkingAnimation<touchgfx::Image> m_warnAnimation{icon_warn, 800};
+//
+//    touchgfx::Callback<MainScreenView, const touchgfx::AnimationTextureMapper&> textureMapperAnimationEndedCallback;
+//    void textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src);
 
 };
 

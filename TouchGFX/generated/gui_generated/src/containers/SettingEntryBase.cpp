@@ -3,33 +3,28 @@
 /*********************************************************************************/
 #include <gui_generated/containers/SettingEntryBase.hpp>
 #include <images/BitmapDatabase.hpp>
-#include <touchgfx/Color.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include <touchgfx/Color.hpp>
 
 SettingEntryBase::SettingEntryBase()
 {
-    setWidth(240);
-    setHeight(24);
-    bg.setXY(0, 0);
-    bg.setBitmap(touchgfx::Bitmap(BITMAP_LIST_ELEMENT_BACKGROUND_ID));
-    add(bg);
-
-    selection.setPosition(0, 0, 240, 24);
-    selection.setColor(touchgfx::Color::getColorFromRGB(235, 122, 0));
-    selection.setAlpha(224);
+    setWidth(320);
+    setHeight(48);
+    selection.setXY(0, 0);
+    selection.setBitmap(touchgfx::Bitmap(BITMAP_SETTINGS_SELECT_ID));
     selection.setVisible(false);
     add(selection);
 
-    selectedValue.setPosition(140, 4, 96, 16);
-    selectedValue.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
+    selectedValue.setPosition(200, 13, 120, 22);
+    selectedValue.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     selectedValue.setLinespacing(0);
     Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T_SETTING_SCREEN_VALUE_0).getText());
     selectedValue.setWildcard(selectedValueBuffer);
     selectedValue.setTypedText(touchgfx::TypedText(T_SETTING_VALUE_WILDCARD));
     add(selectedValue);
 
-    title.setPosition(4, 4, 140, 16);
-    title.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
+    title.setPosition(15, 13, 185, 22);
+    title.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     title.setLinespacing(0);
     title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));
     add(title);

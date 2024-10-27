@@ -13,9 +13,9 @@
 namespace utils
 {
 
-class stack_string : protected stack_vector<char, 64>
+class stack_string : protected stack_vector<char, 40>
 {
-	using base_type = stack_vector<char, 64>;
+	using base_type = stack_vector<char, 40>;
 public:
 	using base_type::begin;
 	using base_type::cbegin;

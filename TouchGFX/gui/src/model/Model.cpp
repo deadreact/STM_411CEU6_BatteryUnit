@@ -7,29 +7,32 @@
 
 void Model::tick()
 {
-	const auto& data = SharedData::getData();
 
-	if (m_settingsData != data.settings)
+	if (const auto* pData = SharedData::getData())
 	{
-		m_settingsData = data.settings;
-
-		if (m_settingsData.active)
+		const auto& data = *pData;
+		if (m_settingsData != data.settings)
 		{
-			if (settingsPopUp == nullptr)
+			m_settingsData = data.settings;
+
+			if (m_settingsData.active)
 			{
-				settingsPopUp = new Settings;
-				settingsPopUp->initialize();
-				settingsPopUp->setXY(40,  40);
-				modelListener->onSettingsCreated();
-			}
+				if (settingsPopUp == nullptr)
+				{
+					settingsPopUp = new Settings;
+					settingsPopUp->initialize();
+					settingsPopUp->setXY(0,  0);
+					modelListener->onSettingsCreated();
+				}
 
-			settingsPopUp->setData(m_settingsData);
-		}
-		else if (settingsPopUp)
-		{
-			modelListener->onSettingsWillBeDestroyed();
-			delete settingsPopUp;
-			settingsPopUp = nullptr;
+				settingsPopUp->setData(m_settingsData);
+			}
+			else if (settingsPopUp)
+			{
+				modelListener->onSettingsWillBeDestroyed();
+				delete settingsPopUp;
+				settingsPopUp = nullptr;
+			}
 		}
 	}
 }
