@@ -178,10 +178,10 @@
           {
             "Type": "TextArea",
             "Name": "errorLabel",
-            "X": 37,
-            "Y": 165,
+            "X": 41,
+            "Y": 162,
             "Width": 166,
-            "Height": 65,
+            "Height": 68,
             "TextId": "__SingleUse_4XTO",
             "TextRotation": "0",
             "Color": {
@@ -197,7 +197,7 @@
           {
             "Type": "Container",
             "Name": "batteryInfo",
-            "X": 6,
+            "X": 5,
             "Y": 7,
             "Width": 320,
             "Height": 204,
@@ -227,8 +227,8 @@
                   {
                     "Type": "TextArea",
                     "Name": "power_value",
-                    "X": 12,
-                    "Width": 38,
+                    "X": 17,
+                    "Width": 27,
                     "Height": 18,
                     "TextId": "__SingleUse_226I",
                     "TextRotation": "0",
@@ -246,10 +246,9 @@
                   {
                     "Type": "TextArea",
                     "Name": "power_units",
-                    "X": 51,
+                    "X": 44,
                     "Width": 12,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_6AHG",
                     "TextRotation": "0",
                     "Color": {
@@ -266,7 +265,6 @@
                     "Y": 14,
                     "Width": 73,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_M86Q",
                     "TextRotation": "0",
                     "Color": {
@@ -274,22 +272,22 @@
                       "Green": 245,
                       "Blue": 217
                     },
-                    "Alpha": 90,
-                    "AutoSize": true
+                    "Alpha": 90
                   }
                 ]
               },
               {
                 "Type": "Container",
                 "Name": "container_current",
-                "X": 4,
-                "Width": 47,
+                "X": 2,
+                "Width": 48,
                 "Height": 32,
                 "Components": [
                   {
                     "Type": "TextArea",
                     "Name": "current_value",
-                    "Width": 36,
+                    "X": 6,
+                    "Width": 27,
                     "Height": 18,
                     "TextId": "__SingleUse_ZSBL",
                     "TextRotation": "0",
@@ -298,6 +296,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "AutoSize": true,
                     "Wildcard1": {
                       "TextId": "__SingleUse_RFBN",
                       "UseBuffer": true,
@@ -307,10 +306,9 @@
                   {
                     "Type": "TextArea",
                     "Name": "current_units",
-                    "X": 39,
+                    "X": 33,
                     "Width": 9,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_7B82",
                     "TextRotation": "0",
                     "Color": {
@@ -324,11 +322,9 @@
                   {
                     "Type": "TextArea",
                     "Name": "current_name",
-                    "X": 4,
                     "Y": 14,
-                    "Width": 38,
+                    "Width": 48,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_VTCN",
                     "TextRotation": "0",
                     "Color": {
@@ -344,14 +340,14 @@
                 "Type": "Container",
                 "Name": "container_voltage",
                 "X": 66,
-                "Width": 56,
+                "Width": 52,
                 "Height": 32,
                 "Components": [
                   {
                     "Type": "TextArea",
                     "Name": "voltage_value",
-                    "X": 3,
-                    "Width": 38,
+                    "X": 12,
+                    "Width": 27,
                     "Height": 18,
                     "TextId": "__SingleUse_T62I",
                     "TextRotation": "0",
@@ -360,6 +356,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "AutoSize": true,
                     "Wildcard1": {
                       "TextId": "__SingleUse_K387",
                       "UseBuffer": true,
@@ -369,10 +366,9 @@
                   {
                     "Type": "TextArea",
                     "Name": "voltage_units",
-                    "X": 42,
+                    "X": 39,
                     "Width": 8,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_ABXD",
                     "TextRotation": "0",
                     "Color": {
@@ -387,9 +383,8 @@
                     "Type": "TextArea",
                     "Name": "voltage_name",
                     "Y": 14,
-                    "Width": 51,
+                    "Width": 52,
                     "Height": 18,
-                    "LockPosition": true,
                     "TextId": "__SingleUse_S8CB",
                     "TextRotation": "0",
                     "Color": {
@@ -397,8 +392,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
-                    "Alpha": 90,
-                    "AutoSize": true
+                    "Alpha": 90
                   }
                 ]
               },
@@ -412,9 +406,9 @@
                   {
                     "Type": "CustomContainerInstance",
                     "Name": "batteryProgressBar",
-                    "X": 4,
+                    "X": 5,
                     "Y": 9,
-                    "Width": 100,
+                    "Width": 96,
                     "Height": 20,
                     "CustomContainerDefinitionName": "BatteryProgressBar"
                   },
@@ -422,7 +416,7 @@
                     "Type": "TextArea",
                     "Name": "label_charging",
                     "X": 4,
-                    "Y": 28,
+                    "Y": 30,
                     "Width": 100,
                     "Height": 18,
                     "Visible": false,
@@ -437,7 +431,7 @@
                     "Type": "TextArea",
                     "Name": "label_discharging",
                     "X": 4,
-                    "Y": 28,
+                    "Y": 30,
                     "Width": 100,
                     "Height": 18,
                     "Visible": false,
@@ -452,18 +446,18 @@
                   {
                     "Type": "Container",
                     "Name": "container_time",
-                    "X": 115,
-                    "Y": 10,
-                    "Width": 90,
+                    "X": 109,
+                    "Y": 9,
+                    "Width": 98,
                     "Height": 37,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "time_value",
-                        "X": 12,
-                        "Y": 1,
-                        "Width": 35,
-                        "Height": 18,
+                        "X": 18,
+                        "Y": -2,
+                        "Width": 44,
+                        "Height": 22,
                         "TextId": "__SingleUse_FBBG",
                         "TextRotation": "0",
                         "Color": {
@@ -471,6 +465,7 @@
                           "Green": 245,
                           "Blue": 217
                         },
+                        "AutoSize": true,
                         "Wildcard1": {
                           "TextId": "__SingleUse_HDLI",
                           "UseBuffer": true,
@@ -485,8 +480,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "time_units",
-                        "X": 50,
-                        "Y": 1,
+                        "X": 62,
+                        "Y": 2,
                         "Width": 24,
                         "Height": 18,
                         "TextId": "__SingleUse_ZTK0",
@@ -502,8 +497,8 @@
                       {
                         "Type": "TextArea",
                         "Name": "time_left_name",
-                        "Y": 18,
-                        "Width": 79,
+                        "Y": 21,
+                        "Width": 98,
                         "Height": 18,
                         "TextId": "__SingleUse_U2F7",
                         "TextRotation": "0",
@@ -512,8 +507,7 @@
                           "Green": 245,
                           "Blue": 217
                         },
-                        "Alpha": 90,
-                        "AutoSize": true
+                        "Alpha": 90
                       }
                     ]
                   }
@@ -529,16 +523,16 @@
                   {
                     "Type": "Container",
                     "Name": "container_bmst1",
-                    "Y": 5,
+                    "X": 3,
+                    "Y": 9,
                     "Width": 98,
                     "Height": 15,
-                    "LockPosition": true,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "t_value_bmst1",
                         "Width": 17,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_TWMQ",
                         "TextRotation": "0",
@@ -557,8 +551,8 @@
                         "Type": "TextArea",
                         "Name": "t_value_units_bmst1",
                         "X": 18,
-                        "Width": 13,
-                        "Height": 16,
+                        "Width": 14,
+                        "Height": 18,
                         "LockPosition": true,
                         "TextId": "__SingleUse_QBG5",
                         "TextRotation": "0",
@@ -575,7 +569,7 @@
                         "Name": "t_title_bmst1",
                         "X": 36,
                         "Width": 62,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_SF2Z",
                         "TextRotation": "0",
@@ -591,16 +585,16 @@
                   {
                     "Type": "Container",
                     "Name": "container_bmst2",
-                    "Y": 25,
+                    "X": 3,
+                    "Y": 28,
                     "Width": 98,
                     "Height": 15,
-                    "LockPosition": true,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "t_value_bmst2",
                         "Width": 17,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_L473",
                         "TextRotation": "0",
@@ -619,8 +613,8 @@
                         "Type": "TextArea",
                         "Name": "t_value_units_bmst2",
                         "X": 18,
-                        "Width": 13,
-                        "Height": 16,
+                        "Width": 14,
+                        "Height": 18,
                         "LockPosition": true,
                         "TextId": "__SingleUse_J6UL",
                         "TextRotation": "0",
@@ -637,7 +631,7 @@
                         "Name": "t_title_bmst2",
                         "X": 36,
                         "Width": 62,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_44KZ",
                         "TextRotation": "0",
@@ -653,17 +647,16 @@
                   {
                     "Type": "Container",
                     "Name": "container_invt",
-                    "X": 104,
-                    "Y": 5,
+                    "X": 109,
+                    "Y": 9,
                     "Width": 98,
                     "Height": 15,
-                    "LockPosition": true,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "t_value_invt",
                         "Width": 17,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_HWLW",
                         "TextRotation": "0",
@@ -682,8 +675,8 @@
                         "Type": "TextArea",
                         "Name": "t_value_units_invt",
                         "X": 18,
-                        "Width": 13,
-                        "Height": 16,
+                        "Width": 14,
+                        "Height": 18,
                         "LockPosition": true,
                         "TextId": "__SingleUse_3SMT",
                         "TextRotation": "0",
@@ -700,7 +693,7 @@
                         "Name": "t_title_invt",
                         "X": 36,
                         "Width": 62,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_0DM8",
                         "TextRotation": "0",
@@ -716,17 +709,16 @@
                   {
                     "Type": "Container",
                     "Name": "container_chargt",
-                    "X": 104,
-                    "Y": 25,
+                    "X": 109,
+                    "Y": 28,
                     "Width": 98,
                     "Height": 15,
-                    "LockPosition": true,
                     "Components": [
                       {
                         "Type": "TextArea",
                         "Name": "t_value_chargt",
                         "Width": 17,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_77P5",
                         "TextRotation": "0",
@@ -745,8 +737,8 @@
                         "Type": "TextArea",
                         "Name": "t_value_units_chargt",
                         "X": 18,
-                        "Width": 13,
-                        "Height": 16,
+                        "Width": 14,
+                        "Height": 18,
                         "LockPosition": true,
                         "TextId": "__SingleUse_URNA",
                         "TextRotation": "0",
@@ -763,7 +755,7 @@
                         "Name": "t_title_chargt",
                         "X": 36,
                         "Width": 62,
-                        "Height": 15,
+                        "Height": 16,
                         "LockPosition": true,
                         "TextId": "__SingleUse_LGEI",
                         "TextRotation": "0",
@@ -1283,7 +1275,7 @@
       },
       {
         "Name": "BatteryProgressBar",
-        "Width": 100,
+        "Width": 96,
         "Height": 20,
         "Components": [
           {
@@ -1298,7 +1290,7 @@
               "Blue": 217
             },
             "Alpha": 110,
-            "EndX": 100.0,
+            "EndX": 96.0,
             "LineWidth": 2.0,
             "LineEndingStyle": "Square"
           },
@@ -1315,7 +1307,7 @@
               "Blue": 217
             },
             "Alpha": 110,
-            "EndX": 100.0,
+            "EndX": 96.0,
             "LineWidth": 2.0,
             "LineEndingStyle": "Square"
           },
@@ -1339,17 +1331,18 @@
           {
             "Type": "Line",
             "Name": "line_right",
-            "X": 99,
-            "Width": 2,
+            "X": 95,
+            "Width": 3,
             "Height": 19,
-            "LockPosition": true,
             "Color": {
               "Red": 255,
               "Green": 245,
               "Blue": 217
             },
             "Alpha": 110,
+            "StartX": 0.2,
             "StartY": 1.0,
+            "EndX": 0.2,
             "EndY": 18.0,
             "LineWidth": 2.0,
             "LineEndingStyle": "Square"
@@ -1357,10 +1350,10 @@
           {
             "Type": "TextArea",
             "Name": "value",
-            "X": 37,
-            "Y": 1,
-            "Width": 31,
-            "Height": 18,
+            "X": 34,
+            "Y": -2,
+            "Width": 32,
+            "Height": 22,
             "TextId": "__SingleUse_7PBA",
             "TextRotation": "0",
             "Color": {
@@ -1368,6 +1361,7 @@
               "Green": 245,
               "Blue": 217
             },
+            "AutoSize": true,
             "Wildcard1": {
               "TextId": "__SingleUse_B3CH",
               "UseBuffer": true,
@@ -1377,7 +1371,7 @@
           {
             "Type": "ScalableImage",
             "Name": "progress_bg",
-            "Width": 50,
+            "Width": 48,
             "Height": 19,
             "Filename": "bar_medium_fill_white.png",
             "ScalingAlgorithm": "Nearest-neighbor"

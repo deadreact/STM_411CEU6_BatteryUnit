@@ -94,6 +94,6 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     164, // T_VOLTAGEVAL: "<>v"
     158, // T_WILDCARD_PERSENT: "<>%"
     244, // T_WILDCARDID1: "0"
-    363, // T_WILDCARDID2: "50"
+    359, // T_WILDCARDID2: "50"
     9    // T_BATCAPACITY: "<>"
 };

@@ -49,6 +49,6 @@ void Settings::setData(const SettingsData& data)
 			entriesListItems[data.selectedIndex].setSelected(true);
 
 		m_selectedEntry = data.selectedIndex;
-		invalidate();
+		entries.invalidate();
 	}
 }

@@ -10,28 +10,28 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     switch (typography)
     {
     case Typography::VALUES14:
-        // bahnschrift_14_4bpp
+        // bahnschrift_14_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
-    case Typography::VALUES13:
-        // bahnschrift_13_4bpp
+    case Typography::VALUES18:
+        // bahnschrift_18_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::ERRORS:
         // bahnschrift_13_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
-    case Typography::SETTINGSENTRIES:
-        // bahnschrift_18_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
+    case Typography::SETTINGSENTRIES:
+        // bahnschrift_18_8bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::VALUES38:
-        // bahnschrift_38_4bpp
+        // bahnschrift_38_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::VALUES42:
-        // bahnschrift_42_4bpp
+        // bahnschrift_42_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::VALUES20:
-        // bahnschrift_20_4bpp
+        // bahnschrift_20_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::INFOS:
-        // bahnschrift_20_4bpp
+        // bahnschrift_20_8bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     default:
         return 0;

@@ -8,13 +8,13 @@
 
 BatteryProgressBarBase::BatteryProgressBarBase()
 {
-    setWidth(100);
+    setWidth(96);
     setHeight(20);
     line_top.setPosition(0, 0, 100, 3);
     line_topPainter.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     line_top.setPainter(line_topPainter);
     line_top.setStart(0, 0);
-    line_top.setEnd(100, 0);
+    line_top.setEnd(96, 0);
     line_top.setLineWidth(2);
     line_top.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
     line_top.setAlpha(110);
@@ -24,7 +24,7 @@ BatteryProgressBarBase::BatteryProgressBarBase()
     line_bottomPainter.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     line_bottom.setPainter(line_bottomPainter);
     line_bottom.setStart(0, 0);
-    line_bottom.setEnd(100, 0);
+    line_bottom.setEnd(96, 0);
     line_bottom.setLineWidth(2);
     line_bottom.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
     line_bottom.setAlpha(110);
@@ -40,26 +40,27 @@ BatteryProgressBarBase::BatteryProgressBarBase()
     line_left.setAlpha(110);
     add(line_left);
 
-    line_right.setPosition(99, 0, 2, 19);
+    line_right.setPosition(95, 0, 3, 19);
     line_rightPainter.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     line_right.setPainter(line_rightPainter);
-    line_right.setStart(0, 1);
-    line_right.setEnd(0, 18);
+    line_right.setStart(0.2f, 1.0f);
+    line_right.setEnd(0.2f, 18.0f);
     line_right.setLineWidth(2);
     line_right.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
     line_right.setAlpha(110);
     add(line_right);
 
-    value.setPosition(37, 1, 31, 18);
+    value.setXY(34, -2);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
     Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_B3CH).getText());
     value.setWildcard(valueBuffer);
+    value.resizeToCurrentText();
     value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7PBA));
     add(value);
 
     progress_bg.setBitmap(touchgfx::Bitmap(BITMAP_BAR_MEDIUM_FILL_WHITE_ID));
-    progress_bg.setPosition(0, 0, 50, 19);
+    progress_bg.setPosition(0, 0, 48, 19);
     progress_bg.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     add(progress_bg);
 }

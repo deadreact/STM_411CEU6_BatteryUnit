@@ -27,6 +27,13 @@ void DebugScreenView::setPower(int val)
 	{
 		float power = float(val) / 10000;
 		touchgfx::Unicode::snprintfFloat(power_valueBuffer, POWER_VALUE_SIZE, "%.2f", power);
+		power_value.resizeToCurrentText();
+		power_value.setX((container_power.getWidth() - power_value.getWidth() - power_units.getWidth() + 1)/2);
+		power_units.setX(power_value.getX() + power_value.getWidth() + 1);
+
+		container_power.invalidate();
+
+
 		if ((val < 0 && m_power >= 0) || (val > 0 && m_power <= 0) || val == 0)
 		{
 			label_charging.setVisible(val > 0);
@@ -99,7 +106,11 @@ void DebugScreenView::handleTickEvent()
 		{
 			m_bmsData.current = data.bms.current;
 			touchgfx::Unicode::snprintfFloat(current_valueBuffer, CURRENT_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
-			current_value.invalidate();
+			current_value.resizeToCurrentText();
+			current_value.setX((container_current.getWidth() - current_value.getWidth() - current_units.getWidth() + 1)/2);
+			current_units.setX(current_value.getX() + current_value.getWidth() + 1);
+
+			container_current.invalidate();
 
 			setPower(m_bmsData.current * m_bmsData.voltage);
 		}
@@ -108,8 +119,11 @@ void DebugScreenView::handleTickEvent()
 		{
 			m_bmsData.voltage = data.bms.voltage;
 			touchgfx::Unicode::snprintfFloat(voltage_valueBuffer, VOLTAGE_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
-//			voltageTextValue.resizeToCurrentText();
-			voltage_value.invalidate();
+			voltage_value.resizeToCurrentText();
+			voltage_value.setX((container_voltage.getWidth() - voltage_value.getWidth() - voltage_units.getWidth() + 1)/2);
+			voltage_units.setX(voltage_value.getX() + voltage_value.getWidth() + 1);
+
+			container_voltage.invalidate();
 
 			setPower(m_bmsData.current * m_bmsData.voltage);
 		}

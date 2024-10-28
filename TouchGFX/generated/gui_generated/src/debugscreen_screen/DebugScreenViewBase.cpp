@@ -112,7 +112,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     add(container_icons);
 
-    errorLabel.setPosition(37, 165, 166, 65);
+    errorLabel.setPosition(41, 162, 166, 68);
     errorLabel.setColor(touchgfx::Color::getColorFromRGB(254, 144, 32));
     errorLabel.setLinespacing(0);
     errorLabelBuffer[0] = 0;
@@ -120,7 +120,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     errorLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4XTO));
     add(errorLabel);
 
-    batteryInfo.setPosition(6, 7, 320, 204);
+    batteryInfo.setPosition(5, 7, 320, 204);
     battery_cells.setPosition(212, 0, 102, 204);
     battery_cells.setHorizontal(false);
     battery_cells.setCircular(false);
@@ -136,7 +136,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     batteryInfo.add(battery_cells);
 
     container_power.setPosition(132, 0, 73, 32);
-    power_value.setPosition(12, 0, 38, 18);
+    power_value.setPosition(17, 0, 27, 18);
     power_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_value.setLinespacing(0);
     Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FD47).getText());
@@ -144,14 +144,14 @@ DebugScreenViewBase::DebugScreenViewBase() :
     power_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_226I));
     container_power.add(power_value);
 
-    power_units.setXY(51, 0);
+    power_units.setXY(44, 0);
     power_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_units.setLinespacing(0);
     power_units.setTypedText(touchgfx::TypedText(T___SINGLEUSE_6AHG));
     power_units.setAlpha(90);
     container_power.add(power_units);
 
-    power_name.setXY(0, 14);
+    power_name.setPosition(0, 14, 73, 18);
     power_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_name.setLinespacing(0);
     power_name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_M86Q));
@@ -160,23 +160,24 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     batteryInfo.add(container_power);
 
-    container_current.setPosition(4, 0, 47, 32);
-    current_value.setPosition(0, 0, 36, 18);
+    container_current.setPosition(2, 0, 48, 32);
+    current_value.setXY(6, 0);
     current_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_value.setLinespacing(0);
     Unicode::snprintf(current_valueBuffer, CURRENT_VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_RFBN).getText());
     current_value.setWildcard(current_valueBuffer);
+    current_value.resizeToCurrentText();
     current_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZSBL));
     container_current.add(current_value);
 
-    current_units.setXY(39, 0);
+    current_units.setXY(33, 0);
     current_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_units.setLinespacing(0);
     current_units.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7B82));
     current_units.setAlpha(90);
     container_current.add(current_units);
 
-    current_name.setPosition(4, 14, 38, 18);
+    current_name.setPosition(0, 14, 48, 18);
     current_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_name.setLinespacing(0);
     current_name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VTCN));
@@ -185,23 +186,24 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     batteryInfo.add(container_current);
 
-    container_voltage.setPosition(66, 0, 56, 32);
-    voltage_value.setPosition(3, 0, 38, 18);
+    container_voltage.setPosition(66, 0, 52, 32);
+    voltage_value.setXY(12, 0);
     voltage_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     voltage_value.setLinespacing(0);
     Unicode::snprintf(voltage_valueBuffer, VOLTAGE_VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_K387).getText());
     voltage_value.setWildcard(voltage_valueBuffer);
+    voltage_value.resizeToCurrentText();
     voltage_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T62I));
     container_voltage.add(voltage_value);
 
-    voltage_units.setXY(42, 0);
+    voltage_units.setXY(39, 0);
     voltage_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     voltage_units.setLinespacing(0);
     voltage_units.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ABXD));
     voltage_units.setAlpha(90);
     container_voltage.add(voltage_units);
 
-    voltage_name.setXY(0, 14);
+    voltage_name.setPosition(0, 14, 52, 18);
     voltage_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     voltage_name.setLinespacing(0);
     voltage_name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_S8CB));
@@ -211,42 +213,43 @@ DebugScreenViewBase::DebugScreenViewBase() :
     batteryInfo.add(container_voltage);
 
     container_2x1.setPosition(0, 40, 214, 55);
-    batteryProgressBar.setXY(4, 9);
+    batteryProgressBar.setXY(5, 9);
     container_2x1.add(batteryProgressBar);
 
-    label_charging.setPosition(4, 28, 100, 18);
+    label_charging.setPosition(4, 30, 100, 18);
     label_charging.setColor(touchgfx::Color::getColorFromRGB(0, 245, 77));
     label_charging.setLinespacing(0);
     label_charging.setTypedText(touchgfx::TypedText(T___SINGLEUSE_PD53));
     label_charging.setVisible(false);
     container_2x1.add(label_charging);
 
-    label_discharging.setPosition(4, 28, 100, 18);
+    label_discharging.setPosition(4, 30, 100, 18);
     label_discharging.setColor(touchgfx::Color::getColorFromRGB(255, 38, 20));
     label_discharging.setLinespacing(0);
     label_discharging.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IJ84));
     label_discharging.setVisible(false);
     container_2x1.add(label_discharging);
 
-    container_time.setPosition(115, 10, 90, 37);
-    time_value.setPosition(12, 1, 35, 18);
+    container_time.setPosition(109, 9, 98, 37);
+    time_value.setXY(18, -2);
     time_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_value.setLinespacing(0);
     touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_HDLI).getText());
     time_value.setWildcard1(time_valueBuffer1);
     touchgfx::Unicode::snprintf(time_valueBuffer2, TIME_VALUEBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5MHB).getText());
     time_value.setWildcard2(time_valueBuffer2);
+    time_value.resizeToCurrentText();
     time_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FBBG));
     container_time.add(time_value);
 
-    time_units.setXY(50, 1);
+    time_units.setXY(62, 2);
     time_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units.setLinespacing(0);
     time_units.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZTK0));
     time_units.setAlpha(90);
     container_time.add(time_units);
 
-    time_left_name.setXY(0, 18);
+    time_left_name.setPosition(0, 21, 98, 18);
     time_left_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_left_name.setLinespacing(0);
     time_left_name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U2F7));
@@ -258,8 +261,8 @@ DebugScreenViewBase::DebugScreenViewBase() :
     batteryInfo.add(container_2x1);
 
     container_temperatures.setPosition(0, 96, 214, 50);
-    container_bmst1.setPosition(0, 5, 98, 15);
-    t_value_bmst1.setPosition(0, 0, 17, 15);
+    container_bmst1.setPosition(3, 9, 98, 15);
+    t_value_bmst1.setPosition(0, 0, 17, 16);
     t_value_bmst1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_value_bmst1.setLinespacing(0);
     Unicode::snprintf(t_value_bmst1Buffer, T_VALUE_BMST1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_G2XY).getText());
@@ -274,7 +277,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     t_value_units_bmst1.setAlpha(90);
     container_bmst1.add(t_value_units_bmst1);
 
-    t_title_bmst1.setPosition(36, 0, 62, 15);
+    t_title_bmst1.setPosition(36, 0, 62, 16);
     t_title_bmst1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_title_bmst1.setLinespacing(0);
     t_title_bmst1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SF2Z));
@@ -283,8 +286,8 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     container_temperatures.add(container_bmst1);
 
-    container_bmst2.setPosition(0, 25, 98, 15);
-    t_value_bmst2.setPosition(0, 0, 17, 15);
+    container_bmst2.setPosition(3, 28, 98, 15);
+    t_value_bmst2.setPosition(0, 0, 17, 16);
     t_value_bmst2.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_value_bmst2.setLinespacing(0);
     Unicode::snprintf(t_value_bmst2Buffer, T_VALUE_BMST2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_0H3W).getText());
@@ -299,7 +302,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     t_value_units_bmst2.setAlpha(90);
     container_bmst2.add(t_value_units_bmst2);
 
-    t_title_bmst2.setPosition(36, 0, 62, 15);
+    t_title_bmst2.setPosition(36, 0, 62, 16);
     t_title_bmst2.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_title_bmst2.setLinespacing(0);
     t_title_bmst2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_44KZ));
@@ -308,8 +311,8 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     container_temperatures.add(container_bmst2);
 
-    container_invt.setPosition(104, 5, 98, 15);
-    t_value_invt.setPosition(0, 0, 17, 15);
+    container_invt.setPosition(109, 9, 98, 15);
+    t_value_invt.setPosition(0, 0, 17, 16);
     t_value_invt.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_value_invt.setLinespacing(0);
     Unicode::snprintf(t_value_invtBuffer, T_VALUE_INVT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_SF3F).getText());
@@ -324,7 +327,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     t_value_units_invt.setAlpha(90);
     container_invt.add(t_value_units_invt);
 
-    t_title_invt.setPosition(36, 0, 62, 15);
+    t_title_invt.setPosition(36, 0, 62, 16);
     t_title_invt.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_title_invt.setLinespacing(0);
     t_title_invt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0DM8));
@@ -333,8 +336,8 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     container_temperatures.add(container_invt);
 
-    container_chargt.setPosition(104, 25, 98, 15);
-    t_value_chargt.setPosition(0, 0, 17, 15);
+    container_chargt.setPosition(109, 28, 98, 15);
+    t_value_chargt.setPosition(0, 0, 17, 16);
     t_value_chargt.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_value_chargt.setLinespacing(0);
     Unicode::snprintf(t_value_chargtBuffer, T_VALUE_CHARGT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_9STL).getText());
@@ -349,7 +352,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     t_value_units_chargt.setAlpha(90);
     container_chargt.add(t_value_units_chargt);
 
-    t_title_chargt.setPosition(36, 0, 62, 15);
+    t_title_chargt.setPosition(36, 0, 62, 16);
     t_title_chargt.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     t_title_chargt.setLinespacing(0);
     t_title_chargt.setTypedText(touchgfx::TypedText(T___SINGLEUSE_LGEI));

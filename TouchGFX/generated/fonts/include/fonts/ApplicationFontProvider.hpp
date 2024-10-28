@@ -14,7 +14,7 @@ class FlashDataReader;
 struct Typography
 {
     static const touchgfx::FontId VALUES14 = 0;
-    static const touchgfx::FontId VALUES13 = 1;
+    static const touchgfx::FontId VALUES18 = 1;
     static const touchgfx::FontId ERRORS = 2;
     static const touchgfx::FontId SETTINGSENTRIES = 3;
     static const touchgfx::FontId VALUES38 = 4;
@@ -25,14 +25,14 @@ struct Typography
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId VALUES14 = 0;        // bahnschrift_14_4bpp
-    static const touchgfx::FontId VALUES13 = 1;        // bahnschrift_13_4bpp
-    static const touchgfx::FontId ERRORS = 1;          // bahnschrift_13_4bpp
-    static const touchgfx::FontId SETTINGSENTRIES = 2; // bahnschrift_18_4bpp
-    static const touchgfx::FontId VALUES38 = 3;        // bahnschrift_38_4bpp
-    static const touchgfx::FontId VALUES42 = 4;        // bahnschrift_42_4bpp
-    static const touchgfx::FontId VALUES20 = 5;        // bahnschrift_20_4bpp
-    static const touchgfx::FontId INFOS = 5;           // bahnschrift_20_4bpp
+    static const touchgfx::FontId VALUES14 = 0;        // bahnschrift_14_8bpp
+    static const touchgfx::FontId VALUES18 = 1;        // bahnschrift_18_8bpp
+    static const touchgfx::FontId ERRORS = 2;          // bahnschrift_13_4bpp
+    static const touchgfx::FontId SETTINGSENTRIES = 1; // bahnschrift_18_8bpp
+    static const touchgfx::FontId VALUES38 = 3;        // bahnschrift_38_8bpp
+    static const touchgfx::FontId VALUES42 = 4;        // bahnschrift_42_8bpp
+    static const touchgfx::FontId VALUES20 = 5;        // bahnschrift_20_8bpp
+    static const touchgfx::FontId INFOS = 5;           // bahnschrift_20_8bpp
     static const uint16_t NUMBER_OF_FONTS = 6;
 };
 
