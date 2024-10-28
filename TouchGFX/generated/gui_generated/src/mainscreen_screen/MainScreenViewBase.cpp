@@ -59,21 +59,21 @@ MainScreenViewBase::MainScreenViewBase()
     time_value.setTypedText(touchgfx::TypedText(T_WILDCARD_TIMER));
     container_time.add(time_value);
 
-    time_units1.setXY(14, 1);
+    time_units1.setPosition(8, 1, 42, 24);
     time_units1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units1.setLinespacing(0);
     time_units1.setTypedText(touchgfx::TypedText(T_UNITS_HOURS));
-    time_units1.setAlpha(38);
+    time_units1.setAlpha(55);
     container_time.add(time_units1);
 
-    time_units2.setXY(74, 1);
+    time_units2.setPosition(64, 1, 42, 24);
     time_units2.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units2.setLinespacing(0);
     time_units2.setTypedText(touchgfx::TypedText(T_UNITS_MINUTES));
-    time_units2.setAlpha(38);
+    time_units2.setAlpha(55);
     container_time.add(time_units2);
 
-    time_left_name.setXY(0, 55);
+    time_left_name.setPosition(0, 55, 112, 24);
     time_left_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_left_name.setLinespacing(0);
     time_left_name.setTypedText(touchgfx::TypedText(T_TITLE_TIME_LEFT20));

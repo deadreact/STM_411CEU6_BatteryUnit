@@ -12,19 +12,13 @@ BatteryCellBase::BatteryCellBase()
     setHeight(17);
     progress.setXY(10, 2);
     progress.setProgressIndicatorPosition(0, 0, 28, 14);
-    progress.setRange(200, 400);
+    progress.setRange(265, 355);
     progress.setDirection(touchgfx::AbstractDirectionProgress::RIGHT);
     progress.setBackground(touchgfx::Bitmap(BITMAP_BATTERY_ID));
     progress.setBitmap(BITMAP_BATTERY_FILL_WHITE_ID);
-    progress.setValue(268);
+    progress.setValue(311);
     progress.setAnchorAtZero(true);
     add(progress);
-
-    low_progress.setBitmap(touchgfx::Bitmap(BITMAP_BATTERY_FILL_RED_ID));
-    low_progress.setPosition(10, 2, 8, 14);
-    low_progress.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
-    low_progress.setVisible(false);
-    add(low_progress);
 
     index.setPosition(10, 0, 31, 17);
     index.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
@@ -34,7 +28,7 @@ BatteryCellBase::BatteryCellBase()
     index.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14CENTERED));
     add(index);
 
-    value.setPosition(45, 0, 43, 18);
+    value.setPosition(44, 0, 43, 18);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
     Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0DOT0000).getText());

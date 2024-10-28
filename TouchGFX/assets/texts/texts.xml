@@ -19,18 +19,18 @@
         <Translation Language="UA">W</Translation>
       </Text>
       <Text Id="UNITS_TIMER_SHORT" Alignment="Left" TypographyId="Values14">
-        <Translation Language="GB">h;min</Translation>
+        <Translation Language="GB">h:m</Translation>
         <Translation Language="UA">г:хв</Translation>
       </Text>
       <Text Id="UNITS_POWER20" Alignment="Left" TypographyId="Values20">
         <Translation Language="GB">W</Translation>
         <Translation Language="UA">W</Translation>
       </Text>
-      <Text Id="UNITS_HOURS" Alignment="Left" TypographyId="Values20">
+      <Text Id="UNITS_HOURS" Alignment="Center" TypographyId="Values20">
         <Translation Language="GB">h</Translation>
         <Translation Language="UA">год</Translation>
       </Text>
-      <Text Id="UNITS_MINUTES" Alignment="Left" TypographyId="Values20">
+      <Text Id="UNITS_MINUTES" Alignment="Center" TypographyId="Values20">
         <Translation Language="GB">min</Translation>
         <Translation Language="UA">хв</Translation>
       </Text>
@@ -143,7 +143,7 @@
         <Translation Language="UA">0</Translation>
       </Text>
       <Text Id="WILDCARD_Simple20" Alignment="Right" TypographyId="Values20">
-        <Translation Language="GB">New Text&lt;v&lt;value&gt;alue&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
       <Text Id="WILDCARD_SOC_BIG" Alignment="Center" TypographyId="Values38">

@@ -482,7 +482,7 @@
                         "Name": "time_units",
                         "X": 62,
                         "Y": 2,
-                        "Width": 24,
+                        "Width": 23,
                         "Height": 18,
                         "TextId": "UNITS_TIMER_SHORT",
                         "TextRotation": "0",
@@ -666,11 +666,10 @@
               {
                 "Type": "TextArea",
                 "Name": "time_units1",
-                "X": 14,
+                "X": 8,
                 "Y": 1,
-                "Width": 33,
+                "Width": 42,
                 "Height": 24,
-                "LockPosition": true,
                 "TextId": "UNITS_HOURS",
                 "TextRotation": "0",
                 "Color": {
@@ -678,17 +677,15 @@
                   "Green": 245,
                   "Blue": 217
                 },
-                "Alpha": 38,
-                "AutoSize": true
+                "Alpha": 55
               },
               {
                 "Type": "TextArea",
                 "Name": "time_units2",
-                "X": 74,
+                "X": 64,
                 "Y": 1,
-                "Width": 21,
+                "Width": 42,
                 "Height": 24,
-                "LockPosition": true,
                 "TextId": "UNITS_MINUTES",
                 "TextRotation": "0",
                 "Color": {
@@ -696,8 +693,7 @@
                   "Green": 245,
                   "Blue": 217
                 },
-                "Alpha": 38,
-                "AutoSize": true
+                "Alpha": 55
               },
               {
                 "Type": "TextArea",
@@ -705,7 +701,6 @@
                 "Y": 55,
                 "Width": 112,
                 "Height": 24,
-                "LockPosition": true,
                 "TextId": "TITLE_TIME_LEFT20",
                 "TextRotation": "0",
                 "Color": {
@@ -713,8 +708,7 @@
                   "Green": 245,
                   "Blue": 217
                 },
-                "Alpha": 128,
-                "AutoSize": true
+                "Alpha": 128
               }
             ]
           },
@@ -988,20 +982,9 @@
             "FileNameBackground": "battery.png",
             "IndicatorPositionWidth": 28,
             "IndicatorPositionHeight": 14,
-            "ProgressRangeMin": 200,
-            "ProgressRangeMax": 400,
-            "ProgressInitialValue": 268
-          },
-          {
-            "Type": "ScalableImage",
-            "Name": "low_progress",
-            "X": 10,
-            "Y": 2,
-            "Width": 8,
-            "Height": 14,
-            "Visible": false,
-            "Filename": "battery_fill_red.png",
-            "ScalingAlgorithm": "Nearest-neighbor"
+            "ProgressRangeMin": 265,
+            "ProgressRangeMax": 355,
+            "ProgressInitialValue": 311
           },
           {
             "Type": "TextArea",
@@ -1025,7 +1008,7 @@
           {
             "Type": "TextArea",
             "Name": "value",
-            "X": 45,
+            "X": 44,
             "Width": 43,
             "Height": 18,
             "TextId": "WILDCARD_Simple14",

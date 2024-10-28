@@ -7,7 +7,6 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/containers/progress_indicators/ImageProgress.hpp>
-#include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 
@@ -27,7 +26,6 @@ protected:
      * Member Declarations
      */
     touchgfx::ImageProgress progress;
-    touchgfx::ScalableImage low_progress;
     touchgfx::TextAreaWithOneWildcard index;
     touchgfx::TextAreaWithOneWildcard value;
     touchgfx::TextArea v;
