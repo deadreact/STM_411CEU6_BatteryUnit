@@ -6,16 +6,18 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/Color.hpp>
 
-SettingEntryBase::SettingEntryBase()
+SettingEntryBase::SettingEntryBase() :
+    updateItemCallback(this, &SettingEntryBase::updateItemCallbackHandler)
 {
     setWidth(320);
     setHeight(48);
-    selection.setXY(0, 0);
     selection.setBitmap(touchgfx::Bitmap(BITMAP_SETTINGS_SELECT_ID));
+    selection.setPosition(0, 0, 320, 48);
+    selection.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     selection.setVisible(false);
     add(selection);
 
-    selectedValue.setPosition(200, 13, 120, 22);
+    selectedValue.setPosition(193, 11, 112, 22);
     selectedValue.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     selectedValue.setLinespacing(0);
     Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T_SETTING_SCREEN_VALUE_0).getText());
@@ -23,11 +25,25 @@ SettingEntryBase::SettingEntryBase()
     selectedValue.setTypedText(touchgfx::TypedText(T_SETTING_VALUE_WILDCARD));
     add(selectedValue);
 
-    title.setPosition(15, 13, 185, 22);
+    title.setPosition(13, 11, 180, 22);
     title.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     title.setLinespacing(0);
     title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));
     add(title);
+
+    circles.setPosition(219, 31, 60, 10);
+    circles.setHorizontal(true);
+    circles.setCircular(false);
+    circles.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
+    circles.setSwipeAcceleration(10);
+    circles.setDragAcceleration(10);
+    circles.setNumberOfItems(4);
+    circles.setPadding(0, 0);
+    circles.setSnapping(false);
+    circles.setOvershootPercentage(75);
+    circles.setDrawableSize(10, 0);
+    circles.setDrawables(circlesListItems, updateItemCallback);
+    add(circles);
 }
 
 SettingEntryBase::~SettingEntryBase()
@@ -37,5 +53,17 @@ SettingEntryBase::~SettingEntryBase()
 
 void SettingEntryBase::initialize()
 {
+    circles.initialize();
+    for (int i = 0; i < circlesListItems.getNumberOfDrawables(); i++)
+    {
+        circlesListItems[i].initialize();
+    }
+}
 
+void SettingEntryBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
+{
+    if (items == &circlesListItems)
+    {
+        circlesUpdateItem(circlesListItems[containerIndex], itemIndex);
+    }
 }

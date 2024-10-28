@@ -22,6 +22,7 @@ public:
 private:
 	void colorizeCells();
 	void updateInvState();
+	void setPower(int val);
 protected:
 	BatteryData m_bmsData;
 	utils::stack_string errMsg;
@@ -30,7 +31,7 @@ protected:
 	InverterState m_invState{InverterState::Off};
 	bool m_usbState{false};
 	uint8_t m_fan{0};
-//	uint8_t fan{0};
+	int m_power{0};
 
 	int m_chargeTimeSec{-1};
 private:

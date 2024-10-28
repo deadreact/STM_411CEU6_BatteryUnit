@@ -25,7 +25,7 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent() override;
-    void setWatts(int val);
+    void setPower(int val);
 protected:
     void updateBatteryData(const BatteryData& data);
     void setIconFanVisible(bool visible);
@@ -40,6 +40,7 @@ protected:
     bool m_isBMSError{false};
     bool m_isChargError{false};
     int m_fan{0};
+    int m_power{0};
 //
     CTimeout m_loadingAnimTimeout{50};
 //

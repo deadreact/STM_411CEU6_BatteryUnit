@@ -111,11 +111,24 @@ void MainScreenView::handleTickEvent()
     }
 }
 
-void MainScreenView::setWatts(int val)
+void MainScreenView::setPower(int val)
 {
-	touchgfx::Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%d", (val + 5000) / 10000);
-	power_value.invalidate();
-//    ioValue.setValue((val + 5000) / 10000);
+
+	if (val != m_power)
+	{
+		int power = val = (val + 5000) / 10000;
+		touchgfx::Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%d", power < 0 ? -power: power);
+		if ((val < 0 && m_power >= 0) || (val > 0 && m_power <= 0) || val == 0)
+		{
+			label_charging.setVisible(val > 0);
+			label_discharging.setVisible(val < 0);
+			label_charging.invalidate();
+			label_discharging.invalidate();
+		}
+
+		m_power = val;
+		power_value.invalidate();
+	}
 }
 
 void MainScreenView::updateBatteryData(const BatteryData& data)
@@ -130,14 +143,14 @@ void MainScreenView::updateBatteryData(const BatteryData& data)
 
     if (smoothedCurr != m_bmsData.current)
     {
-        setWatts(smoothedCurr * data.voltage);
+    	setPower(smoothedCurr * data.voltage);
 //        capacityContainer.setChargeState(smoothedCurr > 0 ? ChargeState::Charge : (smoothedCurr < 0 ? ChargeState::Uncharge : ChargeState::Idle));
 //        setIconFanVisible(smoothedCurr > 0);
     }
 
     if (data.voltage != m_bmsData.voltage)
     {
-        setWatts(smoothedCurr * data.voltage);
+    	setPower(smoothedCurr * data.voltage);
 //        capacityContainer.setVoltage(data.voltage);
     }
 

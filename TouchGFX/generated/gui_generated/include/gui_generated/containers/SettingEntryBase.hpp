@@ -6,9 +6,11 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/containers/scrollers/ScrollList.hpp>
+#include <gui/containers/CircleContainer.hpp>
 
 class SettingEntryBase : public touchgfx::Container
 {
@@ -16,6 +18,11 @@ public:
     SettingEntryBase();
     virtual ~SettingEntryBase();
     virtual void initialize();
+
+    virtual void circlesUpdateItem(CircleContainer& item, int16_t itemIndex)
+    {
+        // Override and implement this function in SettingEntry
+    }
 
 protected:
     FrontendApplication& application() {
@@ -25,9 +32,11 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::Image selection;
+    touchgfx::ScalableImage selection;
     touchgfx::TextAreaWithOneWildcard selectedValue;
     touchgfx::TextArea title;
+    touchgfx::ScrollList circles;
+    touchgfx::DrawableListItems<CircleContainer, 7> circlesListItems;
 
     /*
      * Wildcard Buffers
@@ -36,6 +45,16 @@ protected:
     touchgfx::Unicode::UnicodeChar selectedValueBuffer[SELECTEDVALUE_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<SettingEntryBase, touchgfx::DrawableListItemsInterface*, int16_t, int16_t> updateItemCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex);
 
 };
 

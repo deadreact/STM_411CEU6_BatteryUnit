@@ -23,18 +23,33 @@ void SettingEntry::setValues(const utils::stack_vector<TypedTextId, 5>& values)
 {
 	m_values = values;
 
+	circles.setNumberOfItems(values.size());
+	circles.setWidth(circlesListItems[0].getWidth() * values.size());
+//	circles.setX(selectedValue.getX() + selectedValue.getWidth()/2 - circles.getWidth()/2);
+	circles.setX(249 - (10*values.size())/2);
+	circlesListItems[0].setColor(selection.isVisible() ? 0xFF000000 : 0xFFFFF5D9);
+	circles.invalidate();
+
 	selectedValue.setTypedText(touchgfx::TypedText(values.front()));
 	selectedValue.invalidate();
 }
 
 void SettingEntry::selectValue(uint16_t index)
 {
-	TypedTextId textId = m_values.at(index);
-	if (title.getTypedText().getId() != textId)
+	if (index != selectedIndex)
 	{
-		selectedValue.setTypedText(touchgfx::TypedText(textId));
-		selectedValue.invalidate();
+		circlesListItems[selectedIndex].setColor(selection.isVisible() ? 0x66000000 : 0x66FFF5D9);
+		selectedIndex = index;
+		circlesListItems[selectedIndex].setColor(selection.isVisible() ? 0xFF000000 : 0xFFFFF5D9);
+		circles.invalidate();
+		TypedTextId textId = m_values.at(index);
+		if (title.getTypedText().getId() != textId)
+		{
+			selectedValue.setTypedText(touchgfx::TypedText(textId));
+			selectedValue.invalidate();
+		}
 	}
+
 }
 
 void SettingEntry::setSelected(bool selected)
@@ -42,9 +57,18 @@ void SettingEntry::setSelected(bool selected)
 	if (selected != selection.isVisible())
 	{
 		//#5B5B5B
-		auto color = selected ? 0xFFFFFFFF : 0xFF5B5B5B;
-		title.setColor(color);
-		selectedValue.setColor(color);
+		auto strongColor = selected ? 0xFF000000 : 0xFFFFF5D9;
+		auto weakColor = selected ? 0x66000000 : 0x66FFF5D9;
+
+		for (int i = 0; i < circles.getNumberOfItems(); i++)
+		{
+			circlesListItems[i].setColor(weakColor);
+		}
+
+		circlesListItems[selectedIndex].setColor(strongColor);
+
+		title.setColor(strongColor);
+		selectedValue.setColor(strongColor);
 		selection.setVisible(selected);
 		invalidate();
 	}

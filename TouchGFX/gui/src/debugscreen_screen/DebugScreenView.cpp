@@ -21,6 +21,25 @@ void DebugScreenView::tearDownScreen()
     DebugScreenViewBase::tearDownScreen();
 }
 
+void DebugScreenView::setPower(int val)
+{
+	if (val != m_power)
+	{
+		float power = float(val) / 10000;
+		touchgfx::Unicode::snprintfFloat(power_valueBuffer, POWER_VALUE_SIZE, "%.2f", power);
+		if ((val < 0 && m_power >= 0) || (val > 0 && m_power <= 0) || val == 0)
+		{
+			label_charging.setVisible(val > 0);
+			label_discharging.setVisible(val < 0);
+			label_charging.invalidate();
+			label_discharging.invalidate();
+		}
+
+		m_power = val;
+		power_value.invalidate();
+	}
+}
+
 void DebugScreenView::handleTickEvent()
 {
 	if (!SharedData::getData())
@@ -82,7 +101,7 @@ void DebugScreenView::handleTickEvent()
 			touchgfx::Unicode::snprintfFloat(current_valueBuffer, CURRENT_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
 			current_value.invalidate();
 
-			touchgfx::Unicode::snprintfFloat(power_valueBuffer, CURRENT_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current * m_bmsData.voltage));
+			setPower(m_bmsData.current * m_bmsData.voltage);
 		}
 
 		if (data.bms.voltage != m_bmsData.voltage)
@@ -91,6 +110,8 @@ void DebugScreenView::handleTickEvent()
 			touchgfx::Unicode::snprintfFloat(voltage_valueBuffer, VOLTAGE_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
 //			voltageTextValue.resizeToCurrentText();
 			voltage_value.invalidate();
+
+			setPower(m_bmsData.current * m_bmsData.voltage);
 		}
 
 		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)

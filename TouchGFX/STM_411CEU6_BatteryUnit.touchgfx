@@ -1099,6 +1099,13 @@
         "Height": 240,
         "Components": [
           {
+            "Type": "Box",
+            "Name": "bg",
+            "Width": 320,
+            "Height": 240,
+            "Alpha": 224
+          },
+          {
             "Type": "ScrollList",
             "Name": "entries",
             "Y": 48,
@@ -1121,19 +1128,20 @@
         "Height": 48,
         "Components": [
           {
-            "Type": "Image",
+            "Type": "ScalableImage",
             "Name": "selection",
             "Width": 320,
-            "Height": 49,
+            "Height": 48,
             "Visible": false,
-            "RelativeFilename": "settings_select.png"
+            "Filename": "settings_select.png",
+            "ScalingAlgorithm": "Nearest-neighbor"
           },
           {
             "Type": "TextArea",
             "Name": "selectedValue",
-            "X": 200,
-            "Y": 13,
-            "Width": 120,
+            "X": 193,
+            "Y": 11,
+            "Width": 112,
             "Height": 22,
             "TextId": "SETTING_VALUE_WILDCARD",
             "TextRotation": "0",
@@ -1151,9 +1159,9 @@
           {
             "Type": "TextArea",
             "Name": "title",
-            "X": 15,
-            "Y": 13,
-            "Width": 185,
+            "X": 13,
+            "Y": 11,
+            "Width": 180,
             "Height": 22,
             "TextId": "SETTING_CHARGER_POWER",
             "TextRotation": "0",
@@ -1162,6 +1170,22 @@
               "Green": 245,
               "Blue": 217
             }
+          },
+          {
+            "Type": "ScrollList",
+            "Name": "circles",
+            "X": 219,
+            "Y": 31,
+            "Width": 60,
+            "Height": 10,
+            "IsHorizontal": true,
+            "ItemTemplateName": "CircleContainer",
+            "NumberofItems": 4,
+            "Easing": "Back",
+            "EasingOption": "Out",
+            "SwipeAcceleration": 1.0,
+            "DragAcceleration": 1.0,
+            "OverShootPercentage": 75
           }
         ],
         "Interactions": []
@@ -1470,13 +1494,38 @@
               {
                 "Type": "ScalableImage",
                 "Name": "progress_bg",
-                "Width": 145,
+                "Width": 85,
                 "Height": 15,
-                "LockPosition": true,
                 "Filename": "bar_big_fill_white.png",
                 "ScalingAlgorithm": "Nearest-neighbor"
               }
             ]
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "CircleContainer",
+        "Width": 10,
+        "Height": 10,
+        "Components": [
+          {
+            "Type": "Circle",
+            "Name": "circle",
+            "Width": 10,
+            "Height": 10,
+            "LockPosition": true,
+            "Color": {
+              "Red": 255,
+              "Green": 245,
+              "Blue": 217
+            },
+            "CenterX": 5.0,
+            "CenterY": 5.0,
+            "Radius": 3.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt",
+            "Alpha": 102
           }
         ],
         "Interactions": []

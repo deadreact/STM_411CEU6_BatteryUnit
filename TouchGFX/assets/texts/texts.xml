@@ -14,23 +14,23 @@
         <Translation Language="GB">Charger power</Translation>
         <Translation Language="UA">Потужність заряду</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER_VALUE_4" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER_VALUE_4" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">250W</Translation>
         <Translation Language="UA">250W</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER_VALUE_3" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER_VALUE_3" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">500W</Translation>
         <Translation Language="UA">500W</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER_VALUE_2" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER_VALUE_2" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">750W</Translation>
         <Translation Language="UA">750W</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER_VALUE_1" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">1000W</Translation>
         <Translation Language="UA">1000W</Translation>
       </Text>
-      <Text Id="SETTING_CHARGER_POWER_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_CHARGER_POWER_VALUE_0" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">1200W</Translation>
         <Translation Language="UA">1200W</Translation>
       </Text>
@@ -38,11 +38,11 @@
         <Translation Language="GB">Screen</Translation>
         <Translation Language="UA">Екран</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN_VALUE_0" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Extended</Translation>
         <Translation Language="UA">Розширений</Translation>
       </Text>
-      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_SCREEN_VALUE_1" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">Basic</Translation>
         <Translation Language="UA">Простий</Translation>
       </Text>
@@ -54,19 +54,19 @@
         <Translation Language="GB">Brightness</Translation>
         <Translation Language="UA">Яскравість</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS_VALUE_0" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_BRIGHTNESS_VALUE_0" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">100%</Translation>
         <Translation Language="UA">100%</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS_VALUE_1" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_BRIGHTNESS_VALUE_1" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">70%</Translation>
         <Translation Language="UA">70%</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS_VALUE_2" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_BRIGHTNESS_VALUE_2" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">30%</Translation>
         <Translation Language="UA">30%</Translation>
       </Text>
-      <Text Id="SETTING_BRIGHTNESS_VALUE_3" Alignment="Right" TypographyId="SettingsEntries">
+      <Text Id="SETTING_BRIGHTNESS_VALUE_3" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">10%</Translation>
         <Translation Language="UA">10%</Translation>
       </Text>
@@ -358,7 +358,7 @@
     <Typography Id="Values14" Font="bahnschrift.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Values13" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="Errors" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
-    <Typography Id="SettingsEntries" Font="bahnschrift.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="SettingsEntries" Font="bahnschrift.ttf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="Values38" Font="bahnschrift.ttf" Size="38" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Values42" Font="bahnschrift.ttf" Size="42" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
     <Typography Id="Values20" Font="bahnschrift.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />

@@ -18,6 +18,7 @@ public:
     void setSelected(bool selected);
 protected:
     utils::stack_vector<TypedTextId, 5> m_values;
+    uint16_t selectedIndex{0};
 };
 
 #endif // SETTINGENTRY_HPP

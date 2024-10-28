@@ -61,7 +61,7 @@ BatteryMainProgressBarBase::BatteryMainProgressBarBase()
     bar.add(line_right);
 
     progress_bg.setBitmap(touchgfx::Bitmap(BITMAP_BAR_BIG_FILL_WHITE_ID));
-    progress_bg.setPosition(0, 0, 145, 15);
+    progress_bg.setPosition(0, 0, 85, 15);
     progress_bg.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     bar.add(progress_bg);
 

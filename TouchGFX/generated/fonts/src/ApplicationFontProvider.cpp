@@ -19,7 +19,7 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
         // bahnschrift_13_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::SETTINGSENTRIES:
-        // bahnschrift_15_4bpp
+        // bahnschrift_18_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
     case Typography::VALUES38:
         // bahnschrift_38_4bpp

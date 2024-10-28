@@ -28,7 +28,7 @@ struct TypographyFontIndex
     static const touchgfx::FontId VALUES14 = 0;        // bahnschrift_14_4bpp
     static const touchgfx::FontId VALUES13 = 1;        // bahnschrift_13_4bpp
     static const touchgfx::FontId ERRORS = 1;          // bahnschrift_13_4bpp
-    static const touchgfx::FontId SETTINGSENTRIES = 2; // bahnschrift_15_4bpp
+    static const touchgfx::FontId SETTINGSENTRIES = 2; // bahnschrift_18_4bpp
     static const touchgfx::FontId VALUES38 = 3;        // bahnschrift_38_4bpp
     static const touchgfx::FontId VALUES42 = 4;        // bahnschrift_42_4bpp
     static const touchgfx::FontId VALUES20 = 5;        // bahnschrift_20_4bpp
