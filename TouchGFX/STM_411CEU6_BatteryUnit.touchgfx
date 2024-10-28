@@ -886,7 +886,7 @@
               {
                 "Type": "TextArea",
                 "Name": "time_units1",
-                "X": 13,
+                "X": 14,
                 "Y": 1,
                 "Width": 33,
                 "Height": 24,

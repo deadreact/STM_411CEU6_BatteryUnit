@@ -59,7 +59,7 @@ MainScreenViewBase::MainScreenViewBase()
     time_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0UR9));
     container_time.add(time_value);
 
-    time_units1.setXY(13, 1);
+    time_units1.setXY(14, 1);
     time_units1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units1.setLinespacing(0);
     time_units1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_J65A));
