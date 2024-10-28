@@ -29,24 +29,23 @@ BatteryCellBase::BatteryCellBase()
     index.setPosition(10, 0, 31, 17);
     index.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     index.setLinespacing(0);
-    Unicode::snprintf(indexBuffer, INDEX_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_H9E2).getText());
+    Unicode::snprintf(indexBuffer, INDEX_SIZE, "%s", touchgfx::TypedText(T_NUMBER_1).getText());
     index.setWildcard(indexBuffer);
-    index.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z9AT));
+    index.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14CENTERED));
     add(index);
 
-    value.setXY(45, 0);
+    value.setPosition(45, 0, 43, 18);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_5698).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0DOT0000).getText());
     value.setWildcard(valueBuffer);
-    value.resizeToCurrentText();
-    value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_GR5J));
+    value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14));
     add(value);
 
-    v.setXY(84, 0);
+    v.setXY(88, 0);
     v.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     v.setLinespacing(0);
-    v.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WJTL));
+    v.setTypedText(touchgfx::TypedText(T_UNITS_VOLTAGE));
     v.setAlpha(90);
     add(v);
 }

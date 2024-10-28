@@ -17,6 +17,7 @@
 #include <gui/containers/BatteryCell.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <gui/containers/BatteryProgressBar.hpp>
+#include <gui/containers/TemperatureContainer.hpp>
 
 class DebugScreenViewBase : public touchgfx::View<DebugScreenPresenter>
 {
@@ -84,22 +85,10 @@ protected:
     touchgfx::TextArea time_units;
     touchgfx::TextArea time_left_name;
     touchgfx::Container container_temperatures;
-    touchgfx::Container container_bmst1;
-    touchgfx::TextAreaWithOneWildcard t_value_bmst1;
-    touchgfx::TextArea t_value_units_bmst1;
-    touchgfx::TextArea t_title_bmst1;
-    touchgfx::Container container_bmst2;
-    touchgfx::TextAreaWithOneWildcard t_value_bmst2;
-    touchgfx::TextArea t_value_units_bmst2;
-    touchgfx::TextArea t_title_bmst2;
-    touchgfx::Container container_invt;
-    touchgfx::TextAreaWithOneWildcard t_value_invt;
-    touchgfx::TextArea t_value_units_invt;
-    touchgfx::TextArea t_title_invt;
-    touchgfx::Container container_chargt;
-    touchgfx::TextAreaWithOneWildcard t_value_chargt;
-    touchgfx::TextArea t_value_units_chargt;
-    touchgfx::TextArea t_title_chargt;
+    TemperatureContainer container_temperature_bms1;
+    TemperatureContainer container_temperature_bms2;
+    TemperatureContainer container_temperature_inv;
+    TemperatureContainer container_temperature_charg;
 
     /*
      * Wildcard Buffers
@@ -116,14 +105,6 @@ protected:
     touchgfx::Unicode::UnicodeChar time_valueBuffer1[TIME_VALUEBUFFER1_SIZE];
     static const uint16_t TIME_VALUEBUFFER2_SIZE = 3;
     touchgfx::Unicode::UnicodeChar time_valueBuffer2[TIME_VALUEBUFFER2_SIZE];
-    static const uint16_t T_VALUE_BMST1_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar t_value_bmst1Buffer[T_VALUE_BMST1_SIZE];
-    static const uint16_t T_VALUE_BMST2_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar t_value_bmst2Buffer[T_VALUE_BMST2_SIZE];
-    static const uint16_t T_VALUE_INVT_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar t_value_invtBuffer[T_VALUE_INVT_SIZE];
-    static const uint16_t T_VALUE_CHARGT_SIZE = 4;
-    touchgfx::Unicode::UnicodeChar t_value_chargtBuffer[T_VALUE_CHARGT_SIZE];
 
 private:
 

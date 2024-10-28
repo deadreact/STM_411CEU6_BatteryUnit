@@ -52,31 +52,31 @@ MainScreenViewBase::MainScreenViewBase()
     time_value.setPosition(5, 13, 102, 42);
     time_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_value.setLinespacing(0);
-    touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4B93).getText());
+    touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_NUMBER_00).getText());
     time_value.setWildcard1(time_valueBuffer1);
     touchgfx::Unicode::snprintf(time_valueBuffer2, TIME_VALUEBUFFER2_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_3747).getText());
     time_value.setWildcard2(time_valueBuffer2);
-    time_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0UR9));
+    time_value.setTypedText(touchgfx::TypedText(T_WILDCARD_TIMER));
     container_time.add(time_value);
 
     time_units1.setXY(14, 1);
     time_units1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units1.setLinespacing(0);
-    time_units1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_J65A));
+    time_units1.setTypedText(touchgfx::TypedText(T_UNITS_HOURS));
     time_units1.setAlpha(38);
     container_time.add(time_units1);
 
     time_units2.setXY(74, 1);
     time_units2.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units2.setLinespacing(0);
-    time_units2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_PF75));
+    time_units2.setTypedText(touchgfx::TypedText(T_UNITS_MINUTES));
     time_units2.setAlpha(38);
     container_time.add(time_units2);
 
     time_left_name.setXY(0, 55);
     time_left_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_left_name.setLinespacing(0);
-    time_left_name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZSB4));
+    time_left_name.setTypedText(touchgfx::TypedText(T_TITLE_TIME_LEFT20));
     time_left_name.setAlpha(128);
     container_time.add(time_left_name);
 
@@ -89,16 +89,16 @@ MainScreenViewBase::MainScreenViewBase()
     power_value.setPosition(0, 0, 32, 20);
     power_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_value.setLinespacing(0);
-    Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_3UDL).getText());
+    Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0).getText());
     power_value.setWildcard(power_valueBuffer);
-    power_value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QVL4));
+    power_value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE20));
     power_value.setAlpha(192);
     container_power.add(power_value);
 
     power_units.setXY(32, 0);
     power_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_units.setLinespacing(0);
-    power_units.setTypedText(touchgfx::TypedText(T___SINGLEUSE_F6F8));
+    power_units.setTypedText(touchgfx::TypedText(T_UNITS_POWER20));
     power_units.setAlpha(90);
     container_power.add(power_units);
 
@@ -107,14 +107,14 @@ MainScreenViewBase::MainScreenViewBase()
     label_charging.setPosition(94, 103, 133, 28);
     label_charging.setColor(touchgfx::Color::getColorFromRGB(0, 245, 77));
     label_charging.setLinespacing(0);
-    label_charging.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KD7U));
+    label_charging.setTypedText(touchgfx::TypedText(T_TITLE_CHARGE));
     label_charging.setVisible(false);
     add(label_charging);
 
     label_discharging.setPosition(88, 103, 144, 28);
     label_discharging.setColor(touchgfx::Color::getColorFromRGB(255, 38, 20));
     label_discharging.setLinespacing(0);
-    label_discharging.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4K0C));
+    label_discharging.setTypedText(touchgfx::TypedText(T_TITLE_DISCHARGE));
     label_discharging.setVisible(false);
     add(label_discharging);
 
@@ -130,13 +130,14 @@ MainScreenViewBase::MainScreenViewBase()
     loading.setBitmapPosition(0.0f, 0.0f);
     loading.setScale(1.0f);
     loading.setCameraDistance(1000.0f);
-    loading.setOrigo(36.0f, 36.0f, 1000.0f);
+    loading.setOrigo(35.5f, 35.5f, 1000.0f);
     loading.setCamera(36.0f, 36.0f);
     loading.setAngles(0.0f, 0.0f, 0.0f);
     loading.setRenderingAlgorithm(touchgfx::TextureMapper::NEAREST_NEIGHBOR);
     add(loading);
 
     container_popup.setPosition(0, 240, 320, 40);
+    container_popup.setVisible(false);
     popup_bg.setPosition(0, 0, 320, 40);
     popup_bg.setColor(touchgfx::Color::getColorFromRGB(254, 144, 32));
     container_popup.add(popup_bg);
@@ -145,9 +146,9 @@ MainScreenViewBase::MainScreenViewBase()
     popup_text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     popup_text.setLinespacing(0);
     popup_text.setWideTextAction(WIDE_TEXT_WORDWRAP);
-    Unicode::snprintf(popup_textBuffer, POPUP_TEXT_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_30TJ).getText());
+    popup_textBuffer[0] = 0;
     popup_text.setWildcard(popup_textBuffer);
-    popup_text.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UGKY));
+    popup_text.setTypedText(touchgfx::TypedText(T_WILDCARD_INFO_MSG));
     container_popup.add(popup_text);
 
     add(container_popup);

@@ -1,4 +1,5 @@
 #include <gui/debugscreen_screen/DebugScreenView.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 #include <cstring>
 #include <algorithm>
 
@@ -9,6 +10,11 @@ DebugScreenView::DebugScreenView()
 void DebugScreenView::setupScreen()
 {
     DebugScreenViewBase::setupScreen();
+
+    container_temperature_bms1.setTitle(T_TITLE_BMS_T1);
+    container_temperature_bms2.setTitle(T_TITLE_BMS_T2);
+    container_temperature_charg.setTitle(T_TITLE_CHARG_T);
+    container_temperature_inv.setTitle(T_TITLE_INV_T);
 }
 
 DebugScreenView::~DebugScreenView()
@@ -55,20 +61,8 @@ void DebugScreenView::handleTickEvent()
 	}
 	const auto& data = *SharedData::getData();
 
-	if (data.temperatureInv != temperatureInv)
-	{
-		temperatureInv = data.temperatureInv;
-//		fan = data.fan;
-		touchgfx::Unicode::snprintf(t_value_invtBuffer, T_VALUE_INVT_SIZE, "%d", data.temperatureInv);
-		t_value_invt.invalidate();
-	}
-
-	if (data.temperatureCharg != temperatureCharg)
-	{
-		temperatureCharg = data.temperatureCharg;
-		touchgfx::Unicode::snprintf(t_value_chargtBuffer, T_VALUE_CHARGT_SIZE, "%d", data.temperatureCharg);
-		t_value_chargt.invalidate();
-	}
+	container_temperature_inv.setValue(data.temperatureInv);
+	container_temperature_charg.setValue(data.temperatureCharg);
 
 	if (m_invState != data.invState) {
 		m_invState = data.invState;
@@ -131,15 +125,13 @@ void DebugScreenView::handleTickEvent()
 		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)
 		{
 			m_bmsData.battery_box_temperature = data.bms.battery_box_temperature;
-			touchgfx::Unicode::snprintf(t_value_bmst1Buffer, T_VALUE_BMST1_SIZE, "%d", data.bms.battery_box_temperature);
-			t_value_bmst1.invalidate();
+			container_temperature_bms1.setValue(m_bmsData.battery_box_temperature);
 		}
 //
 		if (data.bms.battery_temperature != m_bmsData.battery_temperature)
 		{
 			m_bmsData.battery_temperature = data.bms.battery_temperature;
-			touchgfx::Unicode::snprintf(t_value_bmst2Buffer, T_VALUE_BMST2_SIZE, "%d", data.bms.battery_temperature);
-			t_value_bmst2.invalidate();
+			container_temperature_bms2.setValue(m_bmsData.battery_temperature);
 		}
 
 		if (data.bms.cellVoltage != m_bmsData.cellVoltage)

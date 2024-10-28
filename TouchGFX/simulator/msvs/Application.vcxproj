@@ -39,6 +39,8 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\BatteryMainProgressBarBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\CircleContainer.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\CircleContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\TemperatureContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\TemperatureContainerBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -209,6 +211,8 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\BatteryMainProgressBarBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\CircleContainer.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\CircleContainerBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\TemperatureContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\TemperatureContainerBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

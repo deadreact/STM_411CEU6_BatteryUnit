@@ -4,7 +4,6 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_bahnschrift_38_8bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x0020,   0,   0,   0,   0,  10,   0,   0, 0x00 },
     {     0, 0x0025,  24,  28,  28,   1,  26,   0,   0, 0x00 },
     {   672, 0x002B,  16,  16,  21,   2,  20,   0,   0, 0x00 },
     {   928, 0x002D,  14,   4,  12,   2,  18,   0,   0, 0x00 },
@@ -19,13 +18,7 @@ KEEP extern const touchgfx::GlyphNode glyphs_bahnschrift_38_8bpp[] FONT_TABLE_LO
     {  4061, 0x0037,  15,  28,  28,   2,  19,   0,   0, 0x00 },
     {  4481, 0x0038,  17,  28,  28,   2,  21,   0,   0, 0x00 },
     {  4957, 0x0039,  16,  28,  28,   2,  20,   0,   0, 0x00 },
-    {  5405, 0x003F,  15,  28,  28,   0,  16,   0,   0, 0x00 },
-    {  5825, 0x004E,  21,  28,  28,   3,  27,   0,   0, 0x00 },
-    {  6413, 0x0054,  20,  28,  28,  -1,  18,   0,   0, 0x00 },
-    {  6973, 0x0065,  17,  20,  20,   2,  20,   0,   0, 0x00 },
-    {  7313, 0x0074,  10,  26,  26,   1,  12,   0,   0, 0x00 },
-    {  7573, 0x0077,  28,  20,  20,   1,  29,   0,   0, 0x00 },
-    {  8133, 0x0078,  18,  20,  20,   1,  20,   0,   0, 0x00 }
+    {  5405, 0x003F,  15,  28,  28,   0,  16,   0,   0, 0x00 }
 };
 
 // bahnschrift_38_8bpp
@@ -43,6 +36,6 @@ touchgfx::GeneratedFont& getFont_bahnschrift_38_8bpp();
 
 touchgfx::GeneratedFont& getFont_bahnschrift_38_8bpp()
 {
-    static touchgfx::GeneratedFont bahnschrift_38_8bpp(glyphs_bahnschrift_38_8bpp, 22, 38, 38, 0, 0, 8, 0, 1, 1, unicodes_bahnschrift_38_8bpp, kerning_bahnschrift_38_8bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont bahnschrift_38_8bpp(glyphs_bahnschrift_38_8bpp, 15, 38, 38, 0, 0, 8, 0, 0, 0, unicodes_bahnschrift_38_8bpp, kerning_bahnschrift_38_8bpp, 63, 0, 0, 0);
     return bahnschrift_38_8bpp;
 }

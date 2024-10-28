@@ -14,6 +14,8 @@
 #include <touchgfx/widgets/TextArea.hpp>
 #include <gui/containers/BatteryMainProgressBar.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/mixins/MoveAnimator.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -51,7 +53,7 @@ protected:
     touchgfx::TextArea label_discharging;
     touchgfx::Box loading_bg;
     touchgfx::TextureMapper loading;
-    touchgfx::Container container_popup;
+    touchgfx::MoveAnimator< touchgfx::Container > container_popup;
     touchgfx::Box popup_bg;
     touchgfx::TextAreaWithOneWildcard popup_text;
 

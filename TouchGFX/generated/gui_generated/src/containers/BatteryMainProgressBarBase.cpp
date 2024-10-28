@@ -13,10 +13,10 @@ BatteryMainProgressBarBase::BatteryMainProgressBarBase()
     value.setXY(118, 0);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_0837).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_50).getText());
     value.setWildcard(valueBuffer);
     value.resizeToCurrentText();
-    value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_IXOA));
+    value.setTypedText(touchgfx::TypedText(T_WILDCARD_SOC_BIG));
     add(value);
 
     bar.setPosition(0, 48, 290, 15);

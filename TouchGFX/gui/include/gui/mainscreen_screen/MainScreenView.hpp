@@ -31,7 +31,13 @@ protected:
     void setIconFanVisible(bool visible);
     void updateInvState();
     void showLoading(bool show);
+    void showWarning(const char* text);
+    void hideWarning();
+
+    void msgMoveAnimationEndedHandler(const touchgfx::MoveAnimator<touchgfx::Container>& comp);
 protected:
+    Callback <MainScreenView, const touchgfx::MoveAnimator<touchgfx::Container>&> m_msgMoveAnimationEndedCallback;
+
     PowerModeState m_powerModeState;
     BatteryData m_bmsData;
     InverterState m_invState;
@@ -41,6 +47,7 @@ protected:
     bool m_isChargError{false};
     int m_fan{0};
     int m_power{0};
+    bool m_showWarning{false};
 //
     CTimeout m_loadingAnimTimeout{50};
 //

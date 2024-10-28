@@ -53,10 +53,10 @@ BatteryProgressBarBase::BatteryProgressBarBase()
     value.setXY(34, -2);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
-    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_B3CH).getText());
+    Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_50).getText());
     value.setWildcard(valueBuffer);
     value.resizeToCurrentText();
-    value.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7PBA));
+    value.setTypedText(touchgfx::TypedText(T_WILDCARD_SOC_SMALL));
     add(value);
 
     progress_bg.setBitmap(touchgfx::Bitmap(BITMAP_BAR_MEDIUM_FILL_WHITE_ID));

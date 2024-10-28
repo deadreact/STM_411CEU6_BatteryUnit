@@ -182,7 +182,7 @@
             "Y": 162,
             "Width": 166,
             "Height": 68,
-            "TextId": "__SingleUse_4XTO",
+            "TextId": "WILDCARD_CONSOLE",
             "TextRotation": "0",
             "Color": {
               "Red": 254,
@@ -230,7 +230,7 @@
                     "X": 17,
                     "Width": 27,
                     "Height": 18,
-                    "TextId": "__SingleUse_226I",
+                    "TextId": "WILDCARD_Simple14",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -238,7 +238,7 @@
                       "Blue": 217
                     },
                     "Wildcard1": {
-                      "TextId": "__SingleUse_FD47",
+                      "TextId": "NUMBER_0dot00",
                       "UseBuffer": true,
                       "BufferSize": 7
                     }
@@ -249,7 +249,7 @@
                     "X": 44,
                     "Width": 12,
                     "Height": 18,
-                    "TextId": "__SingleUse_6AHG",
+                    "TextId": "UNITS_POWER",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -265,7 +265,7 @@
                     "Y": 14,
                     "Width": 73,
                     "Height": 18,
-                    "TextId": "__SingleUse_M86Q",
+                    "TextId": "TITLE_POWER",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -289,7 +289,7 @@
                     "X": 6,
                     "Width": 27,
                     "Height": 18,
-                    "TextId": "__SingleUse_ZSBL",
+                    "TextId": "WILDCARD_Simple14",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -298,7 +298,7 @@
                     },
                     "AutoSize": true,
                     "Wildcard1": {
-                      "TextId": "__SingleUse_RFBN",
+                      "TextId": "NUMBER_0dot00",
                       "UseBuffer": true,
                       "BufferSize": 7
                     }
@@ -309,7 +309,7 @@
                     "X": 33,
                     "Width": 9,
                     "Height": 18,
-                    "TextId": "__SingleUse_7B82",
+                    "TextId": "UNITS_CURRENT",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -325,7 +325,7 @@
                     "Y": 14,
                     "Width": 48,
                     "Height": 18,
-                    "TextId": "__SingleUse_VTCN",
+                    "TextId": "TITLE_CURRENT",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -349,7 +349,7 @@
                     "X": 12,
                     "Width": 27,
                     "Height": 18,
-                    "TextId": "__SingleUse_T62I",
+                    "TextId": "WILDCARD_Simple14",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -358,7 +358,7 @@
                     },
                     "AutoSize": true,
                     "Wildcard1": {
-                      "TextId": "__SingleUse_K387",
+                      "TextId": "NUMBER_0dot00",
                       "UseBuffer": true,
                       "BufferSize": 7
                     }
@@ -369,7 +369,7 @@
                     "X": 39,
                     "Width": 8,
                     "Height": 18,
-                    "TextId": "__SingleUse_ABXD",
+                    "TextId": "UNITS_VOLTAGE",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -385,7 +385,7 @@
                     "Y": 14,
                     "Width": 52,
                     "Height": 18,
-                    "TextId": "__SingleUse_S8CB",
+                    "TextId": "TITLE_VOLTAGE",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -420,7 +420,7 @@
                     "Width": 100,
                     "Height": 18,
                     "Visible": false,
-                    "TextId": "__SingleUse_PD53",
+                    "TextId": "TITLE_CHARGE_SMALL",
                     "TextRotation": "0",
                     "Color": {
                       "Green": 245,
@@ -435,7 +435,7 @@
                     "Width": 100,
                     "Height": 18,
                     "Visible": false,
-                    "TextId": "__SingleUse_IJ84",
+                    "TextId": "TITLE_DISCHARGE_SMALL",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 255,
@@ -458,7 +458,7 @@
                         "Y": -2,
                         "Width": 44,
                         "Height": 22,
-                        "TextId": "__SingleUse_FBBG",
+                        "TextId": "WILDCARD_TIMER_SMALL",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 255,
@@ -467,12 +467,12 @@
                         },
                         "AutoSize": true,
                         "Wildcard1": {
-                          "TextId": "__SingleUse_HDLI",
+                          "TextId": "NUMBER_00",
                           "UseBuffer": true,
                           "BufferSize": 3
                         },
                         "Wildcard2": {
-                          "TextId": "__SingleUse_5MHB",
+                          "TextId": "NUMBER_00",
                           "UseBuffer": true,
                           "BufferSize": 3
                         }
@@ -484,7 +484,7 @@
                         "Y": 2,
                         "Width": 24,
                         "Height": 18,
-                        "TextId": "__SingleUse_ZTK0",
+                        "TextId": "UNITS_TIMER_SHORT",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 255,
@@ -500,7 +500,7 @@
                         "Y": 21,
                         "Width": 98,
                         "Height": 18,
-                        "TextId": "__SingleUse_U2F7",
+                        "TextId": "TITLE_TIME_LEFT",
                         "TextRotation": "0",
                         "Color": {
                           "Red": 255,
@@ -521,252 +521,40 @@
                 "Height": 50,
                 "Components": [
                   {
-                    "Type": "Container",
-                    "Name": "container_bmst1",
+                    "Type": "CustomContainerInstance",
+                    "Name": "container_temperature_bms1",
                     "X": 3,
                     "Y": 9,
                     "Width": 98,
-                    "Height": 15,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_bmst1",
-                        "Width": 17,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_TWMQ",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Wildcard1": {
-                          "TextId": "__SingleUse_G2XY",
-                          "UseBuffer": true,
-                          "BufferSize": 4
-                        }
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_units_bmst1",
-                        "X": 18,
-                        "Width": 14,
-                        "Height": 18,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_QBG5",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90,
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_title_bmst1",
-                        "X": 36,
-                        "Width": 62,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_SF2Z",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90
-                      }
-                    ]
+                    "Height": 18,
+                    "CustomContainerDefinitionName": "TemperatureContainer"
                   },
                   {
-                    "Type": "Container",
-                    "Name": "container_bmst2",
+                    "Type": "CustomContainerInstance",
+                    "Name": "container_temperature_bms2",
                     "X": 3,
                     "Y": 28,
                     "Width": 98,
-                    "Height": 15,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_bmst2",
-                        "Width": 17,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_L473",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Wildcard1": {
-                          "TextId": "__SingleUse_0H3W",
-                          "UseBuffer": true,
-                          "BufferSize": 4
-                        }
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_units_bmst2",
-                        "X": 18,
-                        "Width": 14,
-                        "Height": 18,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_J6UL",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90,
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_title_bmst2",
-                        "X": 36,
-                        "Width": 62,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_44KZ",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90
-                      }
-                    ]
+                    "Height": 18,
+                    "CustomContainerDefinitionName": "TemperatureContainer"
                   },
                   {
-                    "Type": "Container",
-                    "Name": "container_invt",
+                    "Type": "CustomContainerInstance",
+                    "Name": "container_temperature_inv",
                     "X": 109,
                     "Y": 9,
                     "Width": 98,
-                    "Height": 15,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_invt",
-                        "Width": 17,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_HWLW",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Wildcard1": {
-                          "TextId": "__SingleUse_SF3F",
-                          "UseBuffer": true,
-                          "BufferSize": 4
-                        }
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_units_invt",
-                        "X": 18,
-                        "Width": 14,
-                        "Height": 18,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_3SMT",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90,
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_title_invt",
-                        "X": 36,
-                        "Width": 62,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_0DM8",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90
-                      }
-                    ]
+                    "Height": 18,
+                    "CustomContainerDefinitionName": "TemperatureContainer"
                   },
                   {
-                    "Type": "Container",
-                    "Name": "container_chargt",
+                    "Type": "CustomContainerInstance",
+                    "Name": "container_temperature_charg",
                     "X": 109,
                     "Y": 28,
                     "Width": 98,
-                    "Height": 15,
-                    "Components": [
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_chargt",
-                        "Width": 17,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_77P5",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Wildcard1": {
-                          "TextId": "__SingleUse_9STL",
-                          "UseBuffer": true,
-                          "BufferSize": 4
-                        }
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_value_units_chargt",
-                        "X": 18,
-                        "Width": 14,
-                        "Height": 18,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_URNA",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90,
-                        "AutoSize": true
-                      },
-                      {
-                        "Type": "TextArea",
-                        "Name": "t_title_chargt",
-                        "X": 36,
-                        "Width": 62,
-                        "Height": 16,
-                        "LockPosition": true,
-                        "TextId": "__SingleUse_LGEI",
-                        "TextRotation": "0",
-                        "Color": {
-                          "Red": 255,
-                          "Green": 245,
-                          "Blue": 217
-                        },
-                        "Alpha": 90
-                      }
-                    ]
+                    "Height": 18,
+                    "CustomContainerDefinitionName": "TemperatureContainer"
                   }
                 ]
               }
@@ -857,7 +645,7 @@
                 "Width": 102,
                 "Height": 42,
                 "LockPosition": true,
-                "TextId": "__SingleUse_0UR9",
+                "TextId": "WILDCARD_TIMER",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -865,7 +653,7 @@
                   "Blue": 217
                 },
                 "Wildcard1": {
-                  "TextId": "__SingleUse_4B93",
+                  "TextId": "NUMBER_00",
                   "UseBuffer": true,
                   "BufferSize": 3
                 },
@@ -883,7 +671,7 @@
                 "Width": 33,
                 "Height": 24,
                 "LockPosition": true,
-                "TextId": "__SingleUse_J65A",
+                "TextId": "UNITS_HOURS",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -901,7 +689,7 @@
                 "Width": 21,
                 "Height": 24,
                 "LockPosition": true,
-                "TextId": "__SingleUse_PF75",
+                "TextId": "UNITS_MINUTES",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -918,7 +706,7 @@
                 "Width": 112,
                 "Height": 24,
                 "LockPosition": true,
-                "TextId": "__SingleUse_ZSB4",
+                "TextId": "TITLE_TIME_LEFT20",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -953,7 +741,7 @@
                 "Width": 32,
                 "Height": 20,
                 "LockPosition": true,
-                "TextId": "__SingleUse_QVL4",
+                "TextId": "WILDCARD_Simple20",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -962,7 +750,7 @@
                 },
                 "Alpha": 192,
                 "Wildcard1": {
-                  "TextId": "__SingleUse_3UDL",
+                  "TextId": "NUMBER_0",
                   "UseBuffer": true,
                   "BufferSize": 6
                 }
@@ -974,7 +762,7 @@
                 "Width": 17,
                 "Height": 24,
                 "LockPosition": true,
-                "TextId": "__SingleUse_F6F8",
+                "TextId": "UNITS_POWER20",
                 "TextRotation": "0",
                 "Color": {
                   "Red": 255,
@@ -994,7 +782,7 @@
             "Width": 133,
             "Height": 28,
             "Visible": false,
-            "TextId": "__SingleUse_KD7U",
+            "TextId": "TITLE_CHARGE",
             "TextRotation": "0",
             "Color": {
               "Green": 245,
@@ -1009,7 +797,7 @@
             "Width": 144,
             "Height": 28,
             "Visible": false,
-            "TextId": "__SingleUse_4K0C",
+            "TextId": "TITLE_DISCHARGE",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -1037,9 +825,8 @@
             "FileNameImage": "loading_2.png",
             "LockBitmapToCenter": true,
             "Scale": 1.0,
-            "LockOrigoToCenter": true,
-            "XOrigo": 36.0,
-            "YOrigo": 36.0,
+            "XOrigo": 35.5,
+            "YOrigo": 35.5,
             "ZOrigo": 1000.0,
             "CameraDistance": 1000.0
           },
@@ -1049,6 +836,8 @@
             "Y": 240,
             "Width": 320,
             "Height": 40,
+            "Visible": false,
+            "Moveable": true,
             "Components": [
               {
                 "Type": "Box",
@@ -1069,10 +858,9 @@
                 "Width": 320,
                 "Height": 30,
                 "LockPosition": true,
-                "TextId": "__SingleUse_UGKY",
+                "TextId": "WILDCARD_INFO_MSG",
                 "TextRotation": "0",
                 "Wildcard1": {
-                  "TextId": "__SingleUse_30TJ",
                   "UseBuffer": true,
                   "BufferSize": 40
                 },
@@ -1221,7 +1009,7 @@
             "X": 10,
             "Width": 31,
             "Height": 17,
-            "TextId": "__SingleUse_Z9AT",
+            "TextId": "WILDCARD_Simple14Centered",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -1229,7 +1017,7 @@
               "Blue": 217
             },
             "Wildcard1": {
-              "TextId": "__SingleUse_H9E2",
+              "TextId": "NUMBER_1",
               "UseBuffer": true,
               "BufferSize": 2
             }
@@ -1238,18 +1026,17 @@
             "Type": "TextArea",
             "Name": "value",
             "X": 45,
-            "Width": 39,
+            "Width": 43,
             "Height": 18,
-            "TextId": "__SingleUse_GR5J",
+            "TextId": "WILDCARD_Simple14",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
               "Green": 245,
               "Blue": 217
             },
-            "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_5698",
+              "TextId": "NUMBER_0dot0000",
               "UseBuffer": true,
               "BufferSize": 7
             }
@@ -1257,10 +1044,10 @@
           {
             "Type": "TextArea",
             "Name": "v",
-            "X": 84,
+            "X": 88,
             "Width": 8,
             "Height": 18,
-            "TextId": "__SingleUse_WJTL",
+            "TextId": "UNITS_VOLTAGE",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -1354,7 +1141,7 @@
             "Y": -2,
             "Width": 32,
             "Height": 22,
-            "TextId": "__SingleUse_7PBA",
+            "TextId": "WILDCARD_SOC_SMALL",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -1363,7 +1150,7 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_B3CH",
+              "TextId": "NUMBER_50",
               "UseBuffer": true,
               "BufferSize": 4
             }
@@ -1390,7 +1177,7 @@
             "X": 118,
             "Width": 68,
             "Height": 38,
-            "TextId": "__SingleUse_IXOA",
+            "TextId": "WILDCARD_SOC_BIG",
             "TextRotation": "0",
             "Color": {
               "Red": 255,
@@ -1399,7 +1186,7 @@
             },
             "AutoSize": true,
             "Wildcard1": {
-              "TextId": "__SingleUse_0837",
+              "TextId": "NUMBER_50",
               "UseBuffer": true,
               "BufferSize": 4
             }
@@ -1520,6 +1307,62 @@
             "EndAngle": 360.0,
             "CapPrecision": "Butt",
             "Alpha": 102
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "TemperatureContainer",
+        "Width": 98,
+        "Height": 18,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "Width": 17,
+            "Height": 18,
+            "TextId": "WILDCARD_Simple14",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 245,
+              "Blue": 217
+            },
+            "Wildcard1": {
+              "TextId": "NUMBER_99",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "units",
+            "X": 17,
+            "Width": 14,
+            "Height": 18,
+            "TextId": "UNIT_DEGREES",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 245,
+              "Blue": 217
+            },
+            "Alpha": 90
+          },
+          {
+            "Type": "TextArea",
+            "Name": "title",
+            "X": 36,
+            "Width": 62,
+            "Height": 18,
+            "TextId": "TITLE_INV_T",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 245,
+              "Blue": 217
+            },
+            "Alpha": 90
           }
         ],
         "Interactions": []

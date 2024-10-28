@@ -5,9 +5,11 @@
 MainScreenView::MainScreenView()
     : m_powerModeState(PowerModeState::Normal)
     , m_invState{InverterState::Off}
+	, m_msgMoveAnimationEndedCallback(this, &MainScreenView::msgMoveAnimationEndedHandler)
 //    , textureMapperAnimationEndedCallback(this, &MainScreenView::textureMapperAnimationEndedCallbackHandler)
 {
 //    icon_fan.setTextureMapperAnimationEndedAction(textureMapperAnimationEndedCallback);
+	container_popup.setMoveAnimationEndedAction(m_msgMoveAnimationEndedCallback);
 }
 
 void MainScreenView::setupScreen()
@@ -50,6 +52,12 @@ void MainScreenView::handleTickEvent()
     bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
     if (m_isBMSError != isMajorError)
     {
+    	if (isMajorError) {
+    		showWarning(data.errMsg.c_str());
+    	} else {
+    		hideWarning();
+    	}
+
 //        icon_warn.setVisible(isMajorError);
 //        icon_warn.invalidate();
         m_isBMSError = isMajorError;
@@ -67,6 +75,14 @@ void MainScreenView::handleTickEvent()
     {
         updateBatteryData(data.bms);
         showLoading(!data.bms.isValid());
+    }
+
+    if (loading.isVisible() && m_loadingAnimTimeout.isReached())
+    {
+        static const float kAngle = PI/6;
+        loading.setZAngle(loading.getZAngle() + kAngle);
+        loading.invalidate();
+        m_loadingAnimTimeout.reset();
     }
 
     if (m_invState != data.invState) {
@@ -90,14 +106,6 @@ void MainScreenView::handleTickEvent()
     {
         icon_charge.setVisible(data.chargerPlugged);
         icon_charge.invalidate();
-    }
-
-    if (loading.isVisible() && m_loadingAnimTimeout.isReached())
-    {
-        static const float kAngle = PI/6;
-        loading.setZAngle(loading.getZAngle() + kAngle);
-        loading.invalidate();
-        m_loadingAnimTimeout.reset();
     }
 
     if (m_invState == InverterState::Intermediate)
@@ -131,9 +139,40 @@ void MainScreenView::setPower(int val)
 	}
 }
 
+void MainScreenView::showWarning(const char* text)
+{
+	memset(popup_textBuffer,0, POPUP_TEXT_SIZE * 2);
+
+	auto* buffer = &popup_textBuffer[0];
+	for (; *text != '\0'; buffer++, text++) {
+		*buffer = *text;
+	}
+
+	m_showWarning = true;
+	container_popup.setVisible(true);
+
+	if (container_popup.isMoveAnimationRunning())
+	{
+		container_popup.cancelMoveAnimation();
+	}
+
+	container_popup.startMoveAnimation(0, 200, 20, &EasingEquations::backEaseIn, &EasingEquations::expoEaseIn);
+}
+
+void MainScreenView::hideWarning()
+{
+	m_showWarning = false;
+
+	if (container_popup.isMoveAnimationRunning())
+	{
+		container_popup.cancelMoveAnimation();
+	}
+	container_popup.startMoveAnimation(0, 240, 20, &EasingEquations::backEaseIn, &EasingEquations::expoEaseIn);
+}
+
 void MainScreenView::updateBatteryData(const BatteryData& data)
 {
-    const int16_t smoothedCurr = m_isBMSError ? 0 : data.current;
+    const int16_t current = m_isBMSError ? 0 : data.current;
     if (data.soc != m_bmsData.soc)
     {
         if (data.isValid()) {
@@ -141,20 +180,12 @@ void MainScreenView::updateBatteryData(const BatteryData& data)
         }
     }
 
-    if (smoothedCurr != m_bmsData.current)
+    if (current != m_bmsData.current || data.voltage != m_bmsData.voltage)
     {
-    	setPower(smoothedCurr * data.voltage);
-//        capacityContainer.setChargeState(smoothedCurr > 0 ? ChargeState::Charge : (smoothedCurr < 0 ? ChargeState::Uncharge : ChargeState::Idle));
-//        setIconFanVisible(smoothedCurr > 0);
+    	setPower(current * data.voltage);
     }
 
-    if (data.voltage != m_bmsData.voltage)
-    {
-    	setPower(smoothedCurr * data.voltage);
-//        capacityContainer.setVoltage(data.voltage);
-    }
-
-    int chargeValue = data.calcTimeRemain(smoothedCurr);
+    int chargeValue = data.calcTimeRemain(current);
     if (chargeValue != m_chargeTimeSec)
     {
     	const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
@@ -167,7 +198,6 @@ void MainScreenView::updateBatteryData(const BatteryData& data)
     }
 
     m_bmsData = data;
-    m_bmsData.current = smoothedCurr;
 }
 
 void MainScreenView::setIconFanVisible(bool visible)
@@ -206,6 +236,13 @@ void MainScreenView::showLoading(bool show)
     }
 }
 
+void MainScreenView::msgMoveAnimationEndedHandler(const touchgfx::MoveAnimator<touchgfx::Container>& src)
+{
+    if (&src == &container_popup)
+    {
+    	container_popup.setVisible(m_showWarning);
+    }
+}
 
 //void MainScreenView::textureMapperAnimationEndedCallbackHandler(const touchgfx::AnimationTextureMapper& src)
 //{
