@@ -8,6 +8,12 @@
 #include <mvp/View.hpp>
 #include <gui/mainscreen_screen/MainScreenPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <gui/containers/BatteryMainProgressBar.hpp>
+#include <touchgfx/widgets/TextureMapper.hpp>
 
 class MainScreenViewBase : public touchgfx::View<MainScreenPresenter>
 {
@@ -25,8 +31,49 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
+    touchgfx::Container container_icons;
+    touchgfx::Image icon_usb;
+    touchgfx::Image icon_inv_back;
+    touchgfx::Image icon_inv;
+    touchgfx::Image icon_charge_back;
+    touchgfx::Image icon_charge;
+    touchgfx::Image icon_fan;
+    touchgfx::Container container_time;
+    touchgfx::TextAreaWithTwoWildcards time_value;
+    touchgfx::TextArea time_units1;
+    touchgfx::TextArea time_units2;
+    touchgfx::TextArea time_left_name;
+    BatteryMainProgressBar batteryMainProgressBar;
+    touchgfx::Container container_power;
+    touchgfx::TextAreaWithOneWildcard power_value;
+    touchgfx::TextArea power_units;
+    touchgfx::TextArea label_charging;
+    touchgfx::TextArea label_discharging;
+    touchgfx::Box loading_bg;
+    touchgfx::TextureMapper loading;
+    touchgfx::Container container_popup;
+    touchgfx::Box popup_bg;
+    touchgfx::TextAreaWithOneWildcard popup_text;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TIME_VALUEBUFFER1_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar time_valueBuffer1[TIME_VALUEBUFFER1_SIZE];
+    static const uint16_t TIME_VALUEBUFFER2_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar time_valueBuffer2[TIME_VALUEBUFFER2_SIZE];
+    static const uint16_t POWER_VALUE_SIZE = 6;
+    touchgfx::Unicode::UnicodeChar power_valueBuffer[POWER_VALUE_SIZE];
+    static const uint16_t POPUP_TEXT_SIZE = 40;
+    touchgfx::Unicode::UnicodeChar popup_textBuffer[POPUP_TEXT_SIZE];
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
 };
 

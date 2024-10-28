@@ -9,27 +9,26 @@
 const uint16_t BITMAP_BAR_BIG_ID = 0;
 const uint16_t BITMAP_BAR_BIG_FILL_RED_ID = 1;
 const uint16_t BITMAP_BAR_BIG_FILL_WHITE_ID = 2;
-const uint16_t BITMAP_BAR_MEDIUM_ID = 3;
-const uint16_t BITMAP_BAR_MEDIUM_FILL_RED_ID = 4;
-const uint16_t BITMAP_BAR_MEDIUM_FILL_WHITE_ID = 5;
-const uint16_t BITMAP_BATTERY_ID = 6;
-const uint16_t BITMAP_BATTERY_FILL_RED_ID = 7;
-const uint16_t BITMAP_BATTERY_FILL_WHITE_ID = 8;
-const uint16_t BITMAP_CIRCLE_BLACK_ID = 9;
-const uint16_t BITMAP_CIRCLE_WHITE_ID = 10;
-const uint16_t BITMAP_FAN_BIG_ID = 11;
-const uint16_t BITMAP_FAN_SMALL_ID = 12;
-const uint16_t BITMAP_FAN_SMALL_CENTR_ID = 13;
-const uint16_t BITMAP_INVERTOR_BIG_ID = 14;
-const uint16_t BITMAP_INVERTOR_SMALL_ID = 15;
-const uint16_t BITMAP_LOADING_2_ID = 16;
-const uint16_t BITMAP_PLUG_BIG_ID = 17;
-const uint16_t BITMAP_PLUG_BIG_GREEN_ID = 18;
-const uint16_t BITMAP_PLUG_SMALL_ID = 19;
-const uint16_t BITMAP_PLUG_SMALL_GREEN_ID = 20;
-const uint16_t BITMAP_SETTINGS_SELECT_ID = 21;
-const uint16_t BITMAP_USB_BIG_ID = 22;
-const uint16_t BITMAP_USB_SMALL_ID = 23;
+const uint16_t BITMAP_BAR_MEDIUM_FILL_RED_ID = 3;
+const uint16_t BITMAP_BAR_MEDIUM_FILL_WHITE_ID = 4;
+const uint16_t BITMAP_BATTERY_ID = 5;
+const uint16_t BITMAP_BATTERY_FILL_RED_ID = 6;
+const uint16_t BITMAP_BATTERY_FILL_WHITE_ID = 7;
+const uint16_t BITMAP_CIRCLE_BLACK_ID = 8;
+const uint16_t BITMAP_CIRCLE_WHITE_ID = 9;
+const uint16_t BITMAP_FAN_BIG_ID = 10;
+const uint16_t BITMAP_FAN_SMALL_ID = 11;
+const uint16_t BITMAP_FAN_SMALL_CENTR_ID = 12;
+const uint16_t BITMAP_INVERTOR_BIG_ID = 13;
+const uint16_t BITMAP_INVERTOR_SMALL_ID = 14;
+const uint16_t BITMAP_LOADING_2_ID = 15;
+const uint16_t BITMAP_PLUG_BIG_ID = 16;
+const uint16_t BITMAP_PLUG_BIG_GREEN_ID = 17;
+const uint16_t BITMAP_PLUG_SMALL_ID = 18;
+const uint16_t BITMAP_PLUG_SMALL_GREEN_ID = 19;
+const uint16_t BITMAP_SETTINGS_SELECT_ID = 20;
+const uint16_t BITMAP_USB_BIG_ID = 21;
+const uint16_t BITMAP_USB_SMALL_ID = 22;
 
 namespace BitmapDatabase
 {

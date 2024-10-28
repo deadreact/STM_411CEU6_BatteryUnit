@@ -785,7 +785,310 @@
       },
       {
         "Name": "MainScreen",
-        "Components": [],
+        "CanvasBufferSize": 4800,
+        "Components": [
+          {
+            "Type": "Container",
+            "Name": "container_icons",
+            "X": 15,
+            "Y": 15,
+            "Width": 81,
+            "Height": 184,
+            "Components": [
+              {
+                "Type": "Image",
+                "Name": "icon_usb",
+                "Y": 156,
+                "Width": 33,
+                "Height": 28,
+                "RelativeFilename": "usb_big.png",
+                "Alpha": 51
+              },
+              {
+                "Type": "Image",
+                "Name": "icon_inv_back",
+                "Y": 124,
+                "Width": 33,
+                "Height": 28,
+                "RelativeFilename": "invertor_big.png",
+                "Alpha": 51
+              },
+              {
+                "Type": "Image",
+                "Name": "icon_inv",
+                "Y": 124,
+                "Width": 33,
+                "Height": 28,
+                "Visible": false,
+                "RelativeFilename": "invertor_big.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "icon_charge_back",
+                "Width": 33,
+                "Height": 28,
+                "RelativeFilename": "plug_big.png",
+                "Alpha": 51
+              },
+              {
+                "Type": "Image",
+                "Name": "icon_charge",
+                "Width": 33,
+                "Height": 28,
+                "Visible": false,
+                "RelativeFilename": "plug_big_green.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "icon_fan",
+                "X": 48,
+                "Width": 33,
+                "Height": 28,
+                "RelativeFilename": "fan_big.png",
+                "Alpha": 51
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "container_time",
+            "X": 104,
+            "Y": 143,
+            "Width": 112,
+            "Height": 79,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "time_value",
+                "X": 5,
+                "Y": 13,
+                "Width": 102,
+                "Height": 42,
+                "LockPosition": true,
+                "TextId": "__SingleUse_0UR9",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Wildcard1": {
+                  "TextId": "__SingleUse_4B93",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                },
+                "Wildcard2": {
+                  "TextId": "__SingleUse_3747",
+                  "UseBuffer": true,
+                  "BufferSize": 3
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "time_units1",
+                "X": 13,
+                "Y": 1,
+                "Width": 33,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_J65A",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 38,
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "time_units2",
+                "X": 74,
+                "Y": 1,
+                "Width": 21,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_PF75",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 38,
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "time_left_name",
+                "Y": 55,
+                "Width": 112,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_ZSB4",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 128,
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "batteryMainProgressBar",
+            "X": 15,
+            "Y": 35,
+            "Width": 290,
+            "Height": 63,
+            "CustomContainerDefinitionName": "BatteryMainProgressBar"
+          },
+          {
+            "Type": "Container",
+            "Name": "container_power",
+            "X": 256,
+            "Y": 10,
+            "Width": 49,
+            "Height": 20,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "power_value",
+                "Width": 32,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "__SingleUse_QVL4",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 192,
+                "Wildcard1": {
+                  "TextId": "__SingleUse_3UDL",
+                  "UseBuffer": true,
+                  "BufferSize": 6
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "power_units",
+                "X": 32,
+                "Width": 17,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_F6F8",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 90,
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "TextArea",
+            "Name": "label_charging",
+            "X": 94,
+            "Y": 103,
+            "Width": 133,
+            "Height": 28,
+            "Visible": false,
+            "TextId": "__SingleUse_KD7U",
+            "TextRotation": "0",
+            "Color": {
+              "Green": 245,
+              "Blue": 77
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "label_discharging",
+            "X": 88,
+            "Y": 103,
+            "Width": 144,
+            "Height": 28,
+            "Visible": false,
+            "TextId": "__SingleUse_4K0C",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 38,
+              "Blue": 20
+            }
+          },
+          {
+            "Type": "Box",
+            "Name": "loading_bg",
+            "Width": 320,
+            "Height": 240,
+            "LockPosition": true,
+            "Alpha": 192
+          },
+          {
+            "Type": "TextureMapper",
+            "Name": "loading",
+            "X": 124,
+            "Y": 84,
+            "Width": 72,
+            "Height": 72,
+            "LockPosition": true,
+            "RenderingAlgorithm": "Nearest-neighbor",
+            "FileNameImage": "loading_2.png",
+            "LockBitmapToCenter": true,
+            "Scale": 1.0,
+            "LockOrigoToCenter": true,
+            "XOrigo": 36.0,
+            "YOrigo": 36.0,
+            "ZOrigo": 1000.0,
+            "CameraDistance": 1000.0
+          },
+          {
+            "Type": "Container",
+            "Name": "container_popup",
+            "Y": 240,
+            "Width": 320,
+            "Height": 40,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "popup_bg",
+                "Width": 320,
+                "Height": 40,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 254,
+                  "Green": 144,
+                  "Blue": 32
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "popup_text",
+                "Y": 5,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "TextId": "__SingleUse_UGKY",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_30TJ",
+                  "UseBuffer": true,
+                  "BufferSize": 40
+                },
+                "WideTextAction": 1
+              }
+            ]
+          }
+        ],
         "Interactions": []
       }
     ],
@@ -1057,6 +1360,126 @@
           }
         ],
         "Interactions": []
+      },
+      {
+        "Name": "BatteryMainProgressBar",
+        "Width": 290,
+        "Height": 63,
+        "Components": [
+          {
+            "Type": "TextArea",
+            "Name": "value",
+            "X": 118,
+            "Width": 68,
+            "Height": 38,
+            "TextId": "__SingleUse_IXOA",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 245,
+              "Blue": 217
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_0837",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "Container",
+            "Name": "bar",
+            "Y": 48,
+            "Width": 290,
+            "Height": 15,
+            "Components": [
+              {
+                "Type": "Line",
+                "Name": "line_top",
+                "Width": 290,
+                "Height": 15,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 110,
+                "StartY": 1.0,
+                "EndX": 290.0,
+                "EndY": 1.0,
+                "LineWidth": 2.0,
+                "LineEndingStyle": "Square"
+              },
+              {
+                "Type": "Line",
+                "Name": "line_bottom",
+                "Width": 290,
+                "Height": 15,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 110,
+                "StartY": 14.0,
+                "EndX": 290.0,
+                "EndY": 14.0,
+                "LineWidth": 2.0,
+                "LineEndingStyle": "Square"
+              },
+              {
+                "Type": "Line",
+                "Name": "line_left",
+                "Width": 290,
+                "Height": 15,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 110,
+                "StartX": 1.0,
+                "StartY": 2.0,
+                "EndX": 1.0,
+                "EndY": 13.0,
+                "LineWidth": 2.0,
+                "LineEndingStyle": "Square"
+              },
+              {
+                "Type": "Line",
+                "Name": "line_right",
+                "Width": 290,
+                "Height": 15,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 255,
+                  "Green": 245,
+                  "Blue": 217
+                },
+                "Alpha": 110,
+                "StartX": 289.0,
+                "StartY": 2.0,
+                "EndX": 289.0,
+                "EndY": 13.0,
+                "LineWidth": 2.0,
+                "LineEndingStyle": "Square"
+              },
+              {
+                "Type": "ScalableImage",
+                "Name": "progress_bg",
+                "Width": 145,
+                "Height": 15,
+                "LockPosition": true,
+                "Filename": "bar_big_fill_white.png",
+                "ScalingAlgorithm": "Nearest-neighbor"
+              }
+            ]
+          }
+        ],
+        "Interactions": []
       }
     ],
     "Name": "MyApplication",
@@ -1065,7 +1488,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "DebugScreen",
+    "StartupScreenName": "MainScreen",
     "SelectedStartupLanguage": "UA",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

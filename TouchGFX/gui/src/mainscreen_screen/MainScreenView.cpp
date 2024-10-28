@@ -1,5 +1,6 @@
 #include <gui/mainscreen_screen/MainScreenView.hpp>
 #include <shared_data.h>
+#include <cmsis_os.h>
 
 MainScreenView::MainScreenView()
     : m_powerModeState(PowerModeState::Normal)
@@ -13,12 +14,16 @@ void MainScreenView::setupScreen()
 {
     MainScreenViewBase::setupScreen();
 
-//    const auto& data = SharedData::getData();
-//    const auto soc = m_bmsData.soc;
-//    m_bmsData = BatteryData();
-//    m_bmsData.soc = soc;
-//    updateBatteryData(data.bms);
-//    showLoading(!data.bms.isValid() || m_powerModeState == PowerModeState::WakedUp);
+    while (!SharedData::getData()) {
+    	osThreadYield();
+    }
+
+    const auto& data = *SharedData::getData();
+    const auto soc = m_bmsData.soc;
+    m_bmsData = BatteryData();
+    m_bmsData.soc = soc;
+    updateBatteryData(data.bms);
+    showLoading(!data.bms.isValid() || m_powerModeState == PowerModeState::WakedUp);
 }
 
 void MainScreenView::tearDownScreen()
@@ -30,109 +35,126 @@ void MainScreenView::handleTickEvent()
 {
     MainScreenViewBase::handleTickEvent();
 
-//    const auto& data = SharedData::getData();
-//
-//    if (m_powerModeState != data.getPowerModeState())
-//    {
-//        m_powerModeState = data.getPowerModeState();
-//        setupScreen();
-//    }
-//
-//    bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
-//    if (m_isBMSError != isMajorError)
-//    {
+    if (!SharedData::getData()) {
+    	return;
+    }
+
+    const auto& data = *SharedData::getData();
+
+    if (m_powerModeState != data.getPowerModeState())
+    {
+        m_powerModeState = data.getPowerModeState();
+        setupScreen();
+    }
+
+    bool isMajorError = data.errFlags & BMSErrorFlags::maskMajorErrors;
+    if (m_isBMSError != isMajorError)
+    {
 //        icon_warn.setVisible(isMajorError);
 //        icon_warn.invalidate();
-//        m_isBMSError = isMajorError;
-//    }
-//
-//    bool isChargError = data.errFlags & 0x01000000;
-//    if (m_isChargError != isChargError)
-//    {
+        m_isBMSError = isMajorError;
+    }
+
+    bool isChargError = data.errFlags & 0x01000000;
+    if (m_isChargError != isChargError)
+    {
 //        icon_chargErr.setVisible(isChargError);
 //        icon_chargErr.invalidate();
-//        m_isChargError = isChargError;
-//    }
-//
-//    if (data.bms != m_bmsData)
-//    {
-//        updateBatteryData(data.bms);
-//        showLoading(!data.bms.isValid());
-//    }
-//
-//    if (m_invState != data.invState) {
-//        m_invState = data.invState;
-//        updateInvState();
-//    }
-//
-//    if (m_usbState != data.usbState) {
-//        m_usbState = data.usbState;
-//        icon_usb.setVisible(m_usbState);
-//        icon_usb.invalidate();
-//    }
-//
-//    if (data.chargerPlugged != icon_chargPlug.isVisible())
-//    {
-//        icon_chargPlug.setVisible(data.chargerPlugged);
-//        icon_chargPlug.invalidate();
-//    }
-//
-//    if (loading.isVisible() && m_loadingAnimTimeout.isReached())
-//    {
-//        static const float kAngle = PI/6;
-//        loading.setZAngle(loading.getZAngle() + kAngle);
-//        loading.invalidate();
-//        m_loadingAnimTimeout.reset();
-//    }
-//
-//    if (m_invState == InverterState::Intermediate)
-//    {
-//        m_invAnimation.handleTickEvent();
-//    }
-//
-//    if (m_isBMSError)
-//    {
+        m_isChargError = isChargError;
+    }
+
+    if (data.bms != m_bmsData)
+    {
+        updateBatteryData(data.bms);
+        showLoading(!data.bms.isValid());
+    }
+
+    if (m_invState != data.invState) {
+        m_invState = data.invState;
+        updateInvState();
+    }
+
+	if (m_usbState != data.usbState) {
+		m_usbState = data.usbState;
+		icon_usb.setAlpha(m_usbState ? 255 : 51);
+		icon_usb.invalidate();
+	}
+
+	if (m_fan != data.fan) {
+		m_fan = data.fan;
+		icon_fan.setAlpha(m_fan > 0 ? 205 + m_fan/2 : 51);
+		icon_fan.invalidate();
+	}
+
+    if (data.chargerPlugged != icon_charge.isVisible())
+    {
+        icon_charge.setVisible(data.chargerPlugged);
+        icon_charge.invalidate();
+    }
+
+    if (loading.isVisible() && m_loadingAnimTimeout.isReached())
+    {
+        static const float kAngle = PI/6;
+        loading.setZAngle(loading.getZAngle() + kAngle);
+        loading.invalidate();
+        m_loadingAnimTimeout.reset();
+    }
+
+    if (m_invState == InverterState::Intermediate)
+    {
+        m_invAnimation.handleTickEvent();
+    }
+
+    if (m_isBMSError)
+    {
 //        m_warnAnimation.handleTickEvent();
-//    }
+    }
 }
 
 void MainScreenView::setWatts(int val)
 {
+	touchgfx::Unicode::snprintf(power_valueBuffer, POWER_VALUE_SIZE, "%d", (val + 5000) / 10000);
+	power_value.invalidate();
 //    ioValue.setValue((val + 5000) / 10000);
 }
 
 void MainScreenView::updateBatteryData(const BatteryData& data)
 {
-//    const int16_t smoothedCurr = m_isBMSError ? 0 : data.current;
-//    if (data.soc != m_bmsData.soc)
-//    {
-//        if (data.isValid()) {
-//            capacityContainer.setSOC(data.soc);
-//        }
-//    }
-//
-//    if (smoothedCurr != m_bmsData.current)
-//    {
-//        setWatts(smoothedCurr * data.voltage);
+    const int16_t smoothedCurr = m_isBMSError ? 0 : data.current;
+    if (data.soc != m_bmsData.soc)
+    {
+        if (data.isValid()) {
+        	batteryMainProgressBar.setProgress(data.soc);
+        }
+    }
+
+    if (smoothedCurr != m_bmsData.current)
+    {
+        setWatts(smoothedCurr * data.voltage);
 //        capacityContainer.setChargeState(smoothedCurr > 0 ? ChargeState::Charge : (smoothedCurr < 0 ? ChargeState::Uncharge : ChargeState::Idle));
 //        setIconFanVisible(smoothedCurr > 0);
-//    }
-//
-//    if (data.voltage != m_bmsData.voltage)
-//    {
-//        setWatts(smoothedCurr * data.voltage);
+    }
+
+    if (data.voltage != m_bmsData.voltage)
+    {
+        setWatts(smoothedCurr * data.voltage);
 //        capacityContainer.setVoltage(data.voltage);
-//    }
-//
-//    int chargeValue = data.calcTimeRemain(smoothedCurr);
-//    if (chargeValue != m_chargeTimeSec)
-//    {
-//        chargeTimeContainer.setValue(chargeValue);
-//        m_chargeTimeSec = chargeValue;
-//    }
-//
-//    m_bmsData = data;
-//    m_bmsData.current = smoothedCurr;
+    }
+
+    int chargeValue = data.calcTimeRemain(smoothedCurr);
+    if (chargeValue != m_chargeTimeSec)
+    {
+    	const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
+		const int hours = absVal / SEC_IN_HOUR;
+		const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
+		touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%02d", hours);
+		touchgfx::Unicode::snprintf(time_valueBuffer2, TIME_VALUEBUFFER2_SIZE, "%02d", mins);
+		m_chargeTimeSec = chargeValue;
+		time_value.invalidate();
+    }
+
+    m_bmsData = data;
+    m_bmsData.current = smoothedCurr;
 }
 
 void MainScreenView::setIconFanVisible(bool visible)
@@ -152,23 +174,23 @@ void MainScreenView::setIconFanVisible(bool visible)
 
 void MainScreenView::updateInvState()
 {
-//    icon_inv.setVisible(m_invState != InverterState::Off);
-//
-//    if (m_invState == InverterState::On)
-//    {
-//        icon_inv.setAlpha(0xff);
-//    }
-//    icon_inv.invalidate();
+    icon_inv.setVisible(m_invState != InverterState::Off);
+
+    if (m_invState == InverterState::On)
+    {
+        icon_inv.setAlpha(0xff);
+    }
+    icon_inv.invalidate();
 }
 
 void MainScreenView::showLoading(bool show)
 {
-//    if (loading.isVisible() != show)
-//    {
-//        loading.setVisible(show);
-//        loading_bg.setVisible(show);
-//        invalidate();
-//    }
+    if (loading.isVisible() != show)
+    {
+        loading.setVisible(show);
+        loading_bg.setVisible(show);
+        invalidate();
+    }
 }
 
 

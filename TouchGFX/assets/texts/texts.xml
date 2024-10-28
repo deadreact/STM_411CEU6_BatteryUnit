@@ -6,10 +6,6 @@
   </Languages>
   <Texts>
     <TextGroup Id="Settings">
-      <Text Id="SETTINGS_SCREEN_TITLE" Alignment="Center" TypographyId="LargeText">
-        <Translation Language="GB">Settings</Translation>
-        <Translation Language="UA">Налаштування</Translation>
-      </Text>
       <Text Id="SETTING_VALUE_WILDCARD" Alignment="Center" TypographyId="SettingsEntries">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
@@ -75,341 +71,297 @@
         <Translation Language="UA">10%</Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="IOValueGroup">
-      <Text Id="IOWildcard" Alignment="Right" TypographyId="ValueMedium">
-        <Translation Language="GB">&lt;value&gt;</Translation>
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_30TJ" Alignment="Left" TypographyId="Infos">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">info msg</Translation>
+      </Text>
+      <Text Id="__SingleUse_UGKY" Alignment="Center" TypographyId="Infos">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="OUTPUT" Alignment="Right" TypographyId="LargeText">
-        <Translation Language="GB">OUTPUT</Translation>
-        <Translation Language="UA">РОЗРЯД</Translation>
+      <Text Id="__SingleUse_PF75" Alignment="Left" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">хв</Translation>
       </Text>
-      <Text Id="INPUT" Alignment="Right" TypographyId="LargeText">
-        <Translation Language="GB">INPUT</Translation>
-        <Translation Language="UA">ЗАРЯД</Translation>
+      <Text Id="__SingleUse_ZSB4" Alignment="Center" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">залишилось</Translation>
       </Text>
-      <Text Id="Watts" Alignment="Left" TypographyId="MainText">
-        <Translation Language="GB">Watts</Translation>
-        <Translation Language="UA">Ват</Translation>
+      <Text Id="__SingleUse_J65A" Alignment="Left" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">год</Translation>
       </Text>
-    </TextGroup>
-    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_3747" Alignment="Left" TypographyId="Values42">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_4B93" Alignment="Left" TypographyId="Values42">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_0UR9" Alignment="Right" TypographyId="Values42">
+        <Translation Language="GB">New Text&lt;value&gt;&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_KD7U" Alignment="Center" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">заряджається</Translation>
+      </Text>
+      <Text Id="__SingleUse_4K0C" Alignment="Center" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">розряджається</Translation>
+      </Text>
+      <Text Id="__SingleUse_F6F8" Alignment="Left" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">W</Translation>
+      </Text>
+      <Text Id="__SingleUse_3UDL" Alignment="Left" TypographyId="Values20">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">820</Translation>
+      </Text>
+      <Text Id="__SingleUse_QVL4" Alignment="Right" TypographyId="Values20">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_0837" Alignment="Left" TypographyId="Values38">
+        <Translation Language="GB">New Text</Translation>
+        <Translation Language="UA">50</Translation>
+      </Text>
+      <Text Id="__SingleUse_IXOA" Alignment="Center" TypographyId="Values38">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;value&gt;%</Translation>
+      </Text>
       <Text Id="__SingleUse_4XTO" Alignment="Left" TypographyId="Errors">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_0DM8" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_0DM8" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">інвертор</Translation>
       </Text>
-      <Text Id="__SingleUse_3SMT" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_3SMT" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">°C</Translation>
       </Text>
-      <Text Id="__SingleUse_SF3F" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_SF3F" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">15</Translation>
       </Text>
-      <Text Id="__SingleUse_HWLW" Alignment="Right" TypographyId="Bahn12">
+      <Text Id="__SingleUse_HWLW" Alignment="Right" TypographyId="Values13">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_LGEI" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_LGEI" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">зарядне</Translation>
       </Text>
-      <Text Id="__SingleUse_URNA" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_URNA" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">°C</Translation>
       </Text>
-      <Text Id="__SingleUse_9STL" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_9STL" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">25</Translation>
       </Text>
-      <Text Id="__SingleUse_77P5" Alignment="Right" TypographyId="Bahn12">
+      <Text Id="__SingleUse_77P5" Alignment="Right" TypographyId="Values13">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_44KZ" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_44KZ" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">BMS t2</Translation>
       </Text>
-      <Text Id="__SingleUse_J6UL" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_J6UL" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">°C</Translation>
       </Text>
-      <Text Id="__SingleUse_0H3W" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_0H3W" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">25</Translation>
       </Text>
-      <Text Id="__SingleUse_L473" Alignment="Right" TypographyId="Bahn12">
+      <Text Id="__SingleUse_L473" Alignment="Right" TypographyId="Values13">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_G2XY" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_G2XY" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">15</Translation>
       </Text>
-      <Text Id="__SingleUse_SF2Z" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_SF2Z" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">BMS t1</Translation>
       </Text>
-      <Text Id="__SingleUse_QBG5" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="__SingleUse_QBG5" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">°C</Translation>
       </Text>
-      <Text Id="__SingleUse_TWMQ" Alignment="Right" TypographyId="Bahn12">
+      <Text Id="__SingleUse_TWMQ" Alignment="Right" TypographyId="Values13">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_H9E2" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_H9E2" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">1</Translation>
       </Text>
-      <Text Id="__SingleUse_5MHB" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_5MHB" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">00</Translation>
       </Text>
-      <Text Id="__SingleUse_U2F7" Alignment="Center" TypographyId="Values">
+      <Text Id="__SingleUse_U2F7" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">залишилось</Translation>
       </Text>
-      <Text Id="__SingleUse_ZTK0" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_ZTK0" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">г:хв</Translation>
       </Text>
-      <Text Id="__SingleUse_HDLI" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_HDLI" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">00</Translation>
       </Text>
-      <Text Id="__SingleUse_FBBG" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_FBBG" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;:&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_IJ84" Alignment="Center" TypographyId="Values">
+      <Text Id="__SingleUse_IJ84" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">розряджається</Translation>
       </Text>
-      <Text Id="__SingleUse_PD53" Alignment="Center" TypographyId="Values">
+      <Text Id="__SingleUse_PD53" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">заряджається</Translation>
       </Text>
-      <Text Id="__SingleUse_B3CH" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_B3CH" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">50</Translation>
       </Text>
-      <Text Id="__SingleUse_7PBA" Alignment="Center" TypographyId="Values">
+      <Text Id="__SingleUse_7PBA" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;%</Translation>
       </Text>
-      <Text Id="__SingleUse_5698" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_5698" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">3,2760</Translation>
       </Text>
-      <Text Id="__SingleUse_M86Q" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_M86Q" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">потужність</Translation>
       </Text>
-      <Text Id="__SingleUse_6AHG" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_6AHG" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">W</Translation>
       </Text>
-      <Text Id="__SingleUse_FD47" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_FD47" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">0,00</Translation>
       </Text>
-      <Text Id="__SingleUse_226I" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_226I" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_K387" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_K387" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">0,00</Translation>
       </Text>
-      <Text Id="__SingleUse_RFBN" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_RFBN" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">0,00</Translation>
       </Text>
-      <Text Id="__SingleUse_S8CB" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_S8CB" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">напруга</Translation>
       </Text>
-      <Text Id="__SingleUse_ABXD" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_ABXD" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">V</Translation>
       </Text>
-      <Text Id="__SingleUse_T62I" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_T62I" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_VTCN" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_VTCN" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">струм</Translation>
       </Text>
-      <Text Id="__SingleUse_7B82" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_7B82" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">A</Translation>
       </Text>
-      <Text Id="__SingleUse_ZSBL" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_ZSBL" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_WJTL" Alignment="Left" TypographyId="Values">
+      <Text Id="__SingleUse_WJTL" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">New Text</Translation>
         <Translation Language="UA">V</Translation>
       </Text>
-      <Text Id="__SingleUse_GR5J" Alignment="Right" TypographyId="Values">
+      <Text Id="__SingleUse_GR5J" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="__SingleUse_Z9AT" Alignment="Center" TypographyId="Values">
+      <Text Id="__SingleUse_Z9AT" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">New Text&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="inv_temperature" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Inverter/Charger</Translation>
-        <Translation Language="UA">Інвертор</Translation>
-      </Text>
-      <Text Id="temperature" Alignment="Right" TypographyId="Values">
+      <Text Id="temperature" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;°C</Translation>
         <Translation Language="UA">&lt;value&gt;°C</Translation>
       </Text>
-      <Text Id="TIME_H_M" Alignment="Right" TypographyId="Values">
+      <Text Id="TIME_H_M" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">&lt;hours&gt;h &lt;minutes&gt;m</Translation>
         <Translation Language="UA">&lt;hours&gt;г &lt;minutes&gt;хв</Translation>
       </Text>
-      <Text Id="capacity_time_title" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">(Un)Charge time</Translation>
-        <Translation Language="UA">Час зар/розряду</Translation>
-      </Text>
-      <Text Id="charger_temperature_title" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Inverter/Charger</Translation>
-        <Translation Language="UA">Зарядне</Translation>
-      </Text>
-      <Text Id="Values_0" Alignment="Left" TypographyId="Values">
+      <Text Id="Values_0" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
-      <Text Id="temperature_temperature" Alignment="Right" TypographyId="Values">
+      <Text Id="temperature_temperature" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;/&lt;value&gt;°C</Translation>
         <Translation Language="UA">&lt;value&gt;/&lt;value&gt;°C</Translation>
       </Text>
-      <Text Id="bms_temperature" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">BMS t1/t2</Translation>
-        <Translation Language="UA">BMS t1/t2</Translation>
-      </Text>
-      <Text Id="ValueMedium_2022" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">2022</Translation>
-        <Translation Language="UA">2022</Translation>
-      </Text>
-      <Text Id="ValueMedium_01" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">01</Translation>
-        <Translation Language="UA">01</Translation>
-      </Text>
-      <Text Id="ValueMedium_wildcard_2" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">.&lt;value&gt;.&lt;value&gt;</Translation>
-        <Translation Language="UA">.&lt;value&gt;.&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="ValueMedium_wildcard_1" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">New Text&lt;value&gt;</Translation>
-        <Translation Language="UA">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="ValueMedium_30" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">30</Translation>
-        <Translation Language="UA">30</Translation>
-      </Text>
-      <Text Id="ValueNormal_0" Alignment="Left" TypographyId="Bahn12">
+      <Text Id="ValueNormal_0" Alignment="Left" TypographyId="Values13">
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
-      <Text Id="LOADING" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">Loading&lt;value&gt;...</Translation>
-        <Translation Language="UA">Завантаження&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="ValueMedium_50" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">50</Translation>
-        <Translation Language="UA">50</Translation>
-      </Text>
-      <Text Id="ValueLarge_99" Alignment="Left" TypographyId="ValueLarge">
-        <Translation Language="GB">99</Translation>
-        <Translation Language="UA">99</Translation>
-      </Text>
-      <Text Id="REMAINING_TIME" Alignment="Left" TypographyId="MainText">
-        <Translation Language="GB">REMAINING TIME</Translation>
-        <Translation Language="UA">ЧАС РОЗРЯДЖАННЯ</Translation>
-      </Text>
-      <Text Id="Hours" Alignment="Right" TypographyId="MainText">
-        <Translation Language="GB">hours</Translation>
-        <Translation Language="UA">год</Translation>
-      </Text>
-      <Text Id="RECHARGING_TIME" Alignment="Left" TypographyId="MainText">
-        <Translation Language="GB">RECHARGING TIME</Translation>
-        <Translation Language="UA">ЧАС ЗАРЯДЖАННЯ</Translation>
-      </Text>
-      <Text Id="ValueMedium_0" Alignment="Left" TypographyId="ValueMedium">
-        <Translation Language="GB">0</Translation>
-        <Translation Language="UA">0</Translation>
-      </Text>
-      <Text Id="Mins" Alignment="Right" TypographyId="MainText">
-        <Translation Language="GB">Minutes</Translation>
-        <Translation Language="UA">хв</Translation>
-      </Text>
-      <Text Id="SOC" Alignment="Center" TypographyId="ValueMedium">
-        <Translation Language="GB">&lt;value&gt;%</Translation>
-        <Translation Language="UA">&lt;value&gt;%</Translation>
-      </Text>
-      <Text Id="Values_0dot0" Alignment="Left" TypographyId="Values">
+      <Text Id="Values_0dot0" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">0.0</Translation>
         <Translation Language="UA">0.0</Translation>
       </Text>
-      <Text Id="Values_1" Alignment="Left" TypographyId="Values">
+      <Text Id="Values_1" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">1</Translation>
         <Translation Language="UA">1</Translation>
       </Text>
-      <Text Id="VoltageVal" Alignment="Right" TypographyId="Values">
+      <Text Id="VoltageVal" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;v</Translation>
         <Translation Language="UA">&lt;value&gt;в</Translation>
       </Text>
-      <Text Id="wildcard_persent" Alignment="Center" TypographyId="Values">
+      <Text Id="wildcard_persent" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;%</Translation>
         <Translation Language="UA">&lt;value&gt;%</Translation>
       </Text>
-      <Text Id="VOLTAGE_TITLE" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Voltage</Translation>
-        <Translation Language="UA">Напруга</Translation>
-      </Text>
-      <Text Id="wildcardId1" Alignment="Left" TypographyId="Values">
+      <Text Id="wildcardId1" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">0</Translation>
         <Translation Language="UA">0</Translation>
       </Text>
-      <Text Id="current" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Current</Translation>
-        <Translation Language="UA">Струм</Translation>
-      </Text>
-      <Text Id="battery" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Capacity</Translation>
-        <Translation Language="UA">Заряд</Translation>
-      </Text>
-      <Text Id="wildcardId2" Alignment="Left" TypographyId="Values">
+      <Text Id="wildcardId2" Alignment="Left" TypographyId="Values14">
         <Translation Language="GB">50</Translation>
         <Translation Language="UA">50</Translation>
       </Text>
-      <Text Id="batCapacity" Alignment="Right" TypographyId="Values">
+      <Text Id="batCapacity" Alignment="Right" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;A</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="seguisb.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Values" Font="bahnschrift.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
-    <Typography Id="Bahn12" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="Values14" Font="bahnschrift.ttf" Size="14" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Values13" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="Errors" Font="bahnschrift.ttf" Size="13" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
-    <Typography Id="ValueLarge" Font="arial.ttf" Size="90" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="ValueMedium" Font="arial.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="MainText" Font="seguisb.ttf" Size="17" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="ValueLarge2" Font="arial.ttf" Size="70" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
-    <Typography Id="LargeText" Font="seguisb.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
     <Typography Id="SettingsEntries" Font="bahnschrift.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789.\&lt;\&gt;" />
+    <Typography Id="Values38" Font="bahnschrift.ttf" Size="38" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Values42" Font="bahnschrift.ttf" Size="42" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Values20" Font="bahnschrift.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="+-0123456789." />
+    <Typography Id="Infos" Font="bahnschrift.ttf" Size="20" Bpp="4" IsVector="no" Direction="RTL" FallbackCharacter="?" WildcardCharacters="abcdefghijklmnopqrstuvwxyz_0123456789-. " />
   </Typographies>
 </TextDatabase>
