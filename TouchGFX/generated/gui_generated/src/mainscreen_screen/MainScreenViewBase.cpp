@@ -56,12 +56,14 @@ MainScreenViewBase::MainScreenViewBase()
     Unicode::snprintf(hours_value_1Buffer, HOURS_VALUE_1_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0).getText());
     hours_value_1.setWildcard(hours_value_1Buffer);
     hours_value_1.setTypedText(touchgfx::TypedText(T_WILDCARD_DIGIT));
+    hours_value_1.setAlpha(38);
     container_timer.add(hours_value_1);
 
     delim.setXY(47, -7);
     delim.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     delim.setLinespacing(0);
     delim.setTypedText(touchgfx::TypedText(T___SINGLEUSE_3W1F));
+    delim.setAlpha(38);
     container_timer.add(delim);
 
     minutes_value_1.setPosition(57, -7, 23, 42);
@@ -70,6 +72,7 @@ MainScreenViewBase::MainScreenViewBase()
     Unicode::snprintf(minutes_value_1Buffer, MINUTES_VALUE_1_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0).getText());
     minutes_value_1.setWildcard(minutes_value_1Buffer);
     minutes_value_1.setTypedText(touchgfx::TypedText(T_WILDCARD_DIGIT));
+    minutes_value_1.setAlpha(38);
     container_timer.add(minutes_value_1);
 
     minutes_value_2.setPosition(80, -7, 23, 42);
@@ -78,6 +81,7 @@ MainScreenViewBase::MainScreenViewBase()
     Unicode::snprintf(minutes_value_2Buffer, MINUTES_VALUE_2_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0).getText());
     minutes_value_2.setWildcard(minutes_value_2Buffer);
     minutes_value_2.setTypedText(touchgfx::TypedText(T_WILDCARD_DIGIT));
+    minutes_value_2.setAlpha(38);
     container_timer.add(minutes_value_2);
 
     hours_value_2.setPosition(24, -7, 23, 42);
@@ -86,6 +90,7 @@ MainScreenViewBase::MainScreenViewBase()
     Unicode::snprintf(hours_value_2Buffer, HOURS_VALUE_2_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0).getText());
     hours_value_2.setWildcard(hours_value_2Buffer);
     hours_value_2.setTypedText(touchgfx::TypedText(T_WILDCARD_DIGIT));
+    hours_value_2.setAlpha(38);
     container_timer.add(hours_value_2);
 
     container_time.add(container_timer);

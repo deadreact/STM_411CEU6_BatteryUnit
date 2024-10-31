@@ -660,6 +660,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "Alpha": 38,
                     "Wildcard1": {
                       "TextId": "NUMBER_0",
                       "UseBuffer": true,
@@ -681,6 +682,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "Alpha": 38,
                     "AutoSize": true
                   },
                   {
@@ -698,6 +700,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "Alpha": 38,
                     "Wildcard1": {
                       "TextId": "NUMBER_0",
                       "UseBuffer": true,
@@ -719,6 +722,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "Alpha": 38,
                     "Wildcard1": {
                       "TextId": "NUMBER_0",
                       "UseBuffer": true,
@@ -740,6 +744,7 @@
                       "Green": 245,
                       "Blue": 217
                     },
+                    "Alpha": 38,
                     "Wildcard1": {
                       "TextId": "NUMBER_0",
                       "UseBuffer": true,
