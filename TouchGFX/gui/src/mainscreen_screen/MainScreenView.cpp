@@ -191,10 +191,12 @@ void MainScreenView::updateBatteryData(const BatteryData& data)
     	const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
 		const int hours = absVal / SEC_IN_HOUR;
 		const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
-		touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%02d", hours);
-		touchgfx::Unicode::snprintf(time_valueBuffer2, TIME_VALUEBUFFER2_SIZE, "%02d", mins);
+		touchgfx::Unicode::snprintf(hours_value_1Buffer, HOURS_VALUE_1_SIZE, "%d", hours/10);
+		touchgfx::Unicode::snprintf(hours_value_2Buffer, HOURS_VALUE_2_SIZE, "%d", hours%10);
+		touchgfx::Unicode::snprintf(minutes_value_1Buffer, MINUTES_VALUE_1_SIZE, "%d", mins/10);
+		touchgfx::Unicode::snprintf(minutes_value_2Buffer, MINUTES_VALUE_2_SIZE, "%d", mins%10);
 		m_chargeTimeSec = chargeValue;
-		time_value.invalidate();
+		container_timer.invalidate();
     }
 
     m_bmsData = data;

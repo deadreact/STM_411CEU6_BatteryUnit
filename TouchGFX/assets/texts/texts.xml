@@ -106,6 +106,22 @@
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_3W1F" Alignment="Right" TypographyId="Values42">
+        <Translation Language="GB">:</Translation>
+        <Translation Language="UA">:</Translation>
+      </Text>
+      <Text Id="WILDCARD_DIGIT" Alignment="Right" TypographyId="Values42">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;d&gt;</Translation>
+      </Text>
+      <Text Id="WILDCARD_MINUTES" Alignment="Center" TypographyId="Values42">
+        <Translation Language="GB">New Text&lt;value&gt;</Translation>
+        <Translation Language="UA">&lt;minutes&gt;</Translation>
+      </Text>
+      <Text Id="WILDCARD_HOURS" Alignment="Right" TypographyId="Values42">
+        <Translation Language="GB">&lt;value&gt;:</Translation>
+        <Translation Language="UA">&lt;hours&gt;:</Translation>
+      </Text>
       <Text Id="WILDCARD_Simple14Centered" Alignment="Center" TypographyId="Values14">
         <Translation Language="GB">&lt;value&gt;</Translation>
         <Translation Language="UA">&lt;value&gt;</Translation>
@@ -121,10 +137,6 @@
       <Text Id="TITLE_TIME_LEFT20" Alignment="Center" TypographyId="Values20">
         <Translation Language="GB">time left</Translation>
         <Translation Language="UA">залишилось</Translation>
-      </Text>
-      <Text Id="__SingleUse_3747" Alignment="Left" TypographyId="Values42">
-        <Translation Language="GB">00</Translation>
-        <Translation Language="UA">00</Translation>
       </Text>
       <Text Id="WILDCARD_TIMER" Alignment="Right" TypographyId="Values42">
         <Translation Language="GB">&lt;value&gt;:&lt;value&gt;</Translation>

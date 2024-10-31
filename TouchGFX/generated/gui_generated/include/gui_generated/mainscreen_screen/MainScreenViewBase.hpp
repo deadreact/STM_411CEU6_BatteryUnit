@@ -41,7 +41,12 @@ protected:
     touchgfx::Image icon_charge;
     touchgfx::Image icon_fan;
     touchgfx::Container container_time;
-    touchgfx::TextAreaWithTwoWildcards time_value;
+    touchgfx::Container container_timer;
+    touchgfx::TextAreaWithOneWildcard hours_value_1;
+    touchgfx::TextArea delim;
+    touchgfx::TextAreaWithOneWildcard minutes_value_1;
+    touchgfx::TextAreaWithOneWildcard minutes_value_2;
+    touchgfx::TextAreaWithOneWildcard hours_value_2;
     touchgfx::TextArea time_units1;
     touchgfx::TextArea time_units2;
     touchgfx::TextArea time_left_name;
@@ -60,10 +65,14 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t TIME_VALUEBUFFER1_SIZE = 3;
-    touchgfx::Unicode::UnicodeChar time_valueBuffer1[TIME_VALUEBUFFER1_SIZE];
-    static const uint16_t TIME_VALUEBUFFER2_SIZE = 3;
-    touchgfx::Unicode::UnicodeChar time_valueBuffer2[TIME_VALUEBUFFER2_SIZE];
+    static const uint16_t HOURS_VALUE_1_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar hours_value_1Buffer[HOURS_VALUE_1_SIZE];
+    static const uint16_t MINUTES_VALUE_1_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar minutes_value_1Buffer[MINUTES_VALUE_1_SIZE];
+    static const uint16_t MINUTES_VALUE_2_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar minutes_value_2Buffer[MINUTES_VALUE_2_SIZE];
+    static const uint16_t HOURS_VALUE_2_SIZE = 2;
+    touchgfx::Unicode::UnicodeChar hours_value_2Buffer[HOURS_VALUE_2_SIZE];
     static const uint16_t POWER_VALUE_SIZE = 6;
     touchgfx::Unicode::UnicodeChar power_valueBuffer[POWER_VALUE_SIZE];
     static const uint16_t POPUP_TEXT_SIZE = 40;

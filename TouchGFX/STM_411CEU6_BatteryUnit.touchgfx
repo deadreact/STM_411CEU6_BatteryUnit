@@ -482,7 +482,7 @@
                         "Name": "time_units",
                         "X": 62,
                         "Y": 2,
-                        "Width": 23,
+                        "Width": 24,
                         "Height": 18,
                         "TextId": "UNITS_TIMER_SHORT",
                         "TextRotation": "0",
@@ -638,30 +638,115 @@
             "Height": 79,
             "Components": [
               {
-                "Type": "TextArea",
-                "Name": "time_value",
-                "X": 5,
-                "Y": 13,
-                "Width": 102,
-                "Height": 42,
-                "LockPosition": true,
-                "TextId": "WILDCARD_TIMER",
-                "TextRotation": "0",
-                "Color": {
-                  "Red": 255,
-                  "Green": 245,
-                  "Blue": 217
-                },
-                "Wildcard1": {
-                  "TextId": "NUMBER_00",
-                  "UseBuffer": true,
-                  "BufferSize": 3
-                },
-                "Wildcard2": {
-                  "TextId": "__SingleUse_3747",
-                  "UseBuffer": true,
-                  "BufferSize": 3
-                }
+                "Type": "Container",
+                "Name": "container_timer",
+                "X": 4,
+                "Y": 20,
+                "Width": 103,
+                "Height": 36,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "hours_value_1",
+                    "X": 1,
+                    "Y": -7,
+                    "Width": 23,
+                    "Height": 42,
+                    "LockPosition": true,
+                    "TextId": "WILDCARD_DIGIT",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 245,
+                      "Blue": 217
+                    },
+                    "Wildcard1": {
+                      "TextId": "NUMBER_0",
+                      "UseBuffer": true,
+                      "BufferSize": 2
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "delim",
+                    "X": 47,
+                    "Y": -7,
+                    "Width": 10,
+                    "Height": 42,
+                    "LockPosition": true,
+                    "TextId": "__SingleUse_3W1F",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 245,
+                      "Blue": 217
+                    },
+                    "AutoSize": true
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "minutes_value_1",
+                    "X": 57,
+                    "Y": -7,
+                    "Width": 23,
+                    "Height": 42,
+                    "LockPosition": true,
+                    "TextId": "WILDCARD_DIGIT",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 245,
+                      "Blue": 217
+                    },
+                    "Wildcard1": {
+                      "TextId": "NUMBER_0",
+                      "UseBuffer": true,
+                      "BufferSize": 2
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "minutes_value_2",
+                    "X": 80,
+                    "Y": -7,
+                    "Width": 23,
+                    "Height": 42,
+                    "LockPosition": true,
+                    "TextId": "WILDCARD_DIGIT",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 245,
+                      "Blue": 217
+                    },
+                    "Wildcard1": {
+                      "TextId": "NUMBER_0",
+                      "UseBuffer": true,
+                      "BufferSize": 2
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "hours_value_2",
+                    "X": 24,
+                    "Y": -7,
+                    "Width": 23,
+                    "Height": 42,
+                    "LockPosition": true,
+                    "TextId": "WILDCARD_DIGIT",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 255,
+                      "Green": 245,
+                      "Blue": 217
+                    },
+                    "Wildcard1": {
+                      "TextId": "NUMBER_0",
+                      "UseBuffer": true,
+                      "BufferSize": 2
+                    }
+                  }
+                ]
               },
               {
                 "Type": "TextArea",
@@ -804,6 +889,7 @@
             "Name": "loading_bg",
             "Width": 320,
             "Height": 240,
+            "Visible": false,
             "LockPosition": true,
             "Alpha": 192
           },
@@ -814,6 +900,7 @@
             "Y": 84,
             "Width": 72,
             "Height": 72,
+            "Visible": false,
             "LockPosition": true,
             "RenderingAlgorithm": "Nearest-neighbor",
             "FileNameImage": "loading_2.png",
