@@ -49,7 +49,7 @@ MainScreenViewBase::MainScreenViewBase()
     add(container_icons);
 
     container_time.setPosition(104, 143, 112, 79);
-    container_timer.setPosition(4, 20, 103, 36);
+    container_timer.setPosition(4, 22, 103, 36);
     hours_value_1.setPosition(1, -7, 23, 42);
     hours_value_1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     hours_value_1.setLinespacing(0);
@@ -90,14 +90,14 @@ MainScreenViewBase::MainScreenViewBase()
 
     container_time.add(container_timer);
 
-    time_units1.setPosition(8, 1, 42, 24);
+    time_units1.setPosition(8, 0, 42, 24);
     time_units1.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units1.setLinespacing(0);
     time_units1.setTypedText(touchgfx::TypedText(T_UNITS_HOURS));
     time_units1.setAlpha(55);
     container_time.add(time_units1);
 
-    time_units2.setPosition(64, 1, 42, 24);
+    time_units2.setPosition(64, 0, 42, 24);
     time_units2.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_units2.setLinespacing(0);
     time_units2.setTypedText(touchgfx::TypedText(T_UNITS_MINUTES));
