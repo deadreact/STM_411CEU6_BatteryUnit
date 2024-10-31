@@ -195,6 +195,14 @@ void MainScreenView::updateBatteryData(const BatteryData& data)
 		touchgfx::Unicode::snprintf(hours_value_2Buffer, HOURS_VALUE_2_SIZE, "%d", hours%10);
 		touchgfx::Unicode::snprintf(minutes_value_1Buffer, MINUTES_VALUE_1_SIZE, "%d", mins/10);
 		touchgfx::Unicode::snprintf(minutes_value_2Buffer, MINUTES_VALUE_2_SIZE, "%d", mins%10);
+
+		uint8_t alpha = chargeValue == 0 ? 55 : 255;
+		hours_value_1.setAlpha(alpha);
+		hours_value_2.setAlpha(alpha);
+		minutes_value_1.setAlpha(alpha);
+		minutes_value_2.setAlpha(alpha);
+		delim.setAlpha(alpha);
+
 		m_chargeTimeSec = chargeValue;
 		container_timer.invalidate();
     }
