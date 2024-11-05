@@ -3,36 +3,47 @@
 /*********************************************************************************/
 #include <gui_generated/containers/SettingEntryBase.hpp>
 #include <images/BitmapDatabase.hpp>
-#include <touchgfx/Color.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include <touchgfx/Color.hpp>
 
-SettingEntryBase::SettingEntryBase()
+SettingEntryBase::SettingEntryBase() :
+    updateItemCallback(this, &SettingEntryBase::updateItemCallbackHandler)
 {
-    setWidth(240);
-    setHeight(24);
-    bg.setXY(0, 0);
-    bg.setBitmap(touchgfx::Bitmap(BITMAP_LIST_ELEMENT_BACKGROUND_ID));
-    add(bg);
-
-    selection.setPosition(0, 0, 240, 24);
-    selection.setColor(touchgfx::Color::getColorFromRGB(235, 122, 0));
-    selection.setAlpha(224);
+    setWidth(320);
+    setHeight(48);
+    selection.setBitmap(touchgfx::Bitmap(BITMAP_SETTINGS_SELECT_ID));
+    selection.setPosition(0, 0, 320, 48);
+    selection.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     selection.setVisible(false);
     add(selection);
 
-    selectedValue.setPosition(140, 4, 96, 16);
-    selectedValue.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
+    selectedValue.setPosition(193, 11, 112, 22);
+    selectedValue.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     selectedValue.setLinespacing(0);
     Unicode::snprintf(selectedValueBuffer, SELECTEDVALUE_SIZE, "%s", touchgfx::TypedText(T_SETTING_SCREEN_VALUE_0).getText());
     selectedValue.setWildcard(selectedValueBuffer);
     selectedValue.setTypedText(touchgfx::TypedText(T_SETTING_VALUE_WILDCARD));
     add(selectedValue);
 
-    title.setPosition(4, 4, 140, 16);
-    title.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
+    title.setPosition(13, 11, 180, 22);
+    title.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     title.setLinespacing(0);
     title.setTypedText(touchgfx::TypedText(T_SETTING_CHARGER_POWER));
     add(title);
+
+    circles.setPosition(219, 31, 60, 10);
+    circles.setHorizontal(true);
+    circles.setCircular(false);
+    circles.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
+    circles.setSwipeAcceleration(10);
+    circles.setDragAcceleration(10);
+    circles.setNumberOfItems(4);
+    circles.setPadding(0, 0);
+    circles.setSnapping(false);
+    circles.setOvershootPercentage(75);
+    circles.setDrawableSize(10, 0);
+    circles.setDrawables(circlesListItems, updateItemCallback);
+    add(circles);
 }
 
 SettingEntryBase::~SettingEntryBase()
@@ -42,5 +53,17 @@ SettingEntryBase::~SettingEntryBase()
 
 void SettingEntryBase::initialize()
 {
+    circles.initialize();
+    for (int i = 0; i < circlesListItems.getNumberOfDrawables(); i++)
+    {
+        circlesListItems[i].initialize();
+    }
+}
 
+void SettingEntryBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
+{
+    if (items == &circlesListItems)
+    {
+        circlesUpdateItem(circlesListItems[containerIndex], itemIndex);
+    }
 }

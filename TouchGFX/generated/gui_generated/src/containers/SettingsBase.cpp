@@ -3,26 +3,18 @@
 /*********************************************************************************/
 #include <gui_generated/containers/SettingsBase.hpp>
 #include <touchgfx/Color.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 
 SettingsBase::SettingsBase() :
     updateItemCallback(this, &SettingsBase::updateItemCallbackHandler)
 {
-    setWidth(244);
-    setHeight(160);
-    boxWithBorder1.setPosition(0, 0, 244, 160);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(91, 91, 91));
-    boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    boxWithBorder1.setBorderSize(2);
-    add(boxWithBorder1);
+    setWidth(322);
+    setHeight(240);
+    bg.setPosition(0, 0, 320, 240);
+    bg.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    bg.setAlpha(224);
+    add(bg);
 
-    chargePowerTitle.setPosition(3, 3, 239, 31);
-    chargePowerTitle.setColor(touchgfx::Color::getColorFromRGB(201, 202, 202));
-    chargePowerTitle.setLinespacing(0);
-    chargePowerTitle.setTypedText(touchgfx::TypedText(T_SETTINGS_SCREEN_TITLE));
-    add(chargePowerTitle);
-
-    entries.setPosition(2, 37, 240, 121);
+    entries.setPosition(0, 48, 320, 144);
     entries.setHorizontal(false);
     entries.setCircular(false);
     entries.setEasingEquation(touchgfx::EasingEquations::backEaseOut);
@@ -32,7 +24,7 @@ SettingsBase::SettingsBase() :
     entries.setPadding(0, 0);
     entries.setSnapping(false);
     entries.setOvershootPercentage(75);
-    entries.setDrawableSize(24, 0);
+    entries.setDrawableSize(48, 0);
     entries.setDrawables(entriesListItems, updateItemCallback);
     add(entries);
 }

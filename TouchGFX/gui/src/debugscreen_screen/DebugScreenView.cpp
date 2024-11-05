@@ -1,4 +1,5 @@
 #include <gui/debugscreen_screen/DebugScreenView.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 #include <cstring>
 #include <algorithm>
 
@@ -10,20 +11,15 @@ void DebugScreenView::setupScreen()
 {
     DebugScreenViewBase::setupScreen();
 
-    for (int i = 0; i < BatteryData::kMaxCellCount; ++i)
-    {
-    	cell[i].initialize();
-    	cell[i].setIndex(i+1);
-    	cell[i].setVisible(false);
-    	batteryCellInfo.add(cell[i]);
-    }
-
-    __background.setColor(0xff11212a);
+    container_temperature_bms1.setTitle(T_TITLE_BMS_T1);
+    container_temperature_bms2.setTitle(T_TITLE_BMS_T2);
+    container_temperature_charg.setTitle(T_TITLE_CHARG_T);
+    container_temperature_inv.setTitle(T_TITLE_INV_T);
 }
 
 DebugScreenView::~DebugScreenView()
 {
-//	delete m_settingsPopUp;
+
 }
 
 void DebugScreenView::tearDownScreen()
@@ -31,79 +27,125 @@ void DebugScreenView::tearDownScreen()
     DebugScreenViewBase::tearDownScreen();
 }
 
+void DebugScreenView::setPower(int val)
+{
+	if (val != m_power)
+	{
+		float power = float(val) / 10000;
+		touchgfx::Unicode::snprintfFloat(power_valueBuffer, POWER_VALUE_SIZE, "%.2f", power);
+		power_value.resizeToCurrentText();
+		power_value.setX((container_power.getWidth() - power_value.getWidth() - power_units.getWidth() + 1)/2);
+		power_units.setX(power_value.getX() + power_value.getWidth() + 1);
+
+		container_power.invalidate();
+
+
+		if ((val < 0 && m_power >= 0) || (val > 0 && m_power <= 0) || val == 0)
+		{
+			label_charging.setVisible(val > 0);
+			label_discharging.setVisible(val < 0);
+			label_charging.invalidate();
+			label_discharging.invalidate();
+		}
+
+		m_power = val;
+		power_value.invalidate();
+	}
+}
+
 void DebugScreenView::handleTickEvent()
 {
-	const auto& data = SharedData::getData();
-
-	if (data.temperatureInv != temperatureInv)
+	if (!SharedData::getData())
 	{
-		temperatureInv = data.temperatureInv;
-//		fan = data.fan;
-		touchgfx::Unicode::snprintf(invTemperatureValueBuffer, INVTEMPERATUREVALUE_SIZE, "%d", data.temperatureInv);
-		invTemperatureValue.invalidate();
+		return;
+	}
+	const auto& data = *SharedData::getData();
+
+	container_temperature_inv.setValue(data.temperatureInv);
+	container_temperature_charg.setValue(data.temperatureCharg);
+
+	if (m_invState != data.invState) {
+		m_invState = data.invState;
+		updateInvState();
 	}
 
-	if (data.temperatureCharg != temperatureCharg)
+	if (m_usbState != data.usbState) {
+		m_usbState = data.usbState;
+		icon_usb.setAlpha(m_usbState ? 255 : 110);
+		icon_usb.invalidate();
+	}
+
+	if (m_fan != data.fan) {
+		m_fan = data.fan;
+		icon_fan.setAlpha(m_fan > 0 ? 205 + m_fan/2 : 110);
+		icon_fan.invalidate();
+	}
+
+	if (data.chargerPlugged != icon_charge.isVisible())
 	{
-		temperatureCharg = data.temperatureCharg;
-		touchgfx::Unicode::snprintf(chargerTemperatureValueBuffer, CHARGERTEMPERATUREVALUE_SIZE, "%d", data.temperatureCharg);
-		chargerTemperatureValue.invalidate();
+		icon_charge.setVisible(data.chargerPlugged);
+		icon_charge.invalidate();
 	}
 
 	if (data.bms != m_bmsData)
 	{
+		//batteryProgressBar
 		if (data.bms.soc != m_bmsData.soc)
 		{
 			m_bmsData.soc = data.bms.soc;
-			capacityValue.setValue(m_bmsData.soc);
-			touchgfx::Unicode::snprintf(capacityTextValueBuffer, CAPACITYTEXTVALUE_SIZE, "%d", m_bmsData.soc);
-//			capacityTextValue.resizeToCurrentText();
-			capacityTextValue.invalidate();
+			batteryProgressBar.setProgress(m_bmsData.soc);
 		}
 
 		if (data.bms.current != m_bmsData.current)
 		{
 			m_bmsData.current = data.bms.current;
-			touchgfx::Unicode::snprintfFloat(currentTextValueBuffer, CURRENTTEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
-//			currentTextValue.resizeToCurrentText();
-			currentTextValue.invalidate();
+			touchgfx::Unicode::snprintfFloat(current_valueBuffer, CURRENT_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.current) * 0.01f);
+			current_value.resizeToCurrentText();
+			current_value.setX((container_current.getWidth() - current_value.getWidth() - current_units.getWidth() + 1)/2);
+			current_units.setX(current_value.getX() + current_value.getWidth() + 1);
+
+			container_current.invalidate();
+
+			setPower(m_bmsData.current * m_bmsData.voltage);
 		}
 
 		if (data.bms.voltage != m_bmsData.voltage)
 		{
 			m_bmsData.voltage = data.bms.voltage;
-			touchgfx::Unicode::snprintfFloat(voltageTextValueBuffer, VOLTAGETEXTVALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
-//			voltageTextValue.resizeToCurrentText();
-			voltageTextValue.invalidate();
+			touchgfx::Unicode::snprintfFloat(voltage_valueBuffer, VOLTAGE_VALUE_SIZE, "%.2f", static_cast<float>(m_bmsData.voltage) * 0.01f);
+			voltage_value.resizeToCurrentText();
+			voltage_value.setX((container_voltage.getWidth() - voltage_value.getWidth() - voltage_units.getWidth() + 1)/2);
+			voltage_units.setX(voltage_value.getX() + voltage_value.getWidth() + 1);
+
+			container_voltage.invalidate();
+
+			setPower(m_bmsData.current * m_bmsData.voltage);
 		}
 
 		if (data.bms.battery_box_temperature != m_bmsData.battery_box_temperature)
 		{
 			m_bmsData.battery_box_temperature = data.bms.battery_box_temperature;
-			touchgfx::Unicode::snprintf(temperatureValuesBuffer1, TEMPERATUREVALUESBUFFER1_SIZE, "%d", data.bms.battery_box_temperature);
-			temperatureValues.invalidate();
+			container_temperature_bms1.setValue(m_bmsData.battery_box_temperature);
 		}
-
+//
 		if (data.bms.battery_temperature != m_bmsData.battery_temperature)
 		{
 			m_bmsData.battery_temperature = data.bms.battery_temperature;
-			touchgfx::Unicode::snprintf(temperatureValuesBuffer2, TEMPERATUREVALUESBUFFER2_SIZE, "%d", data.bms.battery_temperature);
-			temperatureValues.invalidate();
+			container_temperature_bms2.setValue(m_bmsData.battery_temperature);
 		}
 
 		if (data.bms.cellVoltage != m_bmsData.cellVoltage)
 		{
 			m_bmsData.cellVoltage = data.bms.cellVoltage;
-			int i = 0;
-			for (; i < m_bmsData.cellVoltage.size(); i++) {
-				cell[i].setVisible(true);
-				cell[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
+
+			battery_cells.setNumberOfItems(m_bmsData.cellVoltage.size());
+			for (int i = 0; i < m_bmsData.cellVoltage.size(); i++) {
+				battery_cellsListItems[i].setIndex(i+1);
+				battery_cellsListItems[i].setVoltage(m_bmsData.cellVoltage[i] * 0.001f);
 			}
-			for (; i < BatteryData::kMaxCellCount; i++) {
-				cell[i].setVisible(false);
-			}
+
 			colorizeCells();
-			batteryCellInfo.invalidateContent();
+			battery_cells.invalidateContent();
 		}
 
 		int chargeValue = data.bms.calcTimeRemain(data.bms.current);
@@ -112,10 +154,10 @@ void DebugScreenView::handleTickEvent()
 			const int absVal = chargeValue < 0 ? -chargeValue : chargeValue;
 			const int hours = absVal / SEC_IN_HOUR;
 			const int mins = (absVal % SEC_IN_HOUR) / SEC_IN_MIN;
-			touchgfx::Unicode::snprintf(capacityTimeValueBuffer1, CAPACITYTIMEVALUEBUFFER1_SIZE, "%d", hours);
-			touchgfx::Unicode::snprintf(capacityTimeValueBuffer2, CAPACITYTIMEVALUEBUFFER2_SIZE, "%d", mins);
+			touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%02d", hours);
+			touchgfx::Unicode::snprintf(time_valueBuffer2, TIME_VALUEBUFFER2_SIZE, "%02d", mins);
 			m_chargeTimeSec = chargeValue;
-			capacityTimeValue.invalidate();
+			time_value.invalidate();
 		}
 
 		m_bmsData = data.bms;
@@ -153,6 +195,11 @@ void DebugScreenView::handleTickEvent()
 
 		errorLabel.invalidate();
 	}
+
+	if (m_invState == InverterState::Intermediate)
+	{
+		m_invAnimation.handleTickEvent();
+	}
 }
 
 void DebugScreenView::colorizeCells()
@@ -174,9 +221,21 @@ void DebugScreenView::colorizeCells()
 			}
 		}
 		for (int i = 0; i < m_bmsData.cellVoltage.size(); i++) {
-			cell[i].setMarker(i == maxIndex ? CellMarker::Max : (i == minIndex ? CellMarker::Min : CellMarker::Average));
+			battery_cellsListItems[i].setMarker(i == maxIndex ? CellMarker::Max : (i == minIndex ? CellMarker::Min : CellMarker::Average));
 		}
 	}
+}
+
+
+void DebugScreenView::updateInvState()
+{
+    icon_inv.setVisible(m_invState != InverterState::Off);
+
+    if (m_invState == InverterState::On)
+    {
+        icon_inv.setAlpha(0xff);
+    }
+    icon_inv.invalidate();
 }
 
 

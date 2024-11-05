@@ -7,6 +7,7 @@
 
 #include "process.h"
 #include "stm32f4xx_hal.h"
+#include <cmsis_os.h>
 
 Process* Process::sm_current = nullptr;
 
@@ -25,6 +26,10 @@ void Process::run()
         {
             m_tickRate.reset();
             update();
+        }
+        else
+        {
+        	osThreadYield();
         }
     }
 

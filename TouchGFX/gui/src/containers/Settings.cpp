@@ -19,7 +19,7 @@ void Settings::initialize()
 {
     SettingsBase::initialize();
 
-    auto size = std::ssize(titles);
+    auto size = std::size(titles);
 	entries.setNumberOfItems(size);
 
 	for (int i = 0; i < size; ++i)
@@ -49,6 +49,6 @@ void Settings::setData(const SettingsData& data)
 			entriesListItems[data.selectedIndex].setSelected(true);
 
 		m_selectedEntry = data.selectedIndex;
-		invalidate();
+		entries.invalidate();
 	}
 }

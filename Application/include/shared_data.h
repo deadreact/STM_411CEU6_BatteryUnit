@@ -37,7 +37,7 @@ struct ProcessData
 
     int16_t temperatureInv{0};
     int16_t temperatureCharg{0};
-//    int fan{0};
+    uint8_t fan{0};
 
     RevisionData<BatteryData> bms;
     SmoothedValue smoothedCurrent;
@@ -70,8 +70,8 @@ public:
     SharedData& operator=(SharedData&&) = delete;
 
     static SharedData& get();
-    static const ProcessData& getData() { return *get().processData; }
-    static void shareReadOnly(const ProcessData& data) { get().processData = &data; }
+    static const ProcessData* getData() { return get().processData; }
+    static bool shareReadOnly(const ProcessData& data) { get().processData = &data; return true; }
 private:
     const ProcessData* processData { nullptr };
 };
