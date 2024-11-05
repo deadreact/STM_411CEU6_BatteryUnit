@@ -11,7 +11,7 @@
 #include <gpio_wrappers/pin_wrapper.h>
 #include <main.h>
 #include <utils/timeout.h>
-#include <gpio_wrappers/digital_potentiometer.h>
+//#include <gpio_wrappers/digital_potentiometer.h>
 
 struct BatteryData;
 
@@ -47,7 +47,7 @@ private:
 	PinWrapper m_chargerOnPin{charger_on_GPIO_Port, charger_on_Pin};
 	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 
-	AsyncDigitalPotentiometer m_potCS2{pot_CS2_GPIO_Port, pot_CS2_Pin, false};
+//	AsyncDigitalPotentiometer m_potCS2{pot_CS2_GPIO_Port, pot_CS2_Pin, false};
 
 	uint32_t m_errFlags{0};
 	uint32_t m_bmsDataRevision{0};

@@ -54,6 +54,7 @@ DMA_HandleTypeDef hdma_spi1_tx;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* Definitions for defaultTask */
@@ -85,6 +86,7 @@ static void MX_USART2_UART_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void *argument);
 void StartGUITask(void *argument);
 
@@ -134,6 +136,7 @@ int main(void)
   MX_RTC_Init();
   MX_TIM2_Init();
   MX_ADC1_Init();
+  MX_USART1_UART_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
@@ -485,11 +488,29 @@ static void MX_TIM2_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
+  //
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! START PWM
+  //
+  TIM2->CCR1 = 0;
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // charger power
+
+  TIM2->CCR2 = 0;
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2); // fan power
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! START PWM
 
   /* USER CODE END TIM2_Init 2 */
   HAL_TIM_MspPostInit(&htim2);
@@ -538,6 +559,39 @@ static void MX_TIM4_Init(void)
   /* USER CODE BEGIN TIM4_Init 2 */
 
   /* USER CODE END TIM4_Init 2 */
+
+}
+
+/**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
 
 }
 
@@ -615,16 +669,13 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SCRN_DC_Pin|SCRN_RESET_Pin|SCRN_CS_Pin|bttn_screen_led_Pin
-                          |bttn_usb_led_Pin|usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin, GPIO_PIN_RESET);
+                          |usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(charger_on_GPIO_Port, charger_on_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, pot_CS2_Pin|pot_INC_Pin|pot_CS1_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, pot_UD_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, bttn_usb_led_Pin|fan_n_power_on_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : extr_bat_on_Pin */
   GPIO_InitStruct.Pin = extr_bat_on_Pin;
@@ -665,10 +716,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(bttn_screen_on_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : bttn_screen_led_Pin bttn_usb_led_Pin usb_on_Pin bttn_inv_led_Pin
-                           inv_on_Pin */
-  GPIO_InitStruct.Pin = bttn_screen_led_Pin|bttn_usb_led_Pin|usb_on_Pin|bttn_inv_led_Pin
-                          |inv_on_Pin;
+  /*Configure GPIO pins : bttn_screen_led_Pin usb_on_Pin bttn_inv_led_Pin inv_on_Pin */
+  GPIO_InitStruct.Pin = bttn_screen_led_Pin|usb_on_Pin|bttn_inv_led_Pin|inv_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -687,15 +736,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(charger_dcOk_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : pot_CS2_Pin pot_UD_Pin pot_CS1_Pin */
-  GPIO_InitStruct.Pin = pot_CS2_Pin|pot_UD_Pin|pot_CS1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : pot_INC_Pin fan_n_power_on_Pin */
-  GPIO_InitStruct.Pin = pot_INC_Pin|fan_n_power_on_Pin;
+  /*Configure GPIO pins : bttn_usb_led_Pin fan_n_power_on_Pin */
+  GPIO_InitStruct.Pin = bttn_usb_led_Pin|fan_n_power_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

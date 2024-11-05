@@ -33,7 +33,7 @@ void ChargerHandler::update()
 		setChargePower(data.settings.getValue(SettingsData::ChargePower));
 	}
 
-	m_potCS2.onTick();
+//	m_potCS2.onTick();
 
 	switch (m_state)
 	{
@@ -156,6 +156,6 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 void ChargerHandler::setChargePower(uint16_t watts)
 {
 	uint16_t value = (watts + 6) / 12; // 1200 Вт - 100
-	m_potCS2.setValue(value);
+//	m_potCS2.setValue(value);
 }
 
