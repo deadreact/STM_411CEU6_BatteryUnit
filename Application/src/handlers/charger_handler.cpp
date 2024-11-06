@@ -33,6 +33,7 @@ void ChargerHandler::update()
 		setChargePower(data.settings.getValue(SettingsData::ChargePower));
 	}
 
+//	TIM2->CCR1 = 150; // 5v
 //	m_potCS2.onTick();
 
 	switch (m_state)
@@ -155,6 +156,31 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 
 void ChargerHandler::setChargePower(uint16_t watts)
 {
+	if(watts == 250)
+	{
+		TIM2->CCR1 = 700; // 1.919v
+	}
+	else if(watts == 500)
+	{
+		TIM2->CCR1 = 500; // 2.802v
+	}
+	else if(watts == 750)
+	{
+		TIM2->CCR1 = 350; // 3.463v
+	}
+	else if(watts == 1000)
+	{
+		TIM2->CCR1 = 100; // 4.565v
+	}
+	else if(watts == 1200)
+	{
+		TIM2->CCR1 = 10; // 5.002v
+	}
+	else
+	{
+		TIM2->CCR1 = 999;
+	}
+
 	uint16_t value = (watts + 6) / 12; // 1200 Вт - 100
 //	m_potCS2.setValue(value);
 }
