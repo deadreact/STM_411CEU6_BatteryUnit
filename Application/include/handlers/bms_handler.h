@@ -16,7 +16,7 @@
 
 #ifndef RELEASE
 #define SIMULATE_CHARGING 0
-#define SIMULATE_UNCHARGING 1
+#define SIMULATE_UNCHARGING 0
 #endif //RELEASE
 
 class BMSHandler

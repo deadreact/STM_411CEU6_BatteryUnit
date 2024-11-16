@@ -24,9 +24,9 @@ public:
 
 	int16_t getTemperature1() const { return m_ntcHandler.getTemperature1(); }
 	int16_t getTemperature2() const { return m_ntcHandler.getTemperature2(); }
-//	uint8_t getFan() const { return m_potCS1.getValue(); }
+	uint8_t getFanPower() const;
 private:
-	void updatePot(uint8_t fanValue);
+	void updatePot(uint16_t fanValue);
 	bool isEnabled() const;
 private:
 	Timeout m_fanExtraTime{0};

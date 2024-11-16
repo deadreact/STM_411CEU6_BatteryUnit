@@ -7,10 +7,17 @@
 
 #include <handlers/fan_handler.h>
 
+static constexpr uint32_t minPWMValue = 400;
+static constexpr uint32_t maxPWMValue = 999;
 
 FanHandler::FanHandler()
 {
-//	m_fanOn.writePin(m_potCS1.getValue() > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	m_fanOn.writePin(getFanPower() > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+uint8_t FanHandler::getFanPower() const
+{
+	return TIM2->CCR2 < minPWMValue ? 0 : ((TIM2->CCR2 - minPWMValue) * 100) / (maxPWMValue - minPWMValue);
 }
 
 void FanHandler::update()
@@ -56,49 +63,29 @@ void FanHandler::update()
 	if (isEnabled())
 	{
 		m_ntcHandler.onTick();
-
-		uint16_t fanPowerPWM = m_ntcHandler.getFanValue();
-
-		// turn on fan
-		if(fanPowerPWM >= 562)
-		{
-			m_fanOn.writePin(GPIO_PIN_SET);
-//			HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2); // TODO check possible conflict with charger power channel, need htim2
-			TIM2->CCR2 = fanPowerPWM;
-		}
-		else
-		{
-			m_fanOn.writePin(GPIO_PIN_RESET);
-//			HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_2); // TODO check possible conflict with charger power channel, need htim2
-			TIM2->CCR2 = 0;
-		}
-
-
-//		updatePot(m_ntcHandler.getFanValue());
-//		m_fanOn.writePin(m_potCS1.getValue() > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
+		updatePot(m_ntcHandler.getFanValue());
+		m_fanOn.writePin(getFanPower() > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 	}
-//	m_potCS1.onTick();
 }
 
-void FanHandler::updatePot(uint8_t fanValue)
+void FanHandler::updatePot(uint16_t fanValue)
 {
-//	if (fanValue < m_potCS1.getValue())
-//	{
-//		if (!m_fanExtraTime.isReached())
-//		{
-//			return;
-//		}
-//	}
-//	else
-//	{
-//		m_fanExtraTime.reset(20000);
-//	}
+	if (fanValue < TIM2->CCR2)
+	{
+		if (!m_fanExtraTime.isReached())
+		{
+			return;
+		}
+	}
+	else
+	{
+		m_fanExtraTime.reset(20000);
+	}
 
-//	m_potCS1.setValue(fanValue);
+	TIM2->CCR2 = fanValue;
 }
 
 bool FanHandler::isEnabled() const
 {
-//	return m_fanOn.readPin() || m_chargerDcOkPin.readPin() == GPIO_PIN_RESET || m_invOk.readPin() || m_usbOn.readPin();
-	return true;
+	return m_fanOn.readPin() || m_chargerDcOkPin.readPin() == GPIO_PIN_RESET || m_invOk.readPin() || m_usbOn.readPin();
 }
