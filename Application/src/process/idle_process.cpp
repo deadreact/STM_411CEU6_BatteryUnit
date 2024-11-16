@@ -43,8 +43,6 @@ struct IdleProcess::Impl
 
     void onPwrClick();
     void onPwrHold();
-    void onPwrPress();
-    void onPwrRelease();
 
     // Data
     ProcessData sharedData;
@@ -58,8 +56,6 @@ struct IdleProcess::Impl
     FanHandler m_fanHandler;
 
     SettingsHandler m_settingsHandler;
-
-//    TFTDisplay320x240 screen{LED_GPIO_Port, LED_Pin};
 
     Display320x240 screen;
     LedIndicator screenLed{bttn_screen_led_GPIO_Port, bttn_screen_led_Pin, LedIndicationType::Blinking};
@@ -210,17 +206,6 @@ void IdleProcess::Impl::handlePowerState()
 			screenLed.setIndicationType(LedIndicationType::Off);
 		}
 	}
-}
-
-
-void IdleProcess::Impl::onPwrPress()
-{
-//	HAL_NVIC_DisableIRQ(bttn_screen_on_EXTI_IRQn);
-}
-
-void IdleProcess::Impl::onPwrRelease()
-{
-//	HAL_NVIC_EnableIRQ(bttn_screen_on_EXTI_IRQn);
 }
 
 void IdleProcess::Impl::onPwrClick()

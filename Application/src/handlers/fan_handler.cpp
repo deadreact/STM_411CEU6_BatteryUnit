@@ -9,6 +9,7 @@
 
 static constexpr uint32_t minPWMValue = 400;
 static constexpr uint32_t maxPWMValue = 999;
+extern TIM_HandleTypeDef htim2;
 
 FanHandler::FanHandler()
 {
@@ -82,7 +83,19 @@ void FanHandler::updatePot(uint16_t fanValue)
 		m_fanExtraTime.reset(20000);
 	}
 
-	TIM2->CCR2 = fanValue;
+	if (TIM2->CCR2 != fanValue)
+	{
+		if (TIM2->CCR2 == 0)
+		{
+			HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+		}
+		else if (fanValue == 0)
+		{
+			HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_2);
+		}
+
+		TIM2->CCR2 = fanValue;
+	}
 }
 
 bool FanHandler::isEnabled() const

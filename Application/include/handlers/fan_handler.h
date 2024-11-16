@@ -10,7 +10,6 @@
 
 
 #include <main.h> // GPIO defines & HAL
-//#include <gpio_wrappers/digital_potentiometer.h>
 #include <gpio_wrappers/pin_wrapper.h>
 #include <handlers/ntc_handler.h>
 
@@ -36,8 +35,6 @@ private:
 	const PinWrapper m_chargerDcOkPin{charger_dcOk_GPIO_Port, charger_dcOk_Pin};
 	const PinWrapper m_invOk{inv_ok_GPIO_Port, inv_ok_Pin};
 	const PinWrapper m_usbOn{usb_on_GPIO_Port, usb_on_Pin};
-
-//	AsyncDigitalPotentiometer m_potCS1{pot_CS1_GPIO_Port, pot_CS1_Pin, true};
 
 	PinWrapper m_fanOn{fan_n_power_on_GPIO_Port, fan_n_power_on_Pin};
 };

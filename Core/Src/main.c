@@ -501,11 +501,6 @@ static void MX_TIM2_Init(void)
   //
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! START PWM
   //
-  TIM2->CCR1 = 0;
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); // charger power
-
-  TIM2->CCR2 = 0;
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2); // fan power
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! START PWM
 

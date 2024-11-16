@@ -9,6 +9,8 @@
 #include <shared_data.h>
 #include <unordered_map>
 
+
+extern TIM_HandleTypeDef htim2;
 /*
 
  21 - 250Вт
@@ -23,6 +25,11 @@ ChargerHandler::ChargerHandler()
 {
 	const auto& data = *SharedData::getData();
 	setChargePower(data.settings.getValue(SettingsData::ChargePower));
+
+	if (isDcOk())
+	{
+		HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	}
 }
 
 void ChargerHandler::update()
@@ -55,6 +62,8 @@ void ChargerHandler::updateIdle()
 {
 	if (isDcOk())
 	{
+		enableCharging(true);
+
 		const auto& data = *SharedData::getData();
 
 		uint32_t majorErrors = data.errFlags & BMSErrorFlags::maskMajorErrors;
@@ -94,7 +103,7 @@ void ChargerHandler::updateInvestigation()
 
 void ChargerHandler::updateError()
 {
-	m_chargerOnPin.writePin(GPIO_PIN_RESET);
+	enableCharging(false);
 }
 
 void ChargerHandler::changeState(ChargerState state, uint32_t flags)
@@ -103,7 +112,7 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 	{
 		if (state == ChargerState::Idle)
 		{
-			m_chargerOnPin.writePin(GPIO_PIN_SET);
+			enableCharging(true);
 		}
 		else if (state == ChargerState::Investigation)
 		{
@@ -112,7 +121,7 @@ void ChargerHandler::changeState(ChargerState state, uint32_t flags)
 		}
 		else if (state == ChargerState::Error)
 		{
-			m_chargerOnPin.writePin(GPIO_PIN_RESET);
+			enableCharging(false);
 		}
 
 		m_state = state;
@@ -162,3 +171,19 @@ void ChargerHandler::setChargePower(uint16_t watts)
 	TIM2->CCR1 = mapping.at(watts);
 }
 
+void ChargerHandler::enableCharging(bool enable)
+{
+	const auto state = enable ? GPIO_PIN_SET : GPIO_PIN_RESET;
+	if (m_chargerOnPin.readPin() != state)
+	{
+		m_chargerOnPin.writePin(state);
+		if (enable && isDcOk())
+		{
+			HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+		}
+		else
+		{
+			HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_1);
+		}
+	}
+}
