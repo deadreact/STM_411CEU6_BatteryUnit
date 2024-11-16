@@ -246,7 +246,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "power_units",
-                    "X": 44,
+                    "X": 45,
                     "Width": 12,
                     "Height": 18,
                     "TextId": "UNITS_POWER",
@@ -306,7 +306,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "current_units",
-                    "X": 33,
+                    "X": 34,
                     "Width": 9,
                     "Height": 18,
                     "TextId": "UNITS_CURRENT",
@@ -366,7 +366,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "voltage_units",
-                    "X": 39,
+                    "X": 40,
                     "Width": 8,
                     "Height": 18,
                     "TextId": "UNITS_VOLTAGE",
@@ -454,7 +454,7 @@
                       {
                         "Type": "TextArea",
                         "Name": "time_value",
-                        "X": 18,
+                        "X": 17,
                         "Y": -2,
                         "Width": 44,
                         "Height": 22,

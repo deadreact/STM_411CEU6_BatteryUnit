@@ -144,7 +144,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     power_value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14));
     container_power.add(power_value);
 
-    power_units.setXY(44, 0);
+    power_units.setXY(45, 0);
     power_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     power_units.setLinespacing(0);
     power_units.setTypedText(touchgfx::TypedText(T_UNITS_POWER));
@@ -170,7 +170,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     current_value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14));
     container_current.add(current_value);
 
-    current_units.setXY(33, 0);
+    current_units.setXY(34, 0);
     current_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_units.setLinespacing(0);
     current_units.setTypedText(touchgfx::TypedText(T_UNITS_CURRENT));
@@ -196,7 +196,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     voltage_value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14));
     container_voltage.add(voltage_value);
 
-    voltage_units.setXY(39, 0);
+    voltage_units.setXY(40, 0);
     voltage_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     voltage_units.setLinespacing(0);
     voltage_units.setTypedText(touchgfx::TypedText(T_UNITS_VOLTAGE));
@@ -231,7 +231,7 @@ DebugScreenViewBase::DebugScreenViewBase() :
     container_2x1.add(label_discharging);
 
     container_time.setPosition(109, 9, 98, 37);
-    time_value.setXY(18, -2);
+    time_value.setXY(17, -2);
     time_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     time_value.setLinespacing(0);
     touchgfx::Unicode::snprintf(time_valueBuffer1, TIME_VALUEBUFFER1_SIZE, "%s", touchgfx::TypedText(T_NUMBER_00).getText());
