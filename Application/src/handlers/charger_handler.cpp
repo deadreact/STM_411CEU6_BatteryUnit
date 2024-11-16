@@ -7,6 +7,7 @@
 
 #include <handlers/charger_handler.h>
 #include <shared_data.h>
+#include <unordered_map>
 
 /*
 
@@ -156,32 +157,8 @@ void ChargerHandler::analyzeBMSData(const BatteryData& data)
 
 void ChargerHandler::setChargePower(uint16_t watts)
 {
-	if(watts == 250)
-	{
-		TIM2->CCR1 = 700; // 1.919v
-	}
-	else if(watts == 500)
-	{
-		TIM2->CCR1 = 500; // 2.802v
-	}
-	else if(watts == 750)
-	{
-		TIM2->CCR1 = 350; // 3.463v
-	}
-	else if(watts == 1000)
-	{
-		TIM2->CCR1 = 100; // 4.565v
-	}
-	else if(watts == 1200)
-	{
-		TIM2->CCR1 = 10; // 5.002v
-	}
-	else
-	{
-		TIM2->CCR1 = 999;
-	}
+	static const std::unordered_map<uint16_t, uint32_t> mapping = {{250, 700}, {500, 500}, {750, 350}, {1000, 100}, {1200, 10}};
 
-	uint16_t value = (watts + 6) / 12; // 1200 Вт - 100
-//	m_potCS2.setValue(value);
+	TIM2->CCR1 = mapping.at(watts);
 }
 

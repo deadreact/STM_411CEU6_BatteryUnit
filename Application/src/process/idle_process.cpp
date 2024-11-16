@@ -29,8 +29,6 @@
 
 struct IdleProcess::Impl
 {
-//	void displayDeepReset();
-
 	Impl()
 		: sharedData()
 		, dummy_init_data(SharedData::shareReadOnly(sharedData))
@@ -75,15 +73,6 @@ struct IdleProcess::Impl
 };
 
 
-//void IdleProcess::Impl::displayDeepReset()
-//{
-//	screen.setActive(false);
-//
-////	LCD_Reboot();
-//
-//	screen.setActive(true);
-//}
-
 void IdleProcess::Impl::onTick()
 {
 	m_invHandler.onTick();
@@ -117,7 +106,7 @@ void IdleProcess::Impl::handleEvents()
     sharedData.usbState = m_usbHandler.isOn();
     sharedData.temperatureInv = m_fanHandler.getTemperature1();
     sharedData.temperatureCharg = m_fanHandler.getTemperature2();
-//    sharedData.fan = m_fanHandler.getFan();
+    sharedData.fan = m_fanHandler.getFanPower();
 
     sharedData.settings = m_settingsHandler.getData();
     sharedData.screenId = ScreenId(sharedData.settings.getValue(SettingsData::ScreenType));
