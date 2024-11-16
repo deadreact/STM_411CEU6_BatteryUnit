@@ -279,14 +279,13 @@
               {
                 "Type": "Container",
                 "Name": "container_current",
-                "X": 2,
-                "Width": 48,
+                "Width": 52,
                 "Height": 32,
                 "Components": [
                   {
                     "Type": "TextArea",
                     "Name": "current_value",
-                    "X": 6,
+                    "X": 8,
                     "Width": 27,
                     "Height": 18,
                     "TextId": "WILDCARD_Simple14",
@@ -306,7 +305,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "current_units",
-                    "X": 34,
+                    "X": 36,
                     "Width": 9,
                     "Height": 18,
                     "TextId": "UNITS_CURRENT",
@@ -322,6 +321,7 @@
                   {
                     "Type": "TextArea",
                     "Name": "current_name",
+                    "X": 2,
                     "Y": 14,
                     "Width": 48,
                     "Height": 18,

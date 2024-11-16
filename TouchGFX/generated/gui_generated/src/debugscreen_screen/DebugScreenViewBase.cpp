@@ -160,8 +160,8 @@ DebugScreenViewBase::DebugScreenViewBase() :
 
     batteryInfo.add(container_power);
 
-    container_current.setPosition(2, 0, 48, 32);
-    current_value.setXY(6, 0);
+    container_current.setPosition(0, 0, 52, 32);
+    current_value.setXY(8, 0);
     current_value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_value.setLinespacing(0);
     Unicode::snprintf(current_valueBuffer, CURRENT_VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_0DOT00).getText());
@@ -170,14 +170,14 @@ DebugScreenViewBase::DebugScreenViewBase() :
     current_value.setTypedText(touchgfx::TypedText(T_WILDCARD_SIMPLE14));
     container_current.add(current_value);
 
-    current_units.setXY(34, 0);
+    current_units.setXY(36, 0);
     current_units.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_units.setLinespacing(0);
     current_units.setTypedText(touchgfx::TypedText(T_UNITS_CURRENT));
     current_units.setAlpha(90);
     container_current.add(current_units);
 
-    current_name.setPosition(0, 14, 48, 18);
+    current_name.setPosition(2, 14, 48, 18);
     current_name.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     current_name.setLinespacing(0);
     current_name.setTypedText(touchgfx::TypedText(T_TITLE_CURRENT));
