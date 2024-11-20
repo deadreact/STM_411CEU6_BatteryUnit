@@ -1210,9 +1210,9 @@
           {
             "Type": "TextArea",
             "Name": "value",
-            "X": 34,
+            "X": 24,
             "Y": -2,
-            "Width": 32,
+            "Width": 52,
             "Height": 22,
             "TextId": "WILDCARD_SOC_SMALL",
             "TextRotation": "0",
@@ -1221,7 +1221,6 @@
               "Green": 245,
               "Blue": 217
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "NUMBER_50",
               "UseBuffer": true,
@@ -1247,8 +1246,8 @@
           {
             "Type": "TextArea",
             "Name": "value",
-            "X": 118,
-            "Width": 68,
+            "X": 100,
+            "Width": 104,
             "Height": 38,
             "TextId": "WILDCARD_SOC_BIG",
             "TextRotation": "0",
@@ -1257,7 +1256,6 @@
               "Green": 245,
               "Blue": 217
             },
-            "AutoSize": true,
             "Wildcard1": {
               "TextId": "NUMBER_50",
               "UseBuffer": true,

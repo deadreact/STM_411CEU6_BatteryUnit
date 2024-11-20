@@ -10,12 +10,11 @@ BatteryMainProgressBarBase::BatteryMainProgressBarBase()
 {
     setWidth(290);
     setHeight(63);
-    value.setXY(118, 0);
+    value.setPosition(100, 0, 104, 38);
     value.setColor(touchgfx::Color::getColorFromRGB(255, 245, 217));
     value.setLinespacing(0);
     Unicode::snprintf(valueBuffer, VALUE_SIZE, "%s", touchgfx::TypedText(T_NUMBER_50).getText());
     value.setWildcard(valueBuffer);
-    value.resizeToCurrentText();
     value.setTypedText(touchgfx::TypedText(T_WILDCARD_SOC_BIG));
     add(value);
 
