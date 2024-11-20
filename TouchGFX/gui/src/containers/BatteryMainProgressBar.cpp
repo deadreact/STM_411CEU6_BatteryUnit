@@ -20,7 +20,7 @@ void BatteryMainProgressBar::setProgress(uint8_t progress)
 
 		Unicode::snprintf(valueBuffer, VALUE_SIZE, "%d", (int)progress);
 		progress_bg.setBitmap(touchgfx::Bitmap(progress > 20 ? BITMAP_BAR_BIG_FILL_WHITE_ID : BITMAP_BAR_BIG_FILL_RED_ID));
-		progress_bg.setWidth((uint16_t)progress * 2.9);
+		progress_bg.setWidth((int)progress * 2.9f);
 
 		invalidateContent();
 	}
