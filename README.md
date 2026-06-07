@@ -39,15 +39,13 @@ The pinout and peripheral configuration are defined in `STM_411CEU6_BatteryUnit.
 - TouchGFX 4.24.1 generated UI project.
 - C and C++ application code, with the main application logic in `Application/`.
 
-## UI Assets
+## Screenshots
 
-The source UI media files are kept in `resources/`. TouchGFX-generated image sources are kept separately under `TouchGFX/generated/images/`.
+The UI runs on a 320x240 ILI9341 display. The screenshots below show the real hardware display output from the assembled first station revision.
 
-These are source assets rather than full screen captures; the final screens are assembled in TouchGFX.
-
-| 320x240 layout grid | Charger-connected icon | Battery warning fill |
-| --- | --- | --- |
-| ![320x240 UI grid](resources/grid.png) | ![Charger-connected plug icon](resources/icons/plug_big_green.png) | ![Red battery fill asset](resources/bars/battery_fill_red.png) |
+| Main screen | Debug screen |
+| --- | --- |
+| ![Main station screen](resources/screenshots/main-screen.jpg) | ![Debug station screen](resources/screenshots/debug-screen.jpg) |
 
 ## Project Layout
 
@@ -56,7 +54,7 @@ These are source assets rather than full screen captures; the final screens are 
 - `Drivers/` - STM32 HAL, CMSIS, ILI9341 driver, and NTC helper library.
 - `Middlewares/` - FreeRTOS and TouchGFX middleware.
 - `TouchGFX/` - TouchGFX UI project, generated assets, screens, presenters, and simulator files.
-- `resources/` - source UI images and icons.
+- `resources/` - source UI images, icons, and screenshots.
 - `BMS-RS485Communication protocol.pdf` and `Jikong-BMS-RS485-Communication example.pdf` - protocol reference material for JK/Jikong BMS communication.
 
 ## Runtime Architecture
