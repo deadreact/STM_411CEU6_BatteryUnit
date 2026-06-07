@@ -41,7 +41,7 @@ The pinout and peripheral configuration are defined in `STM_411CEU6_BatteryUnit.
 
 ## Screenshots
 
-The UI runs on a 320x240 ILI9341 display. The screenshots below show the real hardware display output from the assembled first station revision.
+The UI runs on a 320x240 ILI9341 display. The screenshots below show the real hardware display output: debug screen from the assembled first station revision, main screen from second one.
 
 | Main screen | Debug screen |
 | --- | --- |
